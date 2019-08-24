@@ -1,0 +1,123 @@
+[debug] [2019-08-19T18:54:10.010Z] ----------------------------------------------------------------------
+[debug] [2019-08-19T18:54:10.013Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Win10Pro\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-08-19T18:54:10.014Z] CLI Version:   7.2.2
+[debug] [2019-08-19T18:54:10.014Z] Platform:      win32
+[debug] [2019-08-19T18:54:10.014Z] Node Version:  v10.16.0
+[debug] [2019-08-19T18:54:10.015Z] Time:          Mon Aug 19 2019 21:54:10 GMT+0300 (GMT+03:00)
+[debug] [2019-08-19T18:54:10.016Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-08-19T18:54:10.037Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-08-19T18:54:10.038Z] > authorizing via signed-in user
+[debug] [2019-08-19T18:54:10.038Z] [iam] checking project pizzabuilder-e9539 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-08-19T18:54:10.041Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-08-19T18:54:10.041Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-08-19T18:54:10.323Z] <<< HTTP RESPONSE 200
+[debug] [2019-08-19T18:54:10.339Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/pizzabuilder-e9539:testIamPermissions  
+
+[debug] [2019-08-19T18:54:11.263Z] <<< HTTP RESPONSE 200
+[debug] [2019-08-19T18:54:11.266Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/pizzabuilder-e9539  
+ 
+[debug] [2019-08-19T18:54:11.562Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'pizzabuilder-e9539'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-08-19T18:54:11.571Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/pizzabuilder-e9539/versions  
+
+[debug] [2019-08-19T18:54:14.782Z] <<< HTTP RESPONSE 200
+[info] i  hosting[pizzabuilder-e9539]: beginning deploy...
+[info] i  hosting[pizzabuilder-e9539]: found 79 files in dist
+[debug] [2019-08-19T18:54:14.871Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined
+[debug] [2019-08-19T18:54:15.506Z] [hosting] hash cache [ZGlzdA] stored for 79 files
+[debug] [2019-08-19T18:54:15.507Z] [hosting][hash queue][FINAL]
+[debug] [2019-08-19T18:54:15.507Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/pizzabuilder-e9539/versions/43e8c451aeb136af:populateFiles  
+ <request body omitted>
+[debug] [2019-08-19T18:54:17.276Z] <<< HTTP RESPONSE 500
+[debug] [2019-08-19T18:54:17.277Z] <<< HTTP RESPONSE BODY
+[debug] [2019-08-19T18:54:17.684Z] [populateQueue] Retrying task index 0
+[debug] [2019-08-19T18:54:17.684Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/pizzabuilder-e9539/versions/43e8c451aeb136af:populateFiles  
+ <request body omitted>
+[debug] [2019-08-19T18:54:19.771Z] <<< HTTP RESPONSE 200
+[debug] [2019-08-19T18:54:19.776Z] [hosting][populate queue][FINAL]
+[debug] [2019-08-19T18:54:19.776Z] [hosting] uploads queued: 2
+[debug] [2019-08-19T18:54:23.573Z] [hosting][upload queue][FINAL]
+[info] +  hosting[pizzabuilder-e9539]: file upload complete
+[debug] [2019-08-19T18:54:23.576Z] [hosting] deploy completed after 8788ms
+[debug] [2019-08-19T18:54:23.691Z] [
+  {
+    "config": {
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "pizzabuilder-e9539"
+    },
+    "site": "pizzabuilder-e9539",
+    "version": "sites/pizzabuilder-e9539/versions/43e8c451aeb136af"
+  }
+]
+[info] i  hosting[pizzabuilder-e9539]: finalizing version...
+[debug] [2019-08-19T18:54:23.697Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/pizzabuilder-e9539/versions/43e8c451aeb136af?updateMask=status  
+
+[debug] [2019-08-19T18:54:24.680Z] <<< HTTP RESPONSE 500
+[debug] [2019-08-19T18:54:24.680Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 500, Internal error encountered.
+[debug] [2019-08-19T18:54:24.769Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 500,
+      "message": "Internal error encountered.",
+      "status": "INTERNAL"
+    }
+  },
+  "response": {
+    "statusCode": 500,
+    "body": {
+      "error": {
+        "code": 500,
+        "message": "Internal error encountered.",
+        "status": "INTERNAL"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Mon, 19 Aug 2019 18:54:24 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "0",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"46,43,39\"",
+      "accept-ranges": "none",
+      "transfer-encoding": "chunked"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": "?updateMask=status",
+        "query": "updateMask=status",
+        "pathname": "/v1beta1/sites/pizzabuilder-e9539/versions/43e8c451aeb136af",
+        "path": "/v1beta1/sites/pizzabuilder-e9539/versions/43e8c451aeb136af?updateMask=status",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/pizzabuilder-e9539/versions/43e8c451aeb136af?updateMask=status"
+      },
+      "method": "PATCH"
+    }
+  }
+}

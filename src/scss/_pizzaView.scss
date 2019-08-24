@@ -1,0 +1,462 @@
+.pizza__view__cover {
+  animation: show 0.4s ease-in-out;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  @include laptop {
+    flex-direction: column;
+  }
+}
+
+.pizza__view__block {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @include laptop {
+    width: 100%;
+    font-size: rem(20);
+  }
+}
+
+.pizza__view__layout {
+  position: relative;
+  width: 30rem;
+  min-height: 30rem;
+}
+
+.pizza__view__bottom {
+  width: 30rem;
+  min-height: 30rem;
+  background: rgb(173, 129, 63);
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.pizza__view__sauce__bottom {
+  width: 29rem;
+  min-height: 29rem;
+  background: rgb(226, 81, 81);
+  border-radius: 50%;
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+}
+
+.pizza__view__cheese {
+  width: 28rem;
+  min-height: 28rem;
+  background: rgb(241, 212, 42);
+  border-radius: 50%;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.pizza__view__meat {
+  width: 28rem;
+  min-height: 28rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: url("../img/meat-2.png") repeat center center;
+}
+
+.pizza__view__other {
+  width: 26rem;
+  min-height: 26rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: url("../img/pizza-icon.png") repeat;
+}
+
+.pizza__view__chili {
+  width: 24rem;
+  min-height: 24rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+  background: url("../img/red-chili-pepper.png") repeat;
+}
+
+.pizza__control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5rem;
+  margin-top: 1rem;
+  padding: 1rem 3rem;
+  border: 3px solid transparent;
+  transition: 0.3s;
+  &:hover {
+    border: 3px solid rgb(43, 32, 32);
+  }
+}
+
+.pizza__control__button {
+  margin: 1rem 2rem;
+  cursor: pointer;
+  background: rgb(76, 165, 113);
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.pizza__buttons__cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  @include laptop {
+    width: 100%;
+    margin-bottom: 5rem;
+  }
+}
+
+.pizza__control__title {
+  width: 40%;
+  text-align: center;
+  font-size: rem(24);
+  font-weight: bold;
+  user-select: none;
+}
+
+.pizza__controls__image {
+  width: 20%;
+}
+
+.pizza__view__info {
+  width: 90%;
+}
+
+.pizza__view__info__small__title {
+  margin: 0;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #2c3e50;
+  background-image: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.select {
+  position: relative;
+  display: flex;
+  width: 90%;
+  height: 7rem;
+  line-height: 3;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: 0.25em;
+  margin-bottom: 5rem;
+}
+select {
+  padding: 0 0.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #34495e;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  transition: 0.25s all ease;
+}
+
+.select:hover::after {
+  color: #f39c12;
+}
+
+.pizza__view__icon {
+  position: relative;
+  width: 7rem;
+}
+
+.pizza__view__icon__count {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.pizza__view__info__icons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pizza__view__icon__image {
+  vertical-align: middle;
+}
+
+.pizza__view__icon__delete {
+  position: absolute;
+  width: 1.3rem;
+  height: 1.3rem;
+  top: 1rem;
+  left: 0;
+  cursor: pointer;
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 1.3rem;
+    height: 2px;
+    left: 0;
+    background: #000;
+    transform: rotate(45deg);
+    transition: 0.3s;
+  }
+  &:after {
+    transform: rotate(-45deg);
+  }
+  &:hover {
+    &:before,
+    &:after {
+      width: 2rem;
+      left: -0.5rem;
+    }
+  }
+}
+
+.pizza__view__order__controls {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 5rem;
+  width: 100%;
+}
+
+.pizza__view__order__controls__button {
+  padding: 1.5rem 3rem;
+  background: rgb(204, 102, 19);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #000;
+  &:hover {
+    background: rgb(121, 57, 6);
+    color: #fff;
+  }
+}
+
+.red_theme {
+  background: rgb(128, 31, 31);
+}
+
+.pizza__view__order__content__modal {
+  padding: 5rem;
+  background: #3d2703;
+  color: #fff;
+  @include laptop {
+    padding: 2rem;
+  }
+}
+
+.pizza__view__order__content__flex {
+  display: flex;
+  align-items: center;
+}
+
+.pizza__view__order__modal__icons {
+  display: flex;
+  flex-wrap: wrap;
+  width: 60%;
+  justify-content: flex-end;
+}
+
+@keyframes showIcon {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.cover__for__indredient__icon {
+  display: flex;
+  flex-wrap: wrap;
+  transition: 0.5s;
+  animation: showIcon 1s ease-in-out;
+}
+
+.modal__sending {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  background: rgba($color: #000000, $alpha: 0.7);
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  padding-top: 10rem;
+}
+
+.pizza__control__title__weight {
+  font-size: rem(12);
+}
+
+.pizza__view__order__small__modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba($color: #000000, $alpha: 0.7);
+}
+
+.pizza__view__order__small__modal__content {
+  z-index: 6;
+  color: #fff;
+  font-weight: bold;
+}
+
+.multi__pizzas__cover {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.delete__multi__order {
+  border-radius: 4px;
+  border: none;
+  background: rgb(170, 13, 13);
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    background: rgb(240, 29, 29);
+  }
+}
+
+.multi__order__item {
+  margin: 1rem 1rem 0 0;
+  border: 1px rgb(80, 69, 69) solid;
+  padding: 1.5rem;
+  animation: show 0.5s ease-in;
+  display: inline-block;
+}
+
+.multi__order__params__cover {
+  margin-right: 2rem;
+}
+
+.multi__order__icons__cover {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.multi__total__price {
+  margin: 0;
+  font-weight: bold;
+}
+
+.multi__title {
+  margin: 0;
+}
+
+.select__list {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+  max-height: 50vh;
+  overflow-y: scroll;
+}
+
+.select__item {
+  padding: 1rem;
+  background: rgb(30, 70, 97);
+  color: #fff;
+  border-bottom: 2px #000 solid;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  &:hover {
+    background: rgb(36, 112, 156);
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.select__cover__ul {
+  width: 100%;
+}
+
+.toggle__select {
+  width: 90%;
+  margin: 0 0 0 5%;
+  border: 1px transparent solid;
+  transition: 0.3s;
+  background: rgb(30, 70, 97);
+  padding: 1rem;
+  cursor: pointer;
+  color: #fff;
+  &:hover {
+    background: rgb(36, 112, 156);
+    border: 1px #ccc solid;
+  }
+}
+
+.select__item__pic {
+  width: 4rem;
+  vertical-align: middle;
+}
+
+.select__item__title__cover {
+  margin-right: 2rem;
+}
+
+.select__list::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #265a72;
+}
+
+.select__list::-webkit-scrollbar {
+  width: 12px;
+  background-color: #23667a;
+}
+
+.select__list::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #143f49;
+}
+
+.ul__select__title__ingredients {
+  text-transform: capitalize;
+}
+
+.multi__pizza__name__obj {
+  text-transform: capitalize;
+  font-weight: bold;
+}

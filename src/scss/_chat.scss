@@ -1,0 +1,266 @@
+.chat__section {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.chat__main__cover {
+  padding: 2rem 5rem;
+  @include laptop {
+    padding: 2rem 0;
+  }
+}
+
+.chat__head__cover {
+  width: 90%;
+  margin: 0 auto;
+  @include laptop {
+    width: 100%;
+  }
+}
+
+.chat__head__title {
+  padding: 1rem;
+  font-size: rem(20);
+}
+
+.chat__head__view__port {
+  height: 60vh;
+  width: 100%;
+  background: rgb(235, 232, 232);
+  color: #000;
+  overflow-y: scroll;
+  padding: 1rem;
+}
+
+.chat__footer__cover {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  @include laptop {
+    width: 100%;
+  }
+}
+
+.chat__footer__send__btn {
+  margin: 2rem 2rem 0 2rem;
+  padding: 1rem 4rem;
+  border: 1px transparent solid;
+  border-radius: 3px;
+  background: rgb(190, 218, 116);
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    background: rgb(175, 202, 19);
+    border: 1px rgb(21, 247, 13) solid;
+  }
+}
+
+.chat__footer__send__input {
+  margin: 2rem 2rem 0 2rem;
+  padding: 1rem 1rem;
+  border: 1px transparent solid;
+  border-radius: 3px;
+  background: rgb(190, 218, 116);
+  transition: 0.3s;
+  width: 50%;
+  &:hover {
+    background: rgb(175, 202, 19);
+    border: 1px rgb(21, 247, 13) solid;
+  }
+  &:focus {
+    background: rgb(214, 209, 209);
+  }
+}
+
+.chat__rooms__cover {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.chat__rooms__cover {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.chat__create__room__cover {
+  display: flex;
+  align-items: center;
+}
+
+.chat__create__room__btn__cover {
+  margin-right: 2rem;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.chat__create__room__input {
+  padding: 1rem 1rem;
+  border: 1px transparent solid;
+  border-radius: 3px;
+  background: rgb(190, 218, 116);
+  transition: 0.3s;
+  width: 70%;
+  &:hover {
+    background: rgb(175, 202, 19);
+    border: 1px rgb(21, 247, 13) solid;
+  }
+  &:focus {
+    background: rgb(214, 209, 209);
+  }
+}
+
+.chat__create__room__btn {
+  padding: 1rem 4rem;
+  border: 1px transparent solid;
+  border-radius: 3px;
+  background: rgb(190, 218, 116);
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    background: rgb(175, 202, 19);
+    border: 1px rgb(21, 247, 13) solid;
+  }
+}
+
+.chat__room__list {
+  width: 50%;
+  overflow-y: scroll;
+}
+
+.chat__room__item {
+  padding: 1rem 2rem;
+  border-bottom: 2px #ccc solid;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    background: rgb(165, 158, 54);
+  }
+}
+
+.chat__room__list::-webkit-scrollbar-track,
+.chat__head__view__port::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #ccc;
+}
+
+.chat__room__list::-webkit-scrollbar,
+.chat__head__view__port::-webkit-scrollbar {
+  width: 12px;
+  background-color: #ccc;
+}
+
+.chat__room__list::-webkit-scrollbar-thumb,
+.chat__head__view__port::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: rgb(143, 136, 136);
+}
+
+.chat__currnet__room__cover {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.chat__room__name {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.chat__set__name__cover {
+  display: flex;
+}
+
+.chat__set__name__cover__single {
+  margin-right: 3rem;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.chat__message__name {
+  font-weight: bold;
+  color: rgb(36, 27, 27);
+}
+
+.chat__message__message {
+  font-style: italic;
+}
+
+.chat__message__cover {
+  text-align: right;
+  animation: show 0.3s;
+}
+
+.chat__footer__send__btn__spinner {
+  width: 5rem;
+  position: absolute;
+  top: -0.5rem;
+  left: 3rem;
+}
+
+.chat__load__more__btn {
+  display: block;
+  text-align: center;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    color: aqua;
+  }
+}
+
+.relative {
+  position: relative;
+
+}
+
+.chat__message__delete__single {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1rem;
+  height: 1rem;
+  background: transparent;
+  cursor: pointer;
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1px;
+    width: 1rem;
+    background: transparent;
+    transition: 0.3s;
+    transform: rotate(45deg);
+  }
+  &::before  {
+    transform: rotate(-45deg)
+  }
+}
+
+.relative:hover {
+  .chat__message__delete__single {
+    &::before, &::after {
+      height: 2px;
+      width: 1.5rem;
+      background: rgb(209, 40, 40);
+    }
+  }
+}
+
+.chat__delete__message__confirm {
+  transition: 0.3s;
+  padding: 1rem 8rem;
+  background: rgb(94, 27, 27);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  &:hover {
+    background: rgb(172, 47, 47);
+  }
+}

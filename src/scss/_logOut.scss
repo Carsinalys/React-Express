@@ -1,0 +1,35 @@
+.logOut__cover {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.logOut__btn {
+    transition: 0.3s;
+    background: rgb(196, 43, 43);
+    padding: 1rem 3rem;
+    border-radius: 3px;
+    border: 1px transparent solid;
+    cursor: pointer;
+    &:hover {
+        border: 1px #000 solid;
+    }
+}
+
+.imput__maping {
+    border: 1px transparent solid;
+    border-radius: 4px;
+    background: rgb(172, 142, 47);
+    outline: none;
+    transition: 0.3s;
+}
+
+.imput__maping_error {
+    background: rgb(179, 69, 69);
+    color: #fff;
+    border: 1px rgb(241, 11, 11) solid;
+    &:hover {
+        color: #000;
+    }
+}

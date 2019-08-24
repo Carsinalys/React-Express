@@ -1,0 +1,66 @@
+@mixin littleDesctop {
+  @media screen and (max-width: 1200px) {
+    @content
+  }
+};
+
+@mixin laptop {
+  @media screen and (max-width: 768px) {
+    @content
+  }
+};
+
+@mixin semiMobile {
+  @media screen and (max-width: 600px) {
+    @content
+  }
+};
+
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content
+  }
+};
+
+%clearfix {
+  &:after {
+    display: table;
+  	content: "";
+  	clear: both;
+  }
+}
+
+$mainFontColor           : #101010;
+$mainFontSize            : 10px;
+$mainFontWeight          : 400;
+$mainLineHeight          : 1.4;
+
+$desktopWidth            : 1200px;
+$smDesktopWidth          : 980px;
+$tableWidth              : 768px;
+$phoneWidth              : 480px;
+$smPhoneWidth            : 320px;
+
+@function rem($pixels, $context: $mainFontSize) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1rem;
+}
+
+@mixin size($width,$height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}
+}

@@ -1,0 +1,140 @@
+.builds__pizza__title,
+.pizza__builder__controls__ingredient__title {
+  text-transform: capitalize;
+}
+
+.ready__build__single__pic {
+  width: 70%;
+  margin: 0 auto;
+  padding: 1rem;
+  display: none;
+  @include laptop {
+    width: 50%;
+  }
+}
+
+.ready__build__single__pic_active {
+  display: block;
+}
+
+.single__build__ingredients__cover,
+.single__build__params__cover {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.builds__pizza__title__text {
+  text-align: center;
+  font-size: rem(30);
+  color: rgb(54, 43, 12);
+}
+
+.ready__builds__main__cover {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.single__build__order__cover {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.single__build__order {
+  width: 100%;
+  border: 1px transparent solid;
+  transition: 0.3s;
+  background: rgb(164, 167, 35);
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    border: 1px #000 solid;
+    background: rgb(234, 236, 75);
+  }
+}
+
+.ready__build__cover {
+  width: 45%;
+  animation: show 0.3s;
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.ready__builds__modal__cover {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.ready__builds__modal__block {
+  width: 60%;
+  margin: 0 auto;
+  padding: 3rem;
+  background: rgb(85, 76, 37);
+  color: #fff;
+  text-align: center;
+  @include laptop {
+    width: 90%;
+  }
+}
+
+.ready__builds__modal__btns__cover {
+  display: flex;
+  justify-content: center;
+}
+
+.ready__builds__modal__btn__cover {
+  margin-right: 3rem;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.ready__builds__modal__btn {
+  border-radius: 4px;
+  border: 1px transparent solid;
+  background: rgb(148, 139, 70);
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    border: 1px rgb(3, 3, 3) solid;
+    background: rgb(155, 138, 46);
+  }
+}
+
+.info__modal__cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.info__modal__title {
+  width: 70%;
+  color: rgb(177, 166, 166);
+}
+
+.chat__change__name__btn {
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 1rem;
+  border-radius: 5px;
+  &:hover {
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4)
+  }
+}

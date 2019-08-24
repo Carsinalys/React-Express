@@ -1,0 +1,68 @@
+.room__nav {
+  width: 90%;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.room__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.room__item {
+  width: 30%;
+  text-align: center;
+  @include laptop {
+    width: 90%;
+    margin: 1rem auto 0 auto;
+  }
+}
+
+.room__link {
+  padding: 1rem;
+  border: 1px transparent solid;
+  transition: 0.3s;
+  background: rgb(146, 81, 7);
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 4px 3px rgba($color: #000000, $alpha: 0.5);
+  color: #fff;
+  display: block;
+  &:hover {
+    border: 1px #000000 solid;
+    box-shadow: 0 6px 5px rgba($color: #000000, $alpha: 0.5);
+  }
+}
+
+.room__output {
+  width: 95%;
+  margin: 3rem auto 0 auto;
+  padding: 3rem;
+}
+
+@keyframes shake {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pizza__nav__link__active {
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url(../img/eye.svg) no-repeat center center;
+    transition: 0.3s;
+    animation: shake 1s infinite;
+  }
+}

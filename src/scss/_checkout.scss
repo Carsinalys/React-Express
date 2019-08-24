@@ -1,0 +1,77 @@
+.checkout__content__cover {
+  padding: 5rem 2rem;
+}
+
+.checkout__content__title {
+  text-align: center;
+}
+
+.checkout__content__top__cover {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2rem;
+  align-items: center;
+}
+
+.checkout__content__top__cover div {
+  margin-right: 2rem;
+  width: 30%;
+  &:last-child {
+    margin-right: 0;
+  }
+  @include laptop {
+    width: 45%;
+  }
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.chechout__content__address__cover {
+  display: flex;
+  margin: 2rem;
+  @include laptop {
+    flex-wrap: wrap;
+  }
+}
+
+.chechout__content__address__cover label {
+  margin-right: 2rem;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.checkout__content__ingredients__cover {
+  margin: 2rem;
+}
+
+.checkout__content__params__cover,
+.checkout__content__submit__cover {
+  margin: 2rem;
+}
+
+#checkout__submit {
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  background: rgb(255, 114, 32);
+  transition: 0.3s;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  &:hover,
+  &:focus {
+    background: rgb(255, 193, 158);
+  }
+}
+
+.checkput__auth__false__cover {
+  text-align: center;
+}
+
+.input__cover {
+  margin-right: 3rem;
+  &:last-child {
+    margin-right: 0;
+  }
+}

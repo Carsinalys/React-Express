@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Open Sans", sans-serif;
+  font-size: $mainFontSize;
+  @media screen and (max-width: $desktopWidth) {
+    font-size: 9px;
+  }
+  @media screen and (max-width: $smDesktopWidth) {
+    font-size: 8px;
+  }
+  @media screen and (max-width: $tableWidth) {
+    font-size: 7px;
+  }
+  @media screen and (max-width: $phoneWidth) {
+    font-size: 6px;
+  }
+  @media screen and (max-width: $smPhoneWidth) {
+    font-size: 5px;
+  }
+}
+
+body {
+  font-size: 1.6rem;
+  line-height: 1.42;
+  overflow-x: hidden;
+  position: relative;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.wrapper {
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+object {
+  pointer-events: none;
+  max-width: 100%;
+}
