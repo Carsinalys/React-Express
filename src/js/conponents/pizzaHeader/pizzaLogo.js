@@ -1,11 +1,14 @@
 import React from "react";
 
 const pizzaLogo = () => {
-  const logo = require("../../../img/logo.png");
   return (
     <div className="pizza__logo">
       <a href="/">
-        <img src={logo} alt="Pizza buikder" className="pizza__logo__pic" />
+        <img
+          src="assets/img/logo.png"
+          alt="Pizza buikder"
+          className="pizza__logo__pic"
+        />
       </a>
     </div>
   );

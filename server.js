@@ -3,7 +3,8 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import fs from "fs";
-import App from "../src/js/storeConnectToApp";
+import App from "./src/js/serverConnectProps";
+import path from "path";
 
 const PORT = process.env.PORT || 3000;
 
@@ -13,7 +14,7 @@ const parts = html.split("Loading...");
 
 const app = Express();
 
-app.use("/dist", Express.static("dist"));
+app.use("/assets/", Express.static(path.join(__dirname, "dist/assets")));
 app.use((req, res) => {
   const context = {};
 

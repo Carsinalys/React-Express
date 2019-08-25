@@ -8,13 +8,13 @@ import { multipleAdd } from "../../AC/index";
 import Modal from "./pizzaBuilderModal";
 
 class Builds extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     this.handleScroll();
-    document.addEventListener('scroll', this.handleScroll);
+    document.addEventListener("scroll", this.handleScroll);
   }
 
-  componentWillUnmount () {
-    document.removeEventListener('scroll', this.handleScroll);
+  componentWillUnmount() {
+    document.removeEventListener("scroll", this.handleScroll);
   }
 
   state = {
@@ -36,15 +36,18 @@ class Builds extends React.Component {
     this.setState({ redirect: true });
   };
 
-  handleScroll = (event) => {
-    const items = document.querySelectorAll('.ready__build__cover');
-    const pics = document.querySelectorAll('.ready__build__single__pic');
-    items.forEach((item,index)=> {
-      if (document.documentElement.scrollTop >= item.offsetTop-item.offsetHeight*2) {
-        pics[index].classList.add('ready__build__single__pic_active')
+  handleScroll = event => {
+    const items = document.querySelectorAll(".ready__build__cover");
+    const pics = document.querySelectorAll(".ready__build__single__pic");
+    items.forEach((item, index) => {
+      if (
+        document.documentElement.scrollTop >=
+        item.offsetTop - item.offsetHeight * 2
+      ) {
+        pics[index].classList.add("ready__build__single__pic_active");
       }
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -94,7 +97,7 @@ class Builds extends React.Component {
                 <span className="builds__pizza__title">{item}</span>
               </h3>
               <div className="ready__build__single__pic">
-                <img src={require(`../../../img/builds/${item}.png`)} alt="" />
+                <img src={`assets/img/${item}.png`} alt={item} />
               </div>
               <div className="single__build__ingredients__cover">
                 <Ingredients

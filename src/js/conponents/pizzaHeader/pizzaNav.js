@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 import Burger from "../../icons/burger";
@@ -69,7 +69,7 @@ const pizzaNav = props => {
               </NavLink>
             </li>
           ) : null}
-          {props.auth ? (
+          {/* {props.auth ? (
             <li className="pizza__nav__item">
               <NavLink
                 to="/chat"
@@ -82,7 +82,7 @@ const pizzaNav = props => {
                 Chat
               </NavLink>
             </li>
-          ) : null}
+          ) : null} */}
         </ul>
       </nav>
     </div>

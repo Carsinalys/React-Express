@@ -14,7 +14,7 @@ const icons = props => {
         ></div>
         <div className="pizza__view__icon__pic">
           <img
-            src={require(`../../../img/${key}.png`)}
+            src={`assets/img/${key}.png`}
             alt={key}
             className="pizza__view__icon__image"
           />

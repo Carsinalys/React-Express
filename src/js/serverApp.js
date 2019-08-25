@@ -12,13 +12,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div className="container__color">
-          <div className="container">
-            <PizzaBuilder />
-          </div>
+      <div className="container__color">
+        <div className="container">
+          <PizzaBuilder />
         </div>
-      </BrowserRouter>
+      </div>
     );
   }
 }

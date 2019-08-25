@@ -7,7 +7,7 @@ const mainInfo = props => {
       <div className="main__info__block">
         <div className="main__info__block__pic">
           <img
-            src={require("../../../img/pizzaChef.jpg")}
+            src="assets/img/pizzaChef.jpg"
             alt="Pizza Chef"
             className="main__info__block__image"
           />
