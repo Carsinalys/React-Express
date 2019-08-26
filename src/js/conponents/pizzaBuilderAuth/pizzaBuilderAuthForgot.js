@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchResetPass, authResetOnInput } from "../../AC/index";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
-import { CSSTransition } from "react-transition-group";
+import Modal from "../hoc/modal";
 
 class ForgotPass extends React.Component {
   resetHandler = e => {
@@ -18,30 +18,18 @@ class ForgotPass extends React.Component {
   render() {
     return (
       <div className="container">
-        <CSSTransition
-          in={this.props.authReset.modal}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        <Modal toggle={this.props.authReset.modal}>
           <div>
             <Spinner />
           </div>
-        </CSSTransition>
+        </Modal>
         <button onClick={this.backHandler} className="auth__forgot__back">
           Back
         </button>
         <div className="auth__forgot">
-          <CSSTransition
-            in={this.props.authReset.message}
-            timeout={300}
-            classNames="modal__global"
-            mountOnEnter
-            unmountOnExit
-          >
+          <Modal toggle={this.props.authReset.message}>
             <h2>Check your email to prossed changing password...</h2>
-          </CSSTransition>
+          </Modal>
           <form action="#" id="forgot">
             <div>
               <label htmlFor="forgot__name">

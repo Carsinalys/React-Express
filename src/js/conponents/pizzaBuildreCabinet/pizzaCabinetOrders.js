@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CSSTransition } from "react-transition-group";
-
+import Modal from "../hoc/modal";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Pagination from "./pizzaCabinetPagination";
 
@@ -156,24 +155,12 @@ const myOrdersCabinet = props => {
 
   return (
     <div>
-      <CSSTransition
-        in={props.orders.modal}
-        timeout={300}
-        classNames="modal__global"
-        mountOnEnter
-        unmountOnExit
-      >
+      <Modal toggle={props.orders.modal}>
         <div>
           <Spinner />
         </div>
-      </CSSTransition>
-      <CSSTransition
-        in={modal}
-        timeout={300}
-        classNames="modal__global"
-        mountOnEnter
-        unmountOnExit
-      >
+      </Modal>
+      <Modal toggle={modal}>
         <div className="modal__delete">
           <div className="modal__delete__cover">
             <div>
@@ -198,7 +185,7 @@ const myOrdersCabinet = props => {
             </div>
           </div>
         </div>
-      </CSSTransition>
+      </Modal>
       <button
         onClick={() => props.refresh(props.token, props.id, {})}
         className="refresh__orders__btn"

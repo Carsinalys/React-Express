@@ -6,7 +6,7 @@ const modal = props => {
     <CSSTransition
       in={props.toggle}
       timeout={300}
-      classNames="modal__global"
+      classNames="select__global"
       mountOnEnter
       unmountOnExit
     >

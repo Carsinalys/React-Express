@@ -1,7 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { CSSTransition } from "react-transition-group";
 
 import {
   plus,
@@ -17,9 +16,10 @@ import PizzaBuilderControls from "./pizzaByilderControls";
 import Cover from "../hoc/cover";
 import UlSelect from "./pizzaBuilderUlSelect";
 import OrderControls from "./pizzaBuilderOrder";
-import Modal from "../hoc/modal";
+import ModalBuilder from "../hoc/modalBuilder";
 import Modalcontent from "./pizzaBuilderModalContent";
 import MultiShow from "./pizzaBuilderMultiShow";
+import Modal from "../hoc/modal";
 
 class pizzaBuilderPropsSrc extends React.Component {
   state = {
@@ -81,26 +81,14 @@ class pizzaBuilderPropsSrc extends React.Component {
   render() {
     return (
       <Cover>
-        <CSSTransition
-          in={this.state.modalIsShow}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        <Modal toggle={this.state.modalIsShow}>
           <div
             className="modal__background"
             onClick={this.toggleModalHandler}
           ></div>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.modalIsShow}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
-          <Modal>
+        </Modal>
+        <Modal toggle={this.state.modalIsShow}>
+          <ModalBuilder>
             <Modalcontent
               cost={this.props.state.cost}
               diameter={this.props.state.diameter}
@@ -111,15 +99,9 @@ class pizzaBuilderPropsSrc extends React.Component {
               checkout={this.checkoutHandler}
               add={this.addPizzaHandler}
             />
-          </Modal>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.smallPizza}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+          </ModalBuilder>
+        </Modal>
+        <Modal toggle={this.state.smallPizza}>
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ smallPizza: false })}
@@ -128,7 +110,7 @@ class pizzaBuilderPropsSrc extends React.Component {
               Too small pizza, need more ingredients...
             </div>
           </div>
-        </CSSTransition>
+        </Modal>
         {this.state.redirect ? <Redirect to="/checkout" /> : null}
         <div className="pizza__view__cover">
           <div className="pizza__buttons__cover">

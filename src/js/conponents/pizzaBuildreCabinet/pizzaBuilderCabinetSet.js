@@ -1,22 +1,14 @@
 import React from "react";
 import Inputs from "../pizzaBuilderCheckout/pizzaBuilderCheckoutInput";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
-import { CSSTransition } from "react-transition-group";
+import Modal from "../hoc/modal";
 
 const cabinetSet = props => {
   return (
     <div>
-      <CSSTransition
-        in={props.modal}
-        timeout={300}
-        classNames="modal__global"
-        mountOnEnter
-        unmountOnExit
-      >
-        <div>
-          <Spinner />
-        </div>
-      </CSSTransition>
+      <Modal toggle={props.modal}>
+        <Spinner />
+      </Modal>
       <form action="#" className="set_cabinet__form">
         <h3 className="set_cabinet__form__title">Set your delivery info:</h3>
         <Inputs inputs={props.inputs} changeHandler={props.onInput} />

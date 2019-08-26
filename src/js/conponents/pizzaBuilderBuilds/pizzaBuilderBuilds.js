@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { CSSTransition } from "react-transition-group";
 import { Redirect } from "react-router-dom";
+import ModalBuilder from "./pizzaBuilderModal";
 
 import Ingredients from "../pizzaBuilder/pizzaBuilderIconsIngredients";
 import { multipleAdd } from "../../AC/index";
-import Modal from "./pizzaBuilderModal";
+import Modal from "../hoc/modal";
 
 class Builds extends React.Component {
   componentDidMount() {
@@ -53,29 +53,17 @@ class Builds extends React.Component {
     return (
       <section className="ready__builds__main__cover">
         {this.state.redirect ? <Redirect to="/checkout" /> : null}
-        <CSSTransition
-          in={this.state.modalIsShow}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        <Modal toggle={this.state.modalIsShow}>
           <div className="modal__background" onClick={this.toggleModalHandler}>
-            <Modal
+            <ModalBuilder
               add={this.props.addFun}
               redirect={this.redirectHandler}
               curPizza={this.state.selectedItem}
               builds={this.props.builds.builds}
             />
           </div>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.minusModal}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        </Modal>
+        <Modal toggle={this.state.minusModal}>
           <div
             className="modal__background"
             onClick={() => this.setState({ minusModal: false })}
@@ -89,7 +77,7 @@ class Builds extends React.Component {
               </div>
             </div>
           </div>
-        </CSSTransition>
+        </Modal>
         {Object.keys(this.props.builds.builds).map(item => {
           return (
             <div key={item} className="ready__build__cover">

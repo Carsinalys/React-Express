@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
+import Modal from "../hoc/modal";
 
 import CabinetInfo from "./pizzaBuilderCabinetInfo";
 import CabinetSet from "./pizzaBuilderCabinetSet";
@@ -75,17 +75,9 @@ class PersonalRoom extends React.Component {
   render() {
     return (
       <section className="container">
-        <CSSTransition
-          in={this.props.cabinet.modalShow}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
-          <div>
-            <Spinner />
-          </div>
-        </CSSTransition>
+        <Modal toggle={this.props.cabinet.modalShow}>
+          <Spinner />
+        </Modal>
         {this.props.auth.isAuthindicated ? null : <Redirect to="/" />}
         <nav className="room__nav">
           <ul className="room__list">

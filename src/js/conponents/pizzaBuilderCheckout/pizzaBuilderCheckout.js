@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
+import Modal from "../hoc/modal";
 
 import {
   minus,
@@ -93,12 +93,12 @@ class PizzaBuilderCheckout extends React.Component {
     }
 
     if (
-      (this.props.inputs.inputs.name.value != "" &&
-        this.props.inputs.inputs.phone.value != "" &&
-        this.props.inputs.inputs.pizza.value != "" &&
-        this.props.inputs.inputs.street.value != "" &&
-        this.props.inputs.inputs.house.value != "" &&
-        this.props.inputs.inputs.flat.value != "" &&
+      (this.props.inputs.inputs.name.value !== "" &&
+        this.props.inputs.inputs.phone.value !== "" &&
+        this.props.inputs.inputs.pizza.value !== "" &&
+        this.props.inputs.inputs.street.value !== "" &&
+        this.props.inputs.inputs.house.value !== "" &&
+        this.props.inputs.inputs.flat.value !== "" &&
         this.props.state.weight > 500) ||
       this.props.multi.pizzas.length > 0
     ) {
@@ -115,24 +115,12 @@ class PizzaBuilderCheckout extends React.Component {
   render() {
     return (
       <section className="container">
-        <CSSTransition
-          in={this.props.inputs.modalShow}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        <Modal toggle={this.props.inputs.modalShow}>
           <div>
             <Spinner />
           </div>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.smallPizza}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        </Modal>
+        <Modal toggle={this.state.smallPizza}>
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ smallPizza: false })}
@@ -142,14 +130,8 @@ class PizzaBuilderCheckout extends React.Component {
               correctly...
             </div>
           </div>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.badName}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        </Modal>
+        <Modal toggle={this.state.badName}>
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ badName: false })}
@@ -159,14 +141,8 @@ class PizzaBuilderCheckout extends React.Component {
               letter...
             </div>
           </div>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.badPhone}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        </Modal>
+        <Modal toggle={this.state.badPhone}>
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ badPhone: false })}
@@ -176,14 +152,8 @@ class PizzaBuilderCheckout extends React.Component {
               without spaces
             </div>
           </div>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.badPizzaName}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        </Modal>
+        <Modal toggle={this.state.badPizzaName}>
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ badPizzaName: false })}
@@ -192,14 +162,8 @@ class PizzaBuilderCheckout extends React.Component {
               Pizza name must be 2-20 symbols length
             </div>
           </div>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.badHouse}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        </Modal>
+        <Modal toggle={this.state.badHouse}>
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ badHouse: false })}
@@ -208,14 +172,8 @@ class PizzaBuilderCheckout extends React.Component {
               House name must be 2-4 numbers length
             </div>
           </div>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.badFlat}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        </Modal>
+        <Modal toggle={this.state.badFlat}>
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ badFlat: false })}
@@ -224,14 +182,8 @@ class PizzaBuilderCheckout extends React.Component {
               Flat must be 2-4 numbers length
             </div>
           </div>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.badStreet}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        </Modal>
+        <Modal toggle={this.state.badStreet}>
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ badStreet: false })}
@@ -240,7 +192,7 @@ class PizzaBuilderCheckout extends React.Component {
               Street must be 2-20 symbols length
             </div>
           </div>
-        </CSSTransition>
+        </Modal>
         {this.props.auth.isAuthindicated ? (
           <CheckoutContent
             data={this.props.state}

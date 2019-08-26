@@ -4,7 +4,7 @@ import { authOnInput, authSignIn } from "../../AC/index";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Redirect } from "react-router";
-import { CSSTransition } from "react-transition-group";
+import Modal from "../hoc/modal";
 
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 
@@ -71,24 +71,12 @@ class Authendication extends React.Component {
     return (
       <section className="container">
         {this.props.inputs.isAuthindicated ? redirect : null}
-        <CSSTransition
-          in={this.props.inputs.isLoading}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        <Modal toggle={this.props.inputs.isLoading}>
           <div>
             <Spinner />
           </div>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.badMail}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        </Modal>
+        <Modal toggle={this.state.badMail}>
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ badMail: false })}
@@ -97,14 +85,8 @@ class Authendication extends React.Component {
               You must enter correct Email...
             </div>
           </div>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.badPass}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        </Modal>
+        <Modal toggle={this.state.badPass}>
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ badPass: false })}
@@ -114,7 +96,7 @@ class Authendication extends React.Component {
               literal, one number minimum...
             </div>
           </div>
-        </CSSTransition>
+        </Modal>
         <div className="auth__cover">
           <h3 className="auth__sign__in__title">Sign in:</h3>
           {this.props.inputs.error ? (
