@@ -5,6 +5,7 @@ import { StaticRouter } from "react-router";
 import fs from "fs";
 import App from "./src/js/serverConnectProps";
 import path from "path";
+import Obj from "./src/random_gen";
 
 const PORT = process.env.PORT || 3000;
 
@@ -13,6 +14,11 @@ const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
 
 const app = Express();
+
+app.get("/generate", (req, res) => {
+  res.send(`<div>${Obj.generateRandomToken()}</div>`);
+  res.end();
+});
 
 app.use("/assets/", Express.static(path.join(__dirname, "dist/assets")));
 app.use((req, res) => {
