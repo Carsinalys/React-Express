@@ -6,6 +6,7 @@ import fs from "fs";
 import App from "./src/js/serverConnectProps";
 import path from "path";
 import Obj from "./src/random_gen";
+const bodyParser = require("body-parser");
 
 const PORT = process.env.PORT || 3000;
 
@@ -15,8 +16,17 @@ const parts = html.split("Loading...");
 
 const app = Express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 app.get("/generate", (req, res) => {
   res.send(`<div>${Obj.generateRandomToken()}</div>`);
+  res.end();
+});
+
+app.post("/api/v1.0/createUser", (req, res) => {
+  const user = Obj.createUser(req.body.mail, req.body.pass, req.body.check);
+  res.send(JSON.stringify(user));
   res.end();
 });
 

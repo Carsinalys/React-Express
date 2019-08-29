@@ -8,6 +8,28 @@ export const authOnInput = event => {
   };
 };
 
+export const callApiNewUser = (mail, pass, check) => {
+  return dispatch => {
+    let data = {
+      mail: mail,
+      pass: pass,
+      check: check
+    };
+    fetch("/api/v1.0/createUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(data => data.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => console.log(error));
+  };
+};
+
 export const authSignUp = (mail, pass) => {
   return dispatch => {
     dispatch(authModalOn());

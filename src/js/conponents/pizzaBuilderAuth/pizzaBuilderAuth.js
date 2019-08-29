@@ -1,6 +1,6 @@
 import React from "react";
 import Input from "../pizzaBuilderCheckout/pizzaBuilderCheckoutInput";
-import { authOnInput, authSignIn } from "../../AC/index";
+import { authOnInput, authSignIn, callApiNewUser } from "../../AC/index";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Redirect } from "react-router";
@@ -9,10 +9,6 @@ import Modal from "../hoc/modal";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 
 class Authendication extends React.Component {
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   state = {
     badMail: false,
     badPass: false,
@@ -51,6 +47,11 @@ class Authendication extends React.Component {
       )
     ) {
       this.props.authSignInFun(
+        this.props.inputs.inputs.mail.value,
+        this.props.inputs.inputs.password.value,
+        this.state.checkbox
+      );
+      this.props.callApiNewUserFun(
         this.props.inputs.inputs.mail.value,
         this.props.inputs.inputs.password.value,
         this.state.checkbox
@@ -157,7 +158,9 @@ const dispatchToProps = dispatch => {
   return {
     authOnInputFun: event => dispatch(authOnInput(event)),
     authSignInFun: (mail, pass, stayIn) =>
-      dispatch(authSignIn(mail, pass, stayIn))
+      dispatch(authSignIn(mail, pass, stayIn)),
+    callApiNewUserFun: (mail, pass, check) =>
+      dispatch(callApiNewUser(mail, pass, check))
   };
 };
 
