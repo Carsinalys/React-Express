@@ -5,7 +5,7 @@ import { StaticRouter } from "react-router";
 import fs from "fs";
 import App from "./src/js/serverConnectProps";
 import path from "path";
-import Obj from "./src/random_gen";
+import Obj from "./server/random_gen";
 const bodyParser = require("body-parser");
 
 const PORT = process.env.PORT || 3000;
