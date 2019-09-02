@@ -6,7 +6,8 @@ import fs from "fs";
 import App from "./src/js/serverConnectProps";
 import path from "path";
 import Obj from "./server/random_gen";
-const bodyParser = require("body-parser");
+const morgan = require("morgan");
+require("dotenv").config({ path: "./config.env" });
 
 const PORT = process.env.PORT || 3000;
 
@@ -16,8 +17,11 @@ const parts = html.split("Loading...");
 
 const app = Express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+//console.log(process.env);
+
+if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
+
+app.use(Express.json());
 
 app.get("/generate", (req, res) => {
   res.send(`<div>${Obj.generateRandomToken()}</div>`);
