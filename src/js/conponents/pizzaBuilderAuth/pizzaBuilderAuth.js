@@ -1,18 +1,14 @@
 import React from "react";
 import Input from "../pizzaBuilderCheckout/pizzaBuilderCheckoutInput";
-import { authOnInput, authSignIn } from "../../AC/index";
+import { authOnInput, authSignIn, callApiNewUser } from "../../AC/index";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Redirect } from "react-router";
-import { CSSTransition } from "react-transition-group";
+import Modal from "../hoc/modal";
 
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 
 class Authendication extends React.Component {
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   state = {
     badMail: false,
     badPass: false,
@@ -55,6 +51,11 @@ class Authendication extends React.Component {
         this.props.inputs.inputs.password.value,
         this.state.checkbox
       );
+      this.props.callApiNewUserFun(
+        this.props.inputs.inputs.mail.value,
+        this.props.inputs.inputs.password.value,
+        this.state.checkbox
+      );
     }
   };
 
@@ -71,24 +72,12 @@ class Authendication extends React.Component {
     return (
       <section className="container">
         {this.props.inputs.isAuthindicated ? redirect : null}
-        <CSSTransition
-          in={this.props.inputs.isLoading}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        <Modal toggle={this.props.inputs.isLoading}>
           <div>
             <Spinner />
           </div>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.badMail}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        </Modal>
+        <Modal toggle={this.state.badMail}>
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ badMail: false })}
@@ -97,14 +86,8 @@ class Authendication extends React.Component {
               You must enter correct Email...
             </div>
           </div>
-        </CSSTransition>
-        <CSSTransition
-          in={this.state.badPass}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
+        </Modal>
+        <Modal toggle={this.state.badPass}>
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ badPass: false })}
@@ -114,7 +97,7 @@ class Authendication extends React.Component {
               literal, one number minimum...
             </div>
           </div>
-        </CSSTransition>
+        </Modal>
         <div className="auth__cover">
           <h3 className="auth__sign__in__title">Sign in:</h3>
           {this.props.inputs.error ? (
@@ -175,7 +158,9 @@ const dispatchToProps = dispatch => {
   return {
     authOnInputFun: event => dispatch(authOnInput(event)),
     authSignInFun: (mail, pass, stayIn) =>
-      dispatch(authSignIn(mail, pass, stayIn))
+      dispatch(authSignIn(mail, pass, stayIn)),
+    callApiNewUserFun: (mail, pass, check) =>
+      dispatch(callApiNewUser(mail, pass, check))
   };
 };
 

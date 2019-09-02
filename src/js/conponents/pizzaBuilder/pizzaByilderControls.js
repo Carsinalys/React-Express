@@ -4,7 +4,9 @@ const pizzaBuilderControls = props => {
   return (
     <div className="pizza__control">
       <div className="pizza__control__title">
-        <p className="pizza__builder__controls__ingredient__title">{props.name}</p>
+        <p className="pizza__builder__controls__ingredient__title">
+          {props.name}
+        </p>
         <span className="pizza__control__title__weight">
           weight: {props.weight} g. her point
         </span>
@@ -25,7 +27,7 @@ const pizzaBuilderControls = props => {
         </button>
       </div>
       <div className="pizza__controls__image">
-        <img src={require(`../../../img/${props.name}.png`)} alt="" />
+        <img src={`/assets/img/${props.name}.png`} alt="" />
       </div>
     </div>
   );

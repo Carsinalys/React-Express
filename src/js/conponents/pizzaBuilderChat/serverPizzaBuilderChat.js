@@ -1,10 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import Firebase from "firebase/firebase";
 import { CSSTransition } from "react-transition-group";
 import { Redirect } from "react-router-dom";
-import Modal from "../hoc/modal";
-import ModalSlide from "../hoc/modalSlideUpDown";
 
 import {
   createChatRoom,
@@ -35,17 +32,7 @@ const firebaseConfig = {
   appId: "1:131366940948:web:e7dd40e9005f2e80"
 };
 
-Firebase.initializeApp(firebaseConfig);
-
-const watch = Firebase.database();
-
 class Chat extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.snapshotHandler();
-  }
-
   state = {
     showList: false,
     badName: false,
@@ -54,19 +41,6 @@ class Chat extends React.Component {
     messageQty: 100,
     currentLengthMessages: 0
   };
-
-  snapshotHandler = () =>
-    watch
-      .ref(`chat/rooms/${this.props.chat.room}`)
-      .limitToLast(this.state.messageQty)
-      .on("value", snapshot => {
-        this.props.chatSetCurrentMessagesFun(snapshot.val());
-        this.props.chatNewMessageOnFun();
-        this.setState({
-          currentLengthMessages: Object.keys(snapshot.val()).length
-        });
-        console.log(snapshot.val());
-      });
 
   componentDidMount() {
     this.props.chatGetRoomsFun();
@@ -78,17 +52,10 @@ class Chat extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.chat.room !== this.props.chat.room) {
-      this.props.chatNewMessageOffFun();
-      this.snapshotHandler();
-    }
-    if (prevState.messageQty !== this.state.messageQty) {
-      this.props.chatNewMessageOffFun();
-    }
     if (
-      Object.keys(prevProps.chat.messages).length !==
+      Object.keys(prevProps.chat.messages).length !=
         Object.keys(this.props.chat.messages).length &&
-      Object.keys(prevProps.chat.messages).length === 0
+      Object.keys(prevProps.chat.messages).length == 0
     ) {
       const www = document.querySelector(".chat__head__view__port");
       www.scrollTop = www.scrollHeight;
@@ -128,11 +95,11 @@ class Chat extends React.Component {
   };
 
   sendMessageHanlder = () => {
-    if (this.props.chat.userName.length === 0) {
+    if (this.props.chat.userName.length == 0) {
       this.setState({ badName: true });
     } else if (this.props.chat.messageValue.length > 100) {
       this.setState({ longMesssage: true });
-    } else if (this.props.chat.messageValue.length === 0) {
+    } else if (this.props.chat.messageValue.length == 0) {
       this.setState({ badMessage: true });
     } else {
       let data = {
@@ -173,7 +140,13 @@ class Chat extends React.Component {
     return (
       <section className="chat__section">
         {!this.props.auth.isAuthindicated ? <Redirect to="/" /> : null}
-        <Modal toggle={this.state.longMesssage}>
+        <CSSTransition
+          in={this.state.longMesssage}
+          timeout={300}
+          classNames="modal__global"
+          mountOnEnter
+          unmountOnExit
+        >
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ longMesssage: false })}
@@ -182,8 +155,14 @@ class Chat extends React.Component {
               Too long message (it must be 100 symbols max)
             </div>
           </div>
-        </Modal>
-        <Modal toggle={this.state.badName}>
+        </CSSTransition>
+        <CSSTransition
+          in={this.state.badName}
+          timeout={300}
+          classNames="modal__global"
+          mountOnEnter
+          unmountOnExit
+        >
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ badName: false })}
@@ -192,8 +171,14 @@ class Chat extends React.Component {
               User name must be longer 5 symbols and shorter 20 symbols length
             </div>
           </div>
-        </Modal>
-        <Modal toggle={this.state.badMessage}>
+        </CSSTransition>
+        <CSSTransition
+          in={this.state.badMessage}
+          timeout={300}
+          classNames="modal__global"
+          mountOnEnter
+          unmountOnExit
+        >
           <div
             className="pizza__view__order__small__modal"
             onClick={() => this.setState({ badMessage: false })}
@@ -202,12 +187,18 @@ class Chat extends React.Component {
               You must enter some text in the message field
             </div>
           </div>
-        </Modal>
-        <Modal toggle={this.props.chat.modal}>
+        </CSSTransition>
+        <CSSTransition
+          in={this.props.chat.modal}
+          timeout={300}
+          classNames="modal__global"
+          mountOnEnter
+          unmountOnExit
+        >
           <div>
             <Spinner />
           </div>
-        </Modal>
+        </CSSTransition>
         <div className="chat__main__cover">
           <div className="chat__rooms__cover">
             <div className="chat__rooms__select__cover">
@@ -217,14 +208,20 @@ class Chat extends React.Component {
               >
                 Choose room
               </button>
-              <ModalSlide toggle={this.state.showList}>
+              <CSSTransition
+                in={this.state.showList}
+                timeout={300}
+                classNames="select__global"
+                mountOnEnter
+                unmountOnExit
+              >
                 <Rooms
                   rooms={this.props.chat.rooms}
                   choose={this.props.chatChooseRoomFun}
                   toggle={this.toggleSelectRoomsHandler}
                   resetLoadmore={this.resetLoadMoreHandler}
                 />
-              </ModalSlide>
+              </CSSTransition>
             </div>
             <div>
               {this.props.chat.userName.length > 0 ? (

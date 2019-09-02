@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { CSSTransition } from "react-transition-group";
+import Modal from "../hoc/modal";
 
 import {
   the_same,
@@ -42,17 +42,9 @@ class PizzaBuilderMainPage extends React.Component {
   render() {
     return (
       <section className="main__page__cover">
-        <CSSTransition
-          in={this.props.isLoading}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
-          <div>
-            <Spinner />
-          </div>
-        </CSSTransition>
+        <Modal toggle={this.props.isLoading}>
+          <Spinner />
+        </Modal>
         {this.state.rediect ? <Redirect to="/checkout" /> : null}
         <MainInfo />
         {this.props.getOrders ? (

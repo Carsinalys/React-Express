@@ -16,10 +16,7 @@ import LogOut from "./pizzaBuilderLogOut/pizzaBuilderLogOut";
 import Cabinet from "./pizzaBuildreCabinet/pizzaBuilderCabinet";
 import Forgot from "./pizzaBuilderAuth/pizzaBuilderAuthForgot";
 import ReadyBuilds from "./pizzaBuilderBuilds/pizzaBuilderBuilds";
-
-const ChatLazyLoaded = React.lazy(() =>
-  import("./pizzaBuilderChat/pizzaBuilderChat")
-);
+import Chat from "./pizzaBuilderChat/serverPizzaBuilderChat";
 
 class PizzaApp extends React.Component {
   render() {
@@ -34,15 +31,7 @@ class PizzaApp extends React.Component {
         <Route path="/authentication" exact component={Authendication} />
         <Route path="/personalRoom" component={Cabinet} />
         <Route path="/pizza-builds" component={ReadyBuilds} />
-        <Suspense
-          fallback={
-            <div className="modal__global">
-              <Spinner />
-            </div>
-          }
-        >
-          <Route exact path="/chat" component={ChatLazyLoaded} />
-        </Suspense>
+        <Route exact path="/chat" component={Chat} />
         <Route
           path="/authentication/registration"
           component={AuthendicationSignUp}

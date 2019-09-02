@@ -16,7 +16,8 @@ export {
   authOnInput,
   authSignUp,
   authSignIn,
-  getTokenFromCookie
+  getTokenFromCookie,
+  callApiNewUser
 } from "./pizzaAuth";
 export { logOut } from "./pizzaLogOut";
 export { getInfo, getInfoAddres } from "./getInfoCabinet";

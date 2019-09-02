@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CSSTransition } from "react-transition-group";
+import ModalSlide from "../hoc/modalSlideUpDown";
 
 const builderSelect = props => {
   const [showList, setShowList] = useState(false);
@@ -14,13 +14,7 @@ const builderSelect = props => {
       >
         Choose ingredient...
       </button>
-      <CSSTransition
-        in={showList}
-        timeout={300}
-        classNames="select__global"
-        mountOnEnter
-        unmountOnExit
-      >
+      <ModalSlide toggle={showList}>
         <ul className="select__list" onChange={() => props.change(event)}>
           {Object.keys(props.ingredients).map(item => {
             return (
@@ -38,7 +32,7 @@ const builderSelect = props => {
                 </div>
                 <div>
                   <img
-                    src={require(`../../../img/${item}.png`)}
+                    src={`/assets/img/${item}.png`}
                     alt={item}
                     className="select__item__pic"
                   />
@@ -47,11 +41,9 @@ const builderSelect = props => {
             );
           })}
         </ul>
-      </CSSTransition>
+      </ModalSlide>
     </div>
   );
 };
 
 export default builderSelect;
-
-

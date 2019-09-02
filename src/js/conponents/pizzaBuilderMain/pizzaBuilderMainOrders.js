@@ -81,7 +81,6 @@ const mainOrders = props => {
               </div>
             );
           } else {
-            console.log(item);
             return (
               <div key={item} className="prev__order__cover">
                 <div className="prev__order__hover">

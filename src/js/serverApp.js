@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getTokenFromCookie } from "./AC/index";
 
-import PizzaBuilder from "./conponents/pizzaBuilder";
+import PizzaBuilder from "./conponents/serverPizzaBuilder";
 import { BrowserRouter, StaticRouter } from "react-router-dom";
 
 class App extends React.Component {

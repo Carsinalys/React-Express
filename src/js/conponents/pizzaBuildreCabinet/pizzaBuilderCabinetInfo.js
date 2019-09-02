@@ -1,7 +1,6 @@
 import React from "react";
 
 const cabinetInfo = props => {
-  console.log(props);
   return (
     <div className="cabinet__info__cover">
       <ul className="cabinet__info__list">

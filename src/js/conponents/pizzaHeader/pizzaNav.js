@@ -69,12 +69,12 @@ const pizzaNav = props => {
               </NavLink>
             </li>
           ) : null}
-          {/* {props.auth ? (
+          {props.auth ? (
             <li className="pizza__nav__item">
               <NavLink
                 to="/chat"
                 className={
-                  props.chat.newMessage && props.location != "/chat"
+                  props.chat.newMessage && props.location !== "/chat"
                     ? "pizza__nav__link pizza__nav__link__active"
                     : "pizza__nav__link"
                 }
@@ -82,7 +82,7 @@ const pizzaNav = props => {
                 Chat
               </NavLink>
             </li>
-          ) : null} */}
+          ) : null}
         </ul>
       </nav>
     </div>

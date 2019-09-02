@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getReviews } from "../../AC/index";
-import { CSSTransition } from "react-transition-group";
+import Modal from "../hoc/modal";
 
 import ShowReviews from "./pizzaBuilderShowReviews";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
@@ -39,17 +39,9 @@ class Reviews extends React.Component {
   render() {
     return (
       <div className="container reviews_container">
-        <CSSTransition
-          in={this.props.isLoading}
-          timeout={300}
-          classNames="modal__global"
-          mountOnEnter
-          unmountOnExit
-        >
-          <div>
-            <Spinner />
-          </div>
-        </CSSTransition>
+        <Modal toggle={this.props.isLoading}>
+          <Spinner />
+        </Modal>
         {this.props.getReviews ? (
           <ShowReviews
             reviews={this.state.currentReviews}
