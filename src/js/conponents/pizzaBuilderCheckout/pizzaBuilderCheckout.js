@@ -8,7 +8,8 @@ import {
   onInput,
   fetchOrder,
   getInfoAddresCheckout,
-  deleteMultiOrder
+  deleteMultiOrder,
+  callApiAddOrderr
 } from "../../AC/index";
 
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
@@ -103,6 +104,7 @@ class PizzaBuilderCheckout extends React.Component {
       this.props.multi.pizzas.length > 0
     ) {
       this.props.fetchFun(data, this.props.auth.token);
+      this.props.callApiAddOrderrFun(data, this.props.auth.token);
     } else {
       this.setState({ smallPizza: true });
     }
@@ -228,7 +230,9 @@ const dispatchToProps = dispatch => {
     onInputFun: event => dispatch(onInput(event)),
     fetchFun: (data, token) => dispatch(fetchOrder(data, token)),
     getAddresFun: (token, id) => dispatch(getInfoAddresCheckout(token, id)),
-    deleteMultiOrderFun: num => dispatch(deleteMultiOrder(num))
+    deleteMultiOrderFun: num => dispatch(deleteMultiOrder(num)),
+    callApiAddOrderrFun: (data, token) =>
+      dispatch(callApiAddOrderr(data, token))
   };
 };
 

@@ -11,7 +11,12 @@ export {
   setReviews,
   getReviewsError
 } from "./fetchingRewiews";
-export { onInput, fetchOrder, getInfoAddresCheckout } from "./fetchOrder";
+export {
+  onInput,
+  fetchOrder,
+  getInfoAddresCheckout,
+  callApiAddOrderr
+} from "./fetchOrder";
 export {
   authOnInput,
   authSignUp,

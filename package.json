@@ -82,5 +82,8 @@
     "last 3 version"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "engine": {
+    "node": ">=10.0.0"
+  }
 }

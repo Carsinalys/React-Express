@@ -33,7 +33,8 @@ app
 app
   .route("/api/v1.0/reviews")
   .get(reviews.getReviews)
-  .post(reviews.addReviews);
+  .post(reviews.addReviews)
+  .patch(reviews.editReviews);
 
 app.use("/assets/", Express.static(path.join(__dirname, "../dist/assets")));
 app.use((req, res) => {

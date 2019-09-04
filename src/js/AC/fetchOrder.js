@@ -55,6 +55,23 @@ export const fetchOrder = (data, token) => {
   };
 };
 
+export const callApiAddOrderr = (data, token) => {
+  return dispatch => {
+    fetch("/api/v1.0/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(data => data.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => console.log(error));
+  };
+};
+
 export const resetMultiBuild = () => {
   return {
     type: AC.MULTIPLE_ORDER_RESET
