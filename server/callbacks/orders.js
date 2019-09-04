@@ -2,14 +2,27 @@ const Orders = require("../models/order");
 
 exports.getOrders = async (req, res) => {
   try {
-    const orders = await Orders.find();
-    const count = await Orders.count((err, val) => console.log(val));
+    if (req.query.count != undefined) {
+      let arr = [];
+      while (arr.length < req.query.count) {
+        const count = await Orders.countDocuments();
+        const random = Math.floor(Math.random() * count);
+        const randomOrder = await Orders.findOne().skip(random);
+        if (arr.filter(item => item._id === randomOrder._id).length == 0)
+          arr.push(randomOrder);
+      }
+      res.status(200).json({
+        status: "success",
+        data: arr
+      });
+    } else {
+      const orders = await Orders.find();
 
-    res.status(200).json({
-      status: "success",
-      conut: count,
-      data: orders
-    });
+      res.status(200).json({
+        status: "success",
+        data: orders
+      });
+    }
   } catch (err) {
     res.status(404).json({
       status: "fail",
@@ -35,7 +48,7 @@ exports.addOrder = async (req, res) => {
 };
 
 exports.deleteOrder = async (req, res) => {
-  //may use findbyId
+  //may use findbyIdAndDelete
   await Orders.find(req.body).deleteOne();
 
   res.status(204).json({

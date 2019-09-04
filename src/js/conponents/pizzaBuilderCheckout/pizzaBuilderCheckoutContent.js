@@ -8,7 +8,11 @@ const checkoutContet = props => {
   return (
     <div className="checkout__content__cover">
       <h3 className="checkout__content__title">Checkout form:</h3>
-      <form action="#" id="checkout__form">
+      <form
+        action="#"
+        id="checkout__form"
+        onSubmit={event => props.confirm(event)}
+      >
         <div className="checkout__content__top__cover">
           <Inputs inputs={props.inputs} changeHandler={props.changeHandler} />
         </div>

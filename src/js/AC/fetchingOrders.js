@@ -1,5 +1,22 @@
 import * as AC from "./ac";
 
+// export const gerOrders = () => {
+//   return dispatch => {
+//     dispatch(startGetOrders());
+//     fetch("/api/v1.0/orders", {
+//       method: "GET"
+//     })
+//       .then(response => {
+//         return response.json();
+//       })
+//       .then(data => {
+//         console.log(data);
+//         dispatch(setOrders(data));
+//       })
+//       .catch(error => dispatch(getError(error)));
+//   };
+// };
+
 export const gerOrders = () => {
   return dispatch => {
     dispatch(startGetOrders());
@@ -12,7 +29,10 @@ export const gerOrders = () => {
       .then(response => {
         return response.json();
       })
-      .then(data => dispatch(setOrders(data)))
+      .then(data => {
+        console.log(data);
+        dispatch(setOrders(data));
+      })
       .catch(error => dispatch(getError(error)));
   };
 };

@@ -38,9 +38,7 @@ const ordersShchema = new mongoose.Schema({
     type: String
   },
   cost: {
-    type: Number,
-    required: [true, "No cost"],
-    default: 9
+    type: Number
   },
   diameter: {
     type: Number,
@@ -50,7 +48,7 @@ const ordersShchema = new mongoose.Schema({
     type: Number,
     unique: false
   },
-  ingredients: { Object },
+  ingredients: Object,
   pizzas: [Object]
 });
 
