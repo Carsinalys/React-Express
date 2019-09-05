@@ -6,7 +6,6 @@ import Modal from "../hoc/modal";
 import {
   minus,
   onInput,
-  fetchOrder,
   getInfoAddresCheckout,
   deleteMultiOrder,
   callApiAddOrderr
@@ -103,7 +102,6 @@ class PizzaBuilderCheckout extends React.Component {
         this.props.state.weight > 500) ||
       this.props.multi.pizzas.length > 0
     ) {
-      this.props.fetchFun(data, this.props.auth.token);
       this.props.callApiAddOrderrFun(data, this.props.auth.token);
     } else {
       this.setState({ smallPizza: true });
@@ -228,7 +226,6 @@ const dispatchToProps = dispatch => {
     minusFun: ingredient => dispatch(minus(ingredient)),
     resetFun: () => dispatch(reset_build()),
     onInputFun: event => dispatch(onInput(event)),
-    fetchFun: (data, token) => dispatch(fetchOrder(data, token)),
     getAddresFun: (token, id) => dispatch(getInfoAddresCheckout(token, id)),
     deleteMultiOrderFun: num => dispatch(deleteMultiOrder(num)),
     callApiAddOrderrFun: (data, token) =>

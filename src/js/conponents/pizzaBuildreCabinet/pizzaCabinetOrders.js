@@ -5,13 +5,11 @@ import Pagination from "./pizzaCabinetPagination";
 
 const myOrdersCabinet = props => {
   let pageNum = 1;
-  if (Object.keys(props.orders.orders).length > 0) {
-    pageNum = Math.ceil(Object.keys(props.orders.orders).length / 5);
+  if (props.orders.orders.length > 0) {
+    pageNum = Math.ceil(props.orders.orders.length / 5);
   }
 
-  useEffect(() => {
-    props.viewOrders(props.token, props.id, props.orders.orders);
-  }, []);
+  useEffect(props.viewOrders, []);
 
   const [modal, setModal] = useState(false);
   const [id, setId] = useState(null);
@@ -21,50 +19,39 @@ const myOrdersCabinet = props => {
 
   if (props.orders.orders.error)
     prevOrders = <h1>{props.orders.orders.error}</h1>;
-  else if (
-    !props.orders.orders.error &&
-    Object.keys(props.orders.orders).length
-  ) {
-    prevOrders = Object.keys(props.orders.orders).map((item, index) => {
+  else if (!props.orders.orders.error && props.orders.orders.length > 0) {
+    prevOrders = props.orders.orders.map((item, index) => {
       if (index >= page * 4 - 4 && index < page * 4) {
-        if (!props.orders.orders[item].pizzas) {
+        if (!item.pizzas.length > 0) {
           return (
-            <div key={item} className="prev__order__cover">
+            <div key={item._id.toString()} className="prev__order__cover">
               <div
                 className="delete__order"
                 onClick={() => {
                   setModal(true);
-                  setId(item);
+                  setId(item._id.toString());
                 }}
               ></div>
               <div className="prev__order__info__cover">
                 <p>
-                  <span className="prev__order__name">
-                    {props.orders.orders[item].name}
-                  </span>{" "}
-                  ordered {props.orders.orders[item].pizzaName} worth{" "}
-                  {props.orders.orders[item].cost}$, weight{" "}
-                  {props.orders.orders[item].weight}
-                  g. and diameter {props.orders.orders[item].diameter}cm
+                  <span className="prev__order__name">{item.name}</span> ordered{" "}
+                  {item.pizzaName} worth {item.cost}$, weight {item.weight}
+                  g. and diameter {item.diameter}cm
                 </p>
                 <p>
-                  {props.orders.orders[item].street}
-                  {props.orders.orders[item].house}-
-                  {props.orders.orders[item].flat}
+                  {item.street}
+                  {item.house}-{item.flat}
                 </p>
               </div>
               <div className="prev__order__icon__cover">
-                {Object.keys(props.orders.orders[item].ingredients).map(key => {
-                  return props.orders.orders[item].ingredients[key].count >
-                    0 ? (
+                {Object.keys(item.ingredients).map(key => {
+                  return item.ingredients[key].count > 0 ? (
                     <div
                       className="pizza__view__icon pizza__view__icon_small"
                       key={key}
                     >
                       <div className="pizza__view__icon__count pizza__view__icon__count_small">
-                        <strong>
-                          {props.orders.orders[item].ingredients[key].count}X
-                        </strong>
+                        <strong>{item.ingredients[key].count}X</strong>
                       </div>
                       <div className="pizza__view__icon__pic">
                         <img
@@ -81,7 +68,7 @@ const myOrdersCabinet = props => {
           );
         } else {
           return (
-            <div key={item} className="prev__order__cover">
+            <div key={item._id.toString()} className="prev__order__cover">
               <div
                 className="delete__order"
                 onClick={() => {
@@ -91,25 +78,18 @@ const myOrdersCabinet = props => {
               ></div>
               <div className="prev__order__info__cover">
                 <p>
-                  <span className="prev__order__name">
-                    {props.orders.orders[item].name}{" "}
-                  </span>
+                  <span className="prev__order__name">{item.name} </span>
                   ordered{" "}
-                  <span className="prev__order__name">
-                    {props.orders.orders[item].pizzaName}
-                  </span>
+                  <span className="prev__order__name">{item.pizzaName}</span>
                 </p>
                 <p>
-                  {props.orders.orders[item].street}
-                  {props.orders.orders[item].house}-
-                  {props.orders.orders[item].flat} total:{" "}
-                  <span className="prev__order__name">
-                    {props.orders.orders[item].totalCost}$
-                  </span>
+                  {item.street}
+                  {item.house}-{item.flat} total:{" "}
+                  <span className="prev__order__name">{item.totalCost}$</span>
                 </p>
               </div>
               <div className="prev__order__icon__cover">
-                {props.orders.orders[item].pizzas.map((key, num) => {
+                {item.pizzas.map((key, num) => {
                   return (
                     <div key={num} className="multi__pizza__single__cover">
                       {key.name ? (
@@ -186,10 +166,7 @@ const myOrdersCabinet = props => {
           </div>
         </div>
       </Modal>
-      <button
-        onClick={() => props.refresh(props.token, props.id, {})}
-        className="refresh__orders__btn"
-      >
+      <button onClick={props.viewOrders} className="refresh__orders__btn">
         Refresh
       </button>
       {prevOrders}

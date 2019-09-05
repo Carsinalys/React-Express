@@ -1,9 +1,10 @@
 const Reviews = require("../models/reviews");
 
-exports.getReviews = (req, res) => {
+exports.getReviews = async (req, res) => {
+  const data = await Reviews.find();
   res.status(200).json({
     status: "success",
-    data: "Get reviews"
+    data: data
   });
 };
 

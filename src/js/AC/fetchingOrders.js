@@ -1,37 +1,16 @@
 import * as AC from "./ac";
 
-// export const gerOrders = () => {
-//   return dispatch => {
-//     dispatch(startGetOrders());
-//     fetch("/api/v1.0/orders", {
-//       method: "GET"
-//     })
-//       .then(response => {
-//         return response.json();
-//       })
-//       .then(data => {
-//         console.log(data);
-//         dispatch(setOrders(data));
-//       })
-//       .catch(error => dispatch(getError(error)));
-//   };
-// };
-
 export const gerOrders = () => {
   return dispatch => {
     dispatch(startGetOrders());
-    fetch(
-      "https://pizzabuilder-e9539.firebaseio.com/pizzaBuildes/order-history.json?auth=jyVEHg4zePXslKNwI5GOR3yYw6TjiaZzWIQ01DS1",
-      {
-        method: "GET"
-      }
-    )
+    fetch("/api/v1.0/orders?count=3", {
+      method: "GET"
+    })
       .then(response => {
         return response.json();
       })
       .then(data => {
-        console.log(data);
-        dispatch(setOrders(data));
+        dispatch(setOrders(data.data));
       })
       .catch(error => dispatch(getError(error)));
   };

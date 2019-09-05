@@ -12,26 +12,25 @@ class Reviews extends React.Component {
   }
 
   state = {
-    currentReviews: {},
+    currentReviews: [],
     currentPage: 1
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.reviews.reviews != this.props.reviews.reviews) {
       let newObj = {};
-      Object.keys(this.props.reviews.reviews).map((item, index) => {
-        if (index < 5) newObj[item] = this.props.reviews.reviews[item];
+      this.props.reviews.reviews.map((item, index) => {
+        if (index < 5) newObj[item._id.toString()] = item;
       });
-      console.log(newObj);
       this.setState({ currentReviews: newObj });
     }
   }
 
   changePageHandler = num => {
     let newObj = {};
-    Object.keys(this.props.reviews.reviews).map((item, index) => {
+    this.props.reviews.reviews.map((item, index) => {
       if (index < 5 * num && index >= 5 * (num - 1))
-        newObj[item] = this.props.reviews.reviews[item];
+        newObj[item._id.toString()] = item;
     });
     this.setState({ currentReviews: newObj, currentPage: num });
   };

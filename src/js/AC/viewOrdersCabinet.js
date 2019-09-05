@@ -1,74 +1,50 @@
 import * as AC from "./ac";
 
-export const viewOrdersCabinet = (token, id, orders) => {
+export const viewOrdersCabinet = () => {
   return dispatch => {
-    if (Object.keys(orders).length > 0) {
-      dispatch(viewOrdesCabinetSet(orders));
-    } else {
-      dispatch(viewOrdersCabinetModalOn());
-      fetch(
-        `https://pizzabuilder-e9539.firebaseio.com/pizzaBuildes/order-history.json?auth=${token}&orderBy="id"&equalTo="${id}"`,
-        {
-          method: "GET"
-        }
-      )
-        .then(response => {
-          return response.json();
-        })
-        .then(data => {
-          dispatch(viewOrdersCabinetModalOff());
-          dispatch(viewOrdesCabinetSet(data));
-        })
-        .catch(error => {
-          dispatch(viewOrdersCabinetError());
-          dispatch(viewOrdersCabinetError(error));
-        });
-    }
+    dispatch(viewOrdersCabinetModalOn());
+    fetch(`/api/v1.0/orders`, {
+      method: "GET"
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        dispatch(viewOrdersCabinetModalOff());
+        dispatch(viewOrdesCabinetSet(data.data));
+      })
+      .catch(error => {
+        dispatch(viewOrdersCabinetError());
+        dispatch(viewOrdersCabinetError(error));
+      });
   };
 };
 
 export const deleteOrder = (id, token, userId) => {
+  let data = {
+    id: id,
+    token: token,
+    iserId: userId
+  };
   return dispatch => {
     dispatch(viewOrdersCabinetModalOn());
-    fetch(
-      `https://pizzabuilder-e9539.firebaseio.com/pizzaBuildes/order-history/${id}.json?auth=${token}"`,
-      {
-        method: "DELETE"
-      }
-    )
+    fetch(`/api/v1.0/orders`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
       .then(response => {
         return response.json();
       })
       .then(data => {
         dispatch(viewOrdersCabinetModalOff());
         dispatch(resetOrdersCabinet());
-        dispatch(refreshOrdersCabinetAfterDelete(token, userId));
+        dispatch(viewOrdersCabinet());
       })
       .catch(error => {
         dispatch(viewOrdersCabinetModalOff());
-        dispatch(viewOrdersCabinetError(error));
-      });
-  };
-};
-
-export const refreshOrdersCabinetAfterDelete = (token, id) => {
-  return dispatch => {
-    dispatch(viewOrdersCabinetModalOn());
-    fetch(
-      `https://pizzabuilder-e9539.firebaseio.com/pizzaBuildes/order-history.json?auth=${token}&orderBy="id"&equalTo="${id}"`,
-      {
-        method: "GET"
-      }
-    )
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        dispatch(viewOrdersCabinetModalOff());
-        dispatch(viewOrdesCabinetSet(data));
-      })
-      .catch(error => {
-        dispatch(viewOrdersCabinetError());
         dispatch(viewOrdersCabinetError(error));
       });
   };
@@ -103,12 +79,5 @@ export const viewOrdersCabinetError = err => {
 export const resetOrdersCabinet = () => {
   return {
     type: AC.CABINET_VIEW_ORDERS_RESET
-  };
-};
-
-export const refreshOrdersCabinet = (token, id, order) => {
-  return dispatch => {
-    dispatch(resetOrdersCabinet());
-    dispatch(viewOrdersCabinet(token, id, order));
   };
 };

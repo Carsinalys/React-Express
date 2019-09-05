@@ -48,7 +48,9 @@ const showReviews = props => {
               <div className="review__head">
                 <p className="review__author">{props.reviews[item].name}</p>
                 <p className="review__rating">{getRating(item)}</p>
-                <p className="review__date">{props.reviews[item].date}</p>
+                <p className="review__date">
+                  {props.reviews[item].date.split("T")[0]}
+                </p>
               </div>
               <div className="review__body">
                 <p className="review__text">{props.reviews[item].text}</p>

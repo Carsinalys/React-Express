@@ -11,12 +11,7 @@ export {
   setReviews,
   getReviewsError
 } from "./fetchingRewiews";
-export {
-  onInput,
-  fetchOrder,
-  getInfoAddresCheckout,
-  callApiAddOrderr
-} from "./fetchOrder";
+export { onInput, getInfoAddresCheckout, callApiAddOrderr } from "./fetchOrder";
 export {
   authOnInput,
   authSignUp,
@@ -31,11 +26,7 @@ export {
   setCabinetFetchOrder,
   deleteCabinetAddres
 } from "./setInfoCabinet";
-export {
-  viewOrdersCabinet,
-  refreshOrdersCabinet,
-  deleteOrder
-} from "./viewOrdersCabinet";
+export { viewOrdersCabinet, deleteOrder } from "./viewOrdersCabinet";
 export { fetchResetPass, authResetOnInput } from "./pizzaAuthForgotPass";
 export {
   multipleAdd,

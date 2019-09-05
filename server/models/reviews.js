@@ -19,11 +19,6 @@ const reviewsShchema = new mongoose.Schema({
     unique: false
   },
   date: {
-    type: Number,
-    required: [true, "No date"],
-    unique: false
-  },
-  createdAt: {
     type: Date,
     default: Date.now()
   }

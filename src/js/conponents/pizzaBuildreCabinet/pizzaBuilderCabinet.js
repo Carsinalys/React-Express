@@ -14,7 +14,6 @@ import {
   setCabinetFetchOrder,
   deleteCabinetAddres,
   viewOrdersCabinet,
-  refreshOrdersCabinet,
   deleteOrder
 } from "../../AC/index";
 
@@ -129,7 +128,6 @@ class PersonalRoom extends React.Component {
               orders={this.props.cabinetGet}
               token={this.props.auth.token}
               id={this.props.auth.localId}
-              refresh={this.props.refreshOrdersFun}
               delete={this.showModalHandler}
             />
           ) : null}
@@ -157,10 +155,7 @@ const dispatchToProps = dispatch => {
       dispatch(setCabinetFetchOrder(data, token, allGood, id)),
     deletePrevDataFun: (data, token, allGood, id) =>
       dispatch(deleteCabinetAddres(data, token, allGood, id)),
-    viewOrdersFun: (token, id, orders) =>
-      dispatch(viewOrdersCabinet(token, id, orders)),
-    refreshOrdersFun: (token, id, orders) =>
-      dispatch(refreshOrdersCabinet(token, id, orders)),
+    viewOrdersFun: () => dispatch(viewOrdersCabinet()),
     deleteOrderfun: (id, token, userId) =>
       dispatch(deleteOrder(id, token, userId))
   };

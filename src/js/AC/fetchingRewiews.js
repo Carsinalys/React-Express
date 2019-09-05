@@ -3,16 +3,13 @@ import * as AC from "./ac";
 export const getReviews = () => {
   return dispatch => {
     dispatch(startGetReviews());
-    fetch(
-      "https://pizzabuilder-e9539.firebaseio.com/pizzaBuildes/reviews.json?auth=jyVEHg4zePXslKNwI5GOR3yYw6TjiaZzWIQ01DS1",
-      {
-        method: "GET"
-      }
-    )
+    fetch("/api/v1.0/reviews", {
+      method: "GET"
+    })
       .then(response => {
         return response.json();
       })
-      .then(data => dispatch(setReviews(data)))
+      .then(data => dispatch(setReviews(data.data)))
       .catch(error => dispatch(getError(error)));
   };
 };

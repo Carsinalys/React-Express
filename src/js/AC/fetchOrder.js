@@ -29,34 +29,9 @@ export const getInfoAddresCheckout = (token, id) => {
   };
 };
 
-export const fetchOrder = (data, token) => {
-  return dispatch => {
-    dispatch(toggleModalOn());
-    fetch(
-      `https://pizzabuilder-e9539.firebaseio.com/pizzaBuildes/order-history.json?auth=${token}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "aplication/json"
-        },
-        body: JSON.stringify(data)
-      }
-    )
-      .then(res => {
-        dispatch(toggleModalOff());
-        dispatch(resetState(res));
-        dispatch(reset_build());
-        dispatch(resetMultiBuild());
-      })
-      .catch(error => {
-        dispatch(catchError(error));
-        dispatch(toggleModalOff());
-      });
-  };
-};
-
 export const callApiAddOrderr = (data, token) => {
   return dispatch => {
+    dispatch(toggleModalOn());
     fetch("/api/v1.0/orders", {
       method: "POST",
       headers: {
@@ -66,9 +41,15 @@ export const callApiAddOrderr = (data, token) => {
     })
       .then(data => data.json())
       .then(data => {
-        console.log(data);
+        dispatch(toggleModalOff());
+        dispatch(resetState());
+        dispatch(reset_build());
+        dispatch(resetMultiBuild());
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        dispatch(catchError(error));
+        dispatch(toggleModalOff());
+      });
   };
 };
 

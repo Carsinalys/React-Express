@@ -3,7 +3,7 @@ import * as AC from "../AC/ac";
 const initState = {
   modal: false,
   error: null,
-  orders: {}
+  orders: []
 };
 
 const reducer = (state = initState, action) => {
