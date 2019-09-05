@@ -19,8 +19,7 @@ class AddReview extends React.Component {
   addReviewHandler = event => {
     event.preventDefault();
     let name = document.querySelector("#author__name"),
-      text = document.querySelector("#author__text"),
-      date = new Date();
+      text = document.querySelector("#author__text");
     if (name.value.length < 5) {
       this.setState({ badData: true });
     } else {
@@ -32,18 +31,15 @@ class AddReview extends React.Component {
         name: name.value,
         text: text.value,
         rating: this.state.currentRating,
-        date: date.toLocaleDateString()
+        id: this.props.auth.localId
       };
-      fetch(
-        `https://pizzabuilder-e9539.firebaseio.com/pizzaBuildes/reviews.json?auth=${this.props.auth.token}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "aplication/json"
-          },
-          body: JSON.stringify(data)
-        }
-      )
+      fetch(`/api/v1.0/reviews`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
         .then(response => {
           name.value = "";
           text.value = "";

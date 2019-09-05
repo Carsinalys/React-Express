@@ -18,6 +18,11 @@ const reviewsShchema = new mongoose.Schema({
     required: [true, "No rating"],
     unique: false
   },
+  id: {
+    type: String,
+    required: [true, " No id"],
+    unique: false
+  },
   date: {
     type: Date,
     default: Date.now()

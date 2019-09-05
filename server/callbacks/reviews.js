@@ -9,6 +9,8 @@ exports.getReviews = async (req, res) => {
 };
 
 exports.addReviews = (req, res) => {
+  console.log(req.body);
+  Reviews.create(req.body);
   res.status(201).json({
     status: "success",
     data: req.body
