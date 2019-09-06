@@ -210,3 +210,14 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.reviews__edit_btn {
+  cursor: pointer;
+  background: transparent;
+  transition: 0.3s;
+  padding: 0 1rem;
+  &:hover {
+    background: #5c5e06;
+    color: #ffffff;
+  }
+}

@@ -228,51 +228,50 @@ export const chatNewMessageOff = () => {
   };
 };
 
-
 export const chatGetRooms = () => {
   return dispatch => {
-      dispatch(chatMdalOn());
-      fetch(
-        `https://pizzabuilder-e9539.firebaseio.com/chat/rooms.json?auth=jyVEHg4zePXslKNwI5GOR3yYw6TjiaZzWIQ01DS1`,
-        {
-          method: "GET"
-        }
-      )
-        .then(res => res.json())
-        .then(res => {
-          dispatch(chatMdalOff());
-          dispatch(chatRoomsToStore(Object.keys(res)));
-        })
-        .catch(error => {
-          console.log(error);
-          dispatch(chatMdalOn());
-        });
+    dispatch(chatMdalOn());
+    fetch(
+      `https://pizzabuilder-e9539.firebaseio.com/chat/rooms.json?auth=jyVEHg4zePXslKNwI5GOR3yYw6TjiaZzWIQ01DS1`,
+      {
+        method: "GET"
+      }
+    )
+      .then(res => res.json())
+      .then(res => {
+        dispatch(chatMdalOff());
+        dispatch(chatRoomsToStore(Object.keys(res)));
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(chatMdalOn());
+      });
   };
 };
 
 export const chatGetUsersNames = () => {
-  return (dispatch,getStore) => {
-      dispatch(chatMdalOn());
-      fetch(
-        `https://pizzabuilder-e9539.firebaseio.com/chat/users.json?auth=jyVEHg4zePXslKNwI5GOR3yYw6TjiaZzWIQ01DS1`,
-        {
-          method: "GET"
-        }
-      )
-        .then(res => res.json())
-        .then(res => {
-          dispatch(chatMdalOff());
-          Object.keys(res).map(item=>{
-            if (item === getStore().auth.localId) {
-              let key = Object.keys(res[item])[0];
-              dispatch(chatSetUserNameToRedux(res[item][key].name))
-            }
-          }) 
-        })
-        .catch(error => {
-          console.log(error);
-          dispatch(chatMdalOn());
+  return (dispatch, getStore) => {
+    dispatch(chatMdalOn());
+    fetch(
+      `https://pizzabuilder-e9539.firebaseio.com/chat/users.json?auth=jyVEHg4zePXslKNwI5GOR3yYw6TjiaZzWIQ01DS1`,
+      {
+        method: "GET"
+      }
+    )
+      .then(res => res.json())
+      .then(res => {
+        dispatch(chatMdalOff());
+        Object.keys(res).map(item => {
+          if (item === getStore().auth.localId) {
+            let key = Object.keys(res[item])[0];
+            dispatch(chatSetUserNameToRedux(res[item][key].name));
+          }
         });
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(chatMdalOn());
+      });
   };
 };
 
@@ -280,5 +279,5 @@ export const chatSetCurrentMessages = data => {
   return {
     type: AC.CHAT_SET_CURRENT_MESSAGES,
     payload: data
-  }
-}
+  };
+};

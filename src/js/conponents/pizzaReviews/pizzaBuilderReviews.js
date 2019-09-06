@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getReviews } from "../../AC/index";
+import { getReviews, editReview, reviewsEditModeOn } from "../../AC/index";
 import Modal from "../hoc/modal";
 
 import ShowReviews from "./pizzaBuilderShowReviews";
@@ -48,6 +48,9 @@ class Reviews extends React.Component {
             pagination={this.props.reviews.pagination}
             changePage={this.changePageHandler}
             currentPageNum={this.state.currentPage}
+            edit={this.props.editReviewFun}
+            id={this.props.auth.localId}
+            isEditMode={this.props.isEditMode}
           />
         ) : null}
       </div>
@@ -59,6 +62,7 @@ const stateToProps = state => {
   return {
     isLoading: state.reviews.isLoading,
     getReviews: state.reviews.getReviews,
+    isEditMode: state.reviews.editMode,
     reviews: state.reviews,
     auth: state.auth
   };
@@ -66,7 +70,9 @@ const stateToProps = state => {
 
 const dispatchToProps = dispatch => {
   return {
-    getReviews: () => dispatch(getReviews())
+    getReviews: () => dispatch(getReviews()),
+    editReviewFun: id => dispatch(editReview(id)),
+    reviewsEditModeOnFun: id => dispatch(reviewsEditModeOn(id))
   };
 };
 

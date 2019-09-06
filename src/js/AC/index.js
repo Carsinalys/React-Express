@@ -9,7 +9,11 @@ export {
   getReviews,
   startGetReviews,
   setReviews,
-  getReviewsError
+  getReviewsError,
+  editReview,
+  reviewsEditModeOn,
+  reviewsEditModeOff,
+  editReviewSend
 } from "./fetchingRewiews";
 export { onInput, getInfoAddresCheckout, callApiAddOrderr } from "./fetchOrder";
 export {

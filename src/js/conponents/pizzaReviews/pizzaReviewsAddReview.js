@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
+import { editReviewSend } from "../../AC/index";
 
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 
@@ -11,6 +12,17 @@ class AddReview extends React.Component {
     isLoading: false,
     badData: false
   };
+
+  componentDidMount() {
+    if (this.props.reviews.editMode) {
+      document.querySelector(
+        "#author__name"
+      ).value = this.props.reviews.editReviewData.name;
+      document.querySelector(
+        "#author__text"
+      ).value = this.props.reviews.editReviewData.text;
+    }
+  }
 
   changeRatingHandler = rating => {
     this.setState({ currentRating: rating });
@@ -33,24 +45,35 @@ class AddReview extends React.Component {
         rating: this.state.currentRating,
         id: this.props.auth.localId
       };
-      fetch(`/api/v1.0/reviews`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      })
-        .then(response => {
-          name.value = "";
-          text.value = "";
-          this.setState({ currentRating: 5 });
-          this.setState({ isLoading: false });
-          console.log(response);
+      if (!this.props.reviews.editMode) {
+        fetch(`/api/v1.0/reviews`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
         })
-        .catch(error => {
-          this.setState({ isLoading: false });
-          console.log(error);
-        });
+          .then(response => {
+            name.value = "";
+            text.value = "";
+            this.setState({ currentRating: 5 });
+            this.setState({ isLoading: false });
+            console.log(response);
+          })
+          .catch(error => {
+            this.setState({ isLoading: false });
+            console.log(error);
+          });
+      } else {
+        this.props.editReviewSendFun(
+          data,
+          this.props.reviews.editReviewData._id
+        );
+        name.value = "";
+        text.value = "";
+        this.setState({ currentRating: 5 });
+        this.setState({ isLoading: false });
+      }
     }
   };
 
@@ -219,8 +242,18 @@ class AddReview extends React.Component {
 
 const stateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    reviews: state.reviews
   };
 };
 
-export default connect(stateToProps)(AddReview);
+const dispatchToProps = dispatch => {
+  return {
+    editReviewSendFun: (data, id) => dispatch(editReviewSend(data, id))
+  };
+};
+
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(AddReview);

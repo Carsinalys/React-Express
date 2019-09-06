@@ -1,11 +1,19 @@
 const Reviews = require("../models/reviews");
 
 exports.getReviews = async (req, res) => {
-  const data = await Reviews.find();
-  res.status(200).json({
-    status: "success",
-    data: data
-  });
+  if (req.query.id) {
+    let review = await Reviews.findOne({ _id: req.query.id });
+    res.status(200).json({
+      status: "success",
+      data: review
+    });
+  } else {
+    const data = await Reviews.find();
+    res.status(200).json({
+      status: "success",
+      data: data
+    });
+  }
 };
 
 exports.addReviews = (req, res) => {
@@ -18,12 +26,11 @@ exports.addReviews = (req, res) => {
 };
 
 exports.editReviews = async (req, res) => {
-  //await Reviews.findByIdAndUpdate(req.params.id, req.body, {
-  // "new": true,
-  // "runValidators": true
-  // );
+  let { _id, ...data } = req.body;
+  await Reviews.findByIdAndUpdate(_id, data, {
+    edited: new Date().getDate()
+  });
   res.status(200).json({
-    status: "success",
-    data: req.body
+    status: "success"
   });
 };

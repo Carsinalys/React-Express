@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import Star from "../../icons/star";
 import StarEmpty from "../../icons/starEmpty";
@@ -45,6 +45,15 @@ const showReviews = props => {
         {Object.keys(props.reviews).map(item => {
           return (
             <section className="review" key={item}>
+              {props.id === props.reviews[item].id ? (
+                <span
+                  className="reviews__edit_btn"
+                  data-id={item}
+                  onClick={event => props.edit(event)}
+                >
+                  edit
+                </span>
+              ) : null}
               <div className="review__head">
                 <p className="review__author">{props.reviews[item].name}</p>
                 <p className="review__rating">{getRating(item)}</p>
@@ -67,6 +76,7 @@ const showReviews = props => {
           </button>
         </div>
       ) : null}
+      {props.isEditMode ? <Redirect to="/reviews/addReview" /> : null}
     </div>
   );
 };
