@@ -5,31 +5,17 @@ export {
   setOrders,
   getError
 } from "./fetchingOrders";
-export {
-  getReviews,
-  startGetReviews,
-  setReviews,
-  getReviewsError,
-  editReview,
-  reviewsEditModeOn,
-  reviewsEditModeOff,
-  editReviewSend
-} from "./fetchingRewiews";
+export { getReviews, editReview, editReviewSend } from "./fetchingRewiews";
 export { onInput, getInfoAddresCheckout, callApiAddOrderr } from "./fetchOrder";
 export {
   authOnInput,
   authSignUp,
   authSignIn,
-  getTokenFromCookie,
-  callApiNewUser
+  getTokenFromCookie
 } from "./pizzaAuth";
 export { logOut } from "./pizzaLogOut";
-export { getInfo, getInfoAddres } from "./getInfoCabinet";
-export {
-  setCabinetOnInput,
-  setCabinetFetchOrder,
-  deleteCabinetAddres
-} from "./setInfoCabinet";
+export { getInfo } from "./getInfoCabinet";
+export { setCabinetOnInput, setCabinetFetchOrder } from "./setInfoCabinet";
 export { viewOrdersCabinet, deleteOrder } from "./viewOrdersCabinet";
 export { fetchResetPass, authResetOnInput } from "./pizzaAuthForgotPass";
 export {

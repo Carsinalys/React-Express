@@ -1,9 +1,10 @@
 import * as AC from "./ac";
+import { port } from "../../../portForFront";
 
 export const viewOrdersCabinet = () => {
   return dispatch => {
     dispatch(viewOrdersCabinetModalOn());
-    fetch(`/api/v1.0/orders`, {
+    fetch(`${port}/api/v1.0/orders`, {
       method: "GET"
     })
       .then(response => {
@@ -28,7 +29,7 @@ export const deleteOrder = (id, token, userId) => {
   };
   return dispatch => {
     dispatch(viewOrdersCabinetModalOn());
-    fetch(`/api/v1.0/orders`, {
+    fetch(`${port}/api/v1.0/orders`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"

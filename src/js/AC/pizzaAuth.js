@@ -1,5 +1,6 @@
 import * as AC from "./ac";
 import { logOut } from "./index";
+import { port } from "../../../portForFront";
 
 export const authOnInput = event => {
   return {
@@ -8,46 +9,20 @@ export const authOnInput = event => {
   };
 };
 
-export const callApiNewUser = (mail, pass, check) => {
+export const authSignUp = (mail, pass) => {
   return dispatch => {
+    dispatch(authModalOn());
     let data = {
       mail: mail,
-      pass: pass,
-      check: check
+      password: pass
     };
-    fetch("/api/v1.0/createUser", {
+    fetch(`${port}/api/v1.0/user/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
     })
-      .then(data => data.json())
-      .then(data => {
-        console.log(data);
-      })
-      .catch(error => console.log(error));
-  };
-};
-
-export const authSignUp = (mail, pass) => {
-  return dispatch => {
-    dispatch(authModalOn());
-    let data = {
-      email: mail,
-      password: pass,
-      returnSecureToken: true
-    };
-    fetch(
-      "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyDyUaUeFIdEP-t40XognUX4nOFU5X2Uy8s",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      }
-    )
       .then(res => res.json())
       .then(res => {
         if (res.error) {
@@ -73,20 +48,16 @@ export const authSignIn = (mail, pass, stayIn) => {
     dispatch(storeTokenStayIn(stayIn));
     dispatch(authModalOn());
     let data = {
-      email: mail,
-      password: pass,
-      returnSecureToken: true
+      mail: mail,
+      password: pass
     };
-    fetch(
-      "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyDyUaUeFIdEP-t40XognUX4nOFU5X2Uy8s",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      }
-    )
+    fetch(`${port}/api/v1.0/user/authentication`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
       .then(res => res.json())
       .then(res => {
         if (res.error) {
@@ -163,8 +134,8 @@ export const getTokenFromCookie = () => {
     } else {
       dispatch(checkCookie());
       let remainingTime =
-        new Date().getTime() < localStorage.expiresIn
-          ? +localStorage.expiresIn - new Date().getTime()
+        new Date().getTime() < localStorage.expiresAt
+          ? +localStorage.expiresAt - new Date().getTime()
           : 0;
       setTimeout(() => {
         dispatch(logOut());
@@ -190,19 +161,15 @@ export const refreshToken = refreshToken => {
   return dispatch => {
     dispatch(authModalOn());
     let data = {
-      grant_type: "refresh_token",
       refresh_token: refreshToken
     };
-    fetch(
-      "https://securetoken.googleapis.com/v1/token?key=AIzaSyDyUaUeFIdEP-t40XognUX4nOFU5X2Uy8s",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      }
-    )
+    fetch(`${port}/api/v1.0/user/refreshAuthentification`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
       .then(response => response.json())
       .then(data => {
         if (data.error) {

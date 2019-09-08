@@ -11,7 +11,10 @@ const showReviews = props => {
       pagination.push(
         <li
           key={i}
-          onClick={() => props.changePage(i + 1)}
+          onClick={() => {
+            props.changePage(`?page=${i + 1}&limit=5`);
+            props.changeCurPage(i + 1);
+          }}
           className={
             props.currentPageNum == i + 1
               ? "pagination__item pagination__item_active"

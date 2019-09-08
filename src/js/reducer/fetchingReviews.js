@@ -19,8 +19,8 @@ const ordersReducer = (state = initState, action) => {
         ...state,
         isLoading: false,
         getReviews: true,
-        reviews: action.payload,
-        pagination: Math.ceil(Object.keys(action.payload).length / 5)
+        reviews: action.payload.data,
+        pagination: Math.ceil(action.payload.count / 5)
       };
     case AC.GET_REVIEWS_ERROR:
       console.log("reviews error", action.error);

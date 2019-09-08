@@ -1,4 +1,5 @@
 import * as AC from "./ac";
+import { port } from "../../../portForFront";
 
 export const setCabinetOnInput = event => {
   return {
@@ -7,46 +8,22 @@ export const setCabinetOnInput = event => {
   };
 };
 
-export const deleteCabinetAddres = (data, token, allGood, id) => {
-  console.log("delete cabinet", data, token, allGood, id);
+export const setCabinetFetchOrder = (data, token, allGood, id) => {
+  const sendData = { ...data, token: token, id: id };
+  console.log("send cabinet", sendData, allGood);
   return dispatch => {
     if (allGood) {
       dispatch(setCabinetToggleModal());
-      fetch(
-        `https://pizzabuilder-e9539.firebaseio.com/pizzaBuildes/users/${id}.json?auth=${token}`,
-        {
-          method: "DELETE"
-        }
-      )
+      fetch(`${port}/api/v1.0/user/setAddress`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(sendData)
+      })
+        .then(res => res.json())
         .then(res => {
           console.log(res);
-          dispatch(setCabinetToggleModal());
-          dispatch(setCabinetFetchOrder(data, token, allGood, id));
-        })
-        .catch(error => {
-          dispatch(setCabinetToggleModal());
-          dispatch(setCabinetCatchError(error));
-        });
-    }
-  };
-};
-
-export const setCabinetFetchOrder = (data, token, allGood, id) => {
-  console.log("send cabinet", data, token, allGood, id);
-  return dispatch => {
-    if (allGood) {
-      dispatch(setCabinetToggleModal());
-      fetch(
-        `https://pizzabuilder-e9539.firebaseio.com/pizzaBuildes/users/${id}.json?auth=${token}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "aplication/json"
-          },
-          body: JSON.stringify(data)
-        }
-      )
-        .then(res => {
           dispatch(setCabinetToggleModal());
           dispatch(setCabinetResetState(res));
         })

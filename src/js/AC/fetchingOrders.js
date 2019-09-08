@@ -1,9 +1,10 @@
 import * as AC from "./ac";
+import { port } from "../../../portForFront";
 
 export const gerOrders = () => {
   return dispatch => {
     dispatch(startGetOrders());
-    fetch("/api/v1.0/orders?count=3", {
+    fetch(`${port}/api/v1.0/orders?count=3`, {
       method: "GET"
     })
       .then(response => {

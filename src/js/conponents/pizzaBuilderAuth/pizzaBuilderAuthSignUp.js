@@ -4,7 +4,6 @@ import { authOnInput, authSignUp } from "../../AC/index";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Redirect } from "react-router";
-import { CSSTransition } from "react-transition-group";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Modal from "../hoc/modal";
 

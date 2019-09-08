@@ -68,13 +68,13 @@
     "webpack-merge": "^4.2.2"
   },
   "scripts": {
-    "dev": "webpack-dev-server --open --port 3000 --config ./build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --open --port 3001 --config ./build/webpack.dev.conf.js",
     "build": "webpack --config ./build/webpack.build.conf.js",
     "lint": "eslint \"src/**/*{js,jsx}\" --quiet",
     "dev:mock": "cross-env PET_MOCK=mock npm run dev",
     "dev_parcel": "parcel src/index.html",
     "start": "npm run build && babel-node server.js",
-    "startWB": "NODE_ENV=production babel-node server.js",
+    "startWB": "babel-node server.js NODE_ENV=production",
     "startWBnodemon": "nodemon --exec babel-node server.js"
   },
   "browserslist": [

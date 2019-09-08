@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 import { editReviewSend } from "../../AC/index";
+import { port } from "../../../../portForFront";
 
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 
@@ -43,10 +44,11 @@ class AddReview extends React.Component {
         name: name.value,
         text: text.value,
         rating: this.state.currentRating,
-        id: this.props.auth.localId
+        id: this.props.auth.localId,
+        token: this.props.auth.token
       };
       if (!this.props.reviews.editMode) {
-        fetch(`/api/v1.0/reviews`, {
+        fetch(`${port}/api/v1.0/reviews`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"

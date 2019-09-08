@@ -18,11 +18,25 @@ if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
 app.use(Express.json());
 
-app.post("/api/v1.0/createUser", (req, res) => {
-  const user = Obj.createUser(req.body.mail, req.body.pass, req.body.check);
-  res.status(200).send(JSON.stringify(user));
-  res.end();
+//allow to fetch without block cors error on di
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, PATCH, POST, DELETE, OPTIONS"
+  );
+  next();
 });
+
+app
+  .route("/api/v1.0/user/:query")
+  .get(Obj.getUserInfoFun)
+  .post(Obj.UserFun)
+  .patch(Obj.updateUserFun);
 
 app
   .route("/api/v1.0/orders")

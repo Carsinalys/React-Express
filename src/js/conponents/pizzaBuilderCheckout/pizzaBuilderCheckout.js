@@ -26,7 +26,7 @@ class PizzaBuilderCheckout extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getAddresFun(this.props.auth.token, this.props.auth.localId);
+    this.props.getAddresFun(this.props.auth.localId);
   }
 
   confirmHandler = event => {
@@ -42,7 +42,8 @@ class PizzaBuilderCheckout extends React.Component {
         flat: this.props.inputs.inputs.flat.value,
         pizzas: this.props.multi.pizzas,
         totalCost: this.props.multi.totalCost,
-        id: this.props.auth.localId
+        id: this.props.auth.localId,
+        token: this.props.auth.token
       };
     } else {
       data = {
@@ -56,7 +57,8 @@ class PizzaBuilderCheckout extends React.Component {
         weight: this.props.state.weight,
         diameter: this.props.state.diameter,
         ingredients: this.props.state.ingredients,
-        id: this.props.auth.localId
+        id: this.props.auth.localId,
+        token: this.props.auth.token
       };
     }
 
@@ -102,7 +104,7 @@ class PizzaBuilderCheckout extends React.Component {
         this.props.state.weight > 500) ||
       this.props.multi.pizzas.length > 0
     ) {
-      this.props.callApiAddOrderrFun(data, this.props.auth.token);
+      this.props.callApiAddOrderrFun(data);
     } else {
       this.setState({ smallPizza: true });
     }
@@ -228,8 +230,7 @@ const dispatchToProps = dispatch => {
     onInputFun: event => dispatch(onInput(event)),
     getAddresFun: (token, id) => dispatch(getInfoAddresCheckout(token, id)),
     deleteMultiOrderFun: num => dispatch(deleteMultiOrder(num)),
-    callApiAddOrderrFun: (data, token) =>
-      dispatch(callApiAddOrderr(data, token))
+    callApiAddOrderrFun: data => dispatch(callApiAddOrderr(data))
   };
 };
 

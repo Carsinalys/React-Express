@@ -1,22 +1,23 @@
 import * as AC from "./ac";
+import { port } from "../../../portForFront";
 
-export const getReviews = () => {
+export const getReviews = param => {
   return dispatch => {
     dispatch(startGetReviews());
-    fetch("/api/v1.0/reviews", {
+    fetch(`${port}/api/v1.0/reviews${param}`, {
       method: "GET"
     })
       .then(response => {
         return response.json();
       })
-      .then(data => dispatch(setReviews(data.data)))
+      .then(data => dispatch(setReviews(data.data, data.count)))
       .catch(error => dispatch(getError(error)));
   };
 };
 
 export const editReview = id => {
   return dispatch => {
-    fetch(`/api/v1.0/reviews?id=${id.target.dataset.id}`, {
+    fetch(`${port}/api/v1.0/reviews?id=${id.target.dataset.id}`, {
       method: "GET"
     })
       .then(response => {
@@ -32,7 +33,7 @@ export const editReview = id => {
 export const editReviewSend = (data, id) => {
   let sendData = { ...data, _id: id };
   return dispatch => {
-    fetch("/api/v1.0/reviews", {
+    fetch(`${port}/api/v1.0/reviews`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
@@ -56,10 +57,10 @@ export const startGetReviews = () => {
   };
 };
 
-export const setReviews = data => {
+export const setReviews = (data, count) => {
   return {
     type: AC.GET_REVIEWS_FINISH,
-    payload: data
+    payload: { data: data, count: count }
   };
 };
 

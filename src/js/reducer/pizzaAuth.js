@@ -4,7 +4,7 @@ const initState = {
   isLoading: false,
   isAuthindicated: false,
   token: null,
-  expiresIn: null,
+  expiresAt: null,
   localId: null,
   refreshToken: null,
   error: null,
@@ -52,8 +52,8 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         isAuthindicated: true,
-        token: action.payload.idToken,
-        expiresIn: action.payload.expiresIn,
+        token: action.payload.token,
+        expiresAt: action.payload.expireAt,
         localId: action.payload.localId,
         refreshToken: action.payload.refreshToken,
         error: null,
@@ -63,10 +63,10 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         isAuthindicated: true,
-        token: action.payload.id_token,
-        expiresIn: action.payload.expires_in,
-        localId: action.payload.user_id,
-        refreshToken: action.payload.refresh_token,
+        token: action.payload.token,
+        expiresAt: action.payload.expireAt,
+        localId: action.payload.localId,
+        refreshToken: action.payload.refreshToken,
         error: null,
         isLoading: false
       };
@@ -102,10 +102,10 @@ const reducer = (state = initState, action) => {
         }
       };
     case AC.AUTH_STORE_TOKEN_STAY_OUT:
-      localStorage.setItem("token", `${action.payload.idToken}`);
+      localStorage.setItem("token", `${action.payload.token}`);
       localStorage.setItem(
-        "expiresIn",
-        `${new Date().getTime() + action.payload.expiresIn * 1000}`
+        "expiresAt",
+        `${new Date().getTime() + action.payload.expireAt * 1000}`
       );
       localStorage.setItem("localId", `${action.payload.localId}`);
       if (state.stayIn) {
@@ -121,10 +121,10 @@ const reducer = (state = initState, action) => {
       };
     case AC.AUTH_GET_TOKEN_FROM_COOKIE:
       let strToken = localStorage.getItem("token");
-      let strExpiresIn = localStorage.getItem("expiresIn");
+      let strExpiresAt = localStorage.getItem("expiresAt");
       let strLocalId = localStorage.getItem("localId");
       let strRefreshToken = localStorage.getItem("refresh");
-      if (strToken && new Date().getTime() < strExpiresIn) {
+      if (strToken && new Date().getTime() < strExpiresAt) {
         return {
           ...state,
           isAuthindicated: true,
@@ -133,21 +133,16 @@ const reducer = (state = initState, action) => {
           refreshToken: strRefreshToken
         };
       }
-    case AC.AUTH_SIGN_IN_ERROR:
-      return {
-        ...state,
-        error: action.payload
-      };
     case AC.LOG_OUT: {
       localStorage.removeItem("token");
-      localStorage.removeItem("expiresIn");
+      localStorage.removeItem("expiresAt");
       localStorage.removeItem("localId");
       localStorage.removeItem("refresh");
       return {
         ...state,
         isAuthindicated: false,
         token: null,
-        expiresIn: null,
+        expiresAt: null,
         localId: null,
         refreshToken: null,
         error: null,

@@ -1,4 +1,5 @@
 const Orders = require("../models/order");
+const Token = require("../models/token");
 
 exports.getOrders = async (req, res) => {
   try {
@@ -26,12 +27,17 @@ exports.getOrders = async (req, res) => {
 
 exports.addOrder = async (req, res) => {
   try {
-    const newOrder = await Orders.create(req.body);
-
-    res.status(201).json({
-      status: "success",
-      data: newOrder
-    });
+    const tokenRecord = await Token.find({ token: req.body.token });
+    if (
+      tokenRecord.length > 0 &&
+      tokenRecord[0].expireAt > new Date().getTime()
+    ) {
+      const newOrder = await Orders.create(req.body);
+      res.status(201).json({
+        status: "success",
+        data: newOrder
+      });
+    }
   } catch (err) {
     res.status(400).send({
       status: "fail",
@@ -41,13 +47,20 @@ exports.addOrder = async (req, res) => {
 };
 
 exports.deleteOrder = async (req, res) => {
-  //may use findbyIdAndDelete
-  let order = await Orders.findByIdAndRemove(req.body.id);
+  try {
+    //may use findbyIdAndDelete
+    let order = await Orders.findByIdAndRemove(req.body.id);
 
-  res.status(200).json({
-    status: "success",
-    data: "null"
-  });
+    res.status(200).json({
+      status: "success",
+      data: "null"
+    });
+  } catch (err) {
+    res.status(400).send({
+      status: "fail",
+      message: err
+    });
+  }
 };
 
 async function getRandomOrders(req) {

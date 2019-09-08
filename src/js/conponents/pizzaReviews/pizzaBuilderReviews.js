@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getReviews, editReview, reviewsEditModeOn } from "../../AC/index";
+import { getReviews, editReview } from "../../AC/index";
 import Modal from "../hoc/modal";
 
 import ShowReviews from "./pizzaBuilderShowReviews";
@@ -8,31 +8,15 @@ import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 
 class Reviews extends React.Component {
   componentDidMount() {
-    this.props.getReviews();
+    this.props.getReviews("?page=1&limit=5");
   }
 
   state = {
-    currentReviews: [],
     currentPage: 1
   };
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.reviews.reviews != this.props.reviews.reviews) {
-      let newObj = {};
-      this.props.reviews.reviews.map((item, index) => {
-        if (index < 5) newObj[item._id.toString()] = item;
-      });
-      this.setState({ currentReviews: newObj });
-    }
-  }
-
-  changePageHandler = num => {
-    let newObj = {};
-    this.props.reviews.reviews.map((item, index) => {
-      if (index < 5 * num && index >= 5 * (num - 1))
-        newObj[item._id.toString()] = item;
-    });
-    this.setState({ currentReviews: newObj, currentPage: num });
+  currentPageHandler = num => {
+    this.setState({ currentPage: num });
   };
 
   render() {
@@ -43,10 +27,11 @@ class Reviews extends React.Component {
         </Modal>
         {this.props.getReviews ? (
           <ShowReviews
-            reviews={this.state.currentReviews}
+            reviews={this.props.reviews.reviews}
             auth={this.props.auth.isAuthindicated}
             pagination={this.props.reviews.pagination}
-            changePage={this.changePageHandler}
+            changeCurPage={this.currentPageHandler}
+            changePage={this.props.getReviews}
             currentPageNum={this.state.currentPage}
             edit={this.props.editReviewFun}
             id={this.props.auth.localId}
@@ -70,9 +55,8 @@ const stateToProps = state => {
 
 const dispatchToProps = dispatch => {
   return {
-    getReviews: () => dispatch(getReviews()),
-    editReviewFun: id => dispatch(editReview(id)),
-    reviewsEditModeOnFun: id => dispatch(reviewsEditModeOn(id))
+    getReviews: param => dispatch(getReviews(param)),
+    editReviewFun: id => dispatch(editReview(id))
   };
 };
 

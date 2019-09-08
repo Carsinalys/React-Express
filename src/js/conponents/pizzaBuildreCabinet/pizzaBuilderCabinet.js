@@ -9,20 +9,15 @@ import CabinetOrders from "./pizzaCabinetOrders";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import {
   getInfo,
-  getInfoAddres,
   setCabinetOnInput,
   setCabinetFetchOrder,
-  deleteCabinetAddres,
   viewOrdersCabinet,
   deleteOrder
 } from "../../AC/index";
 
 class PersonalRoom extends React.Component {
   componentDidMount() {
-    this.props.getInfoFun({
-      idToken: this.props.auth.token
-    });
-    this.props.getOnfoAddresFun(this.props.auth.token, this.props.auth.localId);
+    this.props.getInfoFun(this.props.auth.localId);
   }
 
   state = {
@@ -41,19 +36,12 @@ class PersonalRoom extends React.Component {
       phone: this.props.cabinetSet.inputs.phone.value
     };
 
-    this.props.cabinet.isAddresFilled
-      ? this.props.deletePrevDataFun(
-          data,
-          this.props.auth.token,
-          this.props.cabinetSet.allGood,
-          this.props.auth.localId
-        )
-      : this.props.fetchDataFun(
-          data,
-          this.props.auth.token,
-          this.props.cabinetSet.allGood,
-          this.props.auth.localId
-        );
+    this.props.fetchDataFun(
+      data,
+      this.props.auth.token,
+      this.props.cabinetSet.allGood,
+      this.props.auth.localId
+    );
   };
 
   changeContentHandler = num => {
@@ -148,13 +136,10 @@ const stateToProps = state => {
 
 const dispatchToProps = dispatch => {
   return {
-    getInfoFun: data => dispatch(getInfo(data)),
-    getOnfoAddresFun: (token, id) => dispatch(getInfoAddres(token, id)),
+    getInfoFun: id => dispatch(getInfo(id)),
     onInputFun: event => dispatch(setCabinetOnInput(event)),
     fetchDataFun: (data, token, allGood, id) =>
       dispatch(setCabinetFetchOrder(data, token, allGood, id)),
-    deletePrevDataFun: (data, token, allGood, id) =>
-      dispatch(deleteCabinetAddres(data, token, allGood, id)),
     viewOrdersFun: () => dispatch(viewOrdersCabinet()),
     deleteOrderfun: (id, token, userId) =>
       dispatch(deleteOrder(id, token, userId))

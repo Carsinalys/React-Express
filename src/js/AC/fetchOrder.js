@@ -1,5 +1,6 @@
 import * as AC from "./ac";
 import { reset_build } from "./index";
+import { port } from "../../../portForFront";
 
 export const onInput = event => {
   return {
@@ -8,15 +9,12 @@ export const onInput = event => {
   };
 };
 
-export const getInfoAddresCheckout = (token, id) => {
+export const getInfoAddresCheckout = id => {
   return dispatch => {
     dispatch(toggleModalOn());
-    fetch(
-      `https://pizzabuilder-e9539.firebaseio.com/pizzaBuildes/users/${id}.json?auth=${token}`,
-      {
-        method: "get"
-      }
-    )
+    fetch(`${port}/api/v1.0/user/getInfo?id=${id}`, {
+      method: "get"
+    })
       .then(res => res.json())
       .then(res => {
         dispatch(getAddressCheckout(res));
@@ -29,10 +27,10 @@ export const getInfoAddresCheckout = (token, id) => {
   };
 };
 
-export const callApiAddOrderr = (data, token) => {
+export const callApiAddOrderr = data => {
   return dispatch => {
     dispatch(toggleModalOn());
-    fetch("/api/v1.0/orders", {
+    fetch(`${port}/api/v1.0/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

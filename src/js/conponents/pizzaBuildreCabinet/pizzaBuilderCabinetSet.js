@@ -16,7 +16,7 @@ const cabinetSet = props => {
           <button
             type="submit"
             className="set_cabinet__form__submit"
-            onClick={() => props.check(event)}
+            onClick={event => props.check(event)}
           >
             Send
           </button>

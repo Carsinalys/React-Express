@@ -1,57 +1,23 @@
 import * as AC from "./ac";
+import { port } from "../../../portForFront";
 
-export const getInfo = body => {
+export const getInfo = id => {
   return dispatch => {
     dispatch(cabinetGetInfoModalON());
-    fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDyUaUeFIdEP-t40XognUX4nOFU5X2Uy8s`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(body)
-      }
-    )
+    fetch(`${port}/api/v1.0/user/getInfo?id=${id}`, {
+      method: "GET"
+    })
       .then(response => {
         return response.json();
       })
       .then(data => {
         dispatch(cabinetGetInfoModalOFF());
-        dispatch(cabinetGetInfo(data));
+        dispatch(cabinetGetInfo(data.data));
       })
       .catch(error => {
         console.log(error);
         dispatch(cabinetGetInfoModalOFF());
       });
-  };
-};
-
-export const getInfoAddres = (token, id) => {
-  return dispatch => {
-    dispatch(cabinetGetInfoModalON());
-    fetch(
-      `https://pizzabuilder-e9539.firebaseio.com/pizzaBuildes/users/${id}.json?auth=${token}`,
-      {
-        method: "get"
-      }
-    )
-      .then(res => res.json())
-      .then(res => {
-        dispatch(cabinetGetInfoAddres(res));
-        dispatch(cabinetGetInfoModalOFF());
-      })
-      .catch(error => {
-        console.log(error);
-        dispatch(cabinetGetInfoModalOFF());
-      });
-  };
-};
-
-export const cabinetGetInfoAddres = response => {
-  return {
-    type: AC.CABINET_GET_INFO_ADDRES,
-    payload: response
   };
 };
 
