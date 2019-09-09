@@ -9,6 +9,25 @@ exports.getOrders = async (req, res) => {
         status: "success",
         data: response
       });
+    } else if (req.query.page !== undefined && req.query.limit !== undefined) {
+      const count = await Orders.countDocuments();
+      const page = req.query.page * 1;
+      const limit = req.query.limit * 1;
+      const skip = (page - 1) * limit;
+      const collection = await Orders.find()
+        .skip(skip)
+        .limit(limit);
+      if (skip >= count) {
+        return res.status(404).json({
+          status: "fail",
+          message: "this page is doesn't exist"
+        });
+      }
+      res.status(200).json({
+        status: "success",
+        data: collection,
+        count: count
+      });
     } else {
       const orders = await Orders.find();
 

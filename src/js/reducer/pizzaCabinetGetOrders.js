@@ -3,6 +3,7 @@ import * as AC from "../AC/ac";
 const initState = {
   modal: false,
   error: null,
+  count: null,
   orders: []
 };
 
@@ -11,7 +12,8 @@ const reducer = (state = initState, action) => {
     case AC.CABINET_VIEW_ORDERS_SET:
       return {
         ...state,
-        orders: action.payload
+        orders: action.payload.data,
+        count: action.payload.count
       };
     case AC.CABINET_VIEW_ORDERS_MODAL_ON:
       return {

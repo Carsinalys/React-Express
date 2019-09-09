@@ -17,7 +17,12 @@ exports.getReviews = async (req, res) => {
       const collection = await Reviews.find()
         .skip(skip)
         .limit(limit);
-      if (skip >= count) throw new Error("this page doesn't exsist");
+      if (skip >= count) {
+        return res.status(400).json({
+          status: "fail",
+          message: "this page is doesn't exist"
+        });
+      }
       res.status(200).json({
         status: "success",
         data: collection,

@@ -20,6 +20,7 @@ async function getUserInfo(req, res) {
     }
   } catch (err) {
     res.status(400).send({
+      error: err,
       status: "fail",
       message: err
     });
@@ -38,6 +39,7 @@ async function updateUser(req, res) {
     }
   } catch (err) {
     res.status(400).send({
+      error: err,
       status: "fail",
       message: err
     });
@@ -52,11 +54,11 @@ async function UserFun(req, res) {
       });
       //throw error if mail exist
       if (checkMail.length > 0) {
-        res.status(400).json({
+        return res.status(400).json({
+          error: "this mail is already exist",
           status: "fail",
           message: "this mail is already exist"
         });
-        throw new Error("this mail is already exist");
       }
       //coding password for database
       crypto.pbkdf2(
@@ -97,7 +99,11 @@ async function UserFun(req, res) {
       const userRecord = await User.find({ mail: req.body.mail });
       //checking for right mail
       if (userRecord.length === 0) {
-        throw new Error("mail doesn't exist");
+        return res.status(404).json({
+          error: "this mail is doesn't exist",
+          status: "fail",
+          message: "this mail is doesn't exist"
+        });
       }
       crypto.pbkdf2(
         req.body.password,
@@ -109,7 +115,11 @@ async function UserFun(req, res) {
           const pass = derivedKey.toString("hex");
           //checking for math passwords
           if (userRecord[0].password !== pass) {
-            throw new Error("password is don't match");
+            return res.status(400).json({
+              error: "password is don't match",
+              status: "fail",
+              message: "password is don't match"
+            });
           }
           const newToken = obj.generateRandomToken();
           // updating token record
@@ -130,7 +140,13 @@ async function UserFun(req, res) {
       const userRecord = await User.find({
         refreshToken: req.body.refresh_token
       });
-      if (userRecord.length === 0) throw new Error("didn't find token");
+      if (userRecord.length === 0) {
+        return res.status(400).json({
+          error: "didn't find token",
+          status: "fail",
+          message: "didn't find token"
+        });
+      }
       const newToken = obj.generateRandomToken();
       updateTokenRecord(userRecord[0].localId, newToken);
       res.status(200).json({
@@ -142,6 +158,7 @@ async function UserFun(req, res) {
     }
   } catch (err) {
     res.status(400).send({
+      error: err,
       status: "fail",
       message: err
     });
@@ -149,50 +166,74 @@ async function UserFun(req, res) {
 }
 
 function updateTokenRecord(id, newToken) {
-  Token.findOneAndUpdate(
-    { localId: id },
-    {
-      $set: {
-        token: newToken,
-        expireAt: new Date().getTime() + 3600 * 1000
+  try {
+    Token.findOneAndUpdate(
+      { localId: id },
+      {
+        $set: {
+          token: newToken,
+          expireAt: new Date().getTime() + 3600 * 1000
+        }
+      },
+      { new: true },
+      (err, doc) => {
+        if (err) throw new Error(err);
+        //console.log(doc);
       }
-    },
-    { new: true },
-    (err, doc) => {
-      if (err) throw new Error(err);
-      //console.log(doc);
-    }
-  );
+    );
+  } catch (err) {
+    res.status(400).send({
+      error: err,
+      status: "fail",
+      message: err
+    });
+  }
 }
 
 function updateUserRecord(id) {
-  User.findOneAndUpdate(
-    { localId: id },
-    {
-      $set: {
-        lastLoginAt: new Date().getTime()
+  try {
+    User.findOneAndUpdate(
+      { localId: id },
+      {
+        $set: {
+          lastLoginAt: new Date().getTime()
+        }
+      },
+      { new: true },
+      (err, doc) => {
+        if (err) throw new Error(err);
+        //console.log(doc);
       }
-    },
-    { new: true },
-    (err, doc) => {
-      if (err) throw new Error(err);
-      //console.log(doc);
-    }
-  );
+    );
+  } catch (err) {
+    res.status(400).send({
+      error: err,
+      status: "fail",
+      message: err
+    });
+  }
 }
 
 async function updateUserRecordParam(id, data) {
-  await User.findOneAndUpdate(
-    { localId: id },
-    {
-      $set: data
-    },
-    { new: true },
-    (err, doc) => {
-      if (err) throw new Error(err);
-      //console.log(doc);
-    }
-  );
+  try {
+    await User.findOneAndUpdate(
+      { localId: id },
+      {
+        $set: data
+      },
+      { new: true },
+      (err, doc) => {
+        if (err) throw new Error(err);
+        //console.log(doc);
+      }
+    );
+  } catch (err) {
+    res.status(400).send({
+      error: err,
+      status: "fail",
+      message: err
+    });
+  }
 }
 
 function randomGenerator(qty) {

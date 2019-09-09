@@ -9,6 +9,7 @@ import Obj from "./callbacks/user";
 const morgan = require("morgan");
 const orders = require("./callbacks/orders");
 const reviews = require("./callbacks/reviews");
+const resetPass = require("./callbacks/resetPassword");
 
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
@@ -31,6 +32,9 @@ app.use(function(req, res, next) {
   );
   next();
 });
+
+app.route("/api/v1.0/resetPassword").post(resetPass.resetPassword);
+app.route("/api/v1.0/confirmPassword/:id").get(resetPass.confirmPassword);
 
 app
   .route("/api/v1.0/user/:query")

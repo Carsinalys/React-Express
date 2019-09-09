@@ -8,7 +8,7 @@ const pagination = props => {
   return (
     <div className="pizza__cabinet__pagination__list__cover">
       <ul className="pizza__cabinet__pagination__list">
-        {arr.map(item => (
+        {arr.map((item, index) => (
           <li
             key={item}
             className={
@@ -16,7 +16,10 @@ const pagination = props => {
                 ? "pizza__cabinet__pagination__item pizza__cabinet__pagination__item_active"
                 : "pizza__cabinet__pagination__item"
             }
-            onClick={() => props.changePage(item)}
+            onClick={() => {
+              props.changePage(item);
+              props.viewOrders(`?page=${index + 1}&limit=4`);
+            }}
           >
             {item}
           </li>

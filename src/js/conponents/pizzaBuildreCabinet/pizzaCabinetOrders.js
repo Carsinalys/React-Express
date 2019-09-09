@@ -6,10 +6,10 @@ import Pagination from "./pizzaCabinetPagination";
 const myOrdersCabinet = props => {
   let pageNum = 1;
   if (props.orders.orders.length > 0) {
-    pageNum = Math.ceil(props.orders.orders.length / 5);
+    pageNum = Math.ceil(props.orders.count / 5);
   }
 
-  useEffect(props.viewOrders, []);
+  useEffect(() => props.viewOrders("?page=1&limit=4"), []);
 
   const [modal, setModal] = useState(false);
   const [id, setId] = useState(null);
@@ -18,115 +18,113 @@ const myOrdersCabinet = props => {
   let prevOrders;
 
   if (props.orders.orders.error)
-    prevOrders = <h1>{props.orders.orders.error}</h1>;
+    prevOrders = <h1>{props.orders.orders.error.message}</h1>;
   else if (!props.orders.orders.error && props.orders.orders.length > 0) {
     prevOrders = props.orders.orders.map((item, index) => {
-      if (index >= page * 4 - 4 && index < page * 4) {
-        if (!item.pizzas.length > 0) {
-          return (
-            <div key={item._id.toString()} className="prev__order__cover">
-              <div
-                className="delete__order"
-                onClick={() => {
-                  setModal(true);
-                  setId(item._id.toString());
-                }}
-              ></div>
-              <div className="prev__order__info__cover">
-                <p>
-                  <span className="prev__order__name">{item.name}</span> ordered{" "}
-                  {item.pizzaName} worth {item.cost}$, weight {item.weight}
-                  g. and diameter {item.diameter}cm
-                </p>
-                <p>
-                  {item.street}
-                  {item.house}-{item.flat}
-                </p>
-              </div>
-              <div className="prev__order__icon__cover">
-                {Object.keys(item.ingredients).map(key => {
-                  return item.ingredients[key].count > 0 ? (
-                    <div
-                      className="pizza__view__icon pizza__view__icon_small"
-                      key={key}
-                    >
-                      <div className="pizza__view__icon__count pizza__view__icon__count_small">
-                        <strong>{item.ingredients[key].count}X</strong>
-                      </div>
-                      <div className="pizza__view__icon__pic">
-                        <img
-                          src={require(`../../../img/${key}.png`)}
-                          alt={key}
-                          className="pizza__view__icon__image"
-                        />
-                      </div>
-                    </div>
-                  ) : null;
-                })}
-              </div>
+      if (!item.pizzas.length > 0) {
+        return (
+          <div key={item._id.toString()} className="prev__order__cover">
+            <div
+              className="delete__order"
+              onClick={() => {
+                setModal(true);
+                setId(item._id.toString());
+              }}
+            ></div>
+            <div className="prev__order__info__cover">
+              <p>
+                <span className="prev__order__name">{item.name}</span> ordered{" "}
+                {item.pizzaName} worth {item.cost}$, weight {item.weight}
+                g. and diameter {item.diameter}cm
+              </p>
+              <p>
+                {item.street}
+                {item.house}-{item.flat}
+              </p>
             </div>
-          );
-        } else {
-          return (
-            <div key={item._id.toString()} className="prev__order__cover">
-              <div
-                className="delete__order"
-                onClick={() => {
-                  setModal(true);
-                  setId(item);
-                }}
-              ></div>
-              <div className="prev__order__info__cover">
-                <p>
-                  <span className="prev__order__name">{item.name} </span>
-                  ordered{" "}
-                  <span className="prev__order__name">{item.pizzaName}</span>
-                </p>
-                <p>
-                  {item.street}
-                  {item.house}-{item.flat} total:{" "}
-                  <span className="prev__order__name">{item.totalCost}$</span>
-                </p>
-              </div>
-              <div className="prev__order__icon__cover">
-                {item.pizzas.map((key, num) => {
-                  return (
-                    <div key={num} className="multi__pizza__single__cover">
-                      {key.name ? (
-                        <p className="multi__pizza__name__obj">{key.name}</p>
-                      ) : null}
-                      <p key={index + item + num}>
-                        worth {key.cost}$, weight {key.weight}
-                        g. and diameter {key.diameter} cm
-                      </p>
-                      <div className="prev__order__icon__cover">
-                        {Object.keys(key.ingredients).map(ing => {
-                          return key.ingredients[ing].count > 0 ? (
-                            <div
-                              className="pizza__view__icon pizza__view__icon_small"
-                              key={ing}
-                            >
-                              <div className="pizza__view__icon__count pizza__view__icon__count_small">
-                                <strong>{key.ingredients[ing].count}X</strong>
-                              </div>
-                              <div className="pizza__view__icon__pic">
-                                <img
-                                  src={require(`../../../img/${ing}.png`)}
-                                  alt={ing}
-                                  className="pizza__view__icon__image"
-                                />
-                              </div>
+            <div className="prev__order__icon__cover">
+              {Object.keys(item.ingredients).map(key => {
+                return item.ingredients[key].count > 0 ? (
+                  <div
+                    className="pizza__view__icon pizza__view__icon_small"
+                    key={key}
+                  >
+                    <div className="pizza__view__icon__count pizza__view__icon__count_small">
+                      <strong>{item.ingredients[key].count}X</strong>
+                    </div>
+                    <div className="pizza__view__icon__pic">
+                      <img
+                        src={require(`../../../img/${key}.png`)}
+                        alt={key}
+                        className="pizza__view__icon__image"
+                      />
+                    </div>
+                  </div>
+                ) : null;
+              })}
+            </div>
+          </div>
+        );
+      } else {
+        return (
+          <div key={item._id.toString()} className="prev__order__cover">
+            <div
+              className="delete__order"
+              onClick={() => {
+                setModal(true);
+                setId(item);
+              }}
+            ></div>
+            <div className="prev__order__info__cover">
+              <p>
+                <span className="prev__order__name">{item.name} </span>
+                ordered{" "}
+                <span className="prev__order__name">{item.pizzaName}</span>
+              </p>
+              <p>
+                {item.street}
+                {item.house}-{item.flat} total:{" "}
+                <span className="prev__order__name">{item.totalCost}$</span>
+              </p>
+            </div>
+            <div className="prev__order__icon__cover">
+              {item.pizzas.map((key, num) => {
+                return (
+                  <div key={num} className="multi__pizza__single__cover">
+                    {key.name ? (
+                      <p className="multi__pizza__name__obj">{key.name}</p>
+                    ) : null}
+                    <p key={index + item + num}>
+                      worth {key.cost}$, weight {key.weight}
+                      g. and diameter {key.diameter} cm
+                    </p>
+                    <div className="prev__order__icon__cover">
+                      {Object.keys(key.ingredients).map(ing => {
+                        return key.ingredients[ing].count > 0 ? (
+                          <div
+                            className="pizza__view__icon pizza__view__icon_small"
+                            key={ing}
+                          >
+                            <div className="pizza__view__icon__count pizza__view__icon__count_small">
+                              <strong>{key.ingredients[ing].count}X</strong>
                             </div>
-                          ) : null;
-                        })}
-                      </div>
+                            <div className="pizza__view__icon__pic">
+                              <img
+                                src={require(`../../../img/${ing}.png`)}
+                                alt={ing}
+                                className="pizza__view__icon__image"
+                              />
+                            </div>
+                          </div>
+                        ) : null;
+                      })}
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
             </div>
-          );
-        }
+          </div>
+        );
       }
     });
   } else {
@@ -166,11 +164,22 @@ const myOrdersCabinet = props => {
           </div>
         </div>
       </Modal>
-      <button onClick={props.viewOrders} className="refresh__orders__btn">
+      <button
+        onClick={() => {
+          props.viewOrders("?page=1&limit=4");
+          setPage(1);
+        }}
+        className="refresh__orders__btn"
+      >
         Refresh
       </button>
       {prevOrders}
-      <Pagination num={pageNum} page={page} changePage={setPage} />
+      <Pagination
+        num={pageNum}
+        page={page}
+        changePage={setPage}
+        viewOrders={props.viewOrders}
+      />
     </div>
   );
 };

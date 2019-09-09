@@ -1,10 +1,10 @@
 import * as AC from "./ac";
 import { port } from "../../../portForFront";
 
-export const viewOrdersCabinet = () => {
+export const viewOrdersCabinet = query => {
   return dispatch => {
     dispatch(viewOrdersCabinetModalOn());
-    fetch(`${port}/api/v1.0/orders`, {
+    fetch(`${port}/api/v1.0/orders${query}`, {
       method: "GET"
     })
       .then(response => {
@@ -12,7 +12,7 @@ export const viewOrdersCabinet = () => {
       })
       .then(data => {
         dispatch(viewOrdersCabinetModalOff());
-        dispatch(viewOrdesCabinetSet(data.data));
+        dispatch(viewOrdesCabinetSet(data));
       })
       .catch(error => {
         dispatch(viewOrdersCabinetError());

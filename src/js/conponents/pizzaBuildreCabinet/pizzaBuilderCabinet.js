@@ -140,7 +140,7 @@ const dispatchToProps = dispatch => {
     onInputFun: event => dispatch(setCabinetOnInput(event)),
     fetchDataFun: (data, token, allGood, id) =>
       dispatch(setCabinetFetchOrder(data, token, allGood, id)),
-    viewOrdersFun: () => dispatch(viewOrdersCabinet()),
+    viewOrdersFun: query => dispatch(viewOrdersCabinet(query)),
     deleteOrderfun: (id, token, userId) =>
       dispatch(deleteOrder(id, token, userId))
   };

@@ -1,4 +1,5 @@
 import * as AC from "./ac";
+import { port } from "../../../portForFront";
 
 export const fetchResetPass = mail => {
   return dispatch => {
@@ -7,16 +8,13 @@ export const fetchResetPass = mail => {
       requestType: "PASSWORD_RESET",
       email: mail
     };
-    fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDyUaUeFIdEP-t40XognUX4nOFU5X2Uy8s",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      }
-    )
+    fetch(`${port}/api/v1.0/resetPassword`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
       .then(response => {
         return response.json();
       })
