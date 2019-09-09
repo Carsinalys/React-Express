@@ -1,17 +1,15 @@
 const nodeMailer = require("nodemailer");
 const fs = require("fs");
 const path = require("path");
+const User = require("../models/user");
+const Refresh = require("../models/refresh");
 
 exports.resetPassword = async (req, res) => {
   try {
-    let data = fs
-      .readFileSync(path.join(__dirname, "../form.html"))
-      .toLocaleString();
-    data.split("placeholder");
-    const link =
-      '<div style="background: #cccccc; padding: 20px;"><a href="https://funny-bulldog-26.localtunnel.me">\n' +
-      '        "https://funny-bulldog-26.localtunnel.me"\n' +
-      "      </a></div>";
+    const data = fs.readFileSync(path.join(__dirname, "../form.html"));
+    const userRecord = await User.findOne({ mail: req.body.mail });
+    const link = `<div style="background: #cccccc; padding: 20px;"><a href="https://witty-cow-57.localtunnel.me/api/v1.0/confirmPassword/${userRecord.localId}" target="_blank">conform email</a></div>`;
+    console.log(link);
     let transporter = nodeMailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
@@ -50,5 +48,14 @@ exports.resetPassword = async (req, res) => {
 };
 
 exports.confirmPassword = async (req, res) => {
-  console.log(req.params.id);
+  console.log(req.body);
+};
+
+exports.confirmPasswordMiddleware = async (req, res, next) => {
+  const refreshRecord = {
+    localId: req.params.id,
+    expireAt: new Date().getTime() + 600000
+  };
+  await Refresh.create(refreshRecord);
+  next();
 };

@@ -33,8 +33,10 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use("/api/v1.0/confirmPassword/:id", resetPass.confirmPasswordMiddleware);
+
 app.route("/api/v1.0/resetPassword").post(resetPass.resetPassword);
-app.route("/api/v1.0/confirmPassword/:id").get(resetPass.confirmPassword);
+app.route("/api/v1.0/confirmPassword").get(resetPass.confirmPassword);
 
 app
   .route("/api/v1.0/user/:query")

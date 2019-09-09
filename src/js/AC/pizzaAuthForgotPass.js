@@ -5,8 +5,7 @@ export const fetchResetPass = mail => {
   return dispatch => {
     dispatch(authResetMOdalOn());
     let data = {
-      requestType: "PASSWORD_RESET",
-      email: mail
+      mail: mail
     };
     fetch(`${port}/api/v1.0/resetPassword`, {
       method: "POST",
