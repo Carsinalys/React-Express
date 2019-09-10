@@ -1,3 +1,1 @@
-# MoGo
-
-my first propgect on react
+propgect on express with react, database is mongoDB
