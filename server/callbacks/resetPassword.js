@@ -3,13 +3,33 @@ const fs = require("fs");
 const path = require("path");
 const User = require("../models/user");
 const Refresh = require("../models/refresh");
+const crypto = require("crypto");
 
 exports.resetPassword = async (req, res) => {
   try {
     const data = fs.readFileSync(path.join(__dirname, "../form.html"));
     const userRecord = await User.findOne({ mail: req.body.mail });
-    const link = `<div style="background: #cccccc; padding: 20px;"><a href="https://witty-cow-57.localtunnel.me/api/v1.0/confirmPassword/${userRecord.localId}" target="_blank">conform email</a></div>`;
-    console.log(link);
+    const link = `<div style="background: #cccccc; padding: 20px;"><a href="http://cardinalys-w3u7.localhost.run/api/v1.0/confirmPassword/${userRecord.localId}" target="_blank">confirm email</a></div>`;
+    const oldRefreshRecord = await Refresh.find({
+      localId: userRecord.localId
+    });
+    if (oldRefreshRecord.length === 0) {
+      const refreshRecord = {
+        localId: userRecord.localId,
+        expireAt: new Date().getTime() + 600000
+      };
+      await Refresh.create(refreshRecord);
+    } else {
+      await Refresh.findOneAndUpdate(
+        { localId: userRecord.localId },
+        { $set: { expireAt: new Date().getTime() + 600000 } },
+        { new: true },
+        (err, doc) => {
+          if (err) throw new Error(err);
+          //console.log(doc);
+        }
+      );
+    }
     let transporter = nodeMailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
@@ -21,9 +41,9 @@ exports.resetPassword = async (req, res) => {
     });
     let mailOptions = {
       from: '"Pizza builder" <andrei.baranau@onthespotdev.com>', // sender address
-      to: "Cardinalys81@gmail.com", // list of receivers
-      subject: "test", // Subject line
-      text: "test", // plain text body
+      to: req.body.mail, // list of receivers
+      subject: "Refresh password", // Subject line
+      text: "", // plain text body
       html: data + link // html body
     };
 
@@ -48,14 +68,41 @@ exports.resetPassword = async (req, res) => {
 };
 
 exports.confirmPassword = async (req, res) => {
-  console.log(req.body);
+  let data = fs
+    .readFileSync(path.join(__dirname, "../refreshPage.html"))
+    .toString();
+  data = data.replace("replace", req.params.id);
+  res.status(200).send(data);
 };
 
-exports.confirmPasswordMiddleware = async (req, res, next) => {
-  const refreshRecord = {
-    localId: req.params.id,
-    expireAt: new Date().getTime() + 600000
-  };
-  await Refresh.create(refreshRecord);
-  next();
+exports.confirmRefresh = async (req, res) => {
+  const refreshRecord = await Refresh.findOne({ localId: req.body.id });
+  const userRecord = await User.findOne({ localId: req.body.id });
+  if (new Date().getTime() < refreshRecord.expireAt) {
+    crypto.pbkdf2(
+      req.body.password,
+      process.env.SALT,
+      100000,
+      64,
+      "sha512",
+      (err, derivedKey) => {
+        if (err) throw err;
+        User.findOneAndUpdate(
+          { localId: req.body.id },
+          { $set: { password: derivedKey.toString("hex") } },
+          { new: true },
+          (err, doc) => {
+            if (err) throw new Error(err);
+            res.location("/").redirect("/");
+            //console.log(doc);
+          }
+        );
+      }
+    );
+  } else {
+    res.status(400).json({
+      error: "link is expired",
+      status: "fail"
+    });
+  }
 };
