@@ -1,1 +1,1 @@
-propgect on express with react, database is mongoDB
+project on express with react, database is mongoDB
