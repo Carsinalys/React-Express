@@ -1,15 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const pizzaLogo = () => {
   return (
     <div className="pizza__logo">
-      <a href="/">
+      <Link to="/">
         <img
           src="assets/img/logo.png"
-          alt="Pizza buikder"
+          alt="Pizza builder home"
           className="pizza__logo__pic"
         />
-      </a>
+      </Link>
     </div>
   );
 };

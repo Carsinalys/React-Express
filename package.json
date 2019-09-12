@@ -76,7 +76,8 @@
     "dev_parcel": "parcel src/index.html",
     "start": "npm run build && babel-node server.js",
     "startWB": "babel-node server.js NODE_ENV=production",
-    "startWBnodemon": "nodemon --exec babel-node server.js"
+    "startWBnodemon": "nodemon --exec babel-node server.js",
+    "debug": "ndb server.js"
   },
   "browserslist": [
     ">1%",

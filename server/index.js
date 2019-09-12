@@ -7,9 +7,11 @@ import App from "../src/js/serverConnectProps";
 import path from "path";
 import Obj from "./callbacks/user";
 const morgan = require("morgan");
+const ErrorHandler = require("./utils/errorHandler");
 const orders = require("./callbacks/orders");
 const reviews = require("./callbacks/reviews");
 const resetPass = require("./callbacks/resetPassword");
+const globalErrorHandler = require("./callbacks/error");
 
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
@@ -66,5 +68,11 @@ app.use((req, res) => {
   res.send(parts[0] + renderToString(ReactMarkup) + parts[1]);
   res.end();
 });
+//route for define unknown requests
+app.all("*", (req, res, next) => {
+  next(new ErrorHandler(`Can't find ${req.originalUrl} on this server!`, 404));
+});
+//error handle middleware
+app.use(globalErrorHandler);
 
 module.exports = app;

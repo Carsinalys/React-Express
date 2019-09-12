@@ -38,7 +38,12 @@ class AddReview extends React.Component {
     } else {
       this.setState({ badData: false });
     }
-    if (name.value.length >= 5 && text.value.length >= 10) {
+    if (
+      name.value.length >= 5 &&
+      text.value.length >= 10 &&
+      name.value.length < 20 &&
+      text.value.length < 300
+    ) {
       this.setState({ isLoading: true });
       let data = {
         name: name.value,
@@ -107,6 +112,7 @@ class AddReview extends React.Component {
             <div className="pizza__view__order__small__modal__content">
               You need to fill all fields to complete or choose pizza correctly.
               Name must be at least 4 symbols length and comment 10 symbols...
+              Also name must be 20 symbols maxlength and comment 300 symbols...
             </div>
           </div>
         </CSSTransition>

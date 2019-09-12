@@ -4,7 +4,9 @@ const ordersShchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "No name"],
-    unique: false
+    unique: false,
+    minlength: 2,
+    maxlength: 20
   },
   phone: {
     type: Number,
@@ -14,17 +16,23 @@ const ordersShchema = new mongoose.Schema({
   street: {
     type: String,
     required: [true, "No street"],
-    unique: false
+    unique: false,
+    minlength: 2,
+    maxlength: 20
   },
   flat: {
     type: Number,
     required: [true, "No flat"],
-    unique: false
+    unique: false,
+    minlength: 2,
+    maxlength: 4
   },
   house: {
     type: Number,
     required: [true, "No house"],
-    unique: false
+    unique: false,
+    minlength: 2,
+    maxlength: 4
   },
   totalCost: {
     type: Number
@@ -35,7 +43,9 @@ const ordersShchema = new mongoose.Schema({
     unique: false
   },
   pizzaName: {
-    type: String
+    type: String,
+    minlength: 2,
+    maxlength: 20
   },
   cost: {
     type: Number

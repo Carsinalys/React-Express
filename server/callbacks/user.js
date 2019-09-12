@@ -175,7 +175,7 @@ function updateTokenRecord(id, newToken) {
           expireAt: new Date().getTime() + 3600 * 1000
         }
       },
-      { new: true },
+      { new: true, runValidators: true },
       (err, doc) => {
         if (err) throw new Error(err);
         //console.log(doc);
@@ -199,7 +199,7 @@ function updateUserRecord(id) {
           lastLoginAt: new Date().getTime()
         }
       },
-      { new: true },
+      { new: true, runValidators: true },
       (err, doc) => {
         if (err) throw new Error(err);
         //console.log(doc);
@@ -221,7 +221,7 @@ async function updateUserRecordParam(id, data) {
       {
         $set: data
       },
-      { new: true },
+      { new: true, runValidators: true },
       (err, doc) => {
         if (err) throw new Error(err);
         //console.log(doc);

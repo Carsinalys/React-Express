@@ -51,7 +51,7 @@ const showReviews = props => {
               {props.id === props.reviews[item].id ? (
                 <span
                   className="reviews__edit_btn"
-                  data-id={item}
+                  data-id={props.reviews[item]._id}
                   onClick={event => props.edit(event)}
                 >
                   edit

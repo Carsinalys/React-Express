@@ -44,21 +44,23 @@ class PizzaBuilderMainPage extends React.Component {
 
   render() {
     return (
-      <section className="main__page__cover">
-        <Modal toggle={this.props.isLoading}>
-          <Spinner />
-        </Modal>
-        {this.state.rediect ? <Redirect to="/checkout" /> : null}
-        <MainInfo />
-        {this.props.getOrders ? (
-          <PrevOrders
-            orders={this.props.orders}
-            theSame={this.wantTheSameHanler}
-          />
-        ) : (
-          <div>Loading orders...</div>
-        )}
-      </section>
+      <>
+        <section className="main__page__cover">
+          <Modal toggle={this.props.isLoading}>
+            <Spinner />
+          </Modal>
+          {this.state.rediect ? <Redirect to="/checkout" /> : null}
+          <MainInfo />
+          {this.props.getOrders ? (
+            <PrevOrders
+              orders={this.props.orders}
+              theSame={this.wantTheSameHanler}
+            />
+          ) : (
+            <div>Loading orders...</div>
+          )}
+        </section>
+      </>
     );
   }
 }

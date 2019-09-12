@@ -69,7 +69,6 @@ exports.editReviews = async (req, res) => {
   try {
     let { _id, ...data } = req.body;
     data.edited = true;
-    console.log(data);
     await Reviews.findByIdAndUpdate(_id, data);
     res.status(200).json({
       status: "success"

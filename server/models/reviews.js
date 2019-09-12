@@ -5,22 +5,28 @@ const reviewsShchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: [true, "No name"],
-    unique: false
+    unique: false,
+    minlength: 5,
+    maxlength: 20
   },
   text: {
     type: String,
     trim: true,
     required: [true, "No text"],
-    unique: false
+    unique: false,
+    minlength: 10,
+    maxlength: 300
   },
   rating: {
     type: Number,
     required: [true, "No rating"],
-    unique: false
+    unique: false,
+    min: 1,
+    max: 5
   },
   id: {
     type: String,
-    required: [true, " No id"],
+    required: [true, "No id"],
     unique: false
   },
   date: {

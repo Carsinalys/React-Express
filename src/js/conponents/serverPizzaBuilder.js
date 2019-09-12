@@ -1,7 +1,5 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Route, Redirect } from "react-router-dom";
-
-import Spinner from "./pizzaBuilder/pizzaBuilderSpinner";
 
 import PizzaHeader from "./pizzaHeader/pizzaHeder";
 import PizzaBuilderPropsSrc from "./pizzaBuilder/pizzaBuilderPropsSrc";
