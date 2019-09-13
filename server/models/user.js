@@ -5,7 +5,8 @@ const userShchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: [true, "No mail"],
-    unique: true
+    unique: true,
+    lowercase: true
   },
   password: {
     type: String,
