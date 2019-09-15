@@ -27,13 +27,14 @@ export const getInfoAddresCheckout = id => {
   };
 };
 
-export const callApiAddOrderr = data => {
+export const callApiAddOrderr = (data, token) => {
   return dispatch => {
     dispatch(toggleModalOn());
     fetch(`${port}/api/v1.0/orders`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`
       },
       body: JSON.stringify(data)
     })

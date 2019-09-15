@@ -37,6 +37,9 @@ const hadleValidationErrorDB = err => {
   return new AppError(message, 400);
 };
 
+const hndleJsonWebTokenError = err =>
+  new AppError("Invalid token, please log in again.", 401);
+
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
@@ -48,6 +51,8 @@ module.exports = (err, req, res, next) => {
     if (error.name === "CastError") error = hadleCastErrorDB(error);
     if (error.code === 11000) error = hadleDuplicateFieldsDB(error);
     if (error.name === "ValidationError") error = hadleValidationErrorDB(error);
+    if (error.name === "JsonWebTokenError")
+      error = hndleJsonWebTokenError(error);
     sendErrorProd(error, res);
   }
 };

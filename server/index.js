@@ -12,6 +12,7 @@ const orders = require("./callbacks/orders");
 const reviews = require("./callbacks/reviews");
 const resetPass = require("./callbacks/resetPassword");
 const globalErrorHandler = require("./callbacks/error");
+const { isAuthenticated } = require("./callbacks/isAuthenticated");
 
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
@@ -26,7 +27,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3001");
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept, authorization"
   );
   res.header(
     "Access-Control-Allow-Methods",
@@ -47,8 +48,8 @@ app
 app
   .route("/api/v1.0/orders")
   .get(orders.getOrders)
-  .post(orders.addOrder)
-  .delete(orders.deleteOrder);
+  .post(isAuthenticated, orders.addOrder)
+  .delete(isAuthenticated, orders.deleteOrder);
 
 app
   .route("/api/v1.0/reviews")

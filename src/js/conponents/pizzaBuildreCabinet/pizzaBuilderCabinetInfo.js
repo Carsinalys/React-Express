@@ -5,12 +5,13 @@ const cabinetInfo = props => {
     <div className="cabinet__info__cover">
       <ul className="cabinet__info__list">
         {Object.keys(props.info.info).map(item => {
-          return (
-            <li key={item} className="cabinet__info__item">
-              <span className="cabinet__info__item_bold">{item}</span>:{" "}
-              {props.info.info[item]}
-            </li>
-          );
+          if (props.info.info[item] !== undefined)
+            return (
+              <li key={item} className="cabinet__info__item">
+                <span className="cabinet__info__item_bold">{item}</span>:{" "}
+                {props.info.info[item]}
+              </li>
+            );
         })}
       </ul>
     </div>

@@ -1,12 +1,11 @@
-const crypto = require("crypto");
 const User = require("../models/user");
 const Token = require("../models/token");
 const cachAsync = require("../utils/catchErrors");
 const AppError = require("../utils/errorHandler");
+const jwt = require("jsonwebtoken");
 
 const obj = {
   generateRandomId: () => randomGenerator(40),
-  generateRandomToken: () => randomGenerator(200),
   generateRandomRefreshToken: () => randomGenerator(300),
   UserFun: (req, res) => UserFunCached(req, res),
   updateUserFun: (req, res) => updateUserCached(req, res),
@@ -16,7 +15,9 @@ module.exports = obj;
 
 const getUserInfoCached = cachAsync(async (req, res) => {
   if (req.params.query === "getInfo") {
-    const userRecord = await User.findOne({ localId: req.query.id });
+    const userRecord = await User.findOne({ localId: req.query.id }).select(
+      "-password"
+    );
     res.status(200).json({ status: "ok", data: userRecord });
   }
 });
@@ -32,8 +33,12 @@ const updateUserCached = cachAsync(async (req, res) => {
   }
 });
 
-const UserFunCached = cachAsync(async (req, res) => {
+const UserFunCached = cachAsync(async (req, res, next) => {
   if (req.params.query === "create") {
+    if (!req.body.mail || !req.body.password)
+      return next(
+        new AppError("You must enter mail and password to proceed", 400)
+      );
     const checkMail = await User.find({
       mail: req.body.mail
     });
@@ -45,100 +50,84 @@ const UserFunCached = cachAsync(async (req, res) => {
         message: "this mail is already exist"
       });
     }
-    //coding password for database
-    crypto.pbkdf2(
-      req.body.password,
-      process.env.SALT,
-      100000,
-      64,
-      "sha512",
-      (err, derivedKey) => {
-        if (err) throw err;
-        //create response object
-        const userObj = {
-          localId: obj.generateRandomId(),
-          token: obj.generateRandomToken(),
-          refreshToken: obj.generateRandomRefreshToken(),
-          mail: req.body.mail,
-          expireAt: 3600
-        };
-        //object for database
-        const userObjForBase = {
-          ...userObj,
-          password: derivedKey.toString("hex"),
-          lastLoginAt: new Date().getTime(),
-          createdAt: new Date().getTime()
-        };
-        //sending response
-        User.create(userObjForBase);
-        //creating token record
-        Token.create({
-          token: userObj.token,
-          localId: userObj.localId,
-          expireAt: new Date().getTime() + 3600 * 1000
-        });
-        res.status(200).json(userObj);
-      }
-    );
+    //object for database
+    const userObjForBase = {
+      localId: obj.generateRandomId(),
+      refreshToken: obj.generateRandomRefreshToken(),
+      mail: req.body.mail,
+      expireAt: 3600,
+      password: req.body.password,
+      lastLoginAt: new Date().getTime(),
+      createdAt: new Date().getTime()
+    };
+    //sending response
+    const userRecord = await User.create(userObjForBase);
+    //creating token record
+    const tokenRecord = await Token.create({
+      token: createToken(userRecord._id),
+      localId: userObj.localId,
+      expireAt: new Date().getTime() + 3600 * 1000
+    });
+    const newUserObj = { ...userObj };
+    newUserObj.token = tokenRecord.token;
+    res.status(201).json(newUserObj);
   } else if (req.params.query === "authentication") {
-    const userRecord = await User.find({ mail: req.body.mail });
+    if (!req.body.mail || !req.body.password)
+      return next(
+        new AppError("You must enter mail and password to proceed", 400)
+      );
+    const userRecord = await User.findOne({ mail: req.body.mail });
     //checking for right mail
-    if (userRecord.length === 0) {
+    if (!userRecord) {
       return res.status(404).json({
         error: "this mail is doesn't exist",
         status: "fail",
         message: "this mail is doesn't exist"
       });
     }
-    crypto.pbkdf2(
-      req.body.password,
-      process.env.SALT,
-      100000,
-      64,
-      "sha512",
-      (err, derivedKey) => {
-        const pass = derivedKey.toString("hex");
-        //checking for math passwords
-        if (userRecord[0].password !== pass) {
-          return res.status(400).json({
-            error: "password is don't match",
-            status: "fail",
-            message: "password is don't match"
-          });
-        }
-        const newToken = obj.generateRandomToken();
-        // updating token record
-        updateTokenRecordCached(userRecord[0].localId, newToken);
-        // updating user record (time)
-        updateUserRecordCached(userRecord[0].localId);
-        //sending new token
-        res.status(200).json({
-          token: newToken,
-          expireAt: 3600,
-          refreshToken: userRecord[0].refreshToken,
-          localId: userRecord[0].localId,
-          mail: userRecord[0].mail
-        });
-      }
-    );
+    if (
+      await userRecord.correctPassword(req.body.password, userRecord.password)
+    ) {
+      const newToken = createToken(userRecord._id);
+      // updating token record
+      updateTokenRecordCached(userRecord.localId, newToken);
+      // updating user record (time)
+      updateUserRecordCached(userRecord.localId);
+      //sending new token
+      res.status(200).json({
+        token: newToken,
+        expireAt: 3600,
+        refreshToken: userRecord.refreshToken,
+        localId: userRecord.localId,
+        mail: userRecord.mail
+      });
+    } else {
+      return res.status(400).json({
+        error: "password is don't match",
+        status: "fail",
+        message: "password is don't match"
+      });
+    }
   } else if (req.params.query === "refreshAuthentification") {
-    const userRecord = await User.find({
+    if (!req.body.refresh_token)
+      return next(new AppError("You must enter refresh token to proceed", 400));
+    const userRecord = await User.findOne({
       refreshToken: req.body.refresh_token
     });
-    if (userRecord.length === 0) {
+    if (!userRecord) {
       return res.status(400).json({
         error: "didn't find token",
         status: "fail",
         message: "didn't find token"
       });
     }
-    const newToken = obj.generateRandomToken();
-    updateTokenRecordCached(userRecord[0].localId, newToken);
+    const newToken = createToken(userRecord._id);
+    updateTokenRecordCached(userRecord.localId, newToken);
     res.status(200).json({
       token: newToken,
       expiresAt: 3600,
-      localId: userRecord[0].localId,
-      refreshToken: userRecord[0].refreshToken
+      localId: userRecord.localId,
+      refreshToken: userRecord.refreshToken
     });
   }
 });
@@ -194,6 +183,13 @@ const updateUserRecordParamCatch = cachAsync(
     );
   }
 );
+
+function createToken(id) {
+  return jwt.sign(
+    { id: id, exp: Math.floor(Date.now() / 1000) + 60 * process.env.EXPIRE },
+    process.env.SALT
+  );
+}
 
 function randomGenerator(qty) {
   let result = "";

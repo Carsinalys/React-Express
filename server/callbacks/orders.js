@@ -39,17 +39,11 @@ exports.getOrders = cachAsync(async (req, res) => {
 });
 
 exports.addOrder = cachAsync(async (req, res) => {
-  const tokenRecord = await Token.find({ token: req.body.token });
-  if (
-    tokenRecord.length > 0 &&
-    tokenRecord[0].expireAt > new Date().getTime()
-  ) {
-    const newOrder = await Orders.create(req.body);
-    res.status(201).json({
-      status: "success",
-      data: newOrder
-    });
-  }
+  const newOrder = await Orders.create(req.body);
+  res.status(201).json({
+    status: "success",
+    data: newOrder
+  });
 });
 
 exports.deleteOrder = cachAsync(async (req, res) => {
