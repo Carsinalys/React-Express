@@ -89,8 +89,6 @@ const UserFunCached = cachAsync(async (req, res, next) => {
       await userRecord.correctPassword(req.body.password, userRecord.password)
     ) {
       const newToken = createToken(userRecord._id);
-      // updating token record
-      updateTokenRecordCached(userRecord.localId, newToken);
       // updating user record (time)
       updateUserRecordCached(userRecord.localId);
       //sending new token
@@ -130,26 +128,6 @@ const UserFunCached = cachAsync(async (req, res, next) => {
       refreshToken: userRecord.refreshToken
     });
   }
-});
-
-const updateTokenRecordCached = cachAsync(async function updateTokenRecord(
-  id,
-  newToken
-) {
-  Token.findOneAndUpdate(
-    { localId: id },
-    {
-      $set: {
-        token: newToken,
-        expireAt: new Date().getTime() + 3600 * 1000
-      }
-    },
-    { new: true, runValidators: true },
-    (err, doc) => {
-      if (err) new AppError("Couldn't update user token record", 500);
-      //console.log(doc);
-    }
-  );
 });
 
 const updateUserRecordCached = cachAsync(async function updateUserRecord(id) {

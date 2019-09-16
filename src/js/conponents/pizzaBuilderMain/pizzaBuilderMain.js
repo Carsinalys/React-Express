@@ -29,15 +29,24 @@ class PizzaBuilderMainPage extends React.Component {
   wantTheSameHanler = event => {
     let order = this.props.orders.filter(
       item => item._id.toString() === event.target.dataset.id
-    );
-    if (order[0].pizzas.length > 0) {
+    )[0];
+    // this is copy of ingredients for prevent mutating data
+    let ingredients = {};
+    Object.keys(order.ingredients).map(item => {
+      ingredients[item] = { ...order.ingredients[item] };
+    });
+    const wantsOrder = {
+      ...order,
+      ingredients: ingredients
+    };
+    if (order.pizzas.length > 0) {
       this.props.resetMultiPizzaFun();
       this.props.reset_buildFun();
-      this.props.multiTheSameFun(order[0]);
+      this.props.multiTheSameFun(wantsOrder);
     } else {
       this.props.resetMultiPizzaFun();
       this.props.reset_buildFun();
-      this.props.theSameFun(order[0]);
+      this.props.theSameFun(wantsOrder);
     }
     this.setState({ rediect: true });
   };

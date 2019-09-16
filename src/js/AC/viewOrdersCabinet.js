@@ -21,18 +21,17 @@ export const viewOrdersCabinet = query => {
   };
 };
 
-export const deleteOrder = (id, token, userId) => {
+export const deleteOrder = (id, token) => {
   let data = {
-    id: id,
-    token: token,
-    iserId: userId
+    id: id
   };
   return dispatch => {
     dispatch(viewOrdersCabinetModalOn());
     fetch(`${port}/api/v1.0/orders`, {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`
       },
       body: JSON.stringify(data)
     })
@@ -42,7 +41,7 @@ export const deleteOrder = (id, token, userId) => {
       .then(data => {
         dispatch(viewOrdersCabinetModalOff());
         dispatch(resetOrdersCabinet());
-        dispatch(viewOrdersCabinet());
+        dispatch(viewOrdersCabinet("?page=1&limit=4"));
       })
       .catch(error => {
         dispatch(viewOrdersCabinetModalOff());

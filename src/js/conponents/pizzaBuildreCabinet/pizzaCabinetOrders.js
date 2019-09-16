@@ -6,7 +6,7 @@ import Pagination from "./pizzaCabinetPagination";
 const myOrdersCabinet = props => {
   let pageNum = 1;
   if (props.orders.orders.length > 0) {
-    pageNum = Math.ceil(props.orders.count / 5);
+    pageNum = Math.ceil(props.orders.count / 4);
   }
 
   useEffect(() => props.viewOrders("?page=1&limit=4"), []);

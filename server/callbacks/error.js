@@ -37,6 +37,9 @@ const hadleValidationErrorDB = err => {
   return new AppError(message, 400);
 };
 
+const handleExpiredToken = err =>
+  new AppError("Token has expired, please log in again.", 401);
+
 const hndleJsonWebTokenError = err =>
   new AppError("Invalid token, please log in again.", 401);
 
@@ -53,6 +56,7 @@ module.exports = (err, req, res, next) => {
     if (error.name === "ValidationError") error = hadleValidationErrorDB(error);
     if (error.name === "JsonWebTokenError")
       error = hndleJsonWebTokenError(error);
+    if (error.name === "TokenExpiredError") error = handleExpiredToken(error);
     sendErrorProd(error, res);
   }
 };

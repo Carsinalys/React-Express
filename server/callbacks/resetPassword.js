@@ -74,7 +74,7 @@ exports.confirmRefresh = cachAsync(async (req, res) => {
     let newPass = await bcrypt.hash(req.body.password, 12);
     User.updateOne(
       userRecord,
-      { $set: { password: newPass } },
+      { $set: { password: newPass, passwordChangeAt: new Date().getTime() } },
       { new: true },
       (err, doc) => {
         if (err) throw new Error(err);

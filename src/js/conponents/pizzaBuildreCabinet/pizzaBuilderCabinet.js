@@ -52,11 +52,7 @@ class PersonalRoom extends React.Component {
   };
 
   showModalHandler = id => {
-    this.props.deleteOrderfun(
-      id,
-      this.props.auth.token,
-      this.props.auth.localId
-    );
+    this.props.deleteOrderfun(id, this.props.auth.token);
   };
 
   render() {
@@ -141,8 +137,7 @@ const dispatchToProps = dispatch => {
     fetchDataFun: (data, token, allGood, id) =>
       dispatch(setCabinetFetchOrder(data, token, allGood, id)),
     viewOrdersFun: query => dispatch(viewOrdersCabinet(query)),
-    deleteOrderfun: (id, token, userId) =>
-      dispatch(deleteOrder(id, token, userId))
+    deleteOrderfun: (id, token) => dispatch(deleteOrder(id, token))
   };
 };
 
