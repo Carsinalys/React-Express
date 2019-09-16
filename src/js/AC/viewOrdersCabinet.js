@@ -21,7 +21,7 @@ export const viewOrdersCabinet = query => {
   };
 };
 
-export const deleteOrder = (id, token) => {
+export const deleteOrder = (id, token, localId) => {
   let data = {
     id: id
   };
@@ -41,7 +41,7 @@ export const deleteOrder = (id, token) => {
       .then(data => {
         dispatch(viewOrdersCabinetModalOff());
         dispatch(resetOrdersCabinet());
-        dispatch(viewOrdersCabinet("?page=1&limit=4"));
+        dispatch(viewOrdersCabinet(`?page=1&limit=4&id=${localId}`));
       })
       .catch(error => {
         dispatch(viewOrdersCabinetModalOff());

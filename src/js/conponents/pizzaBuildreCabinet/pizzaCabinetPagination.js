@@ -18,7 +18,7 @@ const pagination = props => {
             }
             onClick={() => {
               props.changePage(item);
-              props.viewOrders(`?page=${index + 1}&limit=4`);
+              props.viewOrders(`?page=${index + 1}&limit=4&id=${props.id}`);
             }}
           >
             {item}

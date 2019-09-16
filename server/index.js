@@ -13,6 +13,7 @@ const reviews = require("./callbacks/reviews");
 const resetPass = require("./callbacks/resetPassword");
 const globalErrorHandler = require("./callbacks/error");
 const { isAuthenticated } = require("./callbacks/isAuthenticated");
+const restrictTo = require("./callbacks/restrictTo");
 
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");

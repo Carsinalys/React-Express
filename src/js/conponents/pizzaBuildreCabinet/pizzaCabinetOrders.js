@@ -9,7 +9,7 @@ const myOrdersCabinet = props => {
     pageNum = Math.ceil(props.orders.count / 4);
   }
 
-  useEffect(() => props.viewOrders("?page=1&limit=4"), []);
+  useEffect(() => props.viewOrders(`?page=1&limit=4&id=${props.id}`), []);
 
   const [modal, setModal] = useState(false);
   const [id, setId] = useState(null);
@@ -179,6 +179,7 @@ const myOrdersCabinet = props => {
         page={page}
         changePage={setPage}
         viewOrders={props.viewOrders}
+        id={props.id}
       />
     </div>
   );

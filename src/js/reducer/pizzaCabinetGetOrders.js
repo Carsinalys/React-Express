@@ -33,7 +33,7 @@ const reducer = (state = initState, action) => {
     case AC.CABINET_VIEW_ORDERS_RESET:
       return {
         ...state,
-        orders: {}
+        orders: []
       };
     default:
       return { ...state };

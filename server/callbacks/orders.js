@@ -9,12 +9,16 @@ exports.getOrders = cachAsync(async (req, res) => {
       status: "success",
       data: response
     });
-  } else if (req.query.page !== undefined && req.query.limit !== undefined) {
-    const count = await Orders.countDocuments();
+  } else if (
+    req.query.page !== undefined &&
+    req.query.limit !== undefined &&
+    req.query.id !== undefined
+  ) {
+    const count = await Orders.countDocuments({ id: req.query.id });
     const page = req.query.page * 1;
     const limit = req.query.limit * 1;
     const skip = (page - 1) * limit;
-    const collection = await Orders.find()
+    const collection = await Orders.find({ id: req.query.id })
       .skip(skip)
       .limit(limit);
     if (skip >= count) {
