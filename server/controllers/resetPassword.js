@@ -1,15 +1,12 @@
-// const nodeMailer = require("nodemailer");
 const fs = require("fs");
 const path = require("path");
 const User = require("../models/user");
-//const Refresh = require("../models/refresh");
 const cachAsync = require("../utils/catchErrors");
-const bcrypt = require("bcryptjs");
 const AppError = require("../utils/errorHandler");
 const Mailer = require("../utils/mailer");
+const crypto = require("crypto");
 
 exports.resetPassword = cachAsync(async (req, res, next) => {
-  console.log(req.body);
   const data = fs.readFileSync(path.join(__dirname, "../form.html"));
   const userRecord = await User.findOne({ mail: req.body.mail });
   if (!userRecord)
@@ -24,7 +21,7 @@ exports.resetPassword = cachAsync(async (req, res, next) => {
   });
 });
 
-exports.confirmPassword = cachAsync(async (req, res) => {
+exports.confirmPassword = cachAsync(async (req, res, next) => {
   let data = fs
     .readFileSync(path.join(__dirname, "../refreshPage.html"))
     .toString();
@@ -32,25 +29,21 @@ exports.confirmPassword = cachAsync(async (req, res) => {
   res.status(200).send(data);
 });
 
-exports.confirmRefresh = cachAsync(async (req, res) => {
-  // const refreshRecord = await Refresh.findOne({ passwordResetToken: req.body.id });
-  const userRecord = await User.findOne({ passwordResetToken: req.body.id });
-  if (new Date().getTime() < userRecord.passwordResetExrires) {
-    let newPass = await bcrypt.hash(req.body.password, 12);
-    User.updateOne(
-      userRecord,
-      { $set: { password: newPass, passwordChangeAt: new Date().getTime() } },
-      { new: true },
-      (err, doc) => {
-        if (err) throw new Error(err);
-        res.location("/").redirect("/");
-        //console.log(doc);
-      }
-    );
-  } else {
-    res.status(400).json({
-      error: "link is expired",
-      status: "fail"
-    });
+exports.confirmRefresh = cachAsync(async (req, res, next) => {
+  const hashedToken = crypto
+    .createHash("sha256")
+    .update(req.body.id)
+    .digest("hex");
+  const userRecord = await User.findOne({
+    passwordResetToken: hashedToken,
+    passwordResetExrires: { $gt: Date.now() }
+  });
+  if (!userRecord) {
+    next(new AppError("link is expired or invalid", 400));
   }
+  userRecord.password = req.body.password;
+  userRecord.passwordResetToken = undefined;
+  userRecord.passwordResetExrires = undefined;
+  await userRecord.save();
+  res.location("/").redirect("/");
 });

@@ -65,12 +65,14 @@ const UserFunCached = cachAsync(async (req, res, next) => {
     //creating token record
     const tokenRecord = await Token.create({
       token: createToken(userRecord._id),
-      localId: userObj.localId,
+      localId: userObjForBase.localId,
       expireAt: new Date().getTime() + 3600 * 1000
     });
-    const newUserObj = { ...userObj };
-    newUserObj.token = tokenRecord.token;
-    res.status(201).json(newUserObj);
+    const newUserObj = { ...userRecord };
+    newUserObj._doc.token = tokenRecord.token;
+    newUserObj._doc.expireAt = 3600;
+    delete newUserObj._doc.password;
+    res.status(201).json(newUserObj._doc);
   } else if (req.params.query === "authentication") {
     if (!req.body.mail || !req.body.password)
       return next(
