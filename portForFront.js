@@ -1,2 +1,2 @@
-export const port = "http://localhost:3000";
-//export const port = "";
+export const port =
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "";

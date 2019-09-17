@@ -5,15 +5,15 @@ import { StaticRouter } from "react-router";
 import fs from "fs";
 import App from "../src/js/serverConnectProps";
 import path from "path";
-import Obj from "./callbacks/user";
+import Obj from "./controllers/user";
 const morgan = require("morgan");
 const ErrorHandler = require("./utils/errorHandler");
-const orders = require("./callbacks/orders");
-const reviews = require("./callbacks/reviews");
-const resetPass = require("./callbacks/resetPassword");
-const globalErrorHandler = require("./callbacks/error");
-const { isAuthenticated } = require("./callbacks/isAuthenticated");
-const restrictTo = require("./callbacks/restrictTo");
+const orders = require("./controllers/orders");
+const reviews = require("./controllers/reviews");
+const resetPass = require("./controllers/resetPassword");
+const globalErrorHandler = require("./controllers/error");
+const { isAuthenticated } = require("./controllers/isAuthenticated");
+const restrictTo = require("./controllers/restrictTo");
 
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
@@ -50,7 +50,7 @@ app
   .route("/api/v1.0/orders")
   .get(orders.getOrders)
   .post(isAuthenticated, orders.addOrder)
-  .delete(isAuthenticated, orders.deleteOrder);
+  .delete(isAuthenticated, restrictTo("user", "admin"), orders.deleteOrder);
 
 app
   .route("/api/v1.0/reviews")

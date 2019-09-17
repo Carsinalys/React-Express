@@ -74,7 +74,7 @@
     "lint": "eslint \"src/**/*{js,jsx}\" --quiet",
     "dev:mock": "cross-env PET_MOCK=mock npm run dev",
     "dev_parcel": "parcel src/index.html",
-    "start": "npm run build && nodemon --exec babel-node server.js",
+    "start": "npm run build && NODE_ENV=production nodemon --exec babel-node server.js",
     "startWB": "NODE_ENV=production babel-node server.js",
     "startWBnodemon": "nodemon --exec babel-node server.js",
     "debug": "ndb server.js"
