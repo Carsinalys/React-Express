@@ -15,24 +15,26 @@ const globalErrorHandler = require("./controllers/error");
 const { isAuthenticated } = require("./controllers/isAuthenticated");
 const restrictTo = require("./controllers/restrictTo");
 const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
 
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
 const app = Express();
-
+//dev logging requests
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
-
-app.use(Express.json());
-
+//security http headers
+app.use(helmet());
+//body parser from express box
+app.use(Express.json({ limit: "10kb" }));
+//limit calls from one api against atacks
 const limiter = rateLimit({
   max: 100,
-  windowMs: 10 * 60 * 1000,
+  windowMs: 10 * 20 * 1000,
   message: "Too many requests from this IP, try again later."
 });
-
 app.use("/api", limiter);
 
-//allow to fetch without block cors error on di
+//allow to fetch without block cors error
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3001");
   res.header(
@@ -54,19 +56,17 @@ app
   .get(Obj.getUserInfoFun)
   .post(Obj.UserFun)
   .patch(isAuthenticated, Obj.updateUserFun);
-
 app
   .route("/api/v1.0/orders")
   .get(orders.getOrders)
   .post(isAuthenticated, orders.addOrder)
   .delete(isAuthenticated, restrictTo("user", "admin"), orders.deleteOrder);
-
 app
   .route("/api/v1.0/reviews")
   .get(reviews.getReviews)
   .post(isAuthenticated, reviews.addReviews)
   .patch(isAuthenticated, reviews.editReviews);
-
+//static images css js and other files
 app.use("/assets/", Express.static(path.join(__dirname, "../dist/assets")));
 app.use((req, res) => {
   const context = {};
