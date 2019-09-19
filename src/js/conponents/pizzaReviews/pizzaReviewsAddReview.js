@@ -49,14 +49,14 @@ class AddReview extends React.Component {
         name: name.value,
         text: text.value,
         rating: this.state.currentRating,
-        id: this.props.auth.localId,
-        token: this.props.auth.token
+        id: this.props.auth.localId
       };
       if (!this.props.reviews.editMode) {
         fetch(`${port}/api/v1.0/reviews`, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            authorization: `Bearer ${this.props.auth.token}`
           },
           body: JSON.stringify(data)
         })
@@ -74,7 +74,8 @@ class AddReview extends React.Component {
       } else {
         this.props.editReviewSendFun(
           data,
-          this.props.reviews.editReviewData._id
+          this.props.reviews.editReviewData._id,
+          this.props.auth.token
         );
         name.value = "";
         text.value = "";
@@ -257,7 +258,8 @@ const stateToProps = state => {
 
 const dispatchToProps = dispatch => {
   return {
-    editReviewSendFun: (data, id) => dispatch(editReviewSend(data, id))
+    editReviewSendFun: (data, id, token) =>
+      dispatch(editReviewSend(data, id, token))
   };
 };
 

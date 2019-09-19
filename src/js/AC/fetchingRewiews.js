@@ -30,13 +30,14 @@ export const editReview = id => {
   };
 };
 
-export const editReviewSend = (data, id) => {
+export const editReviewSend = (data, id, token) => {
   let sendData = { ...data, _id: id };
   return dispatch => {
     fetch(`${port}/api/v1.0/reviews`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`
       },
       body: JSON.stringify(sendData)
     })

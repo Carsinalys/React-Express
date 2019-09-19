@@ -14,6 +14,7 @@ const resetPass = require("./controllers/resetPassword");
 const globalErrorHandler = require("./controllers/error");
 const { isAuthenticated } = require("./controllers/isAuthenticated");
 const restrictTo = require("./controllers/restrictTo");
+const rateLimit = require("express-rate-limit");
 
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
@@ -22,6 +23,14 @@ const app = Express();
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
 app.use(Express.json());
+
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 10 * 60 * 1000,
+  message: "Too many requests from this IP, try again later."
+});
+
+app.use("/api", limiter);
 
 //allow to fetch without block cors error on di
 app.use(function(req, res, next) {
@@ -44,7 +53,7 @@ app
   .route("/api/v1.0/user/:query")
   .get(Obj.getUserInfoFun)
   .post(Obj.UserFun)
-  .patch(Obj.updateUserFun);
+  .patch(isAuthenticated, Obj.updateUserFun);
 
 app
   .route("/api/v1.0/orders")
@@ -55,8 +64,8 @@ app
 app
   .route("/api/v1.0/reviews")
   .get(reviews.getReviews)
-  .post(reviews.addReviews)
-  .patch(reviews.editReviews);
+  .post(isAuthenticated, reviews.addReviews)
+  .patch(isAuthenticated, reviews.editReviews);
 
 app.use("/assets/", Express.static(path.join(__dirname, "../dist/assets")));
 app.use((req, res) => {

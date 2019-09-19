@@ -1,5 +1,4 @@
 const Orders = require("../models/order");
-const Token = require("../models/token");
 const cachAsync = require("../utils/catchErrors");
 
 exports.getOrders = cachAsync(async (req, res) => {
@@ -43,6 +42,7 @@ exports.getOrders = cachAsync(async (req, res) => {
 });
 
 exports.addOrder = cachAsync(async (req, res) => {
+  console.log(req.headers.cookie);
   const newOrder = await Orders.create(req.body);
   res.status(201).json({
     status: "success",

@@ -1,7 +1,6 @@
 const cachAsync = require("../utils/catchErrors");
 const AppError = require("../utils/errorHandler");
 const jwt = require("jsonwebtoken");
-const Token = require("../models/token");
 const User = require("../models/user");
 const { promisify } = require("util");
 
@@ -21,7 +20,6 @@ exports.isAuthenticated = cachAsync(async (req, res, next) => {
     );
   //check token and user
   const decoded = await promisify(jwt.verify)(token, process.env.SALT);
-  console.log(decoded);
   const userRecord = await User.findById(decoded.id);
   if (!userRecord)
     return next(

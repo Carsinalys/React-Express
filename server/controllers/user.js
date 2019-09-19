@@ -1,5 +1,4 @@
 const User = require("../models/user");
-const Token = require("../models/token");
 const cachAsync = require("../utils/catchErrors");
 const AppError = require("../utils/errorHandler");
 const jwt = require("jsonwebtoken");
@@ -13,6 +12,12 @@ const obj = {
 };
 module.exports = obj;
 
+const cookieOption = {
+  expires: new Date(Date.now() + 3600 * 1000),
+  httpOnly: true
+};
+if (process.env.NODE_ENV === "production") cookieOption.secure = true;
+
 const getUserInfoCached = cachAsync(async (req, res) => {
   if (req.params.query === "getInfo") {
     const userRecord = await User.findOne({ localId: req.query.id }).select(
@@ -22,13 +27,17 @@ const getUserInfoCached = cachAsync(async (req, res) => {
   }
 });
 
-const updateUserCached = cachAsync(async (req, res) => {
+const updateUserCached = cachAsync(async (req, res, next) => {
+  if (req.body.password) {
+    next(new AppError("This route is not for changing password.", 400));
+  }
   if (req.params.query === "setAddress") {
     const updateContent = { ...req.body };
-    delete updateContent.token;
     delete updateContent.id;
     await updateUserRecordParamCatch(req.body.id, updateContent);
-    const userRecord = await User.findOne({ localId: req.body.id });
+    const userRecord = await User.findOne({ localId: req.body.id }).select(
+      "-password"
+    );
     res.status(200).json({ status: "ok", data: userRecord });
   }
 });
@@ -62,16 +71,14 @@ const UserFunCached = cachAsync(async (req, res, next) => {
     };
     //sending response
     const userRecord = await User.create(userObjForBase);
-    //creating token record
-    const tokenRecord = await Token.create({
-      token: createToken(userRecord._id),
-      localId: userObjForBase.localId,
-      expireAt: new Date().getTime() + 3600 * 1000
-    });
+    const token = createToken(userRecord._id);
     const newUserObj = { ...userRecord };
-    newUserObj._doc.token = tokenRecord.token;
+    newUserObj._doc.token = token;
     newUserObj._doc.expireAt = 3600;
     delete newUserObj._doc.password;
+    //////////////////////////////
+    res.cookie("jwt", token, cookieOption);
+    //////////////////////////////
     res.status(201).json(newUserObj._doc);
   } else if (req.params.query === "authentication") {
     if (!req.body.mail || !req.body.password)
@@ -93,6 +100,9 @@ const UserFunCached = cachAsync(async (req, res, next) => {
       const newToken = createToken(userRecord._id);
       // updating user record (time)
       updateUserRecordCached(userRecord.localId);
+      /////////////////////////////////
+      res.cookie("jwt", newToken, cookieOption);
+      /////////////////////////////////
       //sending new token
       res.status(200).json({
         token: newToken,
@@ -121,10 +131,8 @@ const UserFunCached = cachAsync(async (req, res, next) => {
         message: "didn't find token"
       });
     }
-    const newToken = createToken(userRecord._id);
-    updateTokenRecordCached(userRecord.localId, newToken);
     res.status(200).json({
-      token: newToken,
+      token: createToken(userRecord._id),
       expiresAt: 3600,
       localId: userRecord.localId,
       refreshToken: userRecord.refreshToken

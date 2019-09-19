@@ -1,5 +1,4 @@
 const Reviews = require("../models/reviews");
-const Token = require("../models/token");
 const cachAsync = require("../utils/catchErrors");
 
 exports.getReviews = cachAsync(async (req, res) => {
@@ -38,17 +37,11 @@ exports.getReviews = cachAsync(async (req, res) => {
 });
 
 exports.addReviews = cachAsync(async (req, res) => {
-  const tokenRecord = await Token.find({ localId: req.body.id });
-  if (
-    tokenRecord.length > 0 &&
-    tokenRecord[0].expireAt > new Date().getTime()
-  ) {
-    Reviews.create(req.body);
-    res.status(201).json({
-      status: "success",
-      data: req.body
-    });
-  }
+  Reviews.create(req.body);
+  res.status(201).json({
+    status: "success",
+    data: req.body
+  });
 });
 
 exports.editReviews = cachAsync(async (req, res) => {

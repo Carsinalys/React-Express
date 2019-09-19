@@ -9,7 +9,7 @@ export const setCabinetOnInput = event => {
 };
 
 export const setCabinetFetchOrder = (data, token, allGood, id) => {
-  const sendData = { ...data, token: token, id: id };
+  const sendData = { ...data, id: id };
   console.log("send cabinet", sendData, allGood);
   return dispatch => {
     if (allGood) {
@@ -17,7 +17,8 @@ export const setCabinetFetchOrder = (data, token, allGood, id) => {
       fetch(`${port}/api/v1.0/user/setAddress`, {
         method: "PATCH",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`
         },
         body: JSON.stringify(sendData)
       })
