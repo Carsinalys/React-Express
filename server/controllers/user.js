@@ -61,7 +61,7 @@ const UserFunCached = cachAsync(async (req, res, next) => {
     }
     //object for database
     const userObjForBase = {
-      localId: obj.generateRandomId(),
+      localId: "",
       refreshToken: obj.generateRandomRefreshToken(),
       mail: req.body.mail,
       expireAt: 3600,
@@ -69,6 +69,9 @@ const UserFunCached = cachAsync(async (req, res, next) => {
       lastLoginAt: new Date().getTime(),
       createdAt: new Date().getTime()
     };
+    do {
+      userObjForBase.localId = obj.generateRandomId();
+    } while (await User.findOne({ localId: userObjForBase.localId }));
     //sending response
     const userRecord = await User.create(userObjForBase);
     const token = createToken(userRecord._id);

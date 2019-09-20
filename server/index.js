@@ -16,16 +16,32 @@ const { isAuthenticated } = require("./controllers/isAuthenticated");
 const restrictTo = require("./controllers/restrictTo");
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
+const mongoSanitize = require("express-mongo-sanitize");
+const xss = require("xss-clean");
+const hpp = require("hpp");
 
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
 const app = Express();
+
 //dev logging requests
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
+
 //security http headers
 app.use(helmet());
+
 //body parser from express box
 app.use(Express.json({ limit: "10kb" }));
+
+//data sanitization against NoSQL query injection
+app.use(mongoSanitize());
+
+//data sanitization against XSS
+app.use(xss());
+
+//prevent parameter pollution, van add options like { whitelist: ['queryName','queryName'...]  }
+app.use(hpp({ whitelist: ["cost", "totalCost"] }));
+
 //limit calls from one api against atacks
 const limiter = rateLimit({
   max: 100,
