@@ -35,26 +35,30 @@
             pass2 = document.querySelector('#password_2'),
             submit = document.querySelector('#submit');
         submit.addEventListener('click', (event)=>{
-            event.preventDefault();
-            const newRegexp = new RegExp(/^(?=.*d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/g);
-            if (pass1.value === pass2.value && pass1.value.match(newRegexp)) {
-                let data = {
-                    password: pass1.value,
-                    id: submit.dataset.id
-                };
-                fetch("https://pizza-builder-app.herokuapp.com/api/v1.0/confirmRefresh", {
-                    method: "POST",
-                    headers: {
+          event.preventDefault();
+          const newRegexp = new RegExp(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8,})$/g);
+          if (pass1.value.length < 8 || pass2.value.length < 8) {
+              alert('Password is too short')
+          } else if (pass1.value.length !== pass2.value.length) {
+              alert('passwords is don`t match')
+          } else if (!newRegexp.test(pass1.value)) {
+              alert('password must contains at least one uppercase character, one lowercase and one number')
+          } else {
+            let data = {
+              password: pass1.value,
+              id: submit.dataset.id
+            };
+            fetch("https://pizza-builder-app.herokuapp.com/api/v1.0/confirmRefresh", {
+              method: "POST",
+              headers: {
                         "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(data)
-                }).then(res=>{
-                    console.log(res);
-                    document.location= res.url
-                }).catch(error=>console.log(error))
-            } else {
-                alert('password don\'t match or length less than 8 letters')
-            }
+              },
+              body: JSON.stringify(data)
+            }).then(res=>{
+              console.log(res);
+              document.location= res.url
+            }).catch(error=>console.log(error))
+          }
         })
     </script>
 </body>

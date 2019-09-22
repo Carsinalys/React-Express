@@ -80,9 +80,12 @@ const UserFunCached = cachAsync(async (req, res, next) => {
     newUserObj._doc.expireAt = 3600;
     delete newUserObj._doc.password;
     //////////////////////////////
-    res.cookie("jwt", token, cookieOption);
+    //res.cookie("jwt", token, cookieOption);
     //////////////////////////////
-    res.status(201).json(newUserObj._doc);
+    res
+      .status(201)
+      .cookie("jwt", token, cookieOption)
+      .json(newUserObj._doc);
   } else if (req.params.query === "authentication") {
     if (!req.body.mail || !req.body.password)
       return next(
@@ -104,16 +107,19 @@ const UserFunCached = cachAsync(async (req, res, next) => {
       // updating user record (time)
       updateUserRecordCached(userRecord.localId);
       /////////////////////////////////
-      res.cookie("jwt", newToken, cookieOption);
+      //res.cookie("jwt", newToken, cookieOption);
       /////////////////////////////////
       //sending new token
-      res.status(200).json({
-        token: newToken,
-        expireAt: 3600,
-        refreshToken: userRecord.refreshToken,
-        localId: userRecord.localId,
-        mail: userRecord.mail
-      });
+      res
+        .status(200)
+        .cookie("jwt", newToken, cookieOption)
+        .json({
+          token: newToken,
+          expireAt: 3600,
+          refreshToken: userRecord.refreshToken,
+          localId: userRecord.localId,
+          mail: userRecord.mail
+        });
     } else {
       return res.status(400).json({
         error: "password is don't match",
