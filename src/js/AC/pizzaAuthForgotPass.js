@@ -1,5 +1,6 @@
 import * as AC from "./ac";
 import { port } from "../../../portForFront";
+import { logOut } from "./index";
 
 export const fetchResetPass = mail => {
   return dispatch => {
@@ -31,6 +32,41 @@ export const fetchResetPass = mail => {
   };
 };
 
+export const fetchChangeEmail = (mail, id, token) => {
+  return dispatch => {
+    dispatch(authResetMOdalOn());
+    let data = {
+      id: id,
+      mail: mail
+    };
+    console.log(mail, id, token);
+    fetch(`${port}/api/v1.0/changeMail`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        if (!data.error) {
+          dispatch(authResetMessage());
+        }
+        dispatch(logOut());
+        dispatch(authResetMOdalOff());
+        dispatch(authResetInput());
+      })
+      .catch(error => {
+        dispatch(authResetMOdalOff());
+        dispatch(authResetInput());
+      });
+  };
+};
+
 export const authResetOnInput = event => {
   return {
     type: AC.AUTH_RESET_ON_INPUT,
@@ -53,5 +89,11 @@ export const authResetMOdalOff = () => {
 export const authResetMessage = () => {
   return {
     type: AC.AUTH_RESET_MESSAGE
+  };
+};
+
+export const authResetInput = () => {
+  return {
+    type: AC.AUTH_RESET_INPUT
   };
 };

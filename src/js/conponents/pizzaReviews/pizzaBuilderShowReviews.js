@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, NavLink } from "react-router-dom";
 
 import Star from "../../icons/star";
 import StarEmpty from "../../icons/starEmpty";
@@ -12,6 +12,7 @@ const showReviews = props => {
   let markup = () => {
     let pagination = [];
     for (let i = 0; i < props.pagination; i++) {
+      let path = `/reviews/${i + 1}`;
       pagination.push(
         <li
           key={i}
@@ -25,7 +26,7 @@ const showReviews = props => {
               : "pagination__item"
           }
         >
-          {i + 1}
+          <NavLink to={path}>{i + 1}</NavLink>
         </li>
       );
     }

@@ -67,6 +67,7 @@ app.use(function(req, res, next) {
 app.route("/api/v1.0/resetPassword").post(resetPass.resetPassword);
 app.route("/api/v1.0/confirmPassword/:id").get(resetPass.confirmPassword);
 app.route("/api/v1.0/confirmRefresh").post(resetPass.confirmRefresh);
+app.route("/api/v1.0/changeMail").patch(isAuthenticated, Obj.changeEmailFun);
 app
   .route("/api/v1.0/user/:query")
   .get(Obj.getUserInfoFun)
@@ -82,7 +83,7 @@ app
   .get(reviews.getReviews)
   .post(isAuthenticated, reviews.addReviews)
   .patch(isAuthenticated, reviews.editReviews)
-  .delete(isAuthenticated, reviews.deleteReview);
+  .delete(isAuthenticated, restrictTo("user", "admin"), reviews.deleteReview);
 //static images css js and other files
 app.use("/assets/", Express.static(path.join(__dirname, "../dist/assets")));
 app.use((req, res) => {

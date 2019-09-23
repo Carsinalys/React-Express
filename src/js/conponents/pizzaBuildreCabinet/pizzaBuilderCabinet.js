@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import Modal from "../hoc/modal";
 
 import CabinetInfo from "./pizzaBuilderCabinetInfo";
@@ -65,32 +65,40 @@ class PersonalRoom extends React.Component {
         <Modal toggle={this.props.cabinet.modalShow}>
           <Spinner />
         </Modal>
+        <div className="room__change__mail__cover">
+          <NavLink to="/personalRoom/changeMail">
+            <button className="room__change__mail">Change mail.</button>
+          </NavLink>
+        </div>
         {this.props.auth.isAuthindicated ? null : <Redirect to="/" />}
         <nav className="room__nav">
           <ul className="room__list">
             <li className="room__item">
-              <a
+              <NavLink
+                to="/personalRoom"
                 className="room__link"
                 onClick={() => this.changeContentHandler(1)}
               >
                 Info
-              </a>
+              </NavLink>
             </li>
             <li className="room__item">
-              <a
+              <NavLink
+                to="/personalRoom"
                 className="room__link"
                 onClick={() => this.changeContentHandler(2)}
               >
                 Set my contacts
-              </a>
+              </NavLink>
             </li>
             <li className="room__item">
-              <a
+              <NavLink
+                to="/personalRoom/1"
                 className="room__link"
                 onClick={() => this.changeContentHandler(3)}
               >
                 My orders
-              </a>
+              </NavLink>
             </li>
           </ul>
         </nav>

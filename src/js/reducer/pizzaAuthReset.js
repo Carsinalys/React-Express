@@ -42,6 +42,18 @@ const reducer = (state = initState, action) => {
         ...state,
         message: true
       };
+    case AC.AUTH_RESET_INPUT:
+      return {
+        ...state,
+        inputs: {
+          ...state.inputs,
+          mail: {
+            ...state.inputs.mail,
+            value: "",
+            isValid: false
+          }
+        }
+      };
     default:
       return { ...state };
   }

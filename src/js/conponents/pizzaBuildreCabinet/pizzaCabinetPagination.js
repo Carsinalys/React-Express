@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 const pagination = props => {
   let arr = [];
@@ -19,6 +20,7 @@ const pagination = props => {
             onClick={() => {
               props.changePage(item);
               props.viewOrders(`?page=${index + 1}&limit=4&id=${props.id}`);
+              props.history.push(`/personalRoom/${index + 1}`);
             }}
           >
             {item}
@@ -29,4 +31,4 @@ const pagination = props => {
   );
 };
 
-export default pagination;
+export default withRouter(pagination);

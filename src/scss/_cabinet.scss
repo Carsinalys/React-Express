@@ -219,3 +219,20 @@
 .prev__order__cover {
   animation: 0.3s show;
 }
+
+.room__change__mail__cover {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.room__change__mail  {
+  transition: 0.3s;
+  background: #91ce50;
+  border: 1px transparent solid;
+  border-radius: 3px;
+  cursor: pointer;
+  &:hover {
+    background: #c9ce04;
+    border: 1px #000000 solid;
+  }
+}

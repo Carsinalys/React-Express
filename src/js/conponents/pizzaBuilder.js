@@ -15,6 +15,7 @@ import LogOut from "./pizzaBuilderLogOut/pizzaBuilderLogOut";
 import Cabinet from "./pizzaBuildreCabinet/pizzaBuilderCabinet";
 import Forgot from "./pizzaBuilderAuth/pizzaBuilderAuthForgot";
 import ReadyBuilds from "./pizzaBuilderBuilds/pizzaBuilderBuilds";
+import ChangeMail from "./pizzaBuildreCabinet/pizzaBuilderCabinetChangeMail";
 
 const ChatLazyLoaded = React.lazy(() =>
   import("./pizzaBuilderChat/pizzaBuilderChat")
@@ -28,12 +29,20 @@ class PizzaApp extends React.Component {
         <Switch>
           <Route path="/" exact component={PizzaBuilderMainPage} />
           <Route path="/pizza-builder" component={PizzaBuilderPropsSrc} />
-          <Route path="/reviews" exact component={Reviews} />
+          <Route path="/reviews/:page" exact component={Reviews} />
           <Route path="/reviews/addReview" component={AddReview} />
           <Route path="/checkout" component={PizzaBuilderCheckout} />
           <Route path="/authentication" exact component={Authendication} />
-          <Route path="/personalRoom" component={Cabinet} />
+          <Route path="/personalRoom" exact component={Cabinet} />
+          <Route path="/personalRoom/changeMail" component={ChangeMail} />
+          <Route path="/personalRoom/:page" component={Cabinet} />
           <Route path="/pizza-builds" component={ReadyBuilds} />
+          <Route path="/authentication/forgot" component={Forgot} />
+          <Route path="/logOut" component={LogOut} />
+          <Route
+            path="/authentication/registration"
+            component={AuthendicationSignUp}
+          />
           <Suspense
             fallback={
               <div className="modal__global">
@@ -43,12 +52,6 @@ class PizzaApp extends React.Component {
           >
             <Route exact path="/chat" component={ChatLazyLoaded} />
           </Suspense>
-          <Route
-            path="/authentication/registration"
-            component={AuthendicationSignUp}
-          />
-          <Route path="/authentication/forgot" component={Forgot} />
-          <Route path="/logOut" component={LogOut} />
           <Route component={PizzaBuilderMainPage} />
         </Switch>
       </>

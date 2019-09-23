@@ -22,7 +22,11 @@ export { logOut } from "./pizzaLogOut";
 export { getInfo } from "./getInfoCabinet";
 export { setCabinetOnInput, setCabinetFetchOrder } from "./setInfoCabinet";
 export { viewOrdersCabinet, deleteOrder } from "./viewOrdersCabinet";
-export { fetchResetPass, authResetOnInput } from "./pizzaAuthForgotPass";
+export {
+  fetchResetPass,
+  authResetOnInput,
+  fetchChangeEmail
+} from "./pizzaAuthForgotPass";
 export {
   multipleAdd,
   deleteMultiOrder,

@@ -38,7 +38,7 @@ const pizzaNav = props => {
             </NavLink>
           </li>
           <li className="pizza__nav__item">
-            <NavLink to="/reviews" className="pizza__nav__link">
+            <NavLink to="/reviews/1" className="pizza__nav__link">
               Reviews
             </NavLink>
           </li>

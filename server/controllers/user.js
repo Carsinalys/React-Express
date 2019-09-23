@@ -8,7 +8,8 @@ const obj = {
   generateRandomRefreshToken: () => randomGenerator(300),
   UserFun: (req, res) => UserFunCached(req, res),
   updateUserFun: (req, res) => updateUserCached(req, res),
-  getUserInfoFun: (req, res) => getUserInfoCached(req, res)
+  getUserInfoFun: (req, res) => getUserInfoCached(req, res),
+  changeEmailFun: (req, res) => changeEmail(req, res)
 };
 module.exports = obj;
 
@@ -198,3 +199,28 @@ function randomGenerator(qty) {
   }
   return result;
 }
+
+const changeEmail = cachAsync(async (req, res, next) => {
+  console.log(req.body);
+  const userRecord = await User.findOne({ localId: req.body.id });
+  const testMail = await User.findOne({ mail: req.body.mail });
+  if (testMail) {
+    req.status(400).json({
+      status: "fail",
+      error: "User with this email is already exist.",
+      message: "User with this email is already exist."
+    });
+  }
+  if (!userRecord)
+    return next(new AppError("Can`t find current user by id", 404));
+  if (userRecord.mail === req.body.mail)
+    return next(
+      new AppError("Your current email is the same as you passing.", 400)
+    );
+  userRecord.mail = req.body.mail;
+  await userRecord.save();
+  res.status(200).json({
+    status: "ok",
+    message: "mail has been changed"
+  });
+});
