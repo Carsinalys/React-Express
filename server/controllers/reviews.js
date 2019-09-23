@@ -1,5 +1,6 @@
 const Reviews = require("../models/reviews");
 const cachAsync = require("../utils/catchErrors");
+const factory = require("./handleFactory");
 
 exports.getReviews = cachAsync(async (req, res) => {
   if (req.query.id) {
@@ -8,7 +9,7 @@ exports.getReviews = cachAsync(async (req, res) => {
       status: "success",
       data: review
     });
-  } else if (req.query.page) {
+  } else if (req.query.page && req.query.limit) {
     const count = await Reviews.countDocuments();
     const page = req.query.page * 1;
     const limit = req.query.limit * 1;
@@ -36,19 +37,6 @@ exports.getReviews = cachAsync(async (req, res) => {
   }
 });
 
-exports.addReviews = cachAsync(async (req, res) => {
-  Reviews.create(req.body);
-  res.status(201).json({
-    status: "success",
-    data: req.body
-  });
-});
-
-exports.editReviews = cachAsync(async (req, res) => {
-  let { _id, ...data } = req.body;
-  data.edited = true;
-  await Reviews.findByIdAndUpdate(_id, data);
-  res.status(200).json({
-    status: "success"
-  });
-});
+exports.deleteReview = factory.deleteOne(Reviews);
+exports.addReviews = factory.addOne(Reviews);
+exports.editReviews = factory.updateOne(Reviews);

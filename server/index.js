@@ -81,7 +81,8 @@ app
   .route("/api/v1.0/reviews")
   .get(reviews.getReviews)
   .post(isAuthenticated, reviews.addReviews)
-  .patch(isAuthenticated, reviews.editReviews);
+  .patch(isAuthenticated, reviews.editReviews)
+  .delete(isAuthenticated, reviews.deleteReview);
 //static images css js and other files
 app.use("/assets/", Express.static(path.join(__dirname, "../dist/assets")));
 app.use((req, res) => {

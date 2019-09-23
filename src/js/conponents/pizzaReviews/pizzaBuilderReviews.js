@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getReviews, editReview } from "../../AC/index";
+import { getReviews, editReview, deleteReview } from "../../AC/index";
 import Modal from "../hoc/modal";
 
 import ShowReviews from "./pizzaBuilderShowReviews";
@@ -12,17 +12,25 @@ class Reviews extends React.Component {
   }
 
   state = {
-    currentPage: 1
+    currentPage: 1,
+    modal: false
   };
 
   currentPageHandler = num => {
     this.setState({ currentPage: num });
   };
 
+  deleteReviewHandler = id => {
+    this.props.deleteReviewFun(id, this.props.auth.token);
+  };
+
   render() {
     return (
       <div className="container reviews_container">
         <Modal toggle={this.props.isLoading}>
+          <Spinner />
+        </Modal>
+        <Modal toggle={this.props.reviews.modal}>
           <Spinner />
         </Modal>
         {this.props.getReviews ? (
@@ -34,6 +42,7 @@ class Reviews extends React.Component {
             changePage={this.props.getReviews}
             currentPageNum={this.state.currentPage}
             edit={this.props.editReviewFun}
+            removeReview={this.deleteReviewHandler}
             id={this.props.auth.localId}
             isEditMode={this.props.isEditMode}
           />
@@ -56,7 +65,8 @@ const stateToProps = state => {
 const dispatchToProps = dispatch => {
   return {
     getReviews: param => dispatch(getReviews(param)),
-    editReviewFun: id => dispatch(editReview(id))
+    editReviewFun: id => dispatch(editReview(id)),
+    deleteReviewFun: (id, token) => dispatch(deleteReview(id, token))
   };
 };
 

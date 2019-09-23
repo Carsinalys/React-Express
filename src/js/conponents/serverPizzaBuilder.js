@@ -36,7 +36,7 @@ class PizzaApp extends React.Component {
         />
         <Route path="/authentication/forgot" component={Forgot} />
         <Route path="/logOut" component={LogOut} />
-        <Redirect to="/" />
+        <Route component={PizzaBuilderMainPage} />
       </Cover>
     );
   }

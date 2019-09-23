@@ -1,5 +1,6 @@
 const Orders = require("../models/order");
 const cachAsync = require("../utils/catchErrors");
+const factory = require("./handleFactory");
 
 exports.getOrders = cachAsync(async (req, res) => {
   if (req.query.count !== undefined) {
@@ -41,22 +42,9 @@ exports.getOrders = cachAsync(async (req, res) => {
   }
 });
 
-exports.addOrder = cachAsync(async (req, res) => {
-  console.log(req.headers.cookie);
-  const newOrder = await Orders.create(req.body);
-  res.status(201).json({
-    status: "success",
-    data: newOrder
-  });
-});
+exports.addOrder = factory.addOne(Orders);
 
-exports.deleteOrder = cachAsync(async (req, res) => {
-  await Orders.findByIdAndRemove(req.body.id);
-  res.status(200).json({
-    status: "success",
-    data: "null"
-  });
-});
+exports.deleteOrder = factory.deleteOne(Orders);
 
 async function getRandomOrders(req) {
   let arr = [];

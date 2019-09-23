@@ -5,7 +5,12 @@ export {
   setOrders,
   getError
 } from "./fetchingOrders";
-export { getReviews, editReview, editReviewSend } from "./fetchingRewiews";
+export {
+  getReviews,
+  editReview,
+  editReviewSend,
+  deleteReview
+} from "./fetchingRewiews";
 export { onInput, getInfoAddresCheckout, callApiAddOrderr } from "./fetchOrder";
 export {
   authOnInput,

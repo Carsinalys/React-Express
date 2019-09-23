@@ -13,16 +13,37 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #cccccc;
+            background: #c6cc9d;
         }
         .cover {
             width: 70%;
+        }
+        #password_1, #password_2, #submit {
+            padding: 10px;
+            font-size: 14px;
+            outline: none;
+            border: none;
+            background: #d6c315;
+            transition: 0.3s;
+            border-radius: 5px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.4);
+            margin: 10px;
+        }
+        #submit {
+            cursor: pointer;
+        }
+        #password_1:hover, #password_2:hover, #submit:hover {
+            background: #d6cc8b;
+        }
+        h3 {
+            font-weight: normal;
         }
     </style>
 </head>
 <body>
     <main class="main">
         <div class="cover">
+            <h3>Enter your new password:</h3>
             <form action="#" id="refresh">
                 <input type="password" form="refresh" id="password_1" placeholder="enter new password">
                 <input type="password" form="refresh" id="password_2" placeholder="repeat password">

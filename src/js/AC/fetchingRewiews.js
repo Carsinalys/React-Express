@@ -52,6 +52,32 @@ export const editReviewSend = (data, id, token) => {
   };
 };
 
+export const deleteReview = (id, token) => {
+  let data = { id: id };
+  return dispatch => {
+    dispatch(deleteReviewModalOn());
+    fetch(`${port}/api/v1.0/reviews`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(res => {
+        dispatch(deleteReviewModalOff(data.id));
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(deleteReviewModalOff(data.id));
+      });
+  };
+};
+
 export const startGetReviews = () => {
   return {
     type: AC.GET_REVIEWS_START
@@ -82,5 +108,18 @@ export const reviewsEditModeOn = data => {
 export const reviewsEditModeOff = () => {
   return {
     type: AC.REVIEWS_EDIT_MODE_OFF
+  };
+};
+
+export const deleteReviewModalOn = () => {
+  return {
+    type: AC.DELETE_REVIEW_MODAL_ON
+  };
+};
+
+export const deleteReviewModalOff = id => {
+  return {
+    type: AC.DELETE_REVIEW_MODAL_OFF,
+    payload: id
   };
 };

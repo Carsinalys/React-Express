@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 
 import Star from "../../icons/star";
 import StarEmpty from "../../icons/starEmpty";
+import Modal from "../hoc/modal";
 
 const showReviews = props => {
+  const [modal, setModal] = useState(false);
+  const [id, setId] = useState(null);
+
   let markup = () => {
     let pagination = [];
     for (let i = 0; i < props.pagination; i++) {
@@ -44,6 +48,32 @@ const showReviews = props => {
   }
   return (
     <div className="reviews__main__cover">
+      <Modal toggle={modal}>
+        <div className="modal__delete">
+          <div className="modal__delete__cover">
+            <div>
+              <h3>Are you shure?</h3>
+            </div>
+            <div className="modal__delete__buttons__cover">
+              <button
+                className="modal__delete__button"
+                onClick={() => {
+                  props.removeReview(id);
+                  setModal(false);
+                }}
+              >
+                Yes
+              </button>
+              <button
+                className="modal__delete__button"
+                onClick={() => setModal(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
       <div className="reviews__cover__global">
         {Object.keys(props.reviews).map(item => {
           return (
@@ -55,6 +85,18 @@ const showReviews = props => {
                   onClick={event => props.edit(event)}
                 >
                   edit
+                </span>
+              ) : null}
+              {props.id === props.reviews[item].id ? (
+                <span
+                  className="reviews__edit_btn"
+                  data-id={props.reviews[item]._id}
+                  onClick={event => {
+                    setModal(true);
+                    setId(event.target.dataset.id);
+                  }}
+                >
+                  delete
                 </span>
               ) : null}
               <div className="review__head">

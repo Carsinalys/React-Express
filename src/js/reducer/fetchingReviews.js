@@ -7,7 +7,8 @@ const initState = {
   pagination: 0,
   editMode: false,
   editReviewData: {},
-  err: null
+  err: null,
+  modal: false
 };
 
 const ordersReducer = (state = initState, action) => {
@@ -36,6 +37,20 @@ const ordersReducer = (state = initState, action) => {
         ...state,
         editMode: false,
         editReviewData: {}
+      };
+    case AC.DELETE_REVIEW_MODAL_ON:
+      return {
+        ...state,
+        modal: true
+      };
+    case AC.DELETE_REVIEW_MODAL_OFF:
+      const newReviews = state.reviews.filter(
+        item => item._id !== action.payload
+      );
+      return {
+        ...state,
+        modal: false,
+        reviews: newReviews
       };
     default:
       return { ...state };
