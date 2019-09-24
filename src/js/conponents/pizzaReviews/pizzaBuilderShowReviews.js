@@ -14,7 +14,8 @@ const showReviews = props => {
     for (let i = 0; i < props.pagination; i++) {
       let path = `/reviews/${i + 1}`;
       pagination.push(
-        <li
+        <NavLink
+          to={path}
           key={i}
           onClick={() => {
             props.changePage(`?page=${i + 1}&limit=5`);
@@ -26,8 +27,8 @@ const showReviews = props => {
               : "pagination__item"
           }
         >
-          <NavLink to={path}>{i + 1}</NavLink>
-        </li>
+          {i + 1}
+        </NavLink>
       );
     }
     return pagination;
@@ -114,7 +115,7 @@ const showReviews = props => {
           );
         })}
       </div>
-      {<ul className="pagination__list">{markup()}</ul>}
+      {<div className="pagination__list">{markup()}</div>}
       {props.auth ? (
         <div className="review__add__btn__cover">
           <button className="review__add__btn">

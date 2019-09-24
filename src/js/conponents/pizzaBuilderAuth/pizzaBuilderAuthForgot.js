@@ -45,7 +45,7 @@ class ForgotPass extends React.Component {
                   }
                   placeholder="Email"
                   value={this.props.authReset.inputs.mail.value}
-                  onChange={event => this.props.authResetOnInputFun(event)}
+                  onChange={() => this.props.authResetOnInputFun(event)}
                 />
               </label>
             </div>

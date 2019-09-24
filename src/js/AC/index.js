@@ -25,6 +25,7 @@ export { viewOrdersCabinet, deleteOrder } from "./viewOrdersCabinet";
 export {
   fetchResetPass,
   authResetOnInput,
+  authChangeMailOnInput,
   fetchChangeEmail
 } from "./pizzaAuthForgotPass";
 export {

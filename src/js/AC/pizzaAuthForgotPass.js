@@ -74,6 +74,13 @@ export const authResetOnInput = event => {
   };
 };
 
+export const authChangeMailOnInput = event => {
+  return {
+    type: AC.AUTH_CHANGE_MAIL_ON_INPUT,
+    payload: event
+  };
+};
+
 export const authResetMOdalOn = () => {
   return {
     type: AC.AUTH_RESET_MODAL_ON

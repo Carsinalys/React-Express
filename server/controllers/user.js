@@ -205,7 +205,7 @@ const changeEmail = cachAsync(async (req, res, next) => {
   const userRecord = await User.findOne({ localId: req.body.id });
   const testMail = await User.findOne({ mail: req.body.mail });
   if (testMail) {
-    req.status(400).json({
+    return res.status(400).json({
       status: "fail",
       error: "User with this email is already exist.",
       message: "User with this email is already exist."
