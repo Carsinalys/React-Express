@@ -128,28 +128,28 @@ const reducer = (state = initState, action) => {
           ...state.inputs,
           name: {
             ...state.inputs.name,
-            value: action.payload[key].name,
-            isValid: true
+            value: action.payload[key].name || "",
+            isValid: action.payload[key].name != undefined ? true : false
           },
           phone: {
             ...state.inputs.phone,
-            value: action.payload[key].phone,
-            isValid: true
+            value: action.payload[key].phone || "",
+            isValid: action.payload[key].phone != undefined ? true : false
           },
           street: {
             ...state.inputs.street,
-            value: action.payload[key].street,
-            isValid: true
+            value: action.payload[key].street || "",
+            isValid: action.payload[key].street != undefined ? true : false
           },
           house: {
             ...state.inputs.house,
-            value: action.payload[key].house,
-            isValid: true
+            value: action.payload[key].house || "",
+            isValid: action.payload[key].house != undefined ? true : false
           },
           flat: {
             ...state.inputs.flat,
-            value: action.payload[key].flat,
-            isValid: true
+            value: action.payload[key].flat || "",
+            isValid: action.payload[key].flat != undefined ? true : false
           }
         }
       };
