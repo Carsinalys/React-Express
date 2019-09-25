@@ -19,6 +19,7 @@ const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
+const cookieParser = require("cookie-parser");
 
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
@@ -37,8 +38,9 @@ if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 //security http headers
 app.use(helmet());
 
-//body parser from express box
+//body and cookie parser
 app.use(Express.json({ limit: "10kb" }));
+app.use(cookieParser());
 
 //data sanitization against NoSQL query injection
 app.use(mongoSanitize());
