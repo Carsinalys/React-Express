@@ -26,7 +26,7 @@ const initState = {
       type: "password",
       value: "",
       isValid: false,
-      pattern: "^(?=.*d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$"
+      pattern: "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8,})$"
     }
   }
 };

@@ -44,6 +44,7 @@ exports.confirmRefresh = cachAsync(async (req, res, next) => {
   userRecord.password = req.body.password;
   userRecord.passwordResetToken = undefined;
   userRecord.passwordResetExrires = undefined;
+  userRecord.passwordChanged = true;
   await userRecord.save();
   res.location("/").redirect("/");
 });

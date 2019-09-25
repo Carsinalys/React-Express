@@ -24,6 +24,13 @@ const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
 const app = Express();
 
+//settings for pug
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
+
+//static images css js and other files
+app.use("/assets/", Express.static(path.join(__dirname, "../dist/assets")));
+
 //dev logging requests
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
@@ -64,6 +71,13 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get("/test", (req, res) => {
+  res.status("200").render("base", {
+    id: "12345",
+    name: "Www"
+  });
+});
+
 app.route("/api/v1.0/resetPassword").post(resetPass.resetPassword);
 app.route("/api/v1.0/confirmPassword/:id").get(resetPass.confirmPassword);
 app.route("/api/v1.0/confirmRefresh").post(resetPass.confirmRefresh);
@@ -84,8 +98,6 @@ app
   .post(isAuthenticated, reviews.addReviews)
   .patch(isAuthenticated, reviews.editReviews)
   .delete(isAuthenticated, restrictTo("user", "admin"), reviews.deleteReview);
-//static images css js and other files
-app.use("/assets/", Express.static(path.join(__dirname, "../dist/assets")));
 app.use((req, res) => {
   const context = {};
 

@@ -57,6 +57,10 @@ const userShchema = new mongoose.Schema({
 });
 
 userShchema.pre("save", async function(next) {
+  if (this.passwordChanged) {
+    this.password = await bcrypt.hash(this.password, 12);
+    this.passwordChangeAt = Date.now() - 1000;
+  }
   if (!this.isModified("password") || !this.isNew) return next();
   this.password = await bcrypt.hash(this.password, 12);
   this.passwordChangeAt = Date.now() - 1000;
