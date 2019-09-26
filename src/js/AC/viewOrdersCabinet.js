@@ -21,7 +21,7 @@ export const viewOrdersCabinet = query => {
   };
 };
 
-export const deleteOrder = (id, token, localId) => {
+export const deleteOrder = (id, localId) => {
   let data = {
     id: id
   };
@@ -30,8 +30,7 @@ export const deleteOrder = (id, token, localId) => {
     fetch(`${port}/api/v1.0/orders`, {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
     })

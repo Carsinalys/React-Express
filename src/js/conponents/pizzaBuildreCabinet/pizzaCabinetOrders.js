@@ -166,7 +166,7 @@ const myOrdersCabinet = props => {
       </Modal>
       <button
         onClick={() => {
-          props.viewOrders("?page=1&limit=4");
+          props.viewOrders(`?page=1&limit=4&id=${props.id}`);
           setPage(1);
         }}
         className="refresh__orders__btn"

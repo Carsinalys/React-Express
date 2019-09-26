@@ -8,7 +8,8 @@ const obj = {
   UserFun: (req, res) => UserFunCached(req, res),
   updateUserFun: (req, res) => updateUserCached(req, res),
   getUserInfoFun: (req, res) => getUserInfoCached(req, res),
-  changeEmailFun: (req, res) => changeEmail(req, res)
+  changeEmailFun: (req, res) => changeEmail(req, res),
+  logOutFun: (req, res) => logOut(req, res)
 };
 module.exports = obj;
 
@@ -20,7 +21,7 @@ if (process.env.NODE_ENV === "production") cookieOption.secure = true;
 
 const getUserInfoCached = cachAsync(async (req, res) => {
   if (req.params.query === "getInfo") {
-    const userRecord = await User.findById(req.query.id).select(
+    const userRecord = await User.findOne({ _id: req.query.id }).select(
       "-password -refreshToken -passwordChangeAt -lastLoginAt"
     );
     res.status(200).json({ status: "ok", data: userRecord });
@@ -114,6 +115,7 @@ const UserFunCached = cachAsync(async (req, res, next) => {
         message: "password is don't match"
       });
     }
+    //in future need to delete
   } else if (req.params.query === "refreshAuthentification") {
     if (!req.body.refresh_token)
       return next(new AppError("You must enter refresh token to proceed", 400));
@@ -187,7 +189,6 @@ function randomGenerator(qty) {
 }
 
 const changeEmail = cachAsync(async (req, res, next) => {
-  console.log(req.body);
   const userRecord = await User.findOne({ localId: req.body.id });
   const testMail = await User.findOne({ mail: req.body.mail });
   if (testMail) {
@@ -209,4 +210,17 @@ const changeEmail = cachAsync(async (req, res, next) => {
     status: "ok",
     message: "mail has been changed"
   });
+});
+
+const logOut = cachAsync(async (req, res) => {
+  console.log("in logout route");
+  res
+    .status(200)
+    .cookie("jwt", "logingOut", {
+      expires: new Date(Date.now() + 10000),
+      httpOnly: true
+    })
+    .json({
+      status: "ok"
+    });
 });

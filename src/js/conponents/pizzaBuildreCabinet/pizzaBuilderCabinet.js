@@ -38,7 +38,6 @@ class PersonalRoom extends React.Component {
 
     this.props.fetchDataFun(
       data,
-      this.props.auth.token,
       this.props.cabinetSet.allGood,
       this.props.auth.localId
     );
@@ -52,11 +51,7 @@ class PersonalRoom extends React.Component {
   };
 
   showModalHandler = id => {
-    this.props.deleteOrderfun(
-      id,
-      this.props.auth.token,
-      this.props.auth.localId
-    );
+    this.props.deleteOrderfun(id, this.props.auth.localId);
   };
 
   render() {
@@ -146,11 +141,10 @@ const dispatchToProps = dispatch => {
   return {
     getInfoFun: id => dispatch(getInfo(id)),
     onInputFun: event => dispatch(setCabinetOnInput(event)),
-    fetchDataFun: (data, token, allGood, id) =>
-      dispatch(setCabinetFetchOrder(data, token, allGood, id)),
+    fetchDataFun: (data, allGood, id) =>
+      dispatch(setCabinetFetchOrder(data, allGood, id)),
     viewOrdersFun: query => dispatch(viewOrdersCabinet(query)),
-    deleteOrderfun: (id, token, localId) =>
-      dispatch(deleteOrder(id, token, localId))
+    deleteOrderfun: (id, localId) => dispatch(deleteOrder(id, localId))
   };
 };
 

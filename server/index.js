@@ -71,6 +71,7 @@ app.use(function(req, res, next) {
     "Access-Control-Allow-Methods",
     "GET, PATCH, POST, DELETE, OPTIONS"
   );
+  res.header("Access-Control-Allow-Credentials", true);
   next();
 });
 
@@ -90,6 +91,7 @@ app
   .get(Obj.getUserInfoFun)
   .post(Obj.UserFun)
   .patch(isAuthenticated, Obj.updateUserFun);
+app.route("/api/v1.0/user/logOut").post(Obj.logOutFun);
 app
   .route("/api/v1.0/orders")
   .get(orders.getOrders)

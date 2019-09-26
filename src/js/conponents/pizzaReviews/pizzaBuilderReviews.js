@@ -21,7 +21,7 @@ class Reviews extends React.Component {
   };
 
   deleteReviewHandler = id => {
-    this.props.deleteReviewFun(id, this.props.auth.token);
+    this.props.deleteReviewFun(id);
   };
 
   render() {
@@ -66,7 +66,7 @@ const dispatchToProps = dispatch => {
   return {
     getReviews: param => dispatch(getReviews(param)),
     editReviewFun: id => dispatch(editReview(id)),
-    deleteReviewFun: (id, token) => dispatch(deleteReview(id, token))
+    deleteReviewFun: id => dispatch(deleteReview(id))
   };
 };
 

@@ -33,17 +33,13 @@ class AddReview extends React.Component {
     event.preventDefault();
     let name = document.querySelector("#author__name"),
       text = document.querySelector("#author__text");
-    if (name.value.length < 5) {
-      this.setState({ badData: true });
-    } else {
-      this.setState({ badData: false });
-    }
     if (
       name.value.length >= 5 &&
       text.value.length >= 10 &&
       name.value.length < 20 &&
       text.value.length < 300
     ) {
+      this.setState({ badData: false });
       this.setState({ isLoading: true });
       let data = {
         name: name.value,
@@ -55,8 +51,7 @@ class AddReview extends React.Component {
         fetch(`${port}/api/v1.0/reviews`, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${this.props.auth.token}`
+            "Content-Type": "application/json"
           },
           body: JSON.stringify(data)
         })
@@ -74,14 +69,15 @@ class AddReview extends React.Component {
       } else {
         this.props.editReviewSendFun(
           data,
-          this.props.reviews.editReviewData._id,
-          this.props.auth.token
+          this.props.reviews.editReviewData._id
         );
         name.value = "";
         text.value = "";
         this.setState({ currentRating: 5 });
         this.setState({ isLoading: false });
       }
+    } else {
+      this.setState({ badData: true });
     }
   };
 
@@ -241,7 +237,7 @@ class AddReview extends React.Component {
         </form>
         <div className="add__form__back__btn__cover">
           <button className="add__form__back__btn">
-            <Link to="/reviews">Back to reviews</Link>
+            <Link to="/reviews/1">Back to reviews</Link>
           </button>
         </div>
       </section>
@@ -258,8 +254,7 @@ const stateToProps = state => {
 
 const dispatchToProps = dispatch => {
   return {
-    editReviewSendFun: (data, id, token) =>
-      dispatch(editReviewSend(data, id, token))
+    editReviewSendFun: (data, id) => dispatch(editReviewSend(data, id))
   };
 };
 

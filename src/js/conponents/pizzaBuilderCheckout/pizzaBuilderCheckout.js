@@ -102,7 +102,7 @@ class PizzaBuilderCheckout extends React.Component {
         this.props.state.weight > 500) ||
       this.props.multi.pizzas.length > 0
     ) {
-      this.props.callApiAddOrderrFun(data, this.props.auth.token);
+      this.props.callApiAddOrderrFun(data);
     } else {
       this.setState({ smallPizza: true });
     }
@@ -228,8 +228,7 @@ const dispatchToProps = dispatch => {
     onInputFun: event => dispatch(onInput(event)),
     getAddresFun: (token, id) => dispatch(getInfoAddresCheckout(token, id)),
     deleteMultiOrderFun: num => dispatch(deleteMultiOrder(num)),
-    callApiAddOrderrFun: (data, token) =>
-      dispatch(callApiAddOrderr(data, token))
+    callApiAddOrderrFun: data => dispatch(callApiAddOrderr(data))
   };
 };
 

@@ -20,7 +20,9 @@ exports.getReviews = cachAsync(async (req, res) => {
     if (skip >= count) {
       return res.status(400).json({
         status: "fail",
-        message: "this page is doesn't exist"
+        message: "this page is doesn't exist",
+        count: count,
+        data: []
       });
     }
     res.status(200).json({

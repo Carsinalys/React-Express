@@ -30,14 +30,13 @@ export const editReview = id => {
   };
 };
 
-export const editReviewSend = (data, id, token) => {
+export const editReviewSend = (data, id) => {
   let sendData = { ...data, _id: id };
   return dispatch => {
     fetch(`${port}/api/v1.0/reviews`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(sendData)
     })
@@ -52,15 +51,14 @@ export const editReviewSend = (data, id, token) => {
   };
 };
 
-export const deleteReview = (id, token) => {
+export const deleteReview = id => {
   let data = { id: id };
   return dispatch => {
     dispatch(deleteReviewModalOn());
     fetch(`${port}/api/v1.0/reviews`, {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
     })
