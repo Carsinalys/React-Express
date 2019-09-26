@@ -38,8 +38,9 @@ if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 //security http headers
 app.use(helmet());
 
-//body and cookie parser
+//body, form and cookie parsers
 app.use(Express.json({ limit: "10kb" }));
+app.use(Express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(cookieParser());
 
 //data sanitization against NoSQL query injection

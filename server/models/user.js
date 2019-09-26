@@ -16,10 +16,6 @@ const userShchema = new mongoose.Schema({
     required: [true, "No password"],
     unique: false
   },
-  localId: {
-    type: String,
-    required: [true, "no localId"]
-  },
   refreshToken: {
     type: String,
     required: [true, " No refreshToken"],

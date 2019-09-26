@@ -29,8 +29,8 @@ class PizzaApp extends React.Component {
         <Switch>
           <Route path="/" exact component={PizzaBuilderMainPage} />
           <Route path="/pizza-builder" component={PizzaBuilderPropsSrc} />
-          <Route path="/reviews/:page" exact component={Reviews} />
           <Route path="/reviews/addReview" component={AddReview} />
+          <Route path="/reviews/:page" exact component={Reviews} />
           <Route path="/checkout" component={PizzaBuilderCheckout} />
           <Route path="/authentication" exact component={Authendication} />
           <Route path="/personalRoom" exact component={Cabinet} />

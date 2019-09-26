@@ -4,7 +4,6 @@ const AppError = require("../utils/errorHandler");
 const jwt = require("jsonwebtoken");
 
 const obj = {
-  generateRandomId: () => randomGenerator(40),
   generateRandomRefreshToken: () => randomGenerator(300),
   UserFun: (req, res) => UserFunCached(req, res),
   updateUserFun: (req, res) => updateUserCached(req, res),
@@ -21,8 +20,8 @@ if (process.env.NODE_ENV === "production") cookieOption.secure = true;
 
 const getUserInfoCached = cachAsync(async (req, res) => {
   if (req.params.query === "getInfo") {
-    const userRecord = await User.findOne({ localId: req.query.id }).select(
-      "-password"
+    const userRecord = await User.findById(req.query.id).select(
+      "-password -refreshToken -passwordChangeAt -lastLoginAt"
     );
     res.status(200).json({ status: "ok", data: userRecord });
   }
@@ -70,23 +69,16 @@ const UserFunCached = cachAsync(async (req, res, next) => {
       lastLoginAt: new Date().getTime(),
       createdAt: new Date().getTime()
     };
-    do {
-      userObjForBase.localId = obj.generateRandomId();
-    } while (await User.findOne({ localId: userObjForBase.localId }));
     //sending response
     const userRecord = await User.create(userObjForBase);
     const token = createToken(userRecord._id);
-    const newUserObj = { ...userRecord };
-    newUserObj._doc.token = token;
-    newUserObj._doc.expireAt = 3600;
-    delete newUserObj._doc.password;
-    //////////////////////////////
-    //res.cookie("jwt", token, cookieOption);
-    //////////////////////////////
     res
       .status(201)
       .cookie("jwt", token, cookieOption)
-      .json(newUserObj._doc);
+      .json({
+        expireAt: 3600,
+        localId: userRecord._id
+      });
   } else if (req.params.query === "authentication") {
     if (!req.body.mail || !req.body.password)
       return next(
@@ -106,20 +98,14 @@ const UserFunCached = cachAsync(async (req, res, next) => {
     ) {
       const newToken = createToken(userRecord._id);
       // updating user record (time)
-      updateUserRecordCached(userRecord.localId);
-      /////////////////////////////////
-      //res.cookie("jwt", newToken, cookieOption);
-      /////////////////////////////////
+      updateUserRecordCached(userRecord._id);
       //sending new token
       res
         .status(200)
         .cookie("jwt", newToken, cookieOption)
         .json({
-          token: newToken,
           expireAt: 3600,
-          refreshToken: userRecord.refreshToken,
-          localId: userRecord.localId,
-          mail: userRecord.mail
+          localId: userRecord._id
         });
     } else {
       return res.status(400).json({
@@ -151,8 +137,8 @@ const UserFunCached = cachAsync(async (req, res, next) => {
 });
 
 const updateUserRecordCached = cachAsync(async function updateUserRecord(id) {
-  User.findOneAndUpdate(
-    { localId: id },
+  User.findByIdAndUpdate(
+    id,
     {
       $set: {
         lastLoginAt: new Date().getTime()

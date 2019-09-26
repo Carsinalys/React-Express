@@ -49,7 +49,8 @@ export const authSignIn = (mail, pass, stayIn) => {
     dispatch(authModalOn());
     let data = {
       mail: mail,
-      password: pass
+      password: pass,
+      stayIn: stayIn
     };
     fetch(`${port}/api/v1.0/user/authentication`, {
       method: "POST",
@@ -126,21 +127,14 @@ export const storeTokenStayIn = stayIn => {
 
 export const getTokenFromCookie = () => {
   return dispatch => {
-    if (localStorage.getItem("refresh")) {
-      dispatch(refreshToken(localStorage.getItem("refresh")));
-      setInterval(() => {
-        dispatch(refreshToken(localStorage.getItem("refresh")));
-      }, 3600000);
-    } else {
-      dispatch(checkCookie());
-      let remainingTime =
-        new Date().getTime() < localStorage.expiresAt
-          ? +localStorage.expiresAt - new Date().getTime()
-          : 0;
-      setTimeout(() => {
-        dispatch(logOut());
-      }, remainingTime);
-    }
+    dispatch(checkCookie());
+    let remainingTime =
+      new Date().getTime() < localStorage.expiresAt
+        ? +localStorage.expiresAt - new Date().getTime()
+        : 0;
+    setTimeout(() => {
+      dispatch(logOut());
+    }, remainingTime);
   };
 };
 
