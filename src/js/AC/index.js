@@ -18,7 +18,7 @@ export {
   authSignIn,
   getTokenFromCookie
 } from "./pizzaAuth";
-export { logOut } from "./pizzaLogOut";
+export { logOut, fetchLogOut } from "./pizzaLogOut";
 export { getInfo } from "./getInfoCabinet";
 export { setCabinetOnInput, setCabinetFetchOrder } from "./setInfoCabinet";
 export { viewOrdersCabinet, deleteOrder } from "./viewOrdersCabinet";
