@@ -45,7 +45,6 @@ export const authSignUp = (mail, pass) => {
 
 export const authSignIn = (mail, pass, stayIn) => {
   return dispatch => {
-    dispatch(storeTokenStayIn(stayIn));
     dispatch(authModalOn());
     let data = {
       mail: mail,
@@ -118,13 +117,6 @@ export const storeToken = data => {
   };
 };
 
-export const storeTokenStayIn = stayIn => {
-  return {
-    type: AC.AUTH_STORE_TOKEN_STAY_IN,
-    payload: stayIn
-  };
-};
-
 export const getTokenFromCookie = () => {
   return dispatch => {
     dispatch(checkCookie());
@@ -141,42 +133,5 @@ export const getTokenFromCookie = () => {
 export const checkCookie = () => {
   return {
     type: AC.AUTH_GET_TOKEN_FROM_COOKIE
-  };
-};
-
-export const getTokenFromFirebase = data => {
-  return {
-    type: AC.AUTH_GET_TOKET_FROM_FIREBASE,
-    payload: data
-  };
-};
-
-export const refreshToken = refreshToken => {
-  return dispatch => {
-    dispatch(authModalOn());
-    let data = {
-      refresh_token: refreshToken
-    };
-    fetch(`${port}/api/v1.0/user/refreshAuthentification`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.error) {
-          dispatch(authModalOff());
-          dispatch(authError(data));
-        } else {
-          dispatch(getTokenFromFirebase(data));
-          dispatch(authModalOff());
-        }
-      })
-      .catch(error => {
-        dispatch(authError(error));
-        dispatch(authModalOff());
-      });
   };
 };

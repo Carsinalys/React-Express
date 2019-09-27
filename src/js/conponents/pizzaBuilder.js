@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import Spinner from "./pizzaBuilder/pizzaBuilderSpinner";
 
@@ -16,6 +16,7 @@ import Cabinet from "./pizzaBuildreCabinet/pizzaBuilderCabinet";
 import Forgot from "./pizzaBuilderAuth/pizzaBuilderAuthForgot";
 import ReadyBuilds from "./pizzaBuilderBuilds/pizzaBuilderBuilds";
 import ChangeMail from "./pizzaBuildreCabinet/pizzaBuilderCabinetChangeMail";
+import Chat from "./pizzaBuilderChat/pizzaBuilderChat";
 
 const ChatLazyLoaded = React.lazy(() =>
   import("./pizzaBuilderChat/pizzaBuilderChat")
@@ -27,32 +28,34 @@ class PizzaApp extends React.Component {
       <>
         <Route path="/" component={PizzaHeader} />
         <Switch>
-          <Route path="/" exact component={PizzaBuilderMainPage} />
-          <Route path="/pizza-builder" component={PizzaBuilderPropsSrc} />
-          <Route path="/reviews/addReview" component={AddReview} />
-          <Route path="/reviews/:page" exact component={Reviews} />
-          <Route path="/checkout" component={PizzaBuilderCheckout} />
-          <Route path="/authentication" exact component={Authendication} />
-          <Route path="/personalRoom" exact component={Cabinet} />
-          <Route path="/personalRoom/changeMail" component={ChangeMail} />
-          <Route path="/personalRoom/:page" component={Cabinet} />
-          <Route path="/pizza-builds" component={ReadyBuilds} />
-          <Route path="/authentication/forgot" component={Forgot} />
-          <Route path="/logOut" component={LogOut} />
+          <Route exact path="/" component={PizzaBuilderMainPage} />
+          <Route exact path="/pizza-builder" component={PizzaBuilderPropsSrc} />
+          <Route exact path="/reviews/addReview" component={AddReview} />
+          <Route exact path="/reviews/:page" component={Reviews} />
+          <Route exact path="/checkout" component={PizzaBuilderCheckout} />
+          <Route exact path="/authentication" component={Authendication} />
+          <Route exact path="/personalRoom" component={Cabinet} />
+          <Route exact path="/personalRoom/changeMail" component={ChangeMail} />
+          <Route exact path="/personalRoom/:page" component={Cabinet} />
+          <Route exact path="/pizza-builds" component={ReadyBuilds} />
+          <Route exact path="/authentication/forgot" component={Forgot} />
+          <Route exact path="/logOut" component={LogOut} />
           <Route
+            exact
             path="/authentication/registration"
             component={AuthendicationSignUp}
           />
-          <Suspense
-            fallback={
-              <div className="modal__global">
-                <Spinner />
-              </div>
-            }
-          >
-            <Route exact path="/chat" component={ChatLazyLoaded} />
-          </Suspense>
+          <Route exact path="/chat" component={Chat} />
           <Route component={PizzaBuilderMainPage} />
+          {/*<Suspense*/}
+          {/*  fallback={*/}
+          {/*    <div className="modal__global">*/}
+          {/*      <Spinner />*/}
+          {/*    </div>*/}
+          {/*  }*/}
+          {/*>*/}
+          {/*  <Route exact path="/chat" component={ChatLazyLoaded} />*/}
+          {/*</Suspense>*/}
         </Switch>
       </>
     );

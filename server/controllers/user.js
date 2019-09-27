@@ -4,7 +4,6 @@ const AppError = require("../utils/errorHandler");
 const jwt = require("jsonwebtoken");
 
 const obj = {
-  generateRandomRefreshToken: () => randomGenerator(300),
   UserFun: (req, res) => UserFunCached(req, res),
   updateUserFun: (req, res) => updateUserCached(req, res),
   getUserInfoFun: (req, res) => getUserInfoCached(req, res),
@@ -20,11 +19,16 @@ const cookieOption = {
 if (process.env.NODE_ENV === "production") cookieOption.secure = true;
 
 const getUserInfoCached = cachAsync(async (req, res) => {
-  if (req.params.query === "getInfo") {
+  const checkRegExp = new RegExp(/^[0-9a-fA-F]{24}$/);
+  if (req.params.query === "getInfo" && checkRegExp.test(req.query.id)) {
     const userRecord = await User.findOne({ _id: req.query.id }).select(
       "-password -refreshToken -passwordChangeAt -lastLoginAt"
     );
     res.status(200).json({ status: "ok", data: userRecord });
+  } else {
+    res
+      .status(404)
+      .json({ status: "fail", error: "Need to pass id for getting user data" });
   }
 });
 
@@ -63,7 +67,6 @@ const UserFunCached = cachAsync(async (req, res, next) => {
     //object for database
     const userObjForBase = {
       localId: "",
-      refreshToken: obj.generateRandomRefreshToken(),
       mail: req.body.mail,
       expireAt: 3600,
       password: req.body.password,
@@ -94,8 +97,13 @@ const UserFunCached = cachAsync(async (req, res, next) => {
         message: "this mail is doesn't exist"
       });
     }
+    //condition if esle for stayin stayout and checking validation password
     if (
-      await userRecord.correctPassword(req.body.password, userRecord.password)
+      (await userRecord.correctPassword(
+        req.body.password,
+        userRecord.password
+      )) &&
+      !req.body.stayIn
     ) {
       const newToken = createToken(userRecord._id);
       // updating user record (time)
@@ -108,6 +116,24 @@ const UserFunCached = cachAsync(async (req, res, next) => {
           expireAt: 3600,
           localId: userRecord._id
         });
+    } else if (
+      (await userRecord.correctPassword(
+        req.body.password,
+        userRecord.password
+      )) &&
+      req.body.stayIn
+    ) {
+      const newToken = createLongToken(userRecord._id);
+      // updating user record (time)
+      updateUserRecordCached(userRecord._id);
+      //sending new token
+      res
+        .status(200)
+        .cookie("jwt", newToken, cookieOption)
+        .json({
+          expireAt: 604800,
+          localId: userRecord._id
+        });
     } else {
       return res.status(400).json({
         error: "password is don't match",
@@ -115,26 +141,6 @@ const UserFunCached = cachAsync(async (req, res, next) => {
         message: "password is don't match"
       });
     }
-    //in future need to delete
-  } else if (req.params.query === "refreshAuthentification") {
-    if (!req.body.refresh_token)
-      return next(new AppError("You must enter refresh token to proceed", 400));
-    const userRecord = await User.findOne({
-      refreshToken: req.body.refresh_token
-    });
-    if (!userRecord) {
-      return res.status(400).json({
-        error: "didn't find token",
-        status: "fail",
-        message: "didn't find token"
-      });
-    }
-    res.status(200).json({
-      token: createToken(userRecord._id),
-      expiresAt: 3600,
-      localId: userRecord.localId,
-      refreshToken: userRecord.refreshToken
-    });
   }
 });
 
@@ -177,15 +183,11 @@ function createToken(id) {
   );
 }
 
-function randomGenerator(qty) {
-  let result = "";
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const charactersLength = characters.length;
-  for (let i = 0; i < qty; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
+function createLongToken(id) {
+  return jwt.sign(
+    { id: id, exp: Math.floor(Date.now() / 1000) + 60 * process.env.SRAYIN },
+    process.env.SALT
+  );
 }
 
 const changeEmail = cachAsync(async (req, res, next) => {
@@ -213,7 +215,6 @@ const changeEmail = cachAsync(async (req, res, next) => {
 });
 
 const logOut = cachAsync(async (req, res) => {
-  console.log("in logout route");
   res
     .status(200)
     .cookie("jwt", "logingOut", {

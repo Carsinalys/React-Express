@@ -16,6 +16,7 @@ export const fetchLogOut = () => {
     })
       .then(res => res.json())
       .then(res => {
+        dispatch(logOut());
         console.log(res);
       })
       .catch(error => {

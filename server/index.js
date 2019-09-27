@@ -25,6 +25,17 @@ const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
 const app = Express();
 
+const WebSocket = require("ws");
+
+const wss = new WebSocket.Server({ port: 8080 });
+
+wss.on("connection", ws => {
+  ws.on("message", message => {
+    console.log(`Received message => ${message}`);
+  });
+  ws.send("Hello! Message From Server!!");
+});
+
 //settings for pug
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
@@ -86,12 +97,12 @@ app.route("/api/v1.0/resetPassword").post(resetPass.resetPassword);
 app.route("/api/v1.0/confirmPassword/:id").get(resetPass.confirmPassword);
 app.route("/api/v1.0/confirmRefresh").post(resetPass.confirmRefresh);
 app.route("/api/v1.0/changeMail").patch(isAuthenticated, Obj.changeEmailFun);
+app.route("/api/v1.0/user/logOut").post(Obj.logOutFun);
 app
   .route("/api/v1.0/user/:query")
   .get(Obj.getUserInfoFun)
   .post(Obj.UserFun)
   .patch(isAuthenticated, Obj.updateUserFun);
-app.route("/api/v1.0/user/logOut").post(Obj.logOutFun);
 app
   .route("/api/v1.0/orders")
   .get(orders.getOrders)

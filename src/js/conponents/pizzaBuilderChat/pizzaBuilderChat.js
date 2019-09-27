@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import Firebase from "firebase/firebase";
-import { CSSTransition } from "react-transition-group";
 import { Redirect } from "react-router-dom";
 import Modal from "../hoc/modal";
 import ModalSlide from "../hoc/modalSlideUpDown";

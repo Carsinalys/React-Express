@@ -117,9 +117,7 @@ class Authendication extends React.Component {
                 onClick={this.checkboxHandler}
                 className="auth__sign__in__stay__in__input"
               />
-              <label htmlFor="auth__stay__in">
-                stay authiticated (not safe)
-              </label>
+              <label htmlFor="auth__stay__in">stay authiticated for week</label>
             </div>
             <div className="auth__sibmit__cover">
               <button type="submit" className="auth__submit">

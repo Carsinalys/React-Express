@@ -63,6 +63,7 @@
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.1",
     "webpack-merge": "^4.2.2",
+    "ws": "^7.1.2",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {

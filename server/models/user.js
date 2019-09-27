@@ -16,11 +16,6 @@ const userShchema = new mongoose.Schema({
     required: [true, "No password"],
     unique: false
   },
-  refreshToken: {
-    type: String,
-    required: [true, " No refreshToken"],
-    unique: false
-  },
   name: {
     type: String
   },
@@ -37,7 +32,8 @@ const userShchema = new mongoose.Schema({
     type: Number
   },
   createdAt: {
-    type: Date
+    type: Date,
+    default: Date.now()
   },
   lastLoginAt: {
     type: Date

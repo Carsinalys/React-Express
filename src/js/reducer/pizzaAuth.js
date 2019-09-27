@@ -6,7 +6,6 @@ const initState = {
   expiresAt: null,
   localId: null,
   error: null,
-  stayIn: false,
   inputs: {
     mail: {
       id: "auth__email",
@@ -55,15 +54,6 @@ const reducer = (state = initState, action) => {
         error: null,
         isLoading: false
       };
-    case AC.AUTH_GET_TOKET_FROM_FIREBASE:
-      return {
-        ...state,
-        isAuthindicated: true,
-        expiresAt: action.payload.expireAt,
-        localId: action.payload.localId,
-        error: null,
-        isLoading: false
-      };
     case AC.AUTH_SIGN_IN_ERROR:
       return {
         ...state,
@@ -104,11 +94,6 @@ const reducer = (state = initState, action) => {
       return {
         ...state
       };
-    case AC.AUTH_STORE_TOKEN_STAY_IN:
-      return {
-        ...state,
-        stayIn: action.payload
-      };
     case AC.AUTH_GET_TOKEN_FROM_COOKIE:
       let strExpiresAt = localStorage.getItem("expiresAt");
       let strLocalId = localStorage.getItem("localId");
@@ -117,6 +102,12 @@ const reducer = (state = initState, action) => {
           ...state,
           isAuthindicated: true,
           localId: strLocalId
+        };
+      } else {
+        return {
+          ...state,
+          isAuthindicated: false,
+          localId: null
         };
       }
     case AC.LOG_OUT: {
