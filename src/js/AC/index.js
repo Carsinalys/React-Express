@@ -39,15 +39,15 @@ export {
   chatOnInput,
   chatChooseRoom,
   chatOnMessageInput,
-  chatSendMessage,
   chatSetUserName,
   chatOnNameInput,
   chatSetUserNameToRedux,
+  chatResetMessageInput,
   chatDeleteUserName,
   chatDeleteMessage,
   chatNewMessageOn,
   chatNewMessageOff,
-  chatGetRooms,
   chatGetUsersNames,
-  chatSetCurrentMessages
+  chatSetCurrentMessages,
+  chatGetCurMessages
 } from "./chat";

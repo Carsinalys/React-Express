@@ -1,4 +1,5 @@
 import * as AC from "./ac";
+import { port } from "../../../portForFront";
 
 export const createChatRoom = (str, token) => {
   return dispatch => {
@@ -29,25 +30,21 @@ export const createChatRoom = (str, token) => {
   };
 };
 
-export const chatSetUserName = (obj, id, token) => {
+export const chatSetUserName = (obj, id) => {
   return dispatch => {
-    console.log(obj, id, token);
     dispatch(chatMdalOn());
-    fetch(
-      `https://pizzabuilder-e9539.firebaseio.com/chat/users/${id}.json?auth=${token}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "aplication/json"
-        },
-        body: JSON.stringify(obj)
-      }
-    )
+    fetch(`${port}/api/v1.0/user/setAddress`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(obj)
+    })
       .then(res => res.json())
       .then(res => {
         dispatch(chatMdalOff());
         dispatch(chatResetNameInput());
-        dispatch(chatGetUsersNames());
+        dispatch(chatGetUsersNames(id));
         console.log(res);
       })
       .catch(error => {
@@ -57,51 +54,9 @@ export const chatSetUserName = (obj, id, token) => {
   };
 };
 
-export const chatDeleteUserName = (id, token) => {
-  return dispatch => {
-    dispatch(chatMdalOn());
-    fetch(
-      `https://pizzabuilder-e9539.firebaseio.com/chat/users/${id}.json?auth=${token}`,
-      {
-        method: "DELETE"
-      }
-    )
-      .then(res => res.json())
-      .then(res => {
-        dispatch(chatMdalOff());
-        dispatch(chatResetNameStore());
-        console.log(res);
-      })
-      .catch(error => {
-        console.log(error);
-        dispatch(chatMdalOn());
-      });
-  };
-};
-
-export const chatSendMessage = (str, room, token) => {
-  return dispatch => {
-    dispatch(chatSendMsgSplinnerOn());
-    fetch(
-      `https://pizzabuilder-e9539.firebaseio.com/chat/rooms/${room}.json?auth=${token}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "aplication/json"
-        },
-        body: JSON.stringify(str)
-      }
-    )
-      .then(res => res.json())
-      .then(res => {
-        dispatch(chatResetMessageInput());
-        dispatch(chatSendMsgSplinnerOff());
-        console.log(res);
-      })
-      .catch(error => {
-        console.log(error);
-        dispatch(chatchatSendMsgSplinnerOffMdalOn());
-      });
+export const chatDeleteUserName = () => {
+  return {
+    type: AC.CHAT_RESET_NAME_STORE
   };
 };
 
@@ -138,12 +93,6 @@ export const chatOnNameInput = event => {
   };
 };
 
-export const chatResetNameStore = () => {
-  return {
-    type: AC.CHAT_RESET_NAME_STORE
-  };
-};
-
 export const chatResetRoomInput = () => {
   return {
     type: AC.CHAT_RESET_ROOM_INPUT
@@ -171,13 +120,6 @@ export const chatMdalOn = () => {
 export const chatMdalOff = () => {
   return {
     type: AC.CHAT_MODAL_OFF
-  };
-};
-
-export const chatRoomsToStore = data => {
-  return {
-    type: AC.CHAT_ROOMS_TO_STORE,
-    payload: data
   };
 };
 
@@ -228,45 +170,16 @@ export const chatNewMessageOff = () => {
   };
 };
 
-export const chatGetRooms = () => {
+export const chatGetUsersNames = id => {
   return dispatch => {
     dispatch(chatMdalOn());
-    fetch(
-      `https://pizzabuilder-e9539.firebaseio.com/chat/rooms.json?auth=jyVEHg4zePXslKNwI5GOR3yYw6TjiaZzWIQ01DS1`,
-      {
-        method: "GET"
-      }
-    )
+    fetch(`${port}/api/v1.0/user/getInfo?id=${id}`, {
+      method: "GET"
+    })
       .then(res => res.json())
       .then(res => {
         dispatch(chatMdalOff());
-        dispatch(chatRoomsToStore(Object.keys(res)));
-      })
-      .catch(error => {
-        console.log(error);
-        dispatch(chatMdalOn());
-      });
-  };
-};
-
-export const chatGetUsersNames = () => {
-  return (dispatch, getStore) => {
-    dispatch(chatMdalOn());
-    fetch(
-      `https://pizzabuilder-e9539.firebaseio.com/chat/users.json?auth=jyVEHg4zePXslKNwI5GOR3yYw6TjiaZzWIQ01DS1`,
-      {
-        method: "GET"
-      }
-    )
-      .then(res => res.json())
-      .then(res => {
-        dispatch(chatMdalOff());
-        Object.keys(res).map(item => {
-          if (item === getStore().auth.localId) {
-            let key = Object.keys(res[item])[0];
-            dispatch(chatSetUserNameToRedux(res[item][key].name));
-          }
-        });
+        if (res.data.name) dispatch(chatSetUserNameToRedux(res.data.name));
       })
       .catch(error => {
         console.log(error);
@@ -279,5 +192,23 @@ export const chatSetCurrentMessages = data => {
   return {
     type: AC.CHAT_SET_CURRENT_MESSAGES,
     payload: data
+  };
+};
+
+export const chatGetCurMessages = () => {
+  return dispatch => {
+    dispatch(chatMdalOn());
+    fetch(`${port}/api/v1.0/getRoomMessages`, {
+      method: "GET"
+    })
+      .then(res => res.json())
+      .then(res => {
+        dispatch(chatMdalOff());
+        dispatch(chatSetCurrentMessages(res.data));
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(chatMdalOn());
+      });
   };
 };

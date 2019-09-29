@@ -1,7 +1,5 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
-
-import Spinner from "./pizzaBuilder/pizzaBuilderSpinner";
 
 import PizzaHeader from "./pizzaHeader/pizzaHeder";
 import PizzaBuilderPropsSrc from "./pizzaBuilder/pizzaBuilderPropsSrc";
@@ -17,10 +15,6 @@ import Forgot from "./pizzaBuilderAuth/pizzaBuilderAuthForgot";
 import ReadyBuilds from "./pizzaBuilderBuilds/pizzaBuilderBuilds";
 import ChangeMail from "./pizzaBuildreCabinet/pizzaBuilderCabinetChangeMail";
 import Chat from "./pizzaBuilderChat/pizzaBuilderChat";
-
-const ChatLazyLoaded = React.lazy(() =>
-  import("./pizzaBuilderChat/pizzaBuilderChat")
-);
 
 class PizzaApp extends React.Component {
   render() {
@@ -47,15 +41,6 @@ class PizzaApp extends React.Component {
           />
           <Route exact path="/chat" component={Chat} />
           <Route component={PizzaBuilderMainPage} />
-          {/*<Suspense*/}
-          {/*  fallback={*/}
-          {/*    <div className="modal__global">*/}
-          {/*      <Spinner />*/}
-          {/*    </div>*/}
-          {/*  }*/}
-          {/*>*/}
-          {/*  <Route exact path="/chat" component={ChatLazyLoaded} />*/}
-          {/*</Suspense>*/}
         </Switch>
       </>
     );

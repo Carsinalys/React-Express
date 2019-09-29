@@ -8,9 +8,7 @@ export const setCabinetOnInput = event => {
   };
 };
 
-export const setCabinetFetchOrder = (data, allGood, id) => {
-  const sendData = { ...data, id: id };
-  console.log("send cabinet", sendData, allGood);
+export const setCabinetFetchOrder = (data, allGood) => {
   return dispatch => {
     if (allGood) {
       dispatch(setCabinetToggleModal());
@@ -19,7 +17,7 @@ export const setCabinetFetchOrder = (data, allGood, id) => {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(sendData)
+        body: JSON.stringify(data)
       })
         .then(res => res.json())
         .then(res => {

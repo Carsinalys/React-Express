@@ -10,6 +10,7 @@ const morgan = require("morgan");
 const ErrorHandler = require("./utils/errorHandler");
 const orders = require("./controllers/orders");
 const reviews = require("./controllers/reviews");
+const message = require("./controllers/message");
 const resetPass = require("./controllers/resetPassword");
 const globalErrorHandler = require("./controllers/error");
 const { isAuthenticated } = require("./controllers/isAuthenticated");
@@ -20,21 +21,12 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const cookieParser = require("cookie-parser");
+const socket = require("./websocket");
+socket();
 
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
 const app = Express();
-
-const WebSocket = require("ws");
-
-const wss = new WebSocket.Server({ port: 8080 });
-
-wss.on("connection", ws => {
-  ws.on("message", message => {
-    console.log(`Received message => ${message}`);
-  });
-  ws.send("Hello! Message From Server!!");
-});
 
 //settings for pug
 app.set("view engine", "pug");
@@ -93,6 +85,7 @@ app.get("/test", (req, res) => {
   });
 });
 
+app.route("/api/v1.0/getRoomMessages").get(message.getMessages);
 app.route("/api/v1.0/resetPassword").post(resetPass.resetPassword);
 app.route("/api/v1.0/confirmPassword/:id").get(resetPass.confirmPassword);
 app.route("/api/v1.0/confirmRefresh").post(resetPass.confirmRefresh);

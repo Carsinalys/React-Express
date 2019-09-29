@@ -9,7 +9,7 @@ const initState = {
   userName: "",
   sending: false,
   newMessage: false,
-  messages: {}
+  messages: []
 };
 
 const reducer = (state = initState, action) => {
@@ -48,11 +48,6 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         modal: false
-      };
-    case AC.CHAT_ROOMS_TO_STORE:
-      return {
-        ...state,
-        rooms: action.payload
       };
     case AC.CHAT_ROOMS_CHOOSE:
       return {
@@ -95,9 +90,12 @@ const reducer = (state = initState, action) => {
         newMessage: false
       };
     case AC.CHAT_SET_CURRENT_MESSAGES:
+      let newPayload;
+      if (action.payload.length > 0) newPayload = action.payload;
+      else newPayload = [action.payload];
       return {
         ...state,
-        messages: action.payload
+        messages: [...state.messages, ...newPayload]
       };
     default:
       return {

@@ -36,11 +36,7 @@ class PersonalRoom extends React.Component {
       phone: this.props.cabinetSet.inputs.phone.value
     };
 
-    this.props.fetchDataFun(
-      data,
-      this.props.cabinetSet.allGood,
-      this.props.auth.localId
-    );
+    this.props.fetchDataFun(data, this.props.cabinetSet.allGood);
   };
 
   changeContentHandler = num => {
@@ -141,8 +137,8 @@ const dispatchToProps = dispatch => {
   return {
     getInfoFun: id => dispatch(getInfo(id)),
     onInputFun: event => dispatch(setCabinetOnInput(event)),
-    fetchDataFun: (data, allGood, id) =>
-      dispatch(setCabinetFetchOrder(data, allGood, id)),
+    fetchDataFun: (data, allGood) =>
+      dispatch(setCabinetFetchOrder(data, allGood)),
     viewOrdersFun: query => dispatch(viewOrdersCabinet(query)),
     deleteOrderfun: (id, localId) => dispatch(deleteOrder(id, localId))
   };

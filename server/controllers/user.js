@@ -37,11 +37,9 @@ const updateUserCached = cachAsync(async (req, res, next) => {
     next(new AppError("This route is not for changing password.", 400));
   }
   if (req.params.query === "setAddress") {
-    const updateContent = { ...req.body };
-    delete updateContent.id;
-    await updateUserRecordParamCatch(req.body.id, updateContent);
+    await updateUserRecordParamCatch(req.user._id, req.body);
     const userRecord = await User.findOne({ localId: req.body.id }).select(
-      "-password"
+      "-password -refreshToken -passwordChangeAt -lastLoginAt"
     );
     res.status(200).json({ status: "ok", data: userRecord });
   }
@@ -163,7 +161,7 @@ const updateUserRecordCached = cachAsync(async function updateUserRecord(id) {
 const updateUserRecordParamCatch = cachAsync(
   async function updateUserRecordParam(id, data) {
     await User.findOneAndUpdate(
-      { localId: id },
+      { _id: id },
       {
         $set: data
       },
