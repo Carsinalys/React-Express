@@ -85,7 +85,10 @@ app.get("/test", (req, res) => {
   });
 });
 
-app.route("/api/v1.0/getRoomMessages").get(message.getMessages);
+app
+  .route("/api/v1.0/roomMessages")
+  .get(message.getMessages)
+  .delete(message.deleteMessage);
 app.route("/api/v1.0/resetPassword").post(resetPass.resetPassword);
 app.route("/api/v1.0/confirmPassword/:id").get(resetPass.confirmPassword);
 app.route("/api/v1.0/confirmRefresh").post(resetPass.confirmRefresh);

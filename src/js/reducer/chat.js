@@ -14,6 +14,11 @@ const initState = {
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
+    case AC.CHAT_DELETE_MSG_STORE:
+      return {
+        ...state,
+        messages: state.messages.filter(item => item._id !== action.payload)
+      };
     case AC.CHAT_ON_INPUT:
       return {
         ...state,

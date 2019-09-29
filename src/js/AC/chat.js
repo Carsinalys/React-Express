@@ -137,17 +137,20 @@ export const chatSetUserNameToRedux = data => {
   };
 };
 
-export const chatDeleteMessage = (id, room, token) => {
+export const chatDeleteMessage = id => {
+  const data = { id: id };
   return dispatch => {
     dispatch(chatSendMsgSplinnerOn());
-    fetch(
-      `https://pizzabuilder-e9539.firebaseio.com/chat/rooms/${room}/${id}.json?auth=${token}`,
-      {
-        method: "DELETE"
-      }
-    )
+    fetch(`${port}/api/v1.0/roomMessages`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
       .then(res => res.json())
       .then(res => {
+        dispatch(deleteMsgFromDtore(id));
         dispatch(chatSendMsgSplinnerOff());
         console.log(res);
       })
@@ -155,6 +158,13 @@ export const chatDeleteMessage = (id, room, token) => {
         console.log(error);
         dispatch(chatSendMsgSplinnerOff());
       });
+  };
+};
+
+export const deleteMsgFromDtore = id => {
+  return {
+    type: AC.CHAT_DELETE_MSG_STORE,
+    payload: id
   };
 };
 
@@ -198,7 +208,7 @@ export const chatSetCurrentMessages = data => {
 export const chatGetCurMessages = () => {
   return dispatch => {
     dispatch(chatMdalOn());
-    fetch(`${port}/api/v1.0/getRoomMessages`, {
+    fetch(`${port}/api/v1.0/roomMessages`, {
       method: "GET"
     })
       .then(res => res.json())

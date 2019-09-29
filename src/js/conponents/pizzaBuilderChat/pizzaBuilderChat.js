@@ -304,11 +304,7 @@ class Chat extends React.Component {
                           className="chat__message__delete__single"
                           onClick={() =>
                             this.props.auth.localId === item.id
-                              ? this.props.chatDeleteMessageFun(
-                                  item,
-                                  this.props.chat.room,
-                                  this.props.auth.token
-                                )
+                              ? this.props.chatDeleteMessageFun(item._id)
                               : false
                           }
                         ></span>
@@ -365,8 +361,7 @@ const dispatchToProps = dispatch => {
     chatSetUserNameFun: (data, id) => dispatch(chatSetUserName(data, id)),
     chatOnNameInputFun: event => dispatch(chatOnNameInput(event)),
     chatDeleteUserNameFun: () => dispatch(chatDeleteUserName()),
-    chatDeleteMessageFun: (id, room, token) =>
-      dispatch(chatDeleteMessage(id, room, token)),
+    chatDeleteMessageFun: id => dispatch(chatDeleteMessage(id)),
     chatNewMessageOnFun: () => dispatch(chatNewMessageOn()),
     chatNewMessageOffFun: () => dispatch(chatNewMessageOff()),
     chatGetUsersNamesFun: id => dispatch(chatGetUsersNames(id)),

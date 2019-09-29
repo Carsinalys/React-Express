@@ -1,6 +1,7 @@
 const catchAsync = require("../utils/catchErrors");
 const Message = require("../models/message");
 const AppError = require("../utils/errorHandler");
+const factory = require("./handleFactory");
 
 exports.getMessages = catchAsync(async (req, res, next) => {
   const curMessages = await Message.find();
@@ -11,3 +12,5 @@ exports.getMessages = catchAsync(async (req, res, next) => {
     data: curMessages
   });
 });
+
+exports.deleteMessage = factory.deleteOne(Message);
