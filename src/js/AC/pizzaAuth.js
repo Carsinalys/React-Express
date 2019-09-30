@@ -112,7 +112,7 @@ export const authClearInputs = () => {
 
 export const storeToken = data => {
   return {
-    type: AC.AUTH_STORE_TOKEN_STAY_OUT,
+    type: AC.AUTH_STORE_AUTH_DATA,
     payload: data
   };
 };

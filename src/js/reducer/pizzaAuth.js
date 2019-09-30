@@ -85,7 +85,7 @@ const reducer = (state = initState, action) => {
           }
         }
       };
-    case AC.AUTH_STORE_TOKEN_STAY_OUT:
+    case AC.AUTH_STORE_AUTH_DATA:
       localStorage.setItem(
         "expiresAt",
         `${new Date().getTime() + action.payload.expireAt * 1000}`

@@ -15,6 +15,7 @@ import Forgot from "./pizzaBuilderAuth/pizzaBuilderAuthForgot";
 import ReadyBuilds from "./pizzaBuilderBuilds/pizzaBuilderBuilds";
 import ChangeMail from "./pizzaBuildreCabinet/pizzaBuilderCabinetChangeMail";
 import Chat from "./pizzaBuilderChat/pizzaBuilderChat";
+import Page404 from "./pizzaBuilder404/pizzaBuilder404";
 
 class PizzaApp extends React.Component {
   render() {
@@ -40,7 +41,7 @@ class PizzaApp extends React.Component {
             component={AuthendicationSignUp}
           />
           <Route exact path="/chat" component={Chat} />
-          <Route component={PizzaBuilderMainPage} />
+          <Route component={Page404} />
         </Switch>
       </>
     );
