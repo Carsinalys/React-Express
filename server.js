@@ -10,6 +10,7 @@ require("dotenv").config({ path: "./config.env" });
 const app = require("./server/index");
 const WebSocket = require("ws").Server;
 const Message = require("./server/models/message");
+const catchAsync = require("./server/utils/catchErrors");
 
 const DB = process.env.DATABASE.replace(
   "<password>",
@@ -35,18 +36,19 @@ const server = app.listen(PORT, () => console.log("lisening on ", PORT));
 
 const webSocketServer = new WebSocket({ server });
 
-webSocketServer.on("connection", async webSocket => {
-  webSocket.on("message", async message => {
-    const newMessage = await Message.create(JSON.parse(message));
-    broadcast(JSON.stringify(newMessage));
-  });
-});
+webSocketServer.on(
+  "connection",
+  catchAsync(async webSocket => {
+    webSocket.on("message", async message => {
+      const newMessage = await Message.create(JSON.parse(message));
+      broadcast(JSON.stringify(newMessage));
+    });
+  })
+);
 
 function broadcast(data) {
   webSocketServer.clients.forEach(client => {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(data);
-    }
+    client.send(data);
   });
 }
 
