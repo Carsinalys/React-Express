@@ -4,7 +4,7 @@ const AppError = require("../utils/errorHandler");
 const factory = require("./handleFactory");
 
 exports.getMessages = catchAsync(async (req, res, next) => {
-  const curMessages = await Message.find();
+  const curMessages = await Message.find({ room: req.query.room });
   if (!curMessages)
     next(new AppError("There is no any messages on this query", 404));
   res.status(200).json({

@@ -5,15 +5,15 @@ const rooms = props => {
     ? props.rooms.map(item => {
         return (
           <li
-            key={item}
+            key={item._id.toString()}
             className="chat__room__item"
             onClick={() => {
-              props.choose(item);
+              props.choose(item.name);
               props.toggle();
               props.resetLoadmore();
             }}
           >
-            {item}
+            {item.name}
           </li>
         );
       })

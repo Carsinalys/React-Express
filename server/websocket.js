@@ -1,10 +1,8 @@
+const WebSocket = require("ws");
 const Message = require("./models/message");
 const catchAsync = require("./utils/catchErrors");
 
 const socket = catchAsync(async () => {
-  //websocket connection
-  const WebSocket = require("ws");
-
   const webSocketServer = new WebSocket.Server({ port: 8080 });
 
   webSocketServer.on("connection", async webSocket => {

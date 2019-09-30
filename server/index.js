@@ -11,6 +11,7 @@ const ErrorHandler = require("./utils/errorHandler");
 const orders = require("./controllers/orders");
 const reviews = require("./controllers/reviews");
 const message = require("./controllers/message");
+const room = require("./controllers/rooms");
 const resetPass = require("./controllers/resetPassword");
 const globalErrorHandler = require("./controllers/error");
 const { isAuthenticated } = require("./controllers/isAuthenticated");
@@ -85,6 +86,10 @@ app.get("/test", (req, res) => {
   });
 });
 
+app
+  .route("/api/v1.0/chatRooms")
+  .post(room.createroom)
+  .get(room.getRooms);
 app
   .route("/api/v1.0/roomMessages")
   .get(message.getMessages)

@@ -18,12 +18,15 @@ import {
   chatNewMessageOff,
   chatGetUsersNames,
   chatSetCurrentMessages,
-  chatGetCurMessages
+  chatGetCurMessages,
+  getChatRooms
 } from "../../AC/index";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Rooms from "./pizzaBuilderRooms.js";
 
-const socket = new WebSocket("ws://localhost:8080");
+const typeOfConnection = location.href.indexOf("https") >= 0 ? "wss" : "ws";
+
+const socket = new WebSocket(`${typeOfConnection}://localhost:8080`);
 socket.onopen = function() {
   console.log("Socket connected.");
 };
@@ -52,7 +55,7 @@ class Chat extends React.Component {
   componentDidMount() {
     this.props.chatGetUsersNamesFun(this.props.auth.localId);
     if (this.props.chat.messages.length === 0)
-      this.props.chatGetCurMessagesFun();
+      this.props.chatGetCurMessagesFun(this.props.chat.room);
     else
       this.setState({ currentLengthMessages: this.props.chat.messages.length });
     if (socket.readyState === 1) {
@@ -62,6 +65,7 @@ class Chat extends React.Component {
     }
     const www = document.querySelector(".chat__head__view__port");
     www.scrollTop = www.scrollHeight;
+    this.props.getChatRoomsFun();
   }
 
   componentWillUnmount() {
@@ -125,6 +129,7 @@ class Chat extends React.Component {
       let data = {
         name: this.props.chat.userName,
         message: this.props.chat.messageValue,
+        room: this.props.chat.room,
         id: this.props.auth.localId,
         createAt: new Date().getTime()
       };
@@ -248,7 +253,7 @@ class Chat extends React.Component {
                 </div>
               )}
             </div>
-            {this.props.auth.localId == "mYKWkMG6IycSekAIhOri8keBfFh1" ? (
+            {this.props.chat.role == "admin" ? (
               <div className="chat__create__room__cover">
                 <div className="chat__create__room__btn__cover">
                   <input
@@ -263,10 +268,7 @@ class Chat extends React.Component {
                   <button
                     className="chat__create__room__btn"
                     onClick={() =>
-                      this.props.createChatRoomFun(
-                        this.props.chat.roomValue,
-                        this.props.auth.token
-                      )
+                      this.props.createChatRoomFun(this.props.chat.roomValue)
                     }
                   >
                     Create room
@@ -354,7 +356,7 @@ class Chat extends React.Component {
 
 const dispatchToProps = dispatch => {
   return {
-    createChatRoomFun: (str, token) => dispatch(createChatRoom(str, token)),
+    createChatRoomFun: str => dispatch(createChatRoom(str)),
     chatOnInputFun: event => dispatch(chatOnInput(event)),
     chatChooseRoomFun: room => dispatch(chatChooseRoom(room)),
     chatOnMessageInputFun: event => dispatch(chatOnMessageInput(event)),
@@ -367,7 +369,8 @@ const dispatchToProps = dispatch => {
     chatGetUsersNamesFun: id => dispatch(chatGetUsersNames(id)),
     chatSetCurrentMessagesFun: data => dispatch(chatSetCurrentMessages(data)),
     chatResetMessageInputFun: () => dispatch(chatResetMessageInput()),
-    chatGetCurMessagesFun: () => dispatch(chatGetCurMessages())
+    chatGetCurMessagesFun: room => dispatch(chatGetCurMessages(room)),
+    getChatRoomsFun: () => dispatch(getChatRooms())
   };
 };
 

@@ -16,6 +16,10 @@ const messageShchema = new mongoose.Schema({
     unique: false,
     maxlength: 100
   },
+  room: {
+    type: String,
+    required: [true, "No room"]
+  },
   id: {
     type: String,
     required: [true, "No id"]

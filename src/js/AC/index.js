@@ -49,5 +49,6 @@ export {
   chatNewMessageOff,
   chatGetUsersNames,
   chatSetCurrentMessages,
-  chatGetCurMessages
+  chatGetCurMessages,
+  getChatRooms
 } from "./chat";

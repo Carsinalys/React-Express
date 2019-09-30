@@ -16,6 +16,7 @@ exports.deleteOne = Model =>
 
 exports.addOne = Model =>
   cachAsync(async (req, res) => {
+    console.log(req.bpdy);
     Model.create(req.body);
     res.status(201).json({
       status: "success",

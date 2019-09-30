@@ -4,9 +4,11 @@ const initState = {
   roomValue: "",
   messageValue: "",
   userNameValue: "",
+  rooms: [],
   room: "Default",
   modal: false,
   userName: "",
+  role: "",
   sending: false,
   newMessage: false,
   messages: []
@@ -14,6 +16,34 @@ const initState = {
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
+    case AC.CHAT_ROOMS_MSG_TO_CHOOSE:
+      if (action.payload.length > 0) {
+        return {
+          ...state,
+          messages: action.payload
+        };
+      } else if (Object.keys(action.payload).length > 0) {
+        return {
+          ...state,
+          messages: [action.payload]
+        };
+      } else {
+        return {
+          ...state,
+          messages: action.payload
+        };
+      }
+
+    case AC.CHAT_ROOMS_TO_STORE:
+      return {
+        ...state,
+        rooms: action.payload
+      };
+    case AC.CHAT_SET_USER_ROLE:
+      return {
+        ...state,
+        role: action.payload
+      };
     case AC.CHAT_DELETE_MSG_STORE:
       return {
         ...state,
@@ -95,13 +125,27 @@ const reducer = (state = initState, action) => {
         newMessage: false
       };
     case AC.CHAT_SET_CURRENT_MESSAGES:
-      let newPayload;
-      if (action.payload.length > 0) newPayload = action.payload;
-      else newPayload = [action.payload];
-      return {
-        ...state,
-        messages: [...state.messages, ...newPayload]
-      };
+      if (action.payload.length > 0) {
+        let newPayload = action.payload.filter(
+          item => item.room === state.room
+        );
+        return {
+          ...state,
+          messages: [...state.messages, ...newPayload]
+        };
+      } else if (
+        Object.keys(action.payload).length > 0 &&
+        action.payload.room === state.room
+      ) {
+        return {
+          ...state,
+          messages: [...state.messages, action.payload]
+        };
+      } else {
+        return {
+          ...state
+        };
+      }
     default:
       return {
         ...state

@@ -1,25 +1,24 @@
 import * as AC from "./ac";
 import { port } from "../../../portForFront";
 
-export const createChatRoom = (str, token) => {
+export const createChatRoom = str => {
+  const data = {
+    name: str
+  };
   return dispatch => {
-    if (str.length > 0) {
+    if (str.length > 4) {
       dispatch(chatMdalOn());
-      fetch(
-        `https://pizzabuilder-e9539.firebaseio.com/chat/rooms/${str}.json?auth=${token}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "aplication/json"
-          },
-          body: JSON.stringify(str)
-        }
-      )
+      fetch(`${port}/api/v1.0/chatRooms`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
         .then(res => res.json())
         .then(res => {
           dispatch(chatResetRoomInput());
           dispatch(chatMdalOff());
-          dispatch(chatGetRooms());
           console.log(res);
         })
         .catch(error => {
@@ -27,6 +26,31 @@ export const createChatRoom = (str, token) => {
           dispatch(chatMdalOn());
         });
     }
+  };
+};
+
+export const getChatRooms = () => {
+  return dispatch => {
+    dispatch(chatMdalOn());
+    fetch(`${port}/api/v1.0/chatRooms`, {
+      method: "GET"
+    })
+      .then(res => res.json())
+      .then(res => {
+        dispatch(chatMdalOff());
+        dispatch(roomsToStore(res.data));
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(chatMdalOn());
+      });
+  };
+};
+
+export const roomsToStore = data => {
+  return {
+    type: AC.CHAT_ROOMS_TO_STORE,
+    payload: data
   };
 };
 
@@ -124,15 +148,48 @@ export const chatMdalOff = () => {
 };
 
 export const chatChooseRoom = room => {
+  return dispatch => {
+    dispatch(chatMdalOn());
+    fetch(`${port}/api/v1.0/roomMessages?room=${room}`, {
+      method: "GET"
+    })
+      .then(res => res.json())
+      .then(res => {
+        dispatch(chatMdalOff());
+        dispatch(chatChooseRoomToStore(room));
+        dispatch(chatChooseRoomMsgToStore(res.data));
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(chatMdalOn());
+      });
+  };
+};
+
+export const chatChooseRoomToStore = room => {
   return {
     type: AC.CHAT_ROOMS_CHOOSE,
     payload: room
   };
 };
 
+export const chatChooseRoomMsgToStore = data => {
+  return {
+    type: AC.CHAT_ROOMS_MSG_TO_CHOOSE,
+    payload: data
+  };
+};
+
 export const chatSetUserNameToRedux = data => {
   return {
     type: AC.CHAT_SET_USER_NAME,
+    payload: data
+  };
+};
+
+export const chatSetUserRoleToRedux = data => {
+  return {
+    type: AC.CHAT_SET_USER_ROLE,
     payload: data
   };
 };
@@ -190,6 +247,7 @@ export const chatGetUsersNames = id => {
       .then(res => {
         dispatch(chatMdalOff());
         if (res.data.name) dispatch(chatSetUserNameToRedux(res.data.name));
+        if (res.data.role) dispatch(chatSetUserRoleToRedux(res.data.role));
       })
       .catch(error => {
         console.log(error);
@@ -205,10 +263,10 @@ export const chatSetCurrentMessages = data => {
   };
 };
 
-export const chatGetCurMessages = () => {
+export const chatGetCurMessages = room => {
   return dispatch => {
     dispatch(chatMdalOn());
-    fetch(`${port}/api/v1.0/roomMessages`, {
+    fetch(`${port}/api/v1.0/roomMessages?room=${room}`, {
       method: "GET"
     })
       .then(res => res.json())
