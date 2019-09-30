@@ -24,9 +24,9 @@ import {
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Rooms from "./pizzaBuilderRooms.js";
 
-const typeOfConnection = location.href.indexOf("https") >= 0 ? "wss" : "ws";
+//const typeOfConnection = location.href.indexOf("https") >= 0 ? "wss" : "ws";
 
-const socket = new WebSocket(`${typeOfConnection}://localhost:8080`);
+const socket = new WebSocket(`ws://localhost:8080`);
 socket.onopen = function() {
   console.log("Socket connected.");
 };
