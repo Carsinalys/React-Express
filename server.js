@@ -8,6 +8,8 @@ process.on("uncaughtException", err => {
 
 require("dotenv").config({ path: "./config.env" });
 const app = require("./server/index");
+const WebSocket = require("ws").Server;
+const Message = require("./server/models/message");
 
 const DB = process.env.DATABASE.replace(
   "<password>",
@@ -30,6 +32,23 @@ mongoose
 const PORT = process.env.PORT || 3000;
 
 const server = app.listen(PORT, () => console.log("lisening on ", PORT));
+
+const webSocketServer = new WebSocket({ server });
+
+webSocketServer.on("connection", async webSocket => {
+  webSocket.on("message", async message => {
+    const newMessage = await Message.create(JSON.parse(message));
+    broadcast(JSON.stringify(newMessage));
+  });
+});
+
+function broadcast(data) {
+  webSocketServer.clients.forEach(client => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(data);
+    }
+  });
+}
 
 process.on("unhandledRejection", err => {
   console.log(err);

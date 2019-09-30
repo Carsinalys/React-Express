@@ -24,7 +24,8 @@ import {
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Rooms from "./pizzaBuilderRooms.js";
 
-const socket = new WebSocket("ws://localhost:8080");
+const HOST = location.origin.replace(/^http/, "ws");
+const socket = new WebSocket(HOST);
 socket.onopen = function() {
   console.log("Socket connected.");
 };

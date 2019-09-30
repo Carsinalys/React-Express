@@ -22,12 +22,12 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const cookieParser = require("cookie-parser");
-const socket = require("./websocket");
-socket();
+//const socket = require("./websocket");
 
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
 const app = Express();
+//socket(app);
 
 //settings for pug
 app.set("view engine", "pug");
