@@ -26,7 +26,7 @@ import Rooms from "./pizzaBuilderRooms.js";
 
 const typeOfConnection =
   location.href.indexOf("https") >= 0
-    ? "wss://pizza-builder-app.herokuapp.com:8080"
+    ? "ws://pizza-builder-app.herokuapp.com:8080"
     : "ws://localhost:8080";
 
 const socket = new WebSocket(typeOfConnection);
