@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Inputs from "../pizzaBuilderCheckout/pizzaBuilderCheckoutInput";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Modal from "../hoc/modal";
@@ -39,7 +39,6 @@ const cabinetSet = props => {
             id="avatar__submit"
             name="submit"
             form="avatar"
-            // onClick={() => sendPhotoHandler(event)}
           />
         </div>
       </form>

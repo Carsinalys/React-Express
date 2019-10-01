@@ -6,6 +6,8 @@ const initState = {
   expiresAt: null,
   localId: null,
   error: null,
+  name: "",
+  photo: "",
   inputs: {
     mail: {
       id: "auth__email",
@@ -91,17 +93,20 @@ const reducer = (state = initState, action) => {
         `${new Date().getTime() + action.payload.expireAt * 1000}`
       );
       localStorage.setItem("localId", `${action.payload.localId}`);
+      localStorage.setItem("name", `${action.payload.name}`);
+      localStorage.setItem("photo", `${action.payload.photo}`);
       return {
         ...state
       };
     case AC.AUTH_GET_TOKEN_FROM_COOKIE:
       let strExpiresAt = localStorage.getItem("expiresAt");
-      let strLocalId = localStorage.getItem("localId");
-      if (strLocalId && new Date().getTime() < strExpiresAt) {
+      if (new Date().getTime() < strExpiresAt) {
         return {
           ...state,
           isAuthindicated: true,
-          localId: strLocalId
+          localId: localStorage.getItem("localId"),
+          name: localStorage.getItem("name"),
+          photo: localStorage.getItem("photo")
         };
       } else {
         return {
@@ -113,13 +118,17 @@ const reducer = (state = initState, action) => {
     case AC.LOG_OUT: {
       localStorage.removeItem("expiresAt");
       localStorage.removeItem("localId");
+      localStorage.removeItem("name");
+      localStorage.removeItem("photo");
       return {
         ...state,
         isAuthindicated: false,
         expiresAt: null,
         localId: null,
         error: null,
-        stayIn: false
+        stayIn: false,
+        name: "",
+        photo: ""
       };
     }
     default:

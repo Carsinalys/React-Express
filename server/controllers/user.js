@@ -3,7 +3,9 @@ const cachAsync = require("../utils/catchErrors");
 const AppError = require("../utils/errorHandler");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
-
+const fs = require("fs");
+const path = require("path");
+//multer settings
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "dist/assets/users");
@@ -20,7 +22,6 @@ const multerFilter = (req, file, cb) => {
     cb(new AppError("Not an image", 400), false);
   }
 };
-
 const upload = multer({
   storage: multerStorage,
   fileFilter: multerFilter
@@ -35,9 +36,9 @@ const obj = {
   uploadUserPhotoFun: (req, res, next) => uploadUserPhoto(req, res, next)
 };
 module.exports = obj;
-
+//upload photo
 const uploadUserPhoto = upload.single("avatar");
-
+//cookie options
 const cookieOption = {
   expires: new Date(Date.now() + 3600 * 1000),
   httpOnly: true
@@ -59,8 +60,7 @@ const getUserInfoCached = cachAsync(async (req, res) => {
 });
 
 const updateUserCached = cachAsync(async (req, res, next) => {
-  console.log(req.body);
-  console.log(req.file);
+  // console.log(req.file);
   if (req.body.password) {
     next(new AppError("This route is not for changing password.", 400));
   }
@@ -70,6 +70,21 @@ const updateUserCached = cachAsync(async (req, res, next) => {
       "-password -refreshToken -passwordChangeAt -lastLoginAt"
     );
     res.status(200).json({ status: "ok", data: userRecord });
+  } else if (req.file.filename) {
+    const data = {
+      photo: req.file.filename
+    };
+    await updateUserRecordParamCatch(req.user._id, data);
+    if (req.user.photo !== "man.svg") {
+      try {
+        fs.unlinkSync(
+          path.join(__dirname, `../../dist/assets/users/${req.user.photo}`)
+        );
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    res.status(200).redirect("/");
   }
 });
 
@@ -107,7 +122,9 @@ const UserFunCached = cachAsync(async (req, res, next) => {
       .cookie("jwt", token, cookieOption)
       .json({
         expireAt: 3600,
-        localId: userRecord._id
+        localId: userRecord._id,
+        name: userRecord.name,
+        photo: userRecord.photo
       });
   } else if (req.params.query === "authentication") {
     if (!req.body.mail || !req.body.password)
@@ -140,7 +157,9 @@ const UserFunCached = cachAsync(async (req, res, next) => {
         .cookie("jwt", newToken, cookieOption)
         .json({
           expireAt: 3600,
-          localId: userRecord._id
+          localId: userRecord._id,
+          name: userRecord.name,
+          photo: userRecord.photo
         });
     } else if (
       (await userRecord.correctPassword(
@@ -158,7 +177,9 @@ const UserFunCached = cachAsync(async (req, res, next) => {
         .cookie("jwt", newToken, cookieOption)
         .json({
           expireAt: 604800,
-          localId: userRecord._id
+          localId: userRecord._id,
+          name: userRecord.name,
+          photo: userRecord.photo
         });
     } else {
       return res.status(400).json({
