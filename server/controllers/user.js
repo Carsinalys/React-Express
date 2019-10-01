@@ -2,15 +2,41 @@ const User = require("../models/user");
 const cachAsync = require("../utils/catchErrors");
 const AppError = require("../utils/errorHandler");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
+
+const multerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "dist/assets/users");
+  },
+  filename: (req, file, cb) => {
+    const ext = file.mimetype.split("/")[1];
+    cb(null, `user-${req.user._id}-${Date.now()}.${ext}`);
+  }
+});
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith("image")) {
+    cb(null, true);
+  } else {
+    cb(new AppError("Not an image", 400), false);
+  }
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter
+});
 
 const obj = {
   UserFun: (req, res) => UserFunCached(req, res),
   updateUserFun: (req, res) => updateUserCached(req, res),
   getUserInfoFun: (req, res) => getUserInfoCached(req, res),
   changeEmailFun: (req, res) => changeEmail(req, res),
-  logOutFun: (req, res) => logOut(req, res)
+  logOutFun: (req, res) => logOut(req, res),
+  uploadUserPhotoFun: (req, res, next) => uploadUserPhoto(req, res, next)
 };
 module.exports = obj;
+
+const uploadUserPhoto = upload.single("avatar");
 
 const cookieOption = {
   expires: new Date(Date.now() + 3600 * 1000),
@@ -33,6 +59,8 @@ const getUserInfoCached = cachAsync(async (req, res) => {
 });
 
 const updateUserCached = cachAsync(async (req, res, next) => {
+  console.log(req.body);
+  console.log(req.file);
   if (req.body.password) {
     next(new AppError("This route is not for changing password.", 400));
   }

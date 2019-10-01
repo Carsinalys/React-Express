@@ -45,7 +45,11 @@ const userShchema = new mongoose.Schema({
     default: "user"
   },
   passwordResetToken: String,
-  passwordResetExrires: Date
+  passwordResetExrires: Date,
+  photo: {
+    type: String,
+    default: "man.svg"
+  }
 });
 
 userShchema.pre("save", async function(next) {

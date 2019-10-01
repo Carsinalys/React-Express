@@ -5,7 +5,7 @@ import { StaticRouter } from "react-router";
 import fs from "fs";
 import App from "../src/js/serverConnectProps";
 import path from "path";
-import Obj from "./controllers/user";
+import Obj, { uploadUserPhoto } from "./controllers/user";
 const morgan = require("morgan");
 const ErrorHandler = require("./utils/errorHandler");
 const orders = require("./controllers/orders");
@@ -97,6 +97,9 @@ app.route("/api/v1.0/confirmPassword/:id").get(resetPass.confirmPassword);
 app.route("/api/v1.0/confirmRefresh").post(resetPass.confirmRefresh);
 app.route("/api/v1.0/changeMail").patch(isAuthenticated, Obj.changeEmailFun);
 app.route("/api/v1.0/user/logOut").post(Obj.logOutFun);
+app
+  .route("/api/v1.0/user/setPhoto")
+  .post(isAuthenticated, Obj.uploadUserPhotoFun, Obj.updateUserFun);
 app
   .route("/api/v1.0/user/:query")
   .get(Obj.getUserInfoFun)

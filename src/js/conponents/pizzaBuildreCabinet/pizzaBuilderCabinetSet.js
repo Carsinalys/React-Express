@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Inputs from "../pizzaBuilderCheckout/pizzaBuilderCheckoutInput";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Modal from "../hoc/modal";
+import { port } from "../../../../portForFront";
 
 const cabinetSet = props => {
   return (
@@ -20,6 +21,26 @@ const cabinetSet = props => {
           >
             Send
           </button>
+        </div>
+      </form>
+      <form
+        action={`${port}/api/v1.0/user/setPhoto`}
+        id="avatar"
+        method="POST"
+        encType="multipart/form-data"
+      >
+        <div>
+          <input type="file" id="avatar__file" name="avatar" form="avatar" />
+          <label htmlFor="avatar__file">Choose photo</label>
+        </div>
+        <div>
+          <input
+            type="submit"
+            id="avatar__submit"
+            name="submit"
+            form="avatar"
+            // onClick={() => sendPhotoHandler(event)}
+          />
         </div>
       </form>
     </div>
