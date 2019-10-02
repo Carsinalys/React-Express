@@ -99,7 +99,12 @@ app.route("/api/v1.0/changeMail").patch(isAuthenticated, Obj.changeEmailFun);
 app.route("/api/v1.0/user/logOut").post(Obj.logOutFun);
 app
   .route("/api/v1.0/user/setPhoto")
-  .post(isAuthenticated, Obj.uploadUserPhotoFun, Obj.updateUserFun);
+  .post(
+    isAuthenticated,
+    Obj.uploadUserPhotoFun,
+    Obj.resizeUserPhotoFun,
+    Obj.updateUserFun
+  );
 app
   .route("/api/v1.0/user/:query")
   .get(Obj.getUserInfoFun)

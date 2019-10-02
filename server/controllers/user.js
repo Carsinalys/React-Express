@@ -3,18 +3,20 @@ const cachAsync = require("../utils/catchErrors");
 const AppError = require("../utils/errorHandler");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
+const sharp = require("sharp");
 const fs = require("fs");
 const path = require("path");
 //multer settings
-const multerStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "dist/assets/users");
-  },
-  filename: (req, file, cb) => {
-    const ext = file.mimetype.split("/")[1];
-    cb(null, `user-${req.user._id}-${Date.now()}.${ext}`);
-  }
-});
+// const multerStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "dist/assets/users");
+//   },
+//   filename: (req, file, cb) => {
+//     const ext = file.mimetype.split("/")[1];
+//     cb(null, `user-${req.user._id}-${Date.now()}.${ext}`);
+//   }
+// });
+const multerStorage = multer.memoryStorage();
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image")) {
     cb(null, true);
@@ -33,9 +35,21 @@ const obj = {
   getUserInfoFun: (req, res) => getUserInfoCached(req, res),
   changeEmailFun: (req, res) => changeEmail(req, res),
   logOutFun: (req, res) => logOut(req, res),
-  uploadUserPhotoFun: (req, res, next) => uploadUserPhoto(req, res, next)
+  uploadUserPhotoFun: (req, res, next) => uploadUserPhoto(req, res, next),
+  resizeUserPhotoFun: (req, res, next) => resizeUserPhoto(req, res, next)
 };
 module.exports = obj;
+const resizeUserPhoto = cachAsync(async (req, res, next) => {
+  if (!req.file) return next();
+
+  req.file.filename = `user-${req.user._id}-${Date.now()}.jpeg`;
+  await sharp(req.file.buffer)
+    .resize(300)
+    .toFormat("jpeg")
+    .jpeg({ quality: 90 })
+    .toFile(`dist/assets/users/${req.file.filename}`);
+  next();
+});
 //upload photo
 const uploadUserPhoto = upload.single("avatar");
 //cookie options

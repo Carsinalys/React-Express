@@ -23,8 +23,9 @@ import {
 } from "../../AC/index";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Rooms from "./pizzaBuilderRooms.js";
+import { socketType } from "../../../../portForFront";
 
-const HOST = location.origin.replace(/^http/, "ws");
+const HOST = location.origin.replace(/^http/, socketType);
 const socket = new WebSocket(HOST);
 socket.onopen = function() {
   console.log("Socket connected.");
