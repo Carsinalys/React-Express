@@ -22,10 +22,13 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const cookieParser = require("cookie-parser");
+const compression = require("compression");
 
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
 const app = Express();
+//for heroku because it`t act like proxy
+app.enable("trust proxy");
 
 //settings for pug
 app.set("view engine", "pug");
@@ -61,6 +64,8 @@ const limiter = rateLimit({
   message: "Too many requests from this IP, try again later."
 });
 app.use("/api", limiter);
+
+app.use(compression());
 
 //allow to fetch without block cors error
 app.use(function(req, res, next) {

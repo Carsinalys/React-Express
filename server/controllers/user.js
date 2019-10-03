@@ -52,12 +52,6 @@ const resizeUserPhoto = cachAsync(async (req, res, next) => {
 });
 //upload photo
 const uploadUserPhoto = upload.single("avatar");
-//cookie options
-const cookieOption = {
-  expires: new Date(Date.now() + 3600 * 1000),
-  httpOnly: true
-};
-if (process.env.NODE_ENV === "production") cookieOption.secure = true;
 
 const getUserInfoCached = cachAsync(async (req, res) => {
   const checkRegExp = new RegExp(/^[0-9a-fA-F]{24}$/);
@@ -133,7 +127,11 @@ const UserFunCached = cachAsync(async (req, res, next) => {
     const token = createToken(userRecord._id);
     res
       .status(201)
-      .cookie("jwt", token, cookieOption)
+      .cookie("jwt", token, {
+        expires: new Date(Date.now() + 3600 * 1000),
+        httpOnly: true,
+        secure: req.secure || req.headers["x-forwarded-proto"] === "https"
+      })
       .json({
         expireAt: 3600,
         localId: userRecord._id,
@@ -168,7 +166,11 @@ const UserFunCached = cachAsync(async (req, res, next) => {
       //sending new token
       res
         .status(200)
-        .cookie("jwt", newToken, cookieOption)
+        .cookie("jwt", newToken, {
+          expires: new Date(Date.now() + 3600 * 1000),
+          httpOnly: true,
+          secure: req.secure || req.headers["x-forwarded-proto"] === "https"
+        })
         .json({
           expireAt: 3600,
           localId: userRecord._id,
@@ -188,7 +190,11 @@ const UserFunCached = cachAsync(async (req, res, next) => {
       //sending new token
       res
         .status(200)
-        .cookie("jwt", newToken, cookieOption)
+        .cookie("jwt", newToken, {
+          expires: new Date(Date.now() + 604800 * 1000),
+          httpOnly: true,
+          secure: req.secure || req.headers["x-forwarded-proto"] === "https"
+        })
         .json({
           expireAt: 604800,
           localId: userRecord._id,
