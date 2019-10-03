@@ -59,3 +59,10 @@ process.on("unhandledRejection", err => {
     process.exit(1);
   });
 });
+// this is heroku event with shoting down server every 24 hours
+process.on("SIGTERM", () => {
+  console.log("SIGTERM recieved, shouting down.");
+  server.close(() => {
+    console.log("process terminated.");
+  });
+});

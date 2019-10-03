@@ -23,6 +23,7 @@ const xss = require("xss-clean");
 const hpp = require("hpp");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
+const cors = require("cors");
 
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
@@ -64,23 +65,16 @@ const limiter = rateLimit({
   message: "Too many requests from this IP, try again later."
 });
 app.use("/api", limiter);
-
+//compression data sending to client
 app.use(compression());
-
-//allow to fetch without block cors error
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, authorization"
-  );
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET, PATCH, POST, DELETE, OPTIONS"
-  );
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
-});
+//implement cors
+app.use(cors());
+//example for specific domain
+//app.use(cors({origin: "http://localhost:3001"}));
+//allow delete path put ... methods from all domains
+app.options("*", cors());
+//example for specific domain
+//app.options("/api/v1.0/user", cors());
 
 app.get("/test", (req, res) => {
   res.status("200").render("base", {

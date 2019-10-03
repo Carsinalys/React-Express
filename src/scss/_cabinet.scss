@@ -236,3 +236,47 @@
     border: 1px #000000 solid;
   }
 }
+
+///////////////////////upload photo
+
+.add__photo__form {
+  padding: 1rem 1rem 1rem 3rem;
+  text-align: center;
+}
+
+.add__photo__submit {
+  border-radius: 3px;
+  border: 1px transparent solid;
+  background: #91ce50;
+  padding: 1rem 4rem;
+  margin-top: 2rem;
+  &:hover {
+    border: 1px #000000 solid;
+    background: #5c5e06;
+  }
+}
+
+.add__photo__input__cover {
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+  margin: 0 auto;
+}
+
+.add__photo__preview {
+  width: 20rem;
+  height: 20rem;;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+}
+
+.add__photo__title {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.add__photo__submit__cover {
+  display: inline-block;
+}

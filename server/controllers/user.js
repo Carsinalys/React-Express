@@ -6,16 +6,7 @@ const multer = require("multer");
 const sharp = require("sharp");
 const fs = require("fs");
 const path = require("path");
-//multer settings
-// const multerStorage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "dist/assets/users");
-//   },
-//   filename: (req, file, cb) => {
-//     const ext = file.mimetype.split("/")[1];
-//     cb(null, `user-${req.user._id}-${Date.now()}.${ext}`);
-//   }
-// });
+
 const multerStorage = multer.memoryStorage();
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image")) {
@@ -39,6 +30,7 @@ const obj = {
   resizeUserPhotoFun: (req, res, next) => resizeUserPhoto(req, res, next)
 };
 module.exports = obj;
+
 const resizeUserPhoto = cachAsync(async (req, res, next) => {
   if (!req.file) return next();
 
@@ -125,19 +117,13 @@ const UserFunCached = cachAsync(async (req, res, next) => {
     //sending response
     const userRecord = await User.create(userObjForBase);
     const token = createToken(userRecord._id);
-    res
-      .status(201)
-      .cookie("jwt", token, {
-        expires: new Date(Date.now() + 3600 * 1000),
-        httpOnly: true,
-        secure: req.secure || req.headers["x-forwarded-proto"] === "https"
-      })
-      .json({
-        expireAt: 3600,
-        localId: userRecord._id,
-        name: userRecord.name,
-        photo: userRecord.photo
-      });
+    createCookie(token, 3600, req, res);
+    res.status(201).json({
+      expireAt: 3600,
+      localId: userRecord._id,
+      name: userRecord.name,
+      photo: userRecord.photo
+    });
   } else if (req.params.query === "authentication") {
     if (!req.body.mail || !req.body.password)
       return next(
@@ -163,20 +149,14 @@ const UserFunCached = cachAsync(async (req, res, next) => {
       const newToken = createToken(userRecord._id);
       // updating user record (time)
       updateUserRecordCached(userRecord._id);
+      createCookie(newToken, 3600, req, res);
       //sending new token
-      res
-        .status(200)
-        .cookie("jwt", newToken, {
-          expires: new Date(Date.now() + 3600 * 1000),
-          httpOnly: true,
-          secure: req.secure || req.headers["x-forwarded-proto"] === "https"
-        })
-        .json({
-          expireAt: 3600,
-          localId: userRecord._id,
-          name: userRecord.name,
-          photo: userRecord.photo
-        });
+      res.status(200).json({
+        expireAt: 3600,
+        localId: userRecord._id,
+        name: userRecord.name,
+        photo: userRecord.photo
+      });
     } else if (
       (await userRecord.correctPassword(
         req.body.password,
@@ -187,20 +167,14 @@ const UserFunCached = cachAsync(async (req, res, next) => {
       const newToken = createLongToken(userRecord._id);
       // updating user record (time)
       updateUserRecordCached(userRecord._id);
+      createCookie(newToken, 604800, req, res);
       //sending new token
-      res
-        .status(200)
-        .cookie("jwt", newToken, {
-          expires: new Date(Date.now() + 604800 * 1000),
-          httpOnly: true,
-          secure: req.secure || req.headers["x-forwarded-proto"] === "https"
-        })
-        .json({
-          expireAt: 604800,
-          localId: userRecord._id,
-          name: userRecord.name,
-          photo: userRecord.photo
-        });
+      res.status(200).json({
+        expireAt: 604800,
+        localId: userRecord._id,
+        name: userRecord.name,
+        photo: userRecord.photo
+      });
     } else {
       return res.status(400).json({
         error: "password is don't match",
@@ -255,6 +229,15 @@ function createLongToken(id) {
     { id: id, exp: Math.floor(Date.now() / 1000) + 60 * process.env.SRAYIN },
     process.env.SALT
   );
+}
+
+function createCookie(token, time, req, res) {
+  res.cookie("jwt", token, {
+    expires: new Date(Date.now() + time * 1000),
+    httpOnly: true,
+    secure: req.secure || req.headers["x-forwarded-proto"] === "https"
+  });
+  return res;
 }
 
 const changeEmail = cachAsync(async (req, res, next) => {
