@@ -8,7 +8,8 @@ import {
   gerOrders,
   multiPizzaTheSame,
   resetMultiPizza,
-  reset_build
+  reset_build,
+  gerUserPhotoAfterChange
 } from "../../AC/index";
 
 import PrevOrders from "./pizzaBuilderMainOrders";
@@ -19,6 +20,17 @@ class PizzaBuilderMainPage extends React.Component {
   componentDidMount() {
     if (!Object.keys(this.props.orders).length) {
       this.props.getOrders();
+    }
+    if (localStorage) {
+      if (
+        (localStorage.getItem("id") && localStorage.getItem("photoChanged")) ||
+        (localStorage.getItem("id") && localStorage.getItem("nameChanged"))
+      ) {
+        this.props.gerUserPhotoAfterChangeFun(localStorage.getItem("id"));
+        localStorage.removeItem("id");
+        localStorage.removeItem("photoChanged");
+        localStorage.removeItem("nameChanged");
+      }
     }
   }
 
@@ -90,7 +102,8 @@ const dispatchToProps = dispatch => {
     getOrders: () => dispatch(gerOrders()),
     multiTheSameFun: obj => dispatch(multiPizzaTheSame(obj)),
     resetMultiPizzaFun: () => dispatch(resetMultiPizza()),
-    reset_buildFun: () => dispatch(reset_build())
+    reset_buildFun: () => dispatch(reset_build()),
+    gerUserPhotoAfterChangeFun: id => dispatch(gerUserPhotoAfterChange(id))
   };
 };
 

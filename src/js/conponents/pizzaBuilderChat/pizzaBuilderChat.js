@@ -105,6 +105,8 @@ class Chat extends React.Component {
   };
 
   sendUserNameHandler = () => {
+    localStorage.setItem("id", this.props.auth.localId);
+    localStorage.setItem("nameChanged", "true");
     if (
       this.props.chat.userNameValue.length < 5 ||
       this.props.chat.userNameValue.length > 20

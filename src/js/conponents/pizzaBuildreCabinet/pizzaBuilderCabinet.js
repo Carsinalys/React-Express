@@ -95,9 +95,25 @@ class PersonalRoom extends React.Component {
         </nav>
         <div
           className={
-            this.state.trigger ? "room__output hide" : "room__output show"
+            this.state.trigger
+              ? "room__output_cabinet hide"
+              : "room__output_cabinet show"
           }
         >
+          <div className="cabinet__user__cover">
+            <div className="log__out__cover">
+              <div className="log__out__name__block">
+                <p className="cabinet__user__name">{this.props.auth.name}</p>
+              </div>
+              <div className="log__out__image__block">
+                <img
+                  src={`assets/users/${this.props.auth.photo}`}
+                  alt={this.props.auth.name}
+                  className="log__out__image"
+                />
+              </div>
+            </div>
+          </div>
           {this.state.showingContent == 1 ? (
             <CabinetInfo info={this.props.cabinet} />
           ) : null}
@@ -107,6 +123,7 @@ class PersonalRoom extends React.Component {
               modal={this.props.cabinetSet.modalShow}
               onInput={this.props.onInputFun}
               check={this.sendDataHnadler}
+              auth={this.props.auth}
             />
           ) : null}
           {this.state.showingContent == 3 ? (

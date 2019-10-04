@@ -50,7 +50,7 @@
       return Object.prototype.hasOwnProperty.call(e, t);
     }),
     (n.p = "/"),
-    n((n.s = 109));
+    n((n.s = 110));
 })([
   function(e, t, n) {
     "use strict";
@@ -58,19 +58,19 @@
   },
   function(e, t, n) {
     "use strict";
-    n.d(t, "ib", function() {
+    n.d(t, "jb", function() {
       return r;
     }),
-      n.d(t, "db", function() {
+      n.d(t, "eb", function() {
         return a;
       }),
-      n.d(t, "jb", function() {
+      n.d(t, "kb", function() {
         return o;
       }),
-      n.d(t, "sb", function() {
+      n.d(t, "tb", function() {
         return i;
       }),
-      n.d(t, "Y", function() {
+      n.d(t, "Z", function() {
         return l;
       }),
       n.d(t, "W", function() {
@@ -79,127 +79,127 @@
       n.d(t, "X", function() {
         return c;
       }),
-      n.d(t, "bb", function() {
+      n.d(t, "Y", function() {
         return s;
       }),
-      n.d(t, "Z", function() {
+      n.d(t, "cb", function() {
         return p;
       }),
       n.d(t, "ab", function() {
         return f;
       }),
-      n.d(t, "lb", function() {
+      n.d(t, "bb", function() {
         return d;
       }),
-      n.d(t, "kb", function() {
+      n.d(t, "mb", function() {
         return m;
       }),
-      n.d(t, "V", function() {
+      n.d(t, "lb", function() {
         return h;
       }),
-      n.d(t, "U", function() {
+      n.d(t, "V", function() {
         return g;
       }),
-      n.d(t, "qb", function() {
+      n.d(t, "U", function() {
         return _;
       }),
       n.d(t, "rb", function() {
         return v;
       }),
-      n.d(t, "pb", function() {
+      n.d(t, "sb", function() {
         return y;
       }),
-      n.d(t, "ob", function() {
+      n.d(t, "qb", function() {
         return b;
       }),
-      n.d(t, "nb", function() {
+      n.d(t, "pb", function() {
         return w;
       }),
-      n.d(t, "mb", function() {
+      n.d(t, "ob", function() {
         return E;
       }),
-      n.d(t, "f", function() {
+      n.d(t, "nb", function() {
         return O;
       }),
-      n.d(t, "m", function() {
+      n.d(t, "f", function() {
         return S;
       }),
-      n.d(t, "l", function() {
+      n.d(t, "m", function() {
         return k;
       }),
-      n.d(t, "e", function() {
+      n.d(t, "l", function() {
         return x;
       }),
-      n.d(t, "d", function() {
+      n.d(t, "e", function() {
         return N;
       }),
-      n.d(t, "b", function() {
+      n.d(t, "d", function() {
         return C;
       }),
-      n.d(t, "n", function() {
+      n.d(t, "b", function() {
         return z;
       }),
-      n.d(t, "c", function() {
+      n.d(t, "n", function() {
         return T;
       }),
-      n.d(t, "k", function() {
+      n.d(t, "c", function() {
         return P;
       }),
-      n.d(t, "a", function() {
+      n.d(t, "k", function() {
         return j;
       }),
-      n.d(t, "j", function() {
+      n.d(t, "a", function() {
         return R;
       }),
-      n.d(t, "i", function() {
+      n.d(t, "j", function() {
         return M;
       }),
-      n.d(t, "h", function() {
+      n.d(t, "i", function() {
         return A;
+      }),
+      n.d(t, "h", function() {
+        return I;
       }),
       n.d(t, "g", function() {
         return D;
       }),
-      n.d(t, "cb", function() {
-        return I;
-      }),
-      n.d(t, "o", function() {
+      n.d(t, "db", function() {
         return F;
       }),
-      n.d(t, "q", function() {
+      n.d(t, "o", function() {
         return L;
       }),
-      n.d(t, "p", function() {
+      n.d(t, "q", function() {
         return U;
       }),
-      n.d(t, "s", function() {
+      n.d(t, "p", function() {
         return H;
       }),
-      n.d(t, "u", function() {
+      n.d(t, "s", function() {
         return V;
       }),
-      n.d(t, "r", function() {
+      n.d(t, "u", function() {
         return $;
       }),
-      n.d(t, "t", function() {
+      n.d(t, "r", function() {
         return B;
       }),
-      n.d(t, "x", function() {
+      n.d(t, "t", function() {
         return W;
       }),
-      n.d(t, "w", function() {
+      n.d(t, "x", function() {
         return q;
       }),
-      n.d(t, "z", function() {
+      n.d(t, "w", function() {
         return G;
       }),
-      n.d(t, "v", function() {
+      n.d(t, "z", function() {
         return Q;
       }),
-      n.d(t, "y", function() {
+      n.d(t, "v", function() {
         return Y;
       }),
-      n.d(t, "eb", function() {
+      n.d(t, "y", function() {
         return Z;
       }),
       n.d(t, "fb", function() {
@@ -211,65 +211,68 @@
       n.d(t, "hb", function() {
         return J;
       }),
-      n.d(t, "G", function() {
+      n.d(t, "ib", function() {
         return ee;
       }),
-      n.d(t, "L", function() {
+      n.d(t, "G", function() {
         return te;
       }),
-      n.d(t, "C", function() {
+      n.d(t, "L", function() {
         return ne;
       }),
-      n.d(t, "B", function() {
+      n.d(t, "C", function() {
         return re;
       }),
-      n.d(t, "O", function() {
+      n.d(t, "B", function() {
         return ae;
       }),
-      n.d(t, "M", function() {
+      n.d(t, "O", function() {
         return oe;
       }),
-      n.d(t, "H", function() {
+      n.d(t, "M", function() {
         return ie;
       }),
-      n.d(t, "I", function() {
+      n.d(t, "H", function() {
         return le;
       }),
-      n.d(t, "S", function() {
+      n.d(t, "I", function() {
         return ue;
       }),
-      n.d(t, "J", function() {
+      n.d(t, "S", function() {
         return ce;
       }),
-      n.d(t, "D", function() {
+      n.d(t, "J", function() {
         return se;
       }),
-      n.d(t, "K", function() {
+      n.d(t, "D", function() {
         return pe;
       }),
-      n.d(t, "Q", function() {
+      n.d(t, "K", function() {
         return fe;
       }),
-      n.d(t, "P", function() {
+      n.d(t, "Q", function() {
         return de;
       }),
-      n.d(t, "F", function() {
+      n.d(t, "P", function() {
         return me;
       }),
-      n.d(t, "E", function() {
+      n.d(t, "F", function() {
         return he;
       }),
-      n.d(t, "R", function() {
+      n.d(t, "E", function() {
         return ge;
       }),
-      n.d(t, "A", function() {
+      n.d(t, "R", function() {
         return _e;
       }),
-      n.d(t, "T", function() {
+      n.d(t, "A", function() {
         return ve;
       }),
-      n.d(t, "N", function() {
+      n.d(t, "T", function() {
         return ye;
+      }),
+      n.d(t, "N", function() {
+        return be;
       });
     var r = "PLUS",
       a = "MINUS",
@@ -278,70 +281,71 @@
       l = "GET_ORDERS_START",
       u = "GET_ORDERS_ERROR",
       c = "GET_ORDERS_FINISH",
-      s = "GET_REVIEWS_START",
-      p = "GET_REVIEWS_ERROR",
-      f = "GET_REVIEWS_FINISH",
-      d = "REVIEWS_EDIT_MODE_ON",
-      m = "REVIEWS_EDIT_MODE_OFF",
-      h = "DELETE_REVIEW_MODAL_ON",
-      g = "DELETE_REVIEW_MODAL_OFF",
-      _ = "SEND_ORDER_ON_INPUT",
-      v = "SEND_ORDER_RESET",
-      y = "SEND_ORDER_MODAL_ON",
-      b = "SEND_ORDER_MODAL_OFF",
-      w = "SEND_ORDER_ERROR",
-      E = "SEND_ORDER_ADDRES",
-      O = "AUTH_ON_INPUT",
-      S = "AUTH_SIGN_IN_FINISH",
-      k = "AUTH_SIGN_IN_ERROR",
-      x = "AUTH_MODAL_ON",
-      N = "AUTH_MODAL_OFF",
-      C = "AUTH_CLEAR_INPUTS",
-      z = "AUTH_STORE_AUTH_DATA",
-      T = "AUTH_GET_TOKEN_FROM_COOKIE",
-      P = "AUTH_RESET_ON_INPUT",
-      j = "AUTH_CHANGE_MAIL_ON_INPUT",
-      R = "AUTH_RESET_MODAL_ON",
-      M = "AUTH_RESET_MODAL_OFF",
-      A = "AUTH_RESET_MESSAGE",
+      s = "GET_ORDERS_FINISH_PHOTO",
+      p = "GET_REVIEWS_START",
+      f = "GET_REVIEWS_ERROR",
+      d = "GET_REVIEWS_FINISH",
+      m = "REVIEWS_EDIT_MODE_ON",
+      h = "REVIEWS_EDIT_MODE_OFF",
+      g = "DELETE_REVIEW_MODAL_ON",
+      _ = "DELETE_REVIEW_MODAL_OFF",
+      v = "SEND_ORDER_ON_INPUT",
+      y = "SEND_ORDER_RESET",
+      b = "SEND_ORDER_MODAL_ON",
+      w = "SEND_ORDER_MODAL_OFF",
+      E = "SEND_ORDER_ERROR",
+      O = "SEND_ORDER_ADDRES",
+      S = "AUTH_ON_INPUT",
+      k = "AUTH_SIGN_IN_FINISH",
+      x = "AUTH_SIGN_IN_ERROR",
+      N = "AUTH_MODAL_ON",
+      C = "AUTH_MODAL_OFF",
+      z = "AUTH_CLEAR_INPUTS",
+      T = "AUTH_STORE_AUTH_DATA",
+      P = "AUTH_GET_TOKEN_FROM_COOKIE",
+      j = "AUTH_RESET_ON_INPUT",
+      R = "AUTH_CHANGE_MAIL_ON_INPUT",
+      M = "AUTH_RESET_MODAL_ON",
+      A = "AUTH_RESET_MODAL_OFF",
+      I = "AUTH_RESET_MESSAGE",
       D = "AUTH_RESET_INPUT",
-      I = "LOG_OUT",
-      F = "CABINET_GET_INFO",
-      L = "CABINET_MODAL_ON",
-      U = "CABINET_MODAL_OFF",
-      H = "CABINET_SET_INFO_ON_INPUT",
-      V = "CABINET_SET_INFO_TOGGLE_MODAL",
-      $ = "CABINET_SET_INFO_ERROR",
-      B = "CABINET_SET_INFO_RESET",
-      W = "CABINET_VIEW_ORDERS_MODAL_ON",
-      q = "CABINET_VIEW_ORDERS_MODAL_OFF",
-      G = "CABINET_VIEW_ORDERS_SET",
-      Q = "CABINET_VIEW_ORDERS_ERROR",
-      Y = "CABINET_VIEW_ORDERS_RESET",
-      Z = "MULTIPLE_ORDER_ADD",
-      K = "MULTIPLE_ORDER_DELETE",
-      X = "MULTIPLE_ORDER_RESET",
-      J = "MULTIPLE_ORDER_THE_SAME",
-      ee = "CHAT_ON_INPUT",
-      te = "CHAT_RESET_ROOM_INPUT",
-      ne = "CHAT_MODAL_ON",
-      re = "CHAT_MODAL_OFF",
-      ae = "CHAT_ROOMS_TO_STORE",
-      oe = "CHAT_ROOMS_CHOOSE",
-      ie = "CHAT_ON_MESSAGE_INPUT",
-      le = "CHAT_RESET_MESSAGE_INPUT",
-      ue = "CHAT_SET_USER_NAME",
-      ce = "CHAT_RESET_NAME_INPUT",
-      se = "CHAT_NAME_ON_INPUT",
-      pe = "CHAT_RESET_NAME_STORE",
-      fe = "CHAT_SEND_MSG_LOADING_ON",
-      de = "CHAT_SEND_MSG_LOADING_OFF",
-      me = "CHAT_NEW_MESSAGE_ON",
-      he = "CHAT_NEW_MESSAGE_OFF",
-      ge = "CHAT_SET_CURRENT_MESSAGES",
-      _e = "CHAT_DELETE_MSG_STORE",
-      ve = "CHAT_SET_USER_ROLE",
-      ye = "CHAT_ROOMS_MSG_TO_CHOOSE";
+      F = "LOG_OUT",
+      L = "CABINET_GET_INFO",
+      U = "CABINET_MODAL_ON",
+      H = "CABINET_MODAL_OFF",
+      V = "CABINET_SET_INFO_ON_INPUT",
+      $ = "CABINET_SET_INFO_TOGGLE_MODAL",
+      B = "CABINET_SET_INFO_ERROR",
+      W = "CABINET_SET_INFO_RESET",
+      q = "CABINET_VIEW_ORDERS_MODAL_ON",
+      G = "CABINET_VIEW_ORDERS_MODAL_OFF",
+      Q = "CABINET_VIEW_ORDERS_SET",
+      Y = "CABINET_VIEW_ORDERS_ERROR",
+      Z = "CABINET_VIEW_ORDERS_RESET",
+      K = "MULTIPLE_ORDER_ADD",
+      X = "MULTIPLE_ORDER_DELETE",
+      J = "MULTIPLE_ORDER_RESET",
+      ee = "MULTIPLE_ORDER_THE_SAME",
+      te = "CHAT_ON_INPUT",
+      ne = "CHAT_RESET_ROOM_INPUT",
+      re = "CHAT_MODAL_ON",
+      ae = "CHAT_MODAL_OFF",
+      oe = "CHAT_ROOMS_TO_STORE",
+      ie = "CHAT_ROOMS_CHOOSE",
+      le = "CHAT_ON_MESSAGE_INPUT",
+      ue = "CHAT_RESET_MESSAGE_INPUT",
+      ce = "CHAT_SET_USER_NAME",
+      se = "CHAT_RESET_NAME_INPUT",
+      pe = "CHAT_NAME_ON_INPUT",
+      fe = "CHAT_RESET_NAME_STORE",
+      de = "CHAT_SEND_MSG_LOADING_ON",
+      me = "CHAT_SEND_MSG_LOADING_OFF",
+      he = "CHAT_NEW_MESSAGE_ON",
+      ge = "CHAT_NEW_MESSAGE_OFF",
+      _e = "CHAT_SET_CURRENT_MESSAGES",
+      ve = "CHAT_DELETE_MSG_STORE",
+      ye = "CHAT_SET_USER_ROLE",
+      be = "CHAT_ROOMS_MSG_TO_CHOOSE";
   },
   function(e, t, n) {
     e.exports = n(34)();
@@ -1233,7 +1237,7 @@
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : l,
           t = arguments.length > 1 ? arguments[1] : void 0;
         switch (t.type) {
-          case r.ib:
+          case r.jb:
             return "base" !== t.payload && e.weight <= 1500
               ? c(
                   o({}, e, {
@@ -1251,7 +1255,7 @@
                   })
                 )
               : o({}, e);
-          case r.db:
+          case r.eb:
             return "base" !== t.payload
               ? c(
                   o({}, e, {
@@ -1272,7 +1276,7 @@
                   })
                 )
               : o({}, e);
-          case r.jb:
+          case r.kb:
             var n = o({}, e),
               a = o({}, e.ingredients);
             return (
@@ -1282,7 +1286,7 @@
               (n.ingredients = a),
               c(n)
             );
-          case r.sb:
+          case r.tb:
             return o({}, e, {
               ingredients: t.payload.ingredients,
               cost: t.payload.cost,
@@ -1398,7 +1402,7 @@
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : h,
           t = arguments.length > 1 ? arguments[1] : void 0;
         switch (t.type) {
-          case r.Y:
+          case r.Z:
             return d({}, e, { isLoading: !0 });
           case r.X:
             return d({}, e, {
@@ -1407,6 +1411,8 @@
               isLoaded: !0,
               orders: t.payload
             });
+          case r.Y:
+            return d({}, e, { isLoading: !1, isLoaded: !0 });
           case r.W:
             return console.log(t.error), d({}, e, { error: !0 });
           default:
@@ -1472,22 +1478,22 @@
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : b,
           t = arguments.length > 1 ? arguments[1] : void 0;
         switch (t.type) {
-          case r.bb:
+          case r.cb:
             return v({}, e, { isLoading: !0 });
-          case r.ab:
+          case r.bb:
             return v({}, e, {
               isLoading: !1,
               getReviews: !0,
               reviews: t.payload.data,
               pagination: Math.ceil(t.payload.count / 5)
             });
-          case r.Z:
+          case r.ab:
             return (
               console.log("reviews error", t.error), v({}, e, { error: !0 })
             );
-          case r.lb:
+          case r.mb:
             return v({}, e, { editMode: !0, editReviewData: t.payload });
-          case r.kb:
+          case r.lb:
             return v({}, e, { editMode: !1, editReviewData: {} });
           case r.V:
             return v({}, e, { modal: !0 });
@@ -1608,7 +1614,7 @@
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : k,
           t = arguments.length > 1 ? arguments[1] : void 0;
         switch (t.type) {
-          case r.qb:
+          case r.rb:
             var n = new RegExp(e.inputs[t.payload.target.dataset.name].pattern);
             return O({}, e, {
               inputs: O(
@@ -1624,7 +1630,7 @@
                 )
               )
             });
-          case r.rb:
+          case r.sb:
             return O({}, e, {
               inputs: O({}, e.inputs, {
                 name: O({}, e.inputs.name, { value: "", isValid: !1 }),
@@ -1635,7 +1641,7 @@
                 flat: O({}, e.inputs.flat, { value: "", isValid: !1 })
               })
             });
-          case r.mb:
+          case r.nb:
             var a = "";
             return (
               !t.payload.error &&
@@ -1668,11 +1674,11 @@
                 })
               })
             );
-          case r.pb:
+          case r.qb:
             return O({}, e, { modalShow: !0 });
-          case r.ob:
+          case r.pb:
             return O({}, e, { modalShow: !1 });
-          case r.nb:
+          case r.ob:
             return console.log(t.payload), O({}, e);
           default:
             return O({}, e);
@@ -1756,6 +1762,12 @@
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : T,
           t = arguments.length > 1 ? arguments[1] : void 0;
         switch (t.type) {
+          case r.Y:
+            return (
+              localStorage.setItem("name", "".concat(t.payload.name)),
+              localStorage.setItem("photo", "".concat(t.payload.photo)),
+              C({}, e, { photo: t.payload.photo, name: t.payload.name })
+            );
           case r.f:
             var n = new RegExp(e.inputs[t.payload.target.dataset.name].pattern);
             return C({}, e, {
@@ -1814,7 +1826,7 @@
                   photo: localStorage.getItem("photo")
                 })
               : C({}, e, { isAuthindicated: !1, localId: null });
-          case r.cb:
+          case r.db:
             return (
               localStorage.removeItem("expiresAt"),
               localStorage.removeItem("localId"),
@@ -1894,7 +1906,7 @@
         modalShow: !1,
         isAddresFilled: !1
       },
-      D = function() {
+      I = function() {
         var e =
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : A,
           t = arguments.length > 1 ? arguments[1] : void 0;
@@ -1922,7 +1934,7 @@
             return R({}, e);
         }
       };
-    function I(e, t) {
+    function D(e, t) {
       var n = Object.keys(e);
       if (Object.getOwnPropertySymbols) {
         var r = Object.getOwnPropertySymbols(e);
@@ -1938,12 +1950,12 @@
       for (var t = 1; t < arguments.length; t++) {
         var n = null != arguments[t] ? arguments[t] : {};
         t % 2
-          ? I(n, !0).forEach(function(t) {
+          ? D(n, !0).forEach(function(t) {
               L(e, t, n[t]);
             })
           : Object.getOwnPropertyDescriptors
           ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n))
-          : I(n).forEach(function(t) {
+          : D(n).forEach(function(t) {
               Object.defineProperty(
                 e,
                 t,
@@ -2321,7 +2333,7 @@
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : ne,
           t = arguments.length > 1 ? arguments[1] : void 0;
         switch (t.type) {
-          case r.eb:
+          case r.fb:
             var n = e.pizzas,
               a = 0;
             return (
@@ -2331,7 +2343,7 @@
               }),
               ee({}, e, { pizzas: n, totalCost: a.toFixed(2) })
             );
-          case r.fb:
+          case r.gb:
             var o = X(e.pizzas),
               i = 0;
             return (
@@ -2341,9 +2353,9 @@
               }),
               ee({}, e, { pizzas: o, totalCost: i.toFixed(2) })
             );
-          case r.gb:
-            return ee({}, e, { pizzas: [], totalCost: 0 });
           case r.hb:
+            return ee({}, e, { pizzas: [], totalCost: 0 });
+          case r.ib:
             return ee({}, e, {
               totalCost: t.payload.totalCost,
               pizzas: t.payload.pizzas
@@ -2895,7 +2907,7 @@
       reviews: w,
       order: x,
       auth: P,
-      cabinet: D,
+      cabinet: I,
       cabinetSet: H,
       cabinetGetOrders: q,
       authReset: K,
@@ -3345,7 +3357,7 @@ object-assign
         (e.count = 0),
         10 > R.length && R.push(e);
     }
-    function D(e, t, n) {
+    function I(e, t, n) {
       return null == e
         ? 0
         : (function e(t, n, r, a) {
@@ -3366,10 +3378,10 @@ object-assign
                       u = !0;
                   }
               }
-            if (u) return r(a, t, "" === n ? "." + I(t, 0) : n), 1;
+            if (u) return r(a, t, "" === n ? "." + D(t, 0) : n), 1;
             if (((u = 0), (n = "" === n ? "." : n + ":"), Array.isArray(t)))
               for (var c = 0; c < t.length; c++) {
-                var s = n + I((l = t[c]), c);
+                var s = n + D((l = t[c]), c);
                 u += e(l, s, r, a);
               }
             else if (
@@ -3382,7 +3394,7 @@ object-assign
               "function" == typeof s)
             )
               for (t = s.call(t), c = 0; !(l = t.next()).done; )
-                u += e((l = l.value), (s = n + I(l, c++)), r, a);
+                u += e((l = l.value), (s = n + D(l, c++)), r, a);
             else if ("object" === l)
               throw ((r = "" + t),
               v(
@@ -3395,7 +3407,7 @@ object-assign
             return u;
           })(e, "", t, n);
     }
-    function I(e, t) {
+    function D(e, t) {
       return "object" == typeof e && null !== e && null != e.key
         ? (function(e) {
             var t = { "=": "=0", ":": "=2" };
@@ -3443,7 +3455,7 @@ object-assign
     function U(e, t, n, r, a) {
       var o = "";
       null != n && (o = ("" + n).replace(j, "$&/") + "/"),
-        D(e, L, (t = M(t, o, r, a))),
+        I(e, L, (t = M(t, o, r, a))),
         A(t);
     }
     function H() {
@@ -3460,10 +3472,10 @@ object-assign
           },
           forEach: function(e, t, n) {
             if (null == e) return e;
-            D(e, F, (t = M(null, null, t, n))), A(t);
+            I(e, F, (t = M(null, null, t, n))), A(t);
           },
           count: function(e) {
-            return D(
+            return I(
               e,
               function() {
                 return null;
@@ -3806,7 +3818,7 @@ object-assign
         .slice(2),
       M = "__reactInternalInstance$" + R,
       A = "__reactEventHandlers$" + R;
-    function D(e) {
+    function I(e) {
       if (e[M]) return e[M];
       for (; !e[M]; ) {
         if (!e.parentNode) return null;
@@ -3814,7 +3826,7 @@ object-assign
       }
       return 5 === (e = e[M]).tag || 6 === e.tag ? e : null;
     }
-    function I(e) {
+    function D(e) {
       return !(e = e[M]) || (5 !== e.tag && 6 !== e.tag) ? null : e;
     }
     function F(e) {
@@ -4195,8 +4207,8 @@ object-assign
       return e(t, n, r);
     }
     function Ae() {}
-    var De = Re,
-      Ie = !1;
+    var Ie = Re,
+      De = !1;
     function Fe() {
       (null === Ce && null === ze) || (Ae(), je());
     }
@@ -4661,25 +4673,25 @@ object-assign
       if ("change" === e) return t;
     }
     var At = !1;
-    function Dt() {
-      Tt && (Tt.detachEvent("onpropertychange", It), (Pt = Tt = null));
+    function It() {
+      Tt && (Tt.detachEvent("onpropertychange", Dt), (Pt = Tt = null));
     }
-    function It(e) {
+    function Dt(e) {
       if ("value" === e.propertyName && Rt(Pt))
-        if (((e = zt(Pt, e, He(e))), Ie)) T(e);
+        if (((e = zt(Pt, e, He(e))), De)) T(e);
         else {
-          Ie = !0;
+          De = !0;
           try {
             Re(jt, e);
           } finally {
-            (Ie = !1), Fe();
+            (De = !1), Fe();
           }
         }
     }
     function Ft(e, t, n) {
       "focus" === e
-        ? (Dt(), (Pt = n), (Tt = t).attachEvent("onpropertychange", It))
-        : "blur" === e && Dt();
+        ? (It(), (Pt = n), (Tt = t).attachEvent("onpropertychange", Dt))
+        : "blur" === e && It();
     }
     function Lt(e) {
       if ("selectionchange" === e || "keyup" === e || "keydown" === e)
@@ -4827,7 +4839,7 @@ object-assign
                 : window),
             o
               ? ((o = t),
-                (t = (t = n.relatedTarget || n.toElement) ? D(t) : null))
+                (t = (t = n.relatedTarget || n.toElement) ? I(t) : null))
               : (o = null),
             o === t)
           )
@@ -5334,7 +5346,7 @@ object-assign
         var r;
         for (r = n; r.return; ) r = r.return;
         if (!(r = 3 !== r.tag ? null : r.stateNode.containerInfo)) break;
-        e.ancestors.push(n), (n = D(r));
+        e.ancestors.push(n), (n = I(r));
       } while (n);
       for (n = 0; n < e.ancestors.length; n++) {
         t = e.ancestors[n];
@@ -5349,12 +5361,12 @@ object-assign
     }
     var Mn = !0;
     function An(e, t) {
-      Dn(t, e, !1);
+      In(t, e, !1);
     }
-    function Dn(e, t, n) {
+    function In(e, t, n) {
       switch (Pn(t)) {
         case 0:
-          var r = In.bind(null, t, 1);
+          var r = Dn.bind(null, t, 1);
           break;
         case 1:
           r = Fn.bind(null, t, 1);
@@ -5364,15 +5376,15 @@ object-assign
       }
       n ? e.addEventListener(t, r, !0) : e.addEventListener(t, r, !1);
     }
-    function In(e, t, n) {
-      Ie || Ae();
+    function Dn(e, t, n) {
+      De || Ae();
       var r = Ln,
-        a = Ie;
-      Ie = !0;
+        a = De;
+      De = !0;
       try {
         Me(r, e, t, n);
       } finally {
-        (Ie = a) || Fe();
+        (De = a) || Fe();
       }
     }
     function Fn(e, t, n) {
@@ -5381,7 +5393,7 @@ object-assign
     function Ln(e, t, n) {
       if (Mn) {
         if (
-          (null === (t = D((t = He(n)))) ||
+          (null === (t = I((t = He(n)))) ||
             "number" != typeof t.tag ||
             2 === on(t) ||
             (t = null),
@@ -5395,13 +5407,13 @@ object-assign
         } else
           e = { topLevelType: e, nativeEvent: n, targetInst: t, ancestors: [] };
         try {
-          if (((n = e), Ie)) Rn(n);
+          if (((n = e), De)) Rn(n);
           else {
-            Ie = !0;
+            De = !0;
             try {
-              De(Rn, n, void 0);
+              Ie(Rn, n, void 0);
             } finally {
-              (Ie = !1), Fe();
+              (De = !1), Fe();
             }
           }
         } finally {
@@ -5644,7 +5656,7 @@ object-assign
       )
     ),
       (E = L),
-      (O = I),
+      (O = D),
       (S = F),
       P.injectEventPluginsByName({
         SimpleEventPlugin: Tn,
@@ -5839,18 +5851,18 @@ object-assign
         if (!n.has(a)) {
           switch (a) {
             case "scroll":
-              Dn(e, "scroll", !0);
+              In(e, "scroll", !0);
               break;
             case "focus":
             case "blur":
-              Dn(e, "focus", !0),
-                Dn(e, "blur", !0),
+              In(e, "focus", !0),
+                In(e, "blur", !0),
                 n.add("blur"),
                 n.add("focus");
               break;
             case "cancel":
             case "close":
-              Ve(a) && Dn(e, a, !0);
+              Ve(a) && In(e, a, !0);
               break;
             case "invalid":
             case "submit":
@@ -5909,8 +5921,8 @@ object-assign
     var Rr = {},
       Mr = { current: Rr },
       Ar = { current: !1 },
-      Dr = Rr;
-    function Ir(e, t) {
+      Ir = Rr;
+    function Dr(e, t) {
       var n = e.type.contextTypes;
       if (!n) return Rr;
       var r = e.stateNode;
@@ -5951,7 +5963,7 @@ object-assign
       var t = e.stateNode;
       return (
         (t = (t && t.__reactInternalMemoizedMergedChildContext) || Rr),
-        (Dr = Mr.current),
+        (Ir = Mr.current),
         jr(Mr, t),
         jr(Ar, Ar.current),
         !0
@@ -5961,7 +5973,7 @@ object-assign
       var r = e.stateNode;
       if (!r) throw i(Error(169));
       n
-        ? ((t = Vr(e, t, Dr)),
+        ? ((t = Vr(e, t, Ir)),
           (r.__reactInternalMemoizedMergedChildContext = t),
           Pr(Ar),
           Pr(Mr),
@@ -6200,18 +6212,18 @@ object-assign
     function Aa(e, t) {
       var n = e.updateQueue;
       null ===
-      (n = null === n ? (e.updateQueue = Ta(e.memoizedState)) : Da(e, n))
+      (n = null === n ? (e.updateQueue = Ta(e.memoizedState)) : Ia(e, n))
         .lastCapturedUpdate
         ? (n.firstCapturedUpdate = n.lastCapturedUpdate = t)
         : ((n.lastCapturedUpdate.next = t), (n.lastCapturedUpdate = t));
     }
-    function Da(e, t) {
+    function Ia(e, t) {
       var n = e.alternate;
       return (
         null !== n && t === n.updateQueue && (t = e.updateQueue = Pa(t)), t
       );
     }
-    function Ia(e, t, n, r, o, i) {
+    function Da(e, t, n, r, o, i) {
       switch (n.tag) {
         case 1:
           return "function" == typeof (e = n.payload) ? e.call(i, r, o) : e;
@@ -6232,7 +6244,7 @@ object-assign
     function Fa(e, t, n, r, a) {
       za = !1;
       for (
-        var o = (t = Da(e, t)).baseState,
+        var o = (t = Ia(e, t)).baseState,
           i = null,
           l = 0,
           u = t.firstUpdate,
@@ -6244,7 +6256,7 @@ object-assign
         s < a
           ? (null === i && ((i = u), (o = c)), l < s && (l = s))
           : (Vl(s, u.suspenseConfig),
-            (c = Ia(e, 0, u, c, n, r)),
+            (c = Da(e, 0, u, c, n, r)),
             null !== u.callback &&
               ((e.effectTag |= 32),
               (u.nextEffect = null),
@@ -6257,7 +6269,7 @@ object-assign
         var p = u.expirationTime;
         p < a
           ? (null === s && ((s = u), null === i && (o = c)), l < p && (l = p))
-          : ((c = Ia(e, 0, u, c, n, r)),
+          : ((c = Da(e, 0, u, c, n, r)),
             null !== u.callback &&
               ((e.effectTag |= 32),
               (u.nextEffect = null),
@@ -6355,8 +6367,8 @@ object-assign
       return (
         "object" == typeof o && null !== o
           ? (o = Ca(o))
-          : ((a = Fr(t) ? Dr : Mr.current),
-            (o = (r = null != (r = t.contextTypes)) ? Ir(e, a) : Rr)),
+          : ((a = Fr(t) ? Ir : Mr.current),
+            (o = (r = null != (r = t.contextTypes)) ? Dr(e, a) : Rr)),
         (t = new t(n, o)),
         (e.memoizedState =
           null !== t.state && void 0 !== t.state ? t.state : null),
@@ -6383,7 +6395,7 @@ object-assign
       var o = t.contextType;
       "object" == typeof o && null !== o
         ? (a.context = Ca(o))
-        : ((o = Fr(t) ? Dr : Mr.current), (a.context = Ir(e, o))),
+        : ((o = Fr(t) ? Ir : Mr.current), (a.context = Dr(e, o))),
         null !== (o = e.updateQueue) &&
           (Fa(e, o, n, a, r), (a.state = e.memoizedState)),
         "function" == typeof (o = t.getDerivedStateFromProps) &&
@@ -6833,8 +6845,8 @@ object-assign
       Ro = null,
       Mo = 0,
       Ao = !1,
-      Do = null,
-      Io = 0;
+      Io = null,
+      Do = 0;
     function Fo() {
       throw i(Error(321));
     }
@@ -6855,14 +6867,14 @@ object-assign
       ) {
         do {
           (Ao = !1),
-            (Io += 1),
+            (Do += 1),
             (Co = null !== e ? e.memoizedState : null),
             (Po = zo),
             (Ro = To = No = null),
             (So.current = ei),
             (t = n(r, a));
         } while (Ao);
-        (Do = null), (Io = 0);
+        (Io = null), (Do = 0);
       }
       if (
         ((So.current = Xo),
@@ -6889,8 +6901,8 @@ object-assign
         (Ro = null),
         (Mo = 0),
         (Ao = !1),
-        (Do = null),
-        (Io = 0);
+        (Io = null),
+        (Do = 0);
     }
     function Vo() {
       var e = {
@@ -6925,12 +6937,12 @@ object-assign
       var t = $o(),
         n = t.queue;
       if (null === n) throw i(Error(311));
-      if (((n.lastRenderedReducer = e), 0 < Io)) {
+      if (((n.lastRenderedReducer = e), 0 < Do)) {
         var r = n.dispatch;
-        if (null !== Do) {
-          var a = Do.get(n);
+        if (null !== Io) {
+          var a = Io.get(n);
           if (void 0 !== a) {
-            Do.delete(n);
+            Io.delete(n);
             var o = t.memoizedState;
             do {
               (o = e(o, a.action)), (a = a.next);
@@ -7019,7 +7031,7 @@ object-assign
     }
     function Zo() {}
     function Ko(e, t, n) {
-      if (!(25 > Io)) throw i(Error(301));
+      if (!(25 > Do)) throw i(Error(301));
       var r = e.alternate;
       if (e === xo || (null !== r && r === xo))
         if (
@@ -7032,10 +7044,10 @@ object-assign
             eagerState: null,
             next: null
           }),
-          null === Do && (Do = new Map()),
-          void 0 === (n = Do.get(t)))
+          null === Io && (Io = new Map()),
+          void 0 === (n = Io.get(t)))
         )
-          Do.set(t, e);
+          Io.set(t, e);
         else {
           for (t = n; null !== t.next; ) t = t.next;
           t.next = e;
@@ -7318,9 +7330,9 @@ object-assign
         (t.effectTag |= 128);
     }
     function _i(e, t, n, r, a) {
-      var o = Fr(n) ? Dr : Mr.current;
+      var o = Fr(n) ? Ir : Mr.current;
       return (
-        (o = Ir(t, o)),
+        (o = Dr(t, o)),
         Na(t, a),
         (n = Uo(e, t, n, r, o, a)),
         null === e || pi
@@ -7350,7 +7362,7 @@ object-assign
           c = n.contextType;
         "object" == typeof c && null !== c
           ? (c = Ca(c))
-          : (c = Ir(t, (c = Fr(n) ? Dr : Mr.current)));
+          : (c = Dr(t, (c = Fr(n) ? Ir : Mr.current)));
         var s = n.getDerivedStateFromProps,
           p =
             "function" == typeof s ||
@@ -7394,7 +7406,7 @@ object-assign
           (u = i.context),
           "object" == typeof (c = n.contextType) && null !== c
             ? (c = Ca(c))
-            : (c = Ir(t, (c = Fr(n) ? Dr : Mr.current))),
+            : (c = Dr(t, (c = Fr(n) ? Ir : Mr.current))),
           (p =
             "function" == typeof (s = n.getDerivedStateFromProps) ||
             "function" == typeof i.getSnapshotBeforeUpdate) ||
@@ -7820,7 +7832,7 @@ object-assign
         });
       }
     }
-    function Di(e) {
+    function Ii(e) {
       var t = e.ref;
       if (null !== t)
         if ("function" == typeof t)
@@ -7831,7 +7843,7 @@ object-assign
           }
         else t.current = null;
     }
-    function Ii(e, t, n) {
+    function Di(e, t, n) {
       if (null !== (n = null !== (n = n.updateQueue) ? n.lastEffect : null)) {
         var r = (n = n.next);
         do {
@@ -7871,7 +7883,7 @@ object-assign
           }
           break;
         case 1:
-          Di(e),
+          Ii(e),
             "function" == typeof (t = e.stateNode).componentWillUnmount &&
               (function(e, t) {
                 try {
@@ -7884,7 +7896,7 @@ object-assign
               })(e, t);
           break;
         case 5:
-          Di(e);
+          Ii(e);
           break;
         case 4:
           Vi(e, t);
@@ -8043,7 +8055,7 @@ object-assign
         case 11:
         case 14:
         case 15:
-          Ii(vo, yo, t);
+          Di(vo, yo, t);
           break;
         case 1:
           break;
@@ -8351,7 +8363,7 @@ object-assign
           ((e.callbackNode = null), (e.callbackExpirationTime = 0));
       }
     }
-    function Dl() {
+    function Il() {
       (il & (1 | Ji | el)) === Ki &&
         ((function() {
           if (null !== kl) {
@@ -8365,7 +8377,7 @@ object-assign
         })(),
         Gl());
     }
-    function Il(e, t) {
+    function Dl(e, t) {
       var n = il;
       il |= 1;
       try {
@@ -9174,7 +9186,7 @@ object-assign
                   case 0:
                   case 11:
                   case 15:
-                    Ii(_o, go, l);
+                    Di(_o, go, l);
                     break;
                   case 1:
                     if (256 & l.effectTag && null !== b) {
@@ -9324,7 +9336,7 @@ object-assign
                   case 0:
                   case 11:
                   case 15:
-                    Ii(bo, wo, x);
+                    Di(bo, wo, x);
                     break;
                   case 1:
                     var P = x.stateNode;
@@ -9378,17 +9390,17 @@ object-assign
                 }
               }
               if (128 & z) {
-                var D = _l.ref;
-                if (null !== D) {
-                  var I = _l.stateNode;
+                var I = _l.ref;
+                if (null !== I) {
+                  var D = _l.stateNode;
                   switch (_l.tag) {
                     case 5:
-                      var F = I;
+                      var F = D;
                       break;
                     default:
-                      F = I;
+                      F = D;
                   }
-                  "function" == typeof D ? D(F) : (D.current = F);
+                  "function" == typeof I ? I(F) : (I.current = F);
                 }
               }
               512 & z && (wl = !0), (_l = _l.nextEffect);
@@ -9438,7 +9450,7 @@ object-assign
               case 0:
               case 11:
               case 15:
-                Ii(Oo, go, n), Ii(go, Eo, n);
+                Di(Oo, go, n), Di(go, Eo, n);
             }
         } catch (t) {
           if (null === e) throw i(Error(330));
@@ -9550,7 +9562,7 @@ object-assign
             null !== e &&
               ((e.alternate = null), (t.alternate = null), (t.effectTag |= 2)),
             (e = t.pendingProps),
-            (a = Ir(t, Mr.current)),
+            (a = Dr(t, Mr.current)),
             Na(t, n),
             (a = Uo(null, t, r, e, a, n)),
             (t.effectTag |= 1),
@@ -10239,10 +10251,10 @@ object-assign
         }
         return e;
       }),
-      (Re = Il),
+      (Re = Dl),
       (Me = Fl),
-      (Ae = Dl),
-      (De = function(e, t) {
+      (Ae = Il),
+      (Ie = function(e, t) {
         var n = il;
         il |= 2;
         try {
@@ -10295,12 +10307,12 @@ object-assign
         unstable_createPortal: function() {
           return wu.apply(void 0, arguments);
         },
-        unstable_batchedUpdates: Il,
+        unstable_batchedUpdates: Dl,
         unstable_interactiveUpdates: function(e, t, n, r) {
-          return Dl(), Fl(e, t, n, r);
+          return Il(), Fl(e, t, n, r);
         },
         unstable_discreteUpdates: Fl,
-        unstable_flushDiscreteUpdates: Dl,
+        unstable_flushDiscreteUpdates: Il,
         flushSync: function(e, t) {
           if ((il & (Ji | el)) !== Ki) throw i(Error(187));
           var n = il;
@@ -10330,7 +10342,7 @@ object-assign
         },
         __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: {
           Events: [
-            I,
+            D,
             F,
             L,
             P.injectEventPluginsByName,
@@ -10349,7 +10361,7 @@ object-assign
         }
       };
     (Ou = (Eu = {
-      findFiberByHostInstance: D,
+      findFiberByHostInstance: I,
       bundleType: 0,
       version: "16.9.0",
       rendererPackageName: "react-dom"
@@ -10556,8 +10568,8 @@ object-assign
       R = 3,
       M = !1,
       A = !1,
-      D = !1;
-    function I(e, t) {
+      I = !1;
+    function D(e, t) {
       var n = e.next;
       if (n === e) T = null;
       else {
@@ -10620,22 +10632,22 @@ object-assign
         } while (null !== P && P.startTime <= e);
     }
     function L(e) {
-      (D = !1),
+      (I = !1),
         F(e),
         A ||
           (null !== T ? ((A = !0), r(U)) : null !== P && a(L, P.startTime - e));
     }
     function U(e, n) {
-      (A = !1), D && ((D = !1), o()), F(n), (M = !0);
+      (A = !1), I && ((I = !1), o()), F(n), (M = !0);
       try {
         if (e) {
           if (null !== T)
             do {
-              I(T, n), F((n = t.unstable_now()));
+              D(T, n), F((n = t.unstable_now()));
             } while (null !== T && !i());
         } else
           for (; null !== T && T.expirationTime <= n; )
-            I(T, n), F((n = t.unstable_now()));
+            D(T, n), F((n = t.unstable_now()));
         return null !== T || (null !== P && a(L, P.startTime - n), !1);
       } finally {
         M = !1;
@@ -10750,7 +10762,7 @@ object-assign
               (e.next = n),
               (e.previous = i);
           }
-          null === T && P === e && (D ? o() : (D = !0), a(L, u - l));
+          null === T && P === e && (I ? o() : (I = !0), a(L, u - l));
         } else V(e, i), A || M || ((A = !0), r(U));
         return e;
       }),
@@ -11338,6 +11350,9 @@ object-assign
     e.exports = n.p + "assets/img/village.png";
   },
   function(e, t, n) {
+    e.exports = n.p + "assets/img/preview.svg";
+  },
+  function(e, t, n) {
     e.exports = n.p + "assets/img/pacman.svg";
   },
   function(e, t, n) {
@@ -11648,9 +11663,9 @@ object-assign
             ),
             R = Object(r.useReducer)(N, k, C),
             A = R[0][0],
-            D = R[1];
+            I = R[1];
           if (A && A.error) throw A.error;
-          var I = Object(r.useRef)(),
+          var D = Object(r.useRef)(),
             F = Object(r.useRef)(p),
             L = Object(r.useRef)(),
             U = Object(r.useRef)(!1),
@@ -11664,7 +11679,7 @@ object-assign
             );
           z(function() {
             (F.current = p),
-              (I.current = H),
+              (D.current = H),
               (U.current = !1),
               L.current && ((L.current = null), P());
           }),
@@ -11684,12 +11699,12 @@ object-assign
                           (r = e), (t = e);
                         }
                         r || (t = null),
-                          n === I.current
+                          n === D.current
                             ? U.current || P()
-                            : ((I.current = n),
+                            : ((D.current = n),
                               (L.current = n),
                               (U.current = !0),
-                              D({
+                              I({
                                 type: "STORE_UPDATED",
                                 payload: { latestStoreState: a, error: r }
                               }));
@@ -11762,12 +11777,12 @@ object-assign
         return (a.dependsOnOwnProps = !1), a;
       };
     }
-    function D(e) {
+    function I(e) {
       return null !== e.dependsOnOwnProps && void 0 !== e.dependsOnOwnProps
         ? Boolean(e.dependsOnOwnProps)
         : 1 !== e.length;
     }
-    function I(e, t) {
+    function D(e, t) {
       return function(t, n) {
         n.displayName;
         var r = function(e, t) {
@@ -11776,12 +11791,12 @@ object-assign
         return (
           (r.dependsOnOwnProps = !0),
           (r.mapToProps = function(t, n) {
-            (r.mapToProps = e), (r.dependsOnOwnProps = D(e));
+            (r.mapToProps = e), (r.dependsOnOwnProps = I(e));
             var a = r(t, n);
             return (
               "function" == typeof a &&
                 ((r.mapToProps = a),
-                (r.dependsOnOwnProps = D(a)),
+                (r.dependsOnOwnProps = I(a)),
                 (a = r(t, n))),
               a
             );
@@ -11792,7 +11807,7 @@ object-assign
     }
     var F = [
       function(e) {
-        return "function" == typeof e ? I(e) : void 0;
+        return "function" == typeof e ? D(e) : void 0;
       },
       function(e) {
         return e
@@ -11811,7 +11826,7 @@ object-assign
     ];
     var L = [
       function(e) {
-        return "function" == typeof e ? I(e) : void 0;
+        return "function" == typeof e ? D(e) : void 0;
       },
       function(e) {
         return e
@@ -12042,22 +12057,43 @@ object-assign
     (pe = o.unstable_batchedUpdates), (p = pe);
     var fe = n(1),
       de = function(e) {
-        return { type: fe.db, payload: e };
+        return { type: fe.eb, payload: e };
       },
       me = function() {
-        return { type: fe.jb };
+        return { type: fe.kb };
       },
       he = "",
       ge = function() {
-        return { type: fe.Y };
+        return { type: fe.Z };
       },
       _e = function(e) {
         return { type: fe.X, payload: e };
       },
       ve = function(e) {
         return { type: fe.W, payload: e };
+      },
+      ye = function(e) {
+        return function(t) {
+          t(ge()),
+            fetch("".concat(he, "/api/v1.0/user/getInfo?id=").concat(e), {
+              method: "GET"
+            })
+              .then(function(e) {
+                return e.json();
+              })
+              .then(function(e) {
+                t(
+                  (function(e) {
+                    return { type: fe.Y, payload: e };
+                  })(e.data)
+                );
+              })
+              .catch(function(e) {
+                return t(ve(e));
+              });
+        };
       };
-    function ye(e, t) {
+    function be(e, t) {
       var n = Object.keys(e);
       if (Object.getOwnPropertySymbols) {
         var r = Object.getOwnPropertySymbols(e);
@@ -12069,7 +12105,7 @@ object-assign
       }
       return n;
     }
-    function be(e, t, n) {
+    function we(e, t, n) {
       return (
         t in e
           ? Object.defineProperty(e, t, {
@@ -12082,17 +12118,17 @@ object-assign
         e
       );
     }
-    var we = function(e, t) {
+    var Ee = function(e, t) {
         var n = (function(e) {
           for (var t = 1; t < arguments.length; t++) {
             var n = null != arguments[t] ? arguments[t] : {};
             t % 2
-              ? ye(n, !0).forEach(function(t) {
-                  be(e, t, n[t]);
+              ? be(n, !0).forEach(function(t) {
+                  we(e, t, n[t]);
                 })
               : Object.getOwnPropertyDescriptors
               ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n))
-              : ye(n).forEach(function(t) {
+              : be(n).forEach(function(t) {
                   Object.defineProperty(
                     e,
                     t,
@@ -12112,112 +12148,112 @@ object-assign
               return e.json();
             })
             .then(function(t) {
-              console.log(t), e(xe());
+              console.log(t), e(Ne());
             })
             .catch(function(t) {
-              return e(Se(t));
+              return e(ke(t));
             });
         };
       },
-      Ee = function() {
-        return { type: fe.bb };
+      Oe = function() {
+        return { type: fe.cb };
       },
-      Oe = function(e, t) {
-        return { type: fe.ab, payload: { data: e, count: t } };
-      },
-      Se = function(e) {
-        return { type: fe.Z, payload: e };
+      Se = function(e, t) {
+        return { type: fe.bb, payload: { data: e, count: t } };
       },
       ke = function(e) {
-        return { type: fe.lb, payload: e };
+        return { type: fe.ab, payload: e };
       },
-      xe = function() {
-        return { type: fe.kb };
-      },
-      Ne = function() {
-        return { type: fe.V };
-      },
-      Ce = function(e) {
-        return { type: fe.U, payload: e };
-      },
-      ze = function() {
-        return { type: fe.gb };
-      },
-      Te = function(e) {
+      xe = function(e) {
         return { type: fe.mb, payload: e };
       },
+      Ne = function() {
+        return { type: fe.lb };
+      },
+      Ce = function() {
+        return { type: fe.V };
+      },
+      ze = function(e) {
+        return { type: fe.U, payload: e };
+      },
+      Te = function() {
+        return { type: fe.hb };
+      },
       Pe = function(e) {
-        return { type: fe.rb, payload: e };
-      },
-      je = function() {
-        return { type: fe.pb };
-      },
-      Re = function() {
-        return { type: fe.ob };
-      },
-      Me = function(e) {
         return { type: fe.nb, payload: e };
       },
+      je = function(e) {
+        return { type: fe.sb, payload: e };
+      },
+      Re = function() {
+        return { type: fe.qb };
+      },
+      Me = function() {
+        return { type: fe.pb };
+      },
       Ae = function(e) {
+        return { type: fe.ob, payload: e };
+      },
+      Ie = function(e) {
         return { type: fe.f, payload: e };
       },
       De = function(e) {
         return { type: fe.m, payload: e };
       },
-      Ie = function(e) {
+      Fe = function(e) {
         return { type: fe.l, payload: e };
       },
-      Fe = function() {
+      Le = function() {
         return { type: fe.e };
       },
-      Le = function() {
+      Ue = function() {
         return { type: fe.d };
       },
-      Ue = function() {
+      He = function() {
         return { type: fe.b };
       },
-      He = function(e) {
+      Ve = function(e) {
         return { type: fe.n, payload: e };
       },
-      Ve = function() {
+      $e = function() {
         return function(e) {
-          e($e());
+          e(Be());
           var t =
             new Date().getTime() < localStorage.expiresAt
               ? +localStorage.expiresAt - new Date().getTime()
               : 0;
           setTimeout(function() {
-            e(Be());
+            e(We());
           }, t);
         };
       },
-      $e = function() {
+      Be = function() {
         return { type: fe.c };
       },
-      Be = function() {
-        return { type: fe.cb };
+      We = function() {
+        return { type: fe.db };
       },
-      We = function(e) {
+      qe = function(e) {
         return { type: fe.o, payload: e };
       },
-      qe = function() {
+      Ge = function() {
         return { type: fe.q };
       },
-      Ge = function() {
+      Qe = function() {
         return { type: fe.p };
       },
-      Qe = function(e) {
+      Ye = function(e) {
         return { type: fe.t, payload: e };
       },
-      Ye = function() {
+      Ze = function() {
         return { type: fe.u };
       },
-      Ze = function(e) {
+      Ke = function(e) {
         return { type: fe.r, payload: e };
       },
-      Ke = function(e) {
+      Xe = function(e) {
         return function(t) {
-          t(Xe()),
+          t(Je()),
             fetch("".concat(he, "/api/v1.0/orders").concat(e), {
               method: "GET"
             })
@@ -12225,79 +12261,79 @@ object-assign
                 return e.json();
               })
               .then(function(e) {
-                t(Je()), t(et(e));
+                t(et()), t(tt(e));
               })
               .catch(function(e) {
-                t(tt()), t(tt(e));
+                t(nt()), t(nt(e));
               });
         };
       },
-      Xe = function() {
+      Je = function() {
         return { type: fe.x };
       },
-      Je = function() {
+      et = function() {
         return { type: fe.w };
       },
-      et = function(e) {
+      tt = function(e) {
         return { type: fe.z, payload: e };
       },
-      tt = function(e) {
+      nt = function(e) {
         return { type: fe.v, payload: e };
       },
-      nt = function() {
+      rt = function() {
         return { type: fe.y };
       },
-      rt = function() {
+      at = function() {
         return { type: fe.j };
       },
-      at = function() {
+      ot = function() {
         return { type: fe.i };
       },
-      ot = function() {
+      it = function() {
         return { type: fe.h };
       },
-      it = function() {
+      lt = function() {
         return { type: fe.g };
       },
-      lt = function(e) {
-        return function(t) {
-          t(ut(e)), t(me());
-        };
-      },
       ut = function(e) {
-        return { type: fe.eb, payload: e };
+        return function(t) {
+          t(ct(e)), t(me());
+        };
       },
       ct = function(e) {
         return { type: fe.fb, payload: e };
       },
-      st = function() {
-        return { type: fe.gb };
+      st = function(e) {
+        return { type: fe.gb, payload: e };
       },
-      pt = function(e) {
+      pt = function() {
+        return { type: fe.hb };
+      },
+      ft = function(e) {
         return { type: fe.O, payload: e };
       },
-      ft = function() {
+      dt = function() {
         return { type: fe.P };
       },
-      dt = function() {
+      mt = function() {
         return { type: fe.L };
       },
-      mt = function() {
+      ht = function() {
         return { type: fe.J };
       },
-      ht = function() {
+      gt = function() {
         return { type: fe.C };
       },
-      gt = function() {
+      _t = function() {
         return { type: fe.B };
       },
-      _t = function(e) {
+      vt = function(e) {
         return { type: fe.M, payload: e };
       },
-      vt = function(e) {
+      yt = function(e) {
         return { type: fe.N, payload: e };
       },
-      yt = function(e) {
+      bt = function(e) {
         var t = { id: e };
         return function(n) {
           n({ type: fe.Q }),
@@ -12310,19 +12346,19 @@ object-assign
                 return e.json();
               })
               .then(function(t) {
-                n(bt(e)), n(ft()), console.log(t);
+                n(wt(e)), n(dt()), console.log(t);
               })
               .catch(function(e) {
-                console.log(e), n(ft());
+                console.log(e), n(dt());
               });
         };
       },
-      bt = function(e) {
+      wt = function(e) {
         return { type: fe.A, payload: e };
       },
-      wt = function(e) {
+      Et = function(e) {
         return function(t) {
-          t(ht()),
+          t(gt()),
             fetch("".concat(he, "/api/v1.0/user/getInfo?id=").concat(e), {
               method: "GET"
             })
@@ -12331,7 +12367,7 @@ object-assign
               })
               .then(function(e) {
                 var n;
-                t(gt()),
+                t(_t()),
                   e.data.name &&
                     t(((n = e.data.name), { type: fe.S, payload: n })),
                   e.data.role &&
@@ -12342,24 +12378,24 @@ object-assign
                     );
               })
               .catch(function(e) {
-                console.log(e), t(ht());
+                console.log(e), t(gt());
               });
         };
       },
-      Et = function(e) {
+      Ot = function(e) {
         return { type: fe.R, payload: e };
       },
-      Ot = n(13),
-      St = n.n(Ot),
-      kt = n(22),
-      xt = n.n(kt),
-      Nt = 1073741823;
-    var Ct =
+      St = n(13),
+      kt = n.n(St),
+      xt = n(22),
+      Nt = n.n(xt),
+      Ct = 1073741823;
+    var zt =
       a.a.createContext ||
       function(e, t) {
         var n,
           a,
-          o = "__create-react-context-" + xt()() + "__",
+          o = "__create-react-context-" + Nt()() + "__",
           i = (function(e) {
             function n() {
               var t, n, r;
@@ -12389,7 +12425,7 @@ object-assign
                 t
               );
             }
-            St()(n, e);
+            kt()(n, e);
             var r = n.prototype;
             return (
               (r.getChildContext = function() {
@@ -12405,7 +12441,7 @@ object-assign
                   ? 0 !== o || 1 / o == 1 / i
                   : o != o && i != i)
                     ? (n = 0)
-                    : ((n = "function" == typeof t ? t(r, a) : Nt),
+                    : ((n = "function" == typeof t ? t(r, a) : Ct),
                       0 !== (n |= 0) && this.emitter.set(e.value, n));
                 }
                 var o, i;
@@ -12431,17 +12467,17 @@ object-assign
               e
             );
           }
-          St()(n, t);
+          kt()(n, t);
           var r = n.prototype;
           return (
             (r.componentWillReceiveProps = function(e) {
               var t = e.observedBits;
-              this.observedBits = null == t ? Nt : t;
+              this.observedBits = null == t ? Ct : t;
             }),
             (r.componentDidMount = function() {
               this.context[o] && this.context[o].on(this.onUpdate);
               var e = this.props.observedBits;
-              this.observedBits = null == e ? Nt : e;
+              this.observedBits = null == e ? Ct : e;
             }),
             (r.componentWillUnmount = function() {
               this.context[o] && this.context[o].off(this.onUpdate);
@@ -12463,29 +12499,29 @@ object-assign
           { Provider: i, Consumer: l }
         );
       };
-    function zt(e, t) {
+    function Tt(e, t) {
       (e.prototype = Object.create(t.prototype)),
         (e.prototype.constructor = e),
         (e.__proto__ = t);
     }
-    function Tt(e) {
+    function Pt(e) {
       return "/" === e.charAt(0);
     }
-    function Pt(e, t) {
+    function jt(e, t) {
       for (var n = t, r = n + 1, a = e.length; r < a; n += 1, r += 1)
         e[n] = e[r];
       e.pop();
     }
-    var jt = function(e) {
+    var Rt = function(e) {
         var t =
             arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "",
           n = (e && e.split("/")) || [],
           r = (t && t.split("/")) || [],
-          a = e && Tt(e),
-          o = t && Tt(t),
+          a = e && Pt(e),
+          o = t && Pt(t),
           i = a || o;
         if (
-          (e && Tt(e) ? (r = n) : n.length && (r.pop(), (r = r.concat(n))),
+          (e && Pt(e) ? (r = n) : n.length && (r.pop(), (r = r.concat(n))),
           !r.length)
         )
           return "/";
@@ -12497,17 +12533,17 @@ object-assign
         for (var c = 0, s = r.length; s >= 0; s--) {
           var p = r[s];
           "." === p
-            ? Pt(r, s)
+            ? jt(r, s)
             : ".." === p
-            ? (Pt(r, s), c++)
-            : c && (Pt(r, s), c--);
+            ? (jt(r, s), c++)
+            : c && (jt(r, s), c--);
         }
         if (!i) for (; c--; c) r.unshift("..");
-        !i || "" === r[0] || (r[0] && Tt(r[0])) || r.unshift("");
+        !i || "" === r[0] || (r[0] && Pt(r[0])) || r.unshift("");
         var f = r.join("/");
         return l && "/" !== f.substr(-1) && (f += "/"), f;
       },
-      Rt =
+      Mt =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -12520,7 +12556,7 @@ object-assign
                 ? "symbol"
                 : typeof e;
             };
-    var Mt = function e(t, n) {
+    var At = function e(t, n) {
         if (t === n) return !0;
         if (null == t || null == n) return !1;
         if (Array.isArray(t))
@@ -12531,8 +12567,8 @@ object-assign
               return e(t, n[r]);
             })
           );
-        var r = void 0 === t ? "undefined" : Rt(t);
-        if (r !== (void 0 === n ? "undefined" : Rt(n))) return !1;
+        var r = void 0 === t ? "undefined" : Mt(t);
+        if (r !== (void 0 === n ? "undefined" : Mt(n))) return !1;
         if ("object" === r) {
           var a = t.valueOf(),
             o = n.valueOf();
@@ -12548,28 +12584,28 @@ object-assign
         }
         return !1;
       },
-      At = !0,
+      It = !0,
       Dt = "Invariant failed";
-    var It = function(e, t) {
-      if (!e) throw At ? new Error(Dt) : new Error(Dt + ": " + (t || ""));
+    var Ft = function(e, t) {
+      if (!e) throw It ? new Error(Dt) : new Error(Dt + ": " + (t || ""));
     };
-    function Ft(e) {
+    function Lt(e) {
       return "/" === e.charAt(0) ? e : "/" + e;
     }
-    function Lt(e) {
+    function Ut(e) {
       return "/" === e.charAt(0) ? e.substr(1) : e;
     }
-    function Ut(e, t) {
+    function Ht(e, t) {
       return (function(e, t) {
         return new RegExp("^" + t + "(\\/|\\?|#|$)", "i").test(e);
       })(e, t)
         ? e.substr(t.length)
         : e;
     }
-    function Ht(e) {
+    function Vt(e) {
       return "/" === e.charAt(e.length - 1) ? e.slice(0, -1) : e;
     }
-    function Vt(e) {
+    function $t(e) {
       var t = e.pathname,
         n = e.search,
         r = e.hash,
@@ -12580,7 +12616,7 @@ object-assign
         a
       );
     }
-    function $t(e, t, n, r) {
+    function Bt(e, t, n, r) {
       var a;
       "string" == typeof e
         ? ((a = (function(e) {
@@ -12623,22 +12659,22 @@ object-assign
         r
           ? a.pathname
             ? "/" !== a.pathname.charAt(0) &&
-              (a.pathname = jt(a.pathname, r.pathname))
+              (a.pathname = Rt(a.pathname, r.pathname))
             : (a.pathname = r.pathname)
           : a.pathname || (a.pathname = "/"),
         a
       );
     }
-    function Bt(e, t) {
+    function Wt(e, t) {
       return (
         e.pathname === t.pathname &&
         e.search === t.search &&
         e.hash === t.hash &&
         e.key === t.key &&
-        Mt(e.state, t.state)
+        At(e.state, t.state)
       );
     }
-    function Wt() {
+    function qt() {
       var e = null;
       var t = [];
       return {
@@ -12684,25 +12720,25 @@ object-assign
         }
       };
     }
-    var qt = !(
+    var Gt = !(
       "undefined" == typeof window ||
       !window.document ||
       !window.document.createElement
     );
-    function Gt(e, t) {
+    function Qt(e, t) {
       t(window.confirm(e));
     }
-    var Qt = "popstate",
-      Yt = "hashchange";
-    function Zt() {
+    var Yt = "popstate",
+      Zt = "hashchange";
+    function Kt() {
       try {
         return window.history.state || {};
       } catch (e) {
         return {};
       }
     }
-    function Kt(e) {
-      void 0 === e && (e = {}), qt || It(!1);
+    function Xt(e) {
+      void 0 === e && (e = {}), Gt || Ft(!1);
       var t,
         n = window.history,
         r =
@@ -12718,24 +12754,24 @@ object-assign
         i = o.forceRefresh,
         l = void 0 !== i && i,
         u = o.getUserConfirmation,
-        c = void 0 === u ? Gt : u,
+        c = void 0 === u ? Qt : u,
         s = o.keyLength,
         p = void 0 === s ? 6 : s,
-        f = e.basename ? Ht(Ft(e.basename)) : "";
+        f = e.basename ? Vt(Lt(e.basename)) : "";
       function d(e) {
         var t = e || {},
           n = t.key,
           r = t.state,
           a = window.location,
           o = a.pathname + a.search + a.hash;
-        return f && (o = Ut(o, f)), $t(o, r, n);
+        return f && (o = Ht(o, f)), Bt(o, r, n);
       }
       function m() {
         return Math.random()
           .toString(36)
           .substr(2, p);
       }
-      var h = Wt();
+      var h = qt();
       function g(e) {
         v(z, e), (z.length = n.length), h.notifyListeners(z.location, z.action);
       }
@@ -12745,7 +12781,7 @@ object-assign
         })(e) || w(d(e.state));
       }
       function y() {
-        w(d(Zt()));
+        w(d(Kt()));
       }
       var b = !1;
       function w(e) {
@@ -12766,10 +12802,10 @@ object-assign
           });
         }
       }
-      var E = d(Zt()),
+      var E = d(Kt()),
         O = [E.key];
       function S(e) {
-        return f + Vt(e);
+        return f + $t(e);
       }
       function k(e) {
         n.go(e);
@@ -12777,11 +12813,11 @@ object-assign
       var x = 0;
       function N(e) {
         1 === (x += e) && 1 === e
-          ? (window.addEventListener(Qt, _),
-            a && window.addEventListener(Yt, y))
+          ? (window.addEventListener(Yt, _),
+            a && window.addEventListener(Zt, y))
           : 0 === x &&
-            (window.removeEventListener(Qt, _),
-            a && window.removeEventListener(Yt, y));
+            (window.removeEventListener(Yt, _),
+            a && window.removeEventListener(Zt, y));
       }
       var C = !1;
       var z = {
@@ -12790,7 +12826,7 @@ object-assign
         location: E,
         createHref: S,
         push: function(e, t) {
-          var a = $t(e, t, m(), z.location);
+          var a = Bt(e, t, m(), z.location);
           h.confirmTransitionTo(a, "PUSH", c, function(e) {
             if (e) {
               var t = S(a),
@@ -12809,7 +12845,7 @@ object-assign
           });
         },
         replace: function(e, t) {
-          var a = $t(e, t, m(), z.location);
+          var a = Bt(e, t, m(), z.location);
           h.confirmTransitionTo(a, "REPLACE", c, function(e) {
             if (e) {
               var t = S(a),
@@ -12856,61 +12892,61 @@ object-assign
       };
       return z;
     }
-    var Xt = "hashchange",
-      Jt = {
+    var Jt = "hashchange",
+      en = {
         hashbang: {
           encodePath: function(e) {
-            return "!" === e.charAt(0) ? e : "!/" + Lt(e);
+            return "!" === e.charAt(0) ? e : "!/" + Ut(e);
           },
           decodePath: function(e) {
             return "!" === e.charAt(0) ? e.substr(1) : e;
           }
         },
-        noslash: { encodePath: Lt, decodePath: Ft },
-        slash: { encodePath: Ft, decodePath: Ft }
+        noslash: { encodePath: Ut, decodePath: Lt },
+        slash: { encodePath: Lt, decodePath: Lt }
       };
-    function en() {
+    function tn() {
       var e = window.location.href,
         t = e.indexOf("#");
       return -1 === t ? "" : e.substring(t + 1);
     }
-    function tn(e) {
+    function nn(e) {
       var t = window.location.href.indexOf("#");
       window.location.replace(
         window.location.href.slice(0, t >= 0 ? t : 0) + "#" + e
       );
     }
-    function nn(e) {
-      void 0 === e && (e = {}), qt || It(!1);
+    function rn(e) {
+      void 0 === e && (e = {}), Gt || Ft(!1);
       var t = window.history,
         n = (window.navigator.userAgent.indexOf("Firefox"), e),
         r = n.getUserConfirmation,
-        a = void 0 === r ? Gt : r,
+        a = void 0 === r ? Qt : r,
         o = n.hashType,
         i = void 0 === o ? "slash" : o,
-        l = e.basename ? Ht(Ft(e.basename)) : "",
-        u = Jt[i],
+        l = e.basename ? Vt(Lt(e.basename)) : "",
+        u = en[i],
         c = u.encodePath,
         s = u.decodePath;
       function p() {
-        var e = s(en());
-        return l && (e = Ut(e, l)), $t(e);
+        var e = s(tn());
+        return l && (e = Ht(e, l)), Bt(e);
       }
-      var f = Wt();
+      var f = qt();
       function d(e) {
         v(x, e), (x.length = t.length), f.notifyListeners(x.location, x.action);
       }
       var m = !1,
         h = null;
       function g() {
-        var e = en(),
+        var e = tn(),
           t = c(e);
-        if (e !== t) tn(t);
+        if (e !== t) nn(t);
         else {
           var n = p(),
             r = x.location;
-          if (!m && Bt(r, n)) return;
-          if (h === Vt(n)) return;
+          if (!m && Wt(r, n)) return;
+          if (h === $t(n)) return;
           (h = null),
             (function(e) {
               if (m) (m = !1), d();
@@ -12920,9 +12956,9 @@ object-assign
                     ? d({ action: "POP", location: e })
                     : (function(e) {
                         var t = x.location,
-                          n = w.lastIndexOf(Vt(t));
+                          n = w.lastIndexOf($t(t));
                         -1 === n && (n = 0);
-                        var r = w.lastIndexOf(Vt(e));
+                        var r = w.lastIndexOf($t(e));
                         -1 === r && (r = 0);
                         var a = n - r;
                         a && ((m = !0), E(a));
@@ -12932,19 +12968,19 @@ object-assign
             })(n);
         }
       }
-      var _ = en(),
+      var _ = tn(),
         y = c(_);
-      _ !== y && tn(y);
+      _ !== y && nn(y);
       var b = p(),
-        w = [Vt(b)];
+        w = [$t(b)];
       function E(e) {
         t.go(e);
       }
       var O = 0;
       function S(e) {
         1 === (O += e) && 1 === e
-          ? window.addEventListener(Xt, g)
-          : 0 === O && window.removeEventListener(Xt, g);
+          ? window.addEventListener(Jt, g)
+          : 0 === O && window.removeEventListener(Jt, g);
       }
       var k = !1;
       var x = {
@@ -12952,20 +12988,20 @@ object-assign
         action: "POP",
         location: b,
         createHref: function(e) {
-          return "#" + c(l + Vt(e));
+          return "#" + c(l + $t(e));
         },
         push: function(e, t) {
-          var n = $t(e, void 0, void 0, x.location);
+          var n = Bt(e, void 0, void 0, x.location);
           f.confirmTransitionTo(n, "PUSH", a, function(e) {
             if (e) {
-              var t = Vt(n),
+              var t = $t(n),
                 r = c(l + t);
-              if (en() !== r) {
+              if (tn() !== r) {
                 (h = t),
                   (function(e) {
                     window.location.hash = e;
                   })(r);
-                var a = w.lastIndexOf(Vt(x.location)),
+                var a = w.lastIndexOf($t(x.location)),
                   o = w.slice(0, -1 === a ? 0 : a + 1);
                 o.push(t), (w = o), d({ action: "PUSH", location: n });
               } else d();
@@ -12973,13 +13009,13 @@ object-assign
           });
         },
         replace: function(e, t) {
-          var n = $t(e, void 0, void 0, x.location);
+          var n = Bt(e, void 0, void 0, x.location);
           f.confirmTransitionTo(n, "REPLACE", a, function(e) {
             if (e) {
-              var t = Vt(n),
+              var t = $t(n),
                 r = c(l + t);
-              en() !== r && ((h = t), tn(r));
-              var a = w.indexOf(Vt(x.location));
+              tn() !== r && ((h = t), nn(r));
+              var a = w.indexOf($t(x.location));
               -1 !== a && (w[a] = t), d({ action: "REPLACE", location: n });
             }
           });
@@ -13013,16 +13049,16 @@ object-assign
       };
       return x;
     }
-    function rn(e, t, n) {
+    function an(e, t, n) {
       return Math.min(Math.max(e, t), n);
     }
-    var an = n(14),
-      on = n.n(an),
-      ln = (function(e) {
-        var t = Ct();
+    var on = n(14),
+      ln = n.n(on),
+      un = (function(e) {
+        var t = zt();
         return (t.displayName = e), t;
       })("Router"),
-      un = (function(e) {
+      cn = (function(e) {
         function t(t) {
           var n;
           return (
@@ -13040,7 +13076,7 @@ object-assign
             n
           );
         }
-        zt(t, e),
+        Tt(t, e),
           (t.computeRootMatch = function(e) {
             return { path: "/", url: "/", params: {}, isExact: "/" === e };
           });
@@ -13055,7 +13091,7 @@ object-assign
             this.unlisten && this.unlisten();
           }),
           (n.render = function() {
-            return a.a.createElement(ln.Provider, {
+            return a.a.createElement(un.Provider, {
               children: this.props.children || null,
               value: {
                 history: this.props.history,
@@ -13069,11 +13105,11 @@ object-assign
         );
       })(a.a.Component);
     a.a.Component;
-    var cn = (function(e) {
+    var sn = (function(e) {
       function t() {
         return e.apply(this, arguments) || this;
       }
-      zt(t, e);
+      Tt(t, e);
       var n = t.prototype;
       return (
         (n.componentDidMount = function() {
@@ -13091,57 +13127,57 @@ object-assign
         t
       );
     })(a.a.Component);
-    var sn = {},
-      pn = 1e4,
-      fn = 0;
-    function dn(e, t) {
+    var pn = {},
+      fn = 1e4,
+      dn = 0;
+    function mn(e, t) {
       return (
         void 0 === e && (e = "/"),
         void 0 === t && (t = {}),
         "/" === e
           ? e
           : (function(e) {
-              if (sn[e]) return sn[e];
-              var t = on.a.compile(e);
-              return fn < pn && ((sn[e] = t), fn++), t;
+              if (pn[e]) return pn[e];
+              var t = ln.a.compile(e);
+              return dn < fn && ((pn[e] = t), dn++), t;
             })(e)(t, { pretty: !0 })
       );
     }
-    function mn(e) {
+    function hn(e) {
       var t = e.computedMatch,
         n = e.to,
         r = e.push,
         o = void 0 !== r && r;
-      return a.a.createElement(ln.Consumer, null, function(e) {
-        e || It(!1);
+      return a.a.createElement(un.Consumer, null, function(e) {
+        e || Ft(!1);
         var r = e.history,
           i = e.staticContext,
           l = o ? r.push : r.replace,
-          u = $t(
+          u = Bt(
             t
               ? "string" == typeof n
-                ? dn(n, t.params)
-                : v({}, n, { pathname: dn(n.pathname, t.params) })
+                ? mn(n, t.params)
+                : v({}, n, { pathname: mn(n.pathname, t.params) })
               : n
           );
         return i
           ? (l(u), null)
-          : a.a.createElement(cn, {
+          : a.a.createElement(sn, {
               onMount: function() {
                 l(u);
               },
               onUpdate: function(e, t) {
-                var n = $t(t.to);
-                Bt(n, v({}, u, { key: n.key })) || l(u);
+                var n = Bt(t.to);
+                Wt(n, v({}, u, { key: n.key })) || l(u);
               },
               to: n
             });
       });
     }
-    var hn = {},
-      gn = 1e4,
-      _n = 0;
-    function vn(e, t) {
+    var gn = {},
+      _n = 1e4,
+      vn = 0;
+    function yn(e, t) {
       void 0 === t && (t = {}), "string" == typeof t && (t = { path: t });
       var n = t,
         r = n.path,
@@ -13156,11 +13192,11 @@ object-assign
         if (t) return t;
         var r = (function(e, t) {
             var n = "" + t.end + t.strict + t.sensitive,
-              r = hn[n] || (hn[n] = {});
+              r = gn[n] || (gn[n] = {});
             if (r[e]) return r[e];
             var a = [],
-              o = { regexp: on()(e, a, t), keys: a };
-            return _n < gn && ((r[e] = o), _n++), o;
+              o = { regexp: ln()(e, a, t), keys: a };
+            return vn < _n && ((r[e] = o), vn++), o;
           })(n, { end: o, strict: l, sensitive: c }),
           a = r.regexp,
           i = r.keys,
@@ -13181,23 +13217,23 @@ object-assign
             };
       }, null);
     }
-    var yn = (function(e) {
+    var bn = (function(e) {
       function t() {
         return e.apply(this, arguments) || this;
       }
       return (
-        zt(t, e),
+        Tt(t, e),
         (t.prototype.render = function() {
           var e = this;
-          return a.a.createElement(ln.Consumer, null, function(t) {
-            t || It(!1);
+          return a.a.createElement(un.Consumer, null, function(t) {
+            t || Ft(!1);
             var n = e.props.location || t.location,
               r = v({}, t, {
                 location: n,
                 match: e.props.computedMatch
                   ? e.props.computedMatch
                   : e.props.path
-                  ? vn(n.pathname, e.props)
+                  ? yn(n.pathname, e.props)
                   : t.match
               }),
               o = e.props,
@@ -13208,7 +13244,7 @@ object-assign
             "function" == typeof i) &&
               (void 0 === (i = i(r)) && (i = null));
             return a.a.createElement(
-              ln.Provider,
+              un.Provider,
               { value: r },
               i &&
                 !(function(e) {
@@ -13228,36 +13264,36 @@ object-assign
         t
       );
     })(a.a.Component);
-    function bn(e) {
+    function wn(e) {
       return "/" === e.charAt(0) ? e : "/" + e;
     }
-    function wn(e, t) {
+    function En(e, t) {
       if (!e) return t;
-      var n = bn(e);
+      var n = wn(e);
       return 0 !== t.pathname.indexOf(n)
         ? t
         : v({}, t, { pathname: t.pathname.substr(n.length) });
     }
-    function En(e) {
-      return "string" == typeof e ? e : Vt(e);
-    }
     function On(e) {
+      return "string" == typeof e ? e : $t(e);
+    }
+    function Sn(e) {
       return function() {
-        It(!1);
+        Ft(!1);
       };
     }
-    function Sn() {}
+    function kn() {}
     a.a.Component;
-    var kn = (function(e) {
+    var xn = (function(e) {
       function t() {
         return e.apply(this, arguments) || this;
       }
       return (
-        zt(t, e),
+        Tt(t, e),
         (t.prototype.render = function() {
           var e = this;
-          return a.a.createElement(ln.Consumer, null, function(t) {
-            t || It(!1);
+          return a.a.createElement(un.Consumer, null, function(t) {
+            t || Ft(!1);
             var n,
               r,
               o = e.props.location || t.location;
@@ -13266,7 +13302,7 @@ object-assign
                 if (null == r && a.a.isValidElement(e)) {
                   n = e;
                   var i = e.props.path || e.props.from;
-                  r = i ? vn(o.pathname, v({}, e.props, { path: i })) : t.match;
+                  r = i ? yn(o.pathname, v({}, e.props, { path: i })) : t.match;
                 }
               }),
               r ? a.a.cloneElement(n, { location: o, computedMatch: r }) : null
@@ -13276,21 +13312,21 @@ object-assign
         t
       );
     })(a.a.Component);
-    var xn = (function(e) {
+    var Nn = (function(e) {
       function t() {
         for (var t, n = arguments.length, r = new Array(n), a = 0; a < n; a++)
           r[a] = arguments[a];
         return (
-          ((t = e.call.apply(e, [this].concat(r)) || this).history = Kt(
+          ((t = e.call.apply(e, [this].concat(r)) || this).history = Xt(
             t.props
           )),
           t
         );
       }
       return (
-        zt(t, e),
+        Tt(t, e),
         (t.prototype.render = function() {
-          return a.a.createElement(un, {
+          return a.a.createElement(cn, {
             history: this.history,
             children: this.props.children
           });
@@ -13299,11 +13335,11 @@ object-assign
       );
     })(a.a.Component);
     a.a.Component;
-    var Nn = (function(e) {
+    var Cn = (function(e) {
       function t() {
         return e.apply(this, arguments) || this;
       }
-      zt(t, e);
+      Tt(t, e);
       var n = t.prototype;
       return (
         (n.handleClick = function(e, t) {
@@ -13327,9 +13363,9 @@ object-assign
             n = t.innerRef,
             r = (t.replace, t.to),
             o = y(t, ["innerRef", "replace", "to"]);
-          return a.a.createElement(ln.Consumer, null, function(t) {
-            t || It(!1);
-            var i = "string" == typeof r ? $t(r, null, null, t.location) : r,
+          return a.a.createElement(un.Consumer, null, function(t) {
+            t || Ft(!1);
+            var i = "string" == typeof r ? Bt(r, null, null, t.location) : r,
               l = i ? t.history.createHref(i) : "";
             return a.a.createElement(
               "a",
@@ -13346,7 +13382,7 @@ object-assign
         t
       );
     })(a.a.Component);
-    function Cn(e) {
+    function zn(e) {
       var t = e["aria-current"],
         n = void 0 === t ? "page" : t,
         r = e.activeClassName,
@@ -13373,10 +13409,10 @@ object-assign
         ]),
         h = "object" == typeof d ? d.pathname : d,
         g = h && h.replace(/([.+*?=^!:${}()[\]|\/\\])/g, "\\$1");
-      return a.a.createElement(ln.Consumer, null, function(e) {
-        e || It(!1);
+      return a.a.createElement(un.Consumer, null, function(e) {
+        e || Ft(!1);
         var t = s ? s.pathname : e.location.pathname,
-          r = g ? vn(t, { path: g, exact: u, strict: p }) : null,
+          r = g ? yn(t, { path: g, exact: u, strict: p }) : null,
           h = !!(c ? c(r, e.location) : r),
           _ = h
             ? (function() {
@@ -13395,7 +13431,7 @@ object-assign
             : l,
           y = h ? v({}, f, i) : f;
         return a.a.createElement(
-          Nn,
+          Cn,
           v(
             { "aria-current": (h && n) || null, className: _, style: y, to: d },
             m
@@ -13403,12 +13439,12 @@ object-assign
         );
       });
     }
-    var zn = function() {
+    var Tn = function() {
       return a.a.createElement(
         "div",
         { className: "pizza__logo" },
         a.a.createElement(
-          Nn,
+          Cn,
           { to: "/" },
           a.a.createElement("img", {
             src: "assets/img/logo.png",
@@ -13418,7 +13454,7 @@ object-assign
         )
       );
     };
-    function Tn() {
+    function Pn() {
       return a.a.createElement(
         "svg",
         {
@@ -13435,14 +13471,14 @@ object-assign
         })
       );
     }
-    var Pn = a.a.memo(function(e) {
+    var jn = a.a.memo(function(e) {
       return a.a.createElement(
         "div",
         { className: "pizza__nav" },
         a.a.createElement(
           "div",
           { className: "pizza__nav__burger", onClick: e.showClick },
-          a.a.createElement(Tn, null)
+          a.a.createElement(Pn, null)
         ),
         a.a.createElement(
           "nav",
@@ -13465,7 +13501,7 @@ object-assign
               "li",
               { className: "pizza__nav__item" },
               a.a.createElement(
-                Cn,
+                zn,
                 { to: "/", exact: !0, className: "pizza__nav__link" },
                 "Main page"
               )
@@ -13474,7 +13510,7 @@ object-assign
               "li",
               { className: "pizza__nav__item" },
               a.a.createElement(
-                Cn,
+                zn,
                 { to: "/pizza-builds", className: "pizza__nav__link" },
                 "Ready pizzas"
               )
@@ -13483,7 +13519,7 @@ object-assign
               "li",
               { className: "pizza__nav__item" },
               a.a.createElement(
-                Cn,
+                zn,
                 { to: "/pizza-builder", className: "pizza__nav__link" },
                 "Pizza builder"
               )
@@ -13492,28 +13528,28 @@ object-assign
               "li",
               { className: "pizza__nav__item" },
               a.a.createElement(
-                Cn,
+                zn,
                 { to: "/reviews/1", className: "pizza__nav__link" },
                 "Reviews"
               )
             ),
-            e.auth
+            e.auth.isAuthindicated
               ? a.a.createElement(
                   "li",
                   { className: "pizza__nav__item" },
                   a.a.createElement(
-                    Cn,
+                    zn,
                     { to: "/checkout", className: "pizza__nav__link" },
                     "Card & Checkout"
                   )
                 )
               : null,
-            e.auth
+            e.auth.isAuthindicated
               ? a.a.createElement(
                   "li",
                   { className: "pizza__nav__item" },
                   a.a.createElement(
-                    Cn,
+                    zn,
                     { to: "/logOut", className: "pizza__nav__link" },
                     "LogOut"
                   )
@@ -13522,28 +13558,49 @@ object-assign
                   "li",
                   { className: "pizza__nav__item" },
                   a.a.createElement(
-                    Cn,
+                    zn,
                     { to: "/authentication", className: "pizza__nav__link" },
                     "Authentication"
                   )
                 ),
-            e.auth
+            e.auth.isAuthindicated
               ? a.a.createElement(
                   "li",
                   { className: "pizza__nav__item" },
                   a.a.createElement(
-                    Cn,
+                    zn,
                     { to: "/personalRoom", className: "pizza__nav__link" },
-                    "My room"
+                    a.a.createElement(
+                      "div",
+                      { className: "log__out__cover" },
+                      a.a.createElement(
+                        "div",
+                        { className: "log__out__name__block" },
+                        a.a.createElement(
+                          "p",
+                          null,
+                          "" != e.auth.name ? e.auth.name : "user"
+                        )
+                      ),
+                      a.a.createElement(
+                        "div",
+                        { className: "log__out__image__block" },
+                        a.a.createElement("img", {
+                          src: "assets/users/".concat(e.auth.photo),
+                          alt: e.auth.name,
+                          className: "log__out__image"
+                        })
+                      )
+                    )
                   )
                 )
               : null,
-            e.auth
+            e.auth.isAuthindicated
               ? a.a.createElement(
                   "li",
                   { className: "pizza__nav__item" },
                   a.a.createElement(
-                    Cn,
+                    zn,
                     {
                       to: "/chat",
                       className:
@@ -13559,8 +13616,8 @@ object-assign
         )
       );
     });
-    function jn(e) {
-      return (jn =
+    function Rn(e) {
+      return (Rn =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -13574,7 +13631,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function Rn(e, t) {
+    function Mn(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -13583,14 +13640,14 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function Mn(e) {
-      return (Mn = Object.setPrototypeOf
+    function An(e) {
+      return (An = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function An(e) {
+    function In(e) {
       if (void 0 === e)
         throw new ReferenceError(
           "this hasn't been initialised - super() hasn't been called"
@@ -13604,7 +13661,7 @@ object-assign
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    function In(e, t, n) {
+    function Fn(e, t, n) {
       return (
         t in e
           ? Object.defineProperty(e, t, {
@@ -13617,7 +13674,7 @@ object-assign
         e
       );
     }
-    var Fn = (function(e) {
+    var Ln = (function(e) {
         function t() {
           var e, n;
           !(function(e, t) {
@@ -13628,17 +13685,17 @@ object-assign
             a[o] = arguments[o];
           return (
             (n = (function(e, t) {
-              return !t || ("object" !== jn(t) && "function" != typeof t)
-                ? An(e)
+              return !t || ("object" !== Rn(t) && "function" != typeof t)
+                ? In(e)
                 : t;
-            })(this, (e = Mn(t)).call.apply(e, [this].concat(a)))),
-            In(An(n), "state", { burgerIsShow: !1 }),
-            In(An(n), "showMenuHandler", function() {
+            })(this, (e = An(t)).call.apply(e, [this].concat(a)))),
+            Fn(In(n), "state", { burgerIsShow: !1 }),
+            Fn(In(n), "showMenuHandler", function() {
               n.setState(function(e) {
                 return { burgerIsShow: !e.burgerIsShow };
               });
             }),
-            In(An(n), "hideMenuHandler", function() {
+            Fn(In(n), "hideMenuHandler", function() {
               n.setState(function(e) {
                 return { burgerIsShow: (e.burgerIsShow = !1) };
               });
@@ -13666,11 +13723,11 @@ object-assign
                 return a.a.createElement(
                   "div",
                   { className: "pizza__header" },
-                  a.a.createElement(zn, null),
-                  a.a.createElement(Pn, {
+                  a.a.createElement(Tn, null),
+                  a.a.createElement(jn, {
                     show: this.state.burgerIsShow,
                     showClick: this.showMenuHandler,
-                    auth: this.props.auth.isAuthindicated,
+                    auth: this.props.auth,
                     hideModal: this.hideMenuHandler,
                     chat: this.props.chat,
                     location: this.props.location.pathname
@@ -13678,15 +13735,15 @@ object-assign
                 );
               }
             }
-          ]) && Rn(n.prototype, r),
-          o && Rn(n, o),
+          ]) && Mn(n.prototype, r),
+          o && Mn(n, o),
           t
         );
       })(a.a.Component),
-      Ln = oe(function(e) {
+      Un = oe(function(e) {
         return { auth: e.auth, chat: e.chat };
-      })(Fn),
-      Un = function(e) {
+      })(Ln),
+      Hn = function(e) {
         var t = Object.keys(e.ingredients).map(function(t) {
           return e.ingredients[t].count > 0
             ? a.a.createElement(
@@ -13722,7 +13779,7 @@ object-assign
           t
         );
       },
-      Hn = a.a.memo(function(e) {
+      Vn = a.a.memo(function(e) {
         return a.a.createElement(
           "div",
           { className: "pizza__view__block" },
@@ -13781,7 +13838,7 @@ object-assign
               a.a.createElement(
                 "div",
                 { className: "pizza__view__info__icons" },
-                a.a.createElement(Un, {
+                a.a.createElement(Hn, {
                   ingredients: e.ingredients,
                   minus: e.minus
                 })
@@ -13807,7 +13864,7 @@ object-assign
           )
         );
       }),
-      Vn = function(e) {
+      $n = function(e) {
         return a.a.createElement(
           "div",
           { className: "pizza__control" },
@@ -13862,22 +13919,22 @@ object-assign
           )
         );
       },
-      $n = function(e) {
+      Bn = function(e) {
         return e.children;
       };
-    function Bn(e, t) {
+    function Wn(e, t) {
       return e
         .replace(new RegExp("(^|\\s)" + t + "(?:\\s|$)", "g"), "$1")
         .replace(/\s+/g, " ")
         .replace(/^\s*|\s*$/g, "");
     }
-    var Wn = !1,
-      qn = a.a.createContext(null),
-      Gn = "unmounted",
-      Qn = "exited",
-      Yn = "entering",
-      Zn = "entered",
-      Kn = (function(e) {
+    var qn = !1,
+      Gn = a.a.createContext(null),
+      Qn = "unmounted",
+      Yn = "exited",
+      Zn = "entering",
+      Kn = "entered",
+      Xn = (function(e) {
         function t(t, n) {
           var r;
           r = e.call(this, t, n) || this;
@@ -13887,17 +13944,17 @@ object-assign
             (r.appearStatus = null),
             t.in
               ? o
-                ? ((a = Qn), (r.appearStatus = Yn))
-                : (a = Zn)
-              : (a = t.unmountOnExit || t.mountOnEnter ? Gn : Qn),
+                ? ((a = Yn), (r.appearStatus = Zn))
+                : (a = Kn)
+              : (a = t.unmountOnExit || t.mountOnEnter ? Qn : Yn),
             (r.state = { status: a }),
             (r.nextCallback = null),
             r
           );
         }
-        zt(t, e),
+        Tt(t, e),
           (t.getDerivedStateFromProps = function(e, t) {
-            return e.in && t.status === Gn ? { status: Qn } : null;
+            return e.in && t.status === Qn ? { status: Yn } : null;
           });
         var n = t.prototype;
         return (
@@ -13909,8 +13966,8 @@ object-assign
             if (e !== this.props) {
               var n = this.state.status;
               this.props.in
-                ? n !== Yn && n !== Zn && (t = Yn)
-                : (n !== Yn && n !== Zn) || (t = "exiting");
+                ? n !== Zn && n !== Kn && (t = Zn)
+                : (n !== Zn && n !== Kn) || (t = "exiting");
             }
             this.updateStatus(!1, t);
           }),
@@ -13936,11 +13993,11 @@ object-assign
             if ((void 0 === e && (e = !1), null !== t)) {
               this.cancelNextCallback();
               var n = i.a.findDOMNode(this);
-              t === Yn ? this.performEnter(n, e) : this.performExit(n);
+              t === Zn ? this.performEnter(n, e) : this.performExit(n);
             } else
               this.props.unmountOnExit &&
-                this.state.status === Qn &&
-                this.setState({ status: Gn });
+                this.state.status === Yn &&
+                this.setState({ status: Qn });
           }),
           (n.performEnter = function(e, t) {
             var n = this,
@@ -13948,15 +14005,15 @@ object-assign
               a = this.context ? this.context.isMounting : t,
               o = this.getTimeouts(),
               i = a ? o.appear : o.enter;
-            (!t && !r) || Wn
-              ? this.safeSetState({ status: Zn }, function() {
+            (!t && !r) || qn
+              ? this.safeSetState({ status: Kn }, function() {
                   n.props.onEntered(e);
                 })
               : (this.props.onEnter(e, a),
-                this.safeSetState({ status: Yn }, function() {
+                this.safeSetState({ status: Zn }, function() {
                   n.props.onEntering(e, a),
                     n.onTransitionEnd(e, i, function() {
-                      n.safeSetState({ status: Zn }, function() {
+                      n.safeSetState({ status: Kn }, function() {
                         n.props.onEntered(e, a);
                       });
                     });
@@ -13966,17 +14023,17 @@ object-assign
             var t = this,
               n = this.props.exit,
               r = this.getTimeouts();
-            n && !Wn
+            n && !qn
               ? (this.props.onExit(e),
                 this.safeSetState({ status: "exiting" }, function() {
                   t.props.onExiting(e),
                     t.onTransitionEnd(e, r.exit, function() {
-                      t.safeSetState({ status: Qn }, function() {
+                      t.safeSetState({ status: Yn }, function() {
                         t.props.onExited(e);
                       });
                     });
                 }))
-              : this.safeSetState({ status: Qn }, function() {
+              : this.safeSetState({ status: Yn }, function() {
                   t.props.onExited(e);
                 });
           }),
@@ -14011,7 +14068,7 @@ object-assign
           }),
           (n.render = function() {
             var e = this.state.status;
-            if (e === Gn) return null;
+            if (e === Qn) return null;
             var t = this.props,
               n = t.children,
               r = y(t, ["children"]);
@@ -14032,10 +14089,10 @@ object-assign
               delete r.onExited,
               "function" == typeof n)
             )
-              return a.a.createElement(qn.Provider, { value: null }, n(e, r));
+              return a.a.createElement(Gn.Provider, { value: null }, n(e, r));
             var o = a.a.Children.only(n);
             return a.a.createElement(
-              qn.Provider,
+              Gn.Provider,
               { value: null },
               a.a.cloneElement(o, r)
             );
@@ -14043,30 +14100,30 @@ object-assign
           t
         );
       })(a.a.Component);
-    function Xn() {}
-    (Kn.contextType = qn),
-      (Kn.propTypes = {}),
-      (Kn.defaultProps = {
+    function Jn() {}
+    (Xn.contextType = Gn),
+      (Xn.propTypes = {}),
+      (Xn.defaultProps = {
         in: !1,
         mountOnEnter: !1,
         unmountOnExit: !1,
         appear: !1,
         enter: !0,
         exit: !0,
-        onEnter: Xn,
-        onEntering: Xn,
-        onEntered: Xn,
-        onExit: Xn,
-        onExiting: Xn,
-        onExited: Xn
+        onEnter: Jn,
+        onEntering: Jn,
+        onEntered: Jn,
+        onExit: Jn,
+        onExiting: Jn,
+        onExited: Jn
       }),
-      (Kn.UNMOUNTED = 0),
-      (Kn.EXITED = 1),
-      (Kn.ENTERING = 2),
-      (Kn.ENTERED = 3),
-      (Kn.EXITING = 4);
-    var Jn = Kn,
-      er = function(e, t) {
+      (Xn.UNMOUNTED = 0),
+      (Xn.EXITED = 1),
+      (Xn.ENTERING = 2),
+      (Xn.ENTERED = 3),
+      (Xn.EXITING = 4);
+    var er = Xn,
+      tr = function(e, t) {
         return (
           e &&
           t &&
@@ -14076,17 +14133,17 @@ object-assign
               void ((n = e).classList
                 ? n.classList.remove(r)
                 : "string" == typeof n.className
-                ? (n.className = Bn(n.className, r))
+                ? (n.className = Wn(n.className, r))
                 : n.setAttribute(
                     "class",
-                    Bn((n.className && n.className.baseVal) || "", r)
+                    Wn((n.className && n.className.baseVal) || "", r)
                   ))
             );
             var n, r;
           })
         );
       },
-      tr = (function(e) {
+      nr = (function(e) {
         function t() {
           for (var t, n = arguments.length, r = new Array(n), a = 0; a < n; a++)
             r[a] = arguments[a];
@@ -14140,7 +14197,7 @@ object-assign
             t
           );
         }
-        zt(t, e);
+        Tt(t, e);
         var n = t.prototype;
         return (
           (n.addClass = function(e, t, n) {
@@ -14187,15 +14244,15 @@ object-assign
               a = n.active,
               o = n.done;
             (this.appliedClasses[t] = {}),
-              r && er(e, r),
-              a && er(e, a),
-              o && er(e, o);
+              r && tr(e, r),
+              a && tr(e, a),
+              o && tr(e, o);
           }),
           (n.render = function() {
             var e = this.props,
               t = (e.classNames, y(e, ["classNames"]));
             return a.a.createElement(
-              Jn,
+              er,
               v({}, t, {
                 onEnter: this.onEnter,
                 onEntered: this.onEntered,
@@ -14209,11 +14266,11 @@ object-assign
           t
         );
       })(a.a.Component);
-    (tr.defaultProps = { classNames: "" }), (tr.propTypes = {});
-    var nr = tr,
-      rr = function(e) {
+    (nr.defaultProps = { classNames: "" }), (nr.propTypes = {});
+    var rr = nr,
+      ar = function(e) {
         return a.a.createElement(
-          nr,
+          rr,
           {
             in: e.toggle,
             timeout: 300,
@@ -14224,7 +14281,7 @@ object-assign
           e.children
         );
       };
-    function ar(e, t) {
+    function or(e, t) {
       return (
         (function(e) {
           if (Array.isArray(e)) return e;
@@ -14266,8 +14323,8 @@ object-assign
         })()
       );
     }
-    var or = function(e) {
-        var t = ar(Object(r.useState)(!1), 2),
+    var ir = function(e) {
+        var t = or(Object(r.useState)(!1), 2),
           n = t[0],
           o = t[1];
         return a.a.createElement(
@@ -14284,7 +14341,7 @@ object-assign
             "Choose ingredient..."
           ),
           a.a.createElement(
-            rr,
+            ar,
             { toggle: n },
             a.a.createElement(
               "ul",
@@ -14329,7 +14386,7 @@ object-assign
           )
         );
       },
-      ir = function(e) {
+      lr = function(e) {
         return a.a.createElement(
           "div",
           { className: "pizza__view__order__controls" },
@@ -14353,10 +14410,10 @@ object-assign
           )
         );
       },
-      lr = function(e) {
+      ur = function(e) {
         return a.a.createElement("div", { className: "modal" }, e.children);
       },
-      ur = function(e) {
+      cr = function(e) {
         return a.a.createElement(
           "div",
           { className: "pizza__view__order__content__modal" },
@@ -14374,7 +14431,7 @@ object-assign
             a.a.createElement(
               "div",
               { className: "pizza__view__order__modal__icons" },
-              a.a.createElement(Un, {
+              a.a.createElement(Hn, {
                 ingredients: e.ingredients,
                 minus: e.minus
               })
@@ -14398,7 +14455,7 @@ object-assign
           )
         );
       },
-      cr = function(e) {
+      sr = function(e) {
         var t =
           e.pizzas.length > 0
             ? e.pizzas.map(function(t, n) {
@@ -14437,7 +14494,7 @@ object-assign
                     a.a.createElement(
                       "div",
                       { className: "multi__order__icons__cover" },
-                      a.a.createElement(Un, {
+                      a.a.createElement(Hn, {
                         ingredients: t.ingredients,
                         minus: e.minus
                       })
@@ -14478,9 +14535,9 @@ object-assign
           a.a.createElement("ul", null, t)
         );
       },
-      sr = function(e) {
+      pr = function(e) {
         return a.a.createElement(
-          nr,
+          rr,
           {
             in: e.toggle,
             timeout: 300,
@@ -14491,8 +14548,8 @@ object-assign
           e.children
         );
       };
-    function pr(e) {
-      return (pr =
+    function fr(e) {
+      return (fr =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -14506,7 +14563,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function fr(e, t) {
+    function dr(e, t) {
       var n = Object.keys(e);
       if (Object.getOwnPropertySymbols) {
         var r = Object.getOwnPropertySymbols(e);
@@ -14518,7 +14575,7 @@ object-assign
       }
       return n;
     }
-    function dr(e, t) {
+    function mr(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -14527,28 +14584,28 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function mr(e) {
-      return (mr = Object.setPrototypeOf
+    function hr(e) {
+      return (hr = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function hr(e) {
+    function gr(e) {
       if (void 0 === e)
         throw new ReferenceError(
           "this hasn't been initialised - super() hasn't been called"
         );
       return e;
     }
-    function gr(e, t) {
-      return (gr =
+    function _r(e, t) {
+      return (_r =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    function _r(e, t, n) {
+    function vr(e, t, n) {
       return (
         t in e
           ? Object.defineProperty(e, t, {
@@ -14561,7 +14618,7 @@ object-assign
         e
       );
     }
-    var vr = (function(e) {
+    var yr = (function(e) {
         function t() {
           var e, n;
           !(function(e, t) {
@@ -14572,17 +14629,17 @@ object-assign
             a[o] = arguments[o];
           return (
             (n = (function(e, t) {
-              return !t || ("object" !== pr(t) && "function" != typeof t)
-                ? hr(e)
+              return !t || ("object" !== fr(t) && "function" != typeof t)
+                ? gr(e)
                 : t;
-            })(this, (e = mr(t)).call.apply(e, [this].concat(a)))),
-            _r(hr(n), "state", {
+            })(this, (e = hr(t)).call.apply(e, [this].concat(a)))),
+            vr(gr(n), "state", {
               currentIngredient: "base",
               modalIsShow: !1,
               smallPizza: !1,
               redirect: !1
             }),
-            _r(hr(n), "changeSelectHandler", function(e) {
+            vr(gr(n), "changeSelectHandler", function(e) {
               n.setState(function(t) {
                 return {
                   currentIngredient: (t.currentIngredient =
@@ -14590,12 +14647,12 @@ object-assign
                 };
               });
             }),
-            _r(hr(n), "toggleModalHandler", function() {
+            vr(gr(n), "toggleModalHandler", function() {
               n.setState(function(e, t) {
                 return { modalIsShow: !e.modalIsShow };
               });
             }),
-            _r(hr(n), "checkoutHandler", function() {
+            vr(gr(n), "checkoutHandler", function() {
               Object.keys(n.props.multi.pizzas).length > 0 &&
                 n.addPizzaHandler(),
                 n.props.state.weight > 500 ||
@@ -14603,7 +14660,7 @@ object-assign
                   ? n.setState({ redirect: !0 })
                   : n.setState({ smallPizza: !0, modalIsShow: !1 });
             }),
-            _r(hr(n), "addPizzaHandler", function() {
+            vr(gr(n), "addPizzaHandler", function() {
               var e = {};
               Object.keys(n.props.state.ingredients).map(function(t) {
                 0 !== n.props.state.ingredients[t].count &&
@@ -14611,15 +14668,15 @@ object-assign
                     for (var t = 1; t < arguments.length; t++) {
                       var n = null != arguments[t] ? arguments[t] : {};
                       t % 2
-                        ? fr(n, !0).forEach(function(t) {
-                            _r(e, t, n[t]);
+                        ? dr(n, !0).forEach(function(t) {
+                            vr(e, t, n[t]);
                           })
                         : Object.getOwnPropertyDescriptors
                         ? Object.defineProperties(
                             e,
                             Object.getOwnPropertyDescriptors(n)
                           )
-                        : fr(n).forEach(function(t) {
+                        : dr(n).forEach(function(t) {
                             Object.defineProperty(
                               e,
                               t,
@@ -14640,7 +14697,7 @@ object-assign
                 ? (n.setState({ modalIsShow: !1 }), n.props.multipleAddFun(t))
                 : n.setState({ smallPizza: !0, modalIsShow: !1 });
             }),
-            _r(hr(n), "minusFunHandler", function(e) {
+            vr(gr(n), "minusFunHandler", function(e) {
               console.log("in", e);
             }),
             n
@@ -14656,7 +14713,7 @@ object-assign
             (e.prototype = Object.create(t && t.prototype, {
               constructor: { value: e, writable: !0, configurable: !0 }
             })),
-              t && gr(e, t);
+              t && _r(e, t);
           })(t, e),
           (n = t),
           (r = [
@@ -14665,10 +14722,10 @@ object-assign
               value: function() {
                 var e = this;
                 return a.a.createElement(
-                  $n,
+                  Bn,
                   null,
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.modalIsShow },
                     a.a.createElement("div", {
                       className: "modal__background",
@@ -14676,12 +14733,12 @@ object-assign
                     })
                   ),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.modalIsShow },
                     a.a.createElement(
-                      lr,
+                      ur,
                       null,
-                      a.a.createElement(ur, {
+                      a.a.createElement(cr, {
                         cost: this.props.state.cost,
                         diameter: this.props.state.diameter,
                         message: this.props.state.message,
@@ -14694,7 +14751,7 @@ object-assign
                     )
                   ),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.smallPizza },
                     a.a.createElement(
                       "div",
@@ -14714,7 +14771,7 @@ object-assign
                     )
                   ),
                   this.state.redirect
-                    ? a.a.createElement(mn, { to: "/checkout" })
+                    ? a.a.createElement(hn, { to: "/checkout" })
                     : null,
                   a.a.createElement(
                     "div",
@@ -14722,11 +14779,11 @@ object-assign
                     a.a.createElement(
                       "div",
                       { className: "pizza__buttons__cover" },
-                      a.a.createElement(or, {
+                      a.a.createElement(ir, {
                         ingredients: this.props.state.ingredients,
                         change: this.changeSelectHandler
                       }),
-                      a.a.createElement(Vn, {
+                      a.a.createElement($n, {
                         name: this.state.currentIngredient,
                         weight: this.props.state.ingredients[
                           this.state.currentIngredient
@@ -14737,19 +14794,19 @@ object-assign
                         plus: this.props.plusFun,
                         minus: this.props.minusFun
                       }),
-                      a.a.createElement(ir, {
+                      a.a.createElement(lr, {
                         toggleModal: this.toggleModalHandler,
                         resetBuild: this.props.resetFun,
                         resetMultiBuild: this.props.resetMultiFun
                       }),
-                      a.a.createElement(cr, {
+                      a.a.createElement(sr, {
                         pizzas: this.props.multi.pizzas,
                         cost: this.props.multi.totalCost,
                         minus: this.minusFunHandler,
                         delete: this.props.deleteMulriOrderFun
                       })
                     ),
-                    a.a.createElement(Hn, {
+                    a.a.createElement(Vn, {
                       ingredients: this.props.state.ingredients,
                       weight: this.props.state.weight,
                       minus: this.props.minusFun,
@@ -14761,12 +14818,12 @@ object-assign
                 );
               }
             }
-          ]) && dr(n.prototype, r),
-          o && dr(n, o),
+          ]) && mr(n.prototype, r),
+          o && mr(n, o),
           t
         );
       })(a.a.Component),
-      yr = oe(
+      br = oe(
         function(e) {
           return { state: e.pizza, multi: e.multi };
         },
@@ -14775,7 +14832,7 @@ object-assign
             plusFun: function(t) {
               return e(
                 (function(e) {
-                  return { type: fe.ib, payload: e };
+                  return { type: fe.jb, payload: e };
                 })(t)
               );
             },
@@ -14786,18 +14843,18 @@ object-assign
               return e(me());
             },
             multipleAddFun: function(t) {
-              return e(lt(t));
+              return e(ut(t));
             },
             deleteMulriOrderFun: function(t) {
-              return e(ct(t));
+              return e(st(t));
             },
             resetMultiFun: function() {
-              return e(st());
+              return e(pt());
             }
           };
         }
-      )(vr);
-    function br(e) {
+      )(yr);
+    function wr(e) {
       return a.a.createElement(
         "svg",
         {
@@ -14812,7 +14869,7 @@ object-assign
         })
       );
     }
-    function wr(e) {
+    function Er(e) {
       return a.a.createElement(
         "svg",
         {
@@ -14827,7 +14884,7 @@ object-assign
         })
       );
     }
-    function Er(e, t) {
+    function Or(e, t) {
       return (
         (function(e) {
           if (Array.isArray(e)) return e;
@@ -14869,18 +14926,18 @@ object-assign
         })()
       );
     }
-    var Or = function(e) {
-        var t = Er(Object(r.useState)(!1), 2),
+    var Sr = function(e) {
+        var t = Or(Object(r.useState)(!1), 2),
           n = t[0],
           o = t[1],
-          i = Er(Object(r.useState)(null), 2),
+          i = Or(Object(r.useState)(null), 2),
           l = i[0],
           u = i[1];
         return a.a.createElement(
           "div",
           { className: "reviews__main__cover" },
           a.a.createElement(
-            sr,
+            pr,
             { toggle: n },
             a.a.createElement(
               "div",
@@ -14967,9 +15024,9 @@ object-assign
                     (function(t) {
                       for (var n = [], r = 0, o = 0; o < 5; o++)
                         r < +e.reviews[t].rating
-                          ? (n.push(a.a.createElement(br, { key: t + o })), r++)
+                          ? (n.push(a.a.createElement(wr, { key: t + o })), r++)
                           : r < 6 &&
-                            (n.push(a.a.createElement(wr, { key: t + o })),
+                            (n.push(a.a.createElement(Er, { key: t + o })),
                             r++);
                       return n;
                     })(t)
@@ -15002,7 +15059,7 @@ object-assign
                     var r = "/reviews/".concat(n + 1);
                     t.push(
                       a.a.createElement(
-                        Cn,
+                        zn,
                         {
                           to: r,
                           key: n,
@@ -15035,7 +15092,7 @@ object-assign
                   "button",
                   { className: "review__add__btn" },
                   a.a.createElement(
-                    Nn,
+                    Cn,
                     { to: "/reviews/addReview" },
                     "Add new review"
                   )
@@ -15043,11 +15100,11 @@ object-assign
               )
             : null,
           e.isEditMode
-            ? a.a.createElement(mn, { to: "/reviews/addReview" })
+            ? a.a.createElement(hn, { to: "/reviews/addReview" })
             : null
         );
       },
-      Sr = function(e) {
+      kr = function(e) {
         return a.a.createElement(
           "div",
           { className: "modal__sending" },
@@ -15058,8 +15115,8 @@ object-assign
           )
         );
       };
-    function kr(e) {
-      return (kr =
+    function xr(e) {
+      return (xr =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -15073,7 +15130,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function xr(e, t) {
+    function Nr(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -15082,28 +15139,28 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function Nr(e) {
-      return (Nr = Object.setPrototypeOf
+    function Cr(e) {
+      return (Cr = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function Cr(e) {
+    function zr(e) {
       if (void 0 === e)
         throw new ReferenceError(
           "this hasn't been initialised - super() hasn't been called"
         );
       return e;
     }
-    function zr(e, t) {
-      return (zr =
+    function Tr(e, t) {
+      return (Tr =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    function Tr(e, t, n) {
+    function Pr(e, t, n) {
       return (
         t in e
           ? Object.defineProperty(e, t, {
@@ -15116,7 +15173,7 @@ object-assign
         e
       );
     }
-    var Pr = (function(e) {
+    var jr = (function(e) {
         function t() {
           var e, n;
           !(function(e, t) {
@@ -15127,15 +15184,15 @@ object-assign
             a[o] = arguments[o];
           return (
             (n = (function(e, t) {
-              return !t || ("object" !== kr(t) && "function" != typeof t)
-                ? Cr(e)
+              return !t || ("object" !== xr(t) && "function" != typeof t)
+                ? zr(e)
                 : t;
-            })(this, (e = Nr(t)).call.apply(e, [this].concat(a)))),
-            Tr(Cr(n), "state", { currentPage: 1, modal: !1 }),
-            Tr(Cr(n), "currentPageHandler", function(e) {
+            })(this, (e = Cr(t)).call.apply(e, [this].concat(a)))),
+            Pr(zr(n), "state", { currentPage: 1, modal: !1 }),
+            Pr(zr(n), "currentPageHandler", function(e) {
               n.setState({ currentPage: e });
             }),
-            Tr(Cr(n), "deleteReviewHandler", function(e) {
+            Pr(zr(n), "deleteReviewHandler", function(e) {
               n.props.deleteReviewFun(e);
             }),
             n
@@ -15151,7 +15208,7 @@ object-assign
             (e.prototype = Object.create(t && t.prototype, {
               constructor: { value: e, writable: !0, configurable: !0 }
             })),
-              t && zr(e, t);
+              t && Tr(e, t);
           })(t, e),
           (n = t),
           (r = [
@@ -15168,17 +15225,17 @@ object-assign
                   "div",
                   { className: "container reviews_container" },
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.props.isLoading },
-                    a.a.createElement(Sr, null)
+                    a.a.createElement(kr, null)
                   ),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.props.reviews.modal },
-                    a.a.createElement(Sr, null)
+                    a.a.createElement(kr, null)
                   ),
                   this.props.getReviews
-                    ? a.a.createElement(Or, {
+                    ? a.a.createElement(Sr, {
                         reviews: this.props.reviews.reviews,
                         auth: this.props.auth.isAuthindicated,
                         pagination: this.props.reviews.pagination,
@@ -15194,12 +15251,12 @@ object-assign
                 );
               }
             }
-          ]) && xr(n.prototype, r),
-          o && xr(n, o),
+          ]) && Nr(n.prototype, r),
+          o && Nr(n, o),
           t
         );
       })(a.a.Component),
-      jr = oe(
+      Rr = oe(
         function(e) {
           return {
             isLoading: e.reviews.isLoading,
@@ -15215,7 +15272,7 @@ object-assign
               return e(
                 (function(e) {
                   return function(t) {
-                    t(Ee()),
+                    t(Oe()),
                       fetch("".concat(he, "/api/v1.0/reviews").concat(e), {
                         method: "GET"
                       })
@@ -15223,7 +15280,7 @@ object-assign
                           return e.json();
                         })
                         .then(function(e) {
-                          return t(Oe(e.data, e.count));
+                          return t(Se(e.data, e.count));
                         })
                         .catch(function(e) {
                           return t(getError(e));
@@ -15246,10 +15303,10 @@ object-assign
                         return e.json();
                       })
                       .then(function(e) {
-                        t(ke(e.data));
+                        t(xe(e.data));
                       })
                       .catch(function(e) {
-                        return t(Se(e));
+                        return t(ke(e));
                       });
                   };
                 })(t)
@@ -15260,7 +15317,7 @@ object-assign
                 (function(e) {
                   var t = { id: e };
                   return function(e) {
-                    e(Ne()),
+                    e(Ce()),
                       fetch("".concat(he, "/api/v1.0/reviews"), {
                         method: "DELETE",
                         headers: { "Content-Type": "application/json" },
@@ -15270,10 +15327,10 @@ object-assign
                           return e.json();
                         })
                         .then(function(n) {
-                          e(Ce(t.id)), console.log(n);
+                          e(ze(t.id)), console.log(n);
                         })
                         .catch(function(n) {
-                          console.log(n), e(Ce(t.id));
+                          console.log(n), e(ze(t.id));
                         });
                   };
                 })(t)
@@ -15281,9 +15338,9 @@ object-assign
             }
           };
         }
-      )(Pr);
-    function Rr(e) {
-      return (Rr =
+      )(jr);
+    function Mr(e) {
+      return (Mr =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -15297,7 +15354,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function Mr(e, t) {
+    function Ar(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -15306,8 +15363,8 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function Ar(e) {
-      return (Ar = Object.setPrototypeOf
+    function Ir(e) {
+      return (Ir = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
@@ -15320,14 +15377,14 @@ object-assign
         );
       return e;
     }
-    function Ir(e, t) {
-      return (Ir =
+    function Fr(e, t) {
+      return (Fr =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    function Fr(e, t, n) {
+    function Lr(e, t, n) {
       return (
         t in e
           ? Object.defineProperty(e, t, {
@@ -15340,7 +15397,7 @@ object-assign
         e
       );
     }
-    var Lr = (function(e) {
+    var Ur = (function(e) {
         function t() {
           var e, n;
           !(function(e, t) {
@@ -15351,19 +15408,19 @@ object-assign
             a[o] = arguments[o];
           return (
             (n = (function(e, t) {
-              return !t || ("object" !== Rr(t) && "function" != typeof t)
+              return !t || ("object" !== Mr(t) && "function" != typeof t)
                 ? Dr(e)
                 : t;
-            })(this, (e = Ar(t)).call.apply(e, [this].concat(a)))),
-            Fr(Dr(n), "state", {
+            })(this, (e = Ir(t)).call.apply(e, [this].concat(a)))),
+            Lr(Dr(n), "state", {
               currentRating: 5,
               isLoading: !1,
               badData: !1
             }),
-            Fr(Dr(n), "changeRatingHandler", function(e) {
+            Lr(Dr(n), "changeRatingHandler", function(e) {
               n.setState({ currentRating: e });
             }),
-            Fr(Dr(n), "addReviewHandler", function(e) {
+            Lr(Dr(n), "addReviewHandler", function(e) {
               e.preventDefault();
               var t = document.querySelector("#author__name"),
                 r = document.querySelector("#author__text");
@@ -15419,7 +15476,7 @@ object-assign
             (e.prototype = Object.create(t && t.prototype, {
               constructor: { value: e, writable: !0, configurable: !0 }
             })),
-              t && Ir(e, t);
+              t && Fr(e, t);
           })(t, e),
           (n = t),
           (r = [
@@ -15443,7 +15500,7 @@ object-assign
                   "section",
                   { className: "container add__form__container" },
                   a.a.createElement(
-                    nr,
+                    rr,
                     {
                       in: this.state.isLoading,
                       timeout: 300,
@@ -15451,10 +15508,10 @@ object-assign
                       mountOnEnter: !0,
                       unmountOnExit: !0
                     },
-                    a.a.createElement("div", null, a.a.createElement(Sr, null))
+                    a.a.createElement("div", null, a.a.createElement(kr, null))
                   ),
                   a.a.createElement(
-                    nr,
+                    rr,
                     {
                       in: this.state.badData,
                       timeout: 300,
@@ -15674,7 +15731,7 @@ object-assign
                       "button",
                       { className: "add__form__back__btn" },
                       a.a.createElement(
-                        Nn,
+                        Cn,
                         { to: "/reviews/1" },
                         "Back to reviews"
                       )
@@ -15683,24 +15740,24 @@ object-assign
                 );
               }
             }
-          ]) && Mr(n.prototype, r),
-          o && Mr(n, o),
+          ]) && Ar(n.prototype, r),
+          o && Ar(n, o),
           t
         );
       })(a.a.Component),
-      Ur = oe(
+      Hr = oe(
         function(e) {
           return { auth: e.auth, reviews: e.reviews };
         },
         function(e) {
           return {
             editReviewSendFun: function(t, n) {
-              return e(we(t, n));
+              return e(Ee(t, n));
             }
           };
         }
-      )(Lr),
-      Hr = a.a.memo(function(e) {
+      )(Ur),
+      Vr = a.a.memo(function(e) {
         var t =
           e.orders.length > 0
             ? e.orders.map(function(t, r) {
@@ -15922,7 +15979,7 @@ object-assign
           a.a.createElement("div", { className: "prev__orders__cover" }, t)
         );
       }),
-      Vr = function(e) {
+      $r = function(e) {
         return a.a.createElement(
           "div",
           { className: "main__info__cover" },
@@ -15934,7 +15991,7 @@ object-assign
               "div",
               { className: "main__info__block__pic" },
               a.a.createElement("img", {
-                src: "assets/img/pizzaChef.jpg",
+                src: "/assets/img/pizzaChef.jpg",
                 alt: "Pizza Chef",
                 className: "main__info__block__image"
               })
@@ -15951,8 +16008,8 @@ object-assign
           )
         );
       };
-    function $r(e) {
-      return ($r =
+    function Br(e) {
+      return (Br =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -15966,7 +16023,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function Br(e, t) {
+    function Wr(e, t) {
       var n = Object.keys(e);
       if (Object.getOwnPropertySymbols) {
         var r = Object.getOwnPropertySymbols(e);
@@ -15978,16 +16035,16 @@ object-assign
       }
       return n;
     }
-    function Wr(e) {
+    function qr(e) {
       for (var t = 1; t < arguments.length; t++) {
         var n = null != arguments[t] ? arguments[t] : {};
         t % 2
-          ? Br(n, !0).forEach(function(t) {
-              Zr(e, t, n[t]);
+          ? Wr(n, !0).forEach(function(t) {
+              Kr(e, t, n[t]);
             })
           : Object.getOwnPropertyDescriptors
           ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n))
-          : Br(n).forEach(function(t) {
+          : Wr(n).forEach(function(t) {
               Object.defineProperty(
                 e,
                 t,
@@ -15997,7 +16054,7 @@ object-assign
       }
       return e;
     }
-    function qr(e, t) {
+    function Gr(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -16006,28 +16063,28 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function Gr(e) {
-      return (Gr = Object.setPrototypeOf
+    function Qr(e) {
+      return (Qr = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function Qr(e) {
+    function Yr(e) {
       if (void 0 === e)
         throw new ReferenceError(
           "this hasn't been initialised - super() hasn't been called"
         );
       return e;
     }
-    function Yr(e, t) {
-      return (Yr =
+    function Zr(e, t) {
+      return (Zr =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    function Zr(e, t, n) {
+    function Kr(e, t, n) {
       return (
         t in e
           ? Object.defineProperty(e, t, {
@@ -16040,7 +16097,7 @@ object-assign
         e
       );
     }
-    var Kr = (function(e) {
+    var Xr = (function(e) {
         function t() {
           var e, n;
           !(function(e, t) {
@@ -16051,20 +16108,20 @@ object-assign
             a[o] = arguments[o];
           return (
             (n = (function(e, t) {
-              return !t || ("object" !== $r(t) && "function" != typeof t)
-                ? Qr(e)
+              return !t || ("object" !== Br(t) && "function" != typeof t)
+                ? Yr(e)
                 : t;
-            })(this, (e = Gr(t)).call.apply(e, [this].concat(a)))),
-            Zr(Qr(n), "state", { rediect: !1 }),
-            Zr(Qr(n), "wantTheSameHanler", function(e) {
+            })(this, (e = Qr(t)).call.apply(e, [this].concat(a)))),
+            Kr(Yr(n), "state", { rediect: !1 }),
+            Kr(Yr(n), "wantTheSameHanler", function(e) {
               var t = n.props.orders.filter(function(t) {
                   return t._id.toString() === e.target.dataset.id;
                 })[0],
                 r = {};
               Object.keys(t.ingredients).map(function(e) {
-                r[e] = Wr({}, t.ingredients[e]);
+                r[e] = qr({}, t.ingredients[e]);
               });
-              var a = Wr({}, t, { ingredients: r });
+              var a = qr({}, t, { ingredients: r });
               t.pizzas.length > 0
                 ? (n.props.resetMultiPizzaFun(),
                   n.props.reset_buildFun(),
@@ -16087,14 +16144,25 @@ object-assign
             (e.prototype = Object.create(t && t.prototype, {
               constructor: { value: e, writable: !0, configurable: !0 }
             })),
-              t && Yr(e, t);
+              t && Zr(e, t);
           })(t, e),
           (n = t),
           (r = [
             {
               key: "componentDidMount",
               value: function() {
-                Object.keys(this.props.orders).length || this.props.getOrders();
+                Object.keys(this.props.orders).length || this.props.getOrders(),
+                  localStorage &&
+                    ((localStorage.getItem("id") &&
+                      localStorage.getItem("photoChanged")) ||
+                      (localStorage.getItem("id") &&
+                        localStorage.getItem("nameChanged"))) &&
+                    (this.props.gerUserPhotoAfterChangeFun(
+                      localStorage.getItem("id")
+                    ),
+                    localStorage.removeItem("id"),
+                    localStorage.removeItem("photoChanged"),
+                    localStorage.removeItem("nameChanged"));
               }
             },
             {
@@ -16107,16 +16175,16 @@ object-assign
                     "section",
                     { className: "main__page__cover" },
                     a.a.createElement(
-                      sr,
+                      pr,
                       { toggle: this.props.isLoading },
-                      a.a.createElement(Sr, null)
+                      a.a.createElement(kr, null)
                     ),
                     this.state.rediect
-                      ? a.a.createElement(mn, { to: "/checkout" })
+                      ? a.a.createElement(hn, { to: "/checkout" })
                       : null,
-                    a.a.createElement(Vr, null),
+                    a.a.createElement($r, null),
                     this.props.getOrders
-                      ? a.a.createElement(Hr, {
+                      ? a.a.createElement(Vr, {
                           orders: this.props.orders,
                           theSame: this.wantTheSameHanler
                         })
@@ -16125,12 +16193,12 @@ object-assign
                 );
               }
             }
-          ]) && qr(n.prototype, r),
-          o && qr(n, o),
+          ]) && Gr(n.prototype, r),
+          o && Gr(n, o),
           t
         );
       })(a.a.Component),
-      Xr = oe(
+      Jr = oe(
         function(e) {
           return {
             orders: e.orders.orders,
@@ -16145,7 +16213,7 @@ object-assign
             theSameFun: function(t) {
               return e(
                 (function(e) {
-                  return { type: fe.sb, payload: e };
+                  return { type: fe.tb, payload: e };
                 })(t)
               );
             },
@@ -16167,19 +16235,22 @@ object-assign
               });
             },
             multiTheSameFun: function(t) {
-              return e(((n = t), { type: fe.hb, payload: n }));
+              return e(((n = t), { type: fe.ib, payload: n }));
               var n;
             },
             resetMultiPizzaFun: function() {
-              return e(st());
+              return e(pt());
             },
             reset_buildFun: function() {
               return e(me());
+            },
+            gerUserPhotoAfterChangeFun: function(t) {
+              return e(ye(t));
             }
           };
         }
-      )(Kr),
-      Jr = function(e) {
+      )(Xr),
+      ea = function(e) {
         return Object.keys(e.inputs).map(function(t) {
           return a.a.createElement(
             "div",
@@ -16206,7 +16277,7 @@ object-assign
           );
         });
       },
-      ea = function(e) {
+      ta = function(e) {
         return a.a.createElement(
           "div",
           { className: "checkout__content__cover" },
@@ -16227,13 +16298,13 @@ object-assign
             a.a.createElement(
               "div",
               { className: "checkout__content__top__cover" },
-              a.a.createElement(Jr, {
+              a.a.createElement(ea, {
                 inputs: e.inputs,
                 changeHandler: e.changeHandler
               })
             ),
             Object.keys(e.multi.pizzas).length > 0
-              ? a.a.createElement(cr, {
+              ? a.a.createElement(sr, {
                   pizzas: e.multi.pizzas,
                   minus: e.minusDlete,
                   delete: e.delete,
@@ -16246,7 +16317,7 @@ object-assign
                     "div",
                     { className: "checkout__content__ingredients__cover" },
                     a.a.createElement("p", null, "Your pizza ingredients:"),
-                    a.a.createElement(Un, {
+                    a.a.createElement(Hn, {
                       ingredients: e.data.ingredients,
                       minus: e.minus
                     })
@@ -16293,8 +16364,8 @@ object-assign
           )
         );
       };
-    function ta(e) {
-      return (ta =
+    function na(e) {
+      return (na =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -16308,7 +16379,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function na(e, t) {
+    function ra(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -16317,28 +16388,28 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function ra(e) {
-      return (ra = Object.setPrototypeOf
+    function aa(e) {
+      return (aa = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function aa(e) {
+    function oa(e) {
       if (void 0 === e)
         throw new ReferenceError(
           "this hasn't been initialised - super() hasn't been called"
         );
       return e;
     }
-    function oa(e, t) {
-      return (oa =
+    function ia(e, t) {
+      return (ia =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    function ia(e, t, n) {
+    function la(e, t, n) {
       return (
         t in e
           ? Object.defineProperty(e, t, {
@@ -16351,7 +16422,7 @@ object-assign
         e
       );
     }
-    var la = (function(e) {
+    var ua = (function(e) {
         function t() {
           var e, n;
           !(function(e, t) {
@@ -16362,11 +16433,11 @@ object-assign
             a[o] = arguments[o];
           return (
             (n = (function(e, t) {
-              return !t || ("object" !== ta(t) && "function" != typeof t)
-                ? aa(e)
+              return !t || ("object" !== na(t) && "function" != typeof t)
+                ? oa(e)
                 : t;
-            })(this, (e = ra(t)).call.apply(e, [this].concat(a)))),
-            ia(aa(n), "state", {
+            })(this, (e = aa(t)).call.apply(e, [this].concat(a)))),
+            la(oa(n), "state", {
               smallPizza: !1,
               badName: !1,
               badPhone: !1,
@@ -16375,7 +16446,7 @@ object-assign
               badFlat: !1,
               badStreet: !1
             }),
-            ia(aa(n), "confirmHandler", function(e) {
+            la(oa(n), "confirmHandler", function(e) {
               e.preventDefault();
               var t = {};
               return (
@@ -16437,7 +16508,7 @@ object-assign
                   : (n.setState({ badName: !0 }), !1)
               );
             }),
-            ia(aa(n), "minusDeleteHandler", function() {
+            la(oa(n), "minusDeleteHandler", function() {
               console.log("minus delete handler");
             }),
             n
@@ -16453,7 +16524,7 @@ object-assign
             (e.prototype = Object.create(t && t.prototype, {
               constructor: { value: e, writable: !0, configurable: !0 }
             })),
-              t && oa(e, t);
+              t && ia(e, t);
           })(t, e),
           (n = t),
           (r = [
@@ -16471,12 +16542,12 @@ object-assign
                   "section",
                   { className: "container" },
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.props.inputs.modalShow },
-                    a.a.createElement("div", null, a.a.createElement(Sr, null))
+                    a.a.createElement("div", null, a.a.createElement(kr, null))
                   ),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.smallPizza },
                     a.a.createElement(
                       "div",
@@ -16496,7 +16567,7 @@ object-assign
                     )
                   ),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.badName },
                     a.a.createElement(
                       "div",
@@ -16516,7 +16587,7 @@ object-assign
                     )
                   ),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.badPhone },
                     a.a.createElement(
                       "div",
@@ -16536,7 +16607,7 @@ object-assign
                     )
                   ),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.badPizzaName },
                     a.a.createElement(
                       "div",
@@ -16556,7 +16627,7 @@ object-assign
                     )
                   ),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.badHouse },
                     a.a.createElement(
                       "div",
@@ -16576,7 +16647,7 @@ object-assign
                     )
                   ),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.badFlat },
                     a.a.createElement(
                       "div",
@@ -16596,7 +16667,7 @@ object-assign
                     )
                   ),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.badStreet },
                     a.a.createElement(
                       "div",
@@ -16616,7 +16687,7 @@ object-assign
                     )
                   ),
                   this.props.auth.isAuthindicated
-                    ? a.a.createElement(ea, {
+                    ? a.a.createElement(ta, {
                         data: this.props.state,
                         minus: this.props.minusFun,
                         confirm: this.confirmHandler,
@@ -16626,16 +16697,16 @@ object-assign
                         delete: this.props.deleteMultiOrderFun,
                         minusDlete: this.minusDeleteHandler
                       })
-                    : a.a.createElement(mn, { to: "/authentication" })
+                    : a.a.createElement(hn, { to: "/authentication" })
                 );
               }
             }
-          ]) && na(n.prototype, r),
-          o && na(n, o),
+          ]) && ra(n.prototype, r),
+          o && ra(n, o),
           t
         );
       })(a.a.Component),
-      ua = oe(
+      ca = oe(
         function(e) {
           return {
             state: e.pizza,
@@ -16655,7 +16726,7 @@ object-assign
             onInputFun: function(t) {
               return e(
                 (function(e) {
-                  return { type: fe.qb, payload: e };
+                  return { type: fe.rb, payload: e };
                 })(t)
               );
             },
@@ -16663,7 +16734,7 @@ object-assign
               return e(
                 (function(e) {
                   return function(t) {
-                    t(je()),
+                    t(Re()),
                       fetch(
                         "".concat(he, "/api/v1.0/user/getInfo?id=").concat(e),
                         { method: "get" }
@@ -16672,23 +16743,23 @@ object-assign
                           return e.json();
                         })
                         .then(function(e) {
-                          t(Te(e)), t(Re());
+                          t(Pe(e)), t(Me());
                         })
                         .catch(function(e) {
-                          console.log(e), t(Re());
+                          console.log(e), t(Me());
                         });
                   };
                 })(t)
               );
             },
             deleteMultiOrderFun: function(t) {
-              return e(ct(t));
+              return e(st(t));
             },
             callApiAddOrderrFun: function(t) {
               return e(
                 (function(e) {
                   return function(t) {
-                    t(je()),
+                    t(Re()),
                       fetch("".concat(he, "/api/v1.0/orders"), {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -16698,10 +16769,10 @@ object-assign
                           return e.json();
                         })
                         .then(function(e) {
-                          t(Re()), t(Pe()), t(me()), t(ze());
+                          t(Me()), t(je()), t(me()), t(Te());
                         })
                         .catch(function(e) {
-                          t(Me(e)), t(Re());
+                          t(Ae(e)), t(Me());
                         });
                   };
                 })(t)
@@ -16709,9 +16780,9 @@ object-assign
             }
           };
         }
-      )(la);
-    function ca(e) {
-      return (ca =
+      )(ua);
+    function sa(e) {
+      return (sa =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -16725,7 +16796,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function sa(e, t) {
+    function pa(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -16734,28 +16805,28 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function pa(e) {
-      return (pa = Object.setPrototypeOf
+    function fa(e) {
+      return (fa = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function fa(e) {
+    function da(e) {
       if (void 0 === e)
         throw new ReferenceError(
           "this hasn't been initialised - super() hasn't been called"
         );
       return e;
     }
-    function da(e, t) {
-      return (da =
+    function ma(e, t) {
+      return (ma =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    function ma(e, t, n) {
+    function ha(e, t, n) {
       return (
         t in e
           ? Object.defineProperty(e, t, {
@@ -16768,7 +16839,7 @@ object-assign
         e
       );
     }
-    var ha = (function(e) {
+    var ga = (function(e) {
         function t() {
           var e, n;
           !(function(e, t) {
@@ -16779,17 +16850,17 @@ object-assign
             a[o] = arguments[o];
           return (
             (n = (function(e, t) {
-              return !t || ("object" !== ca(t) && "function" != typeof t)
-                ? fa(e)
+              return !t || ("object" !== sa(t) && "function" != typeof t)
+                ? da(e)
                 : t;
-            })(this, (e = pa(t)).call.apply(e, [this].concat(a)))),
-            ma(fa(n), "state", { badMail: !1, badPass: !1, checkbox: !1 }),
-            ma(fa(n), "checkboxHandler", function() {
+            })(this, (e = fa(t)).call.apply(e, [this].concat(a)))),
+            ha(da(n), "state", { badMail: !1, badPass: !1, checkbox: !1 }),
+            ha(da(n), "checkboxHandler", function() {
               n.setState(function(e) {
                 return { checkbox: !e.checkbox };
               });
             }),
-            ma(fa(n), "onSubmitHandler", function(e) {
+            ha(da(n), "onSubmitHandler", function(e) {
               e.preventDefault(),
                 /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(
                   n.props.inputs.inputs.mail.value
@@ -16810,7 +16881,7 @@ object-assign
                     n.state.checkbox
                   );
             }),
-            ma(fa(n), "keyDownHandler", function(e) {
+            ha(da(n), "keyDownHandler", function(e) {
               "Enter" === e.key && n.onSubmitHandler(e);
             }),
             n
@@ -16826,7 +16897,7 @@ object-assign
             (e.prototype = Object.create(t && t.prototype, {
               constructor: { value: e, writable: !0, configurable: !0 }
             })),
-              t && da(e, t);
+              t && ma(e, t);
           })(t, e),
           (n = t),
           (r = [
@@ -16834,26 +16905,26 @@ object-assign
               key: "render",
               value: function() {
                 var e = this,
-                  t = a.a.createElement(mn, { to: "/" });
+                  t = a.a.createElement(hn, { to: "/" });
                 return (
                   (this.props.pizza.weight > 300 ||
                     this.props.multi.pizzas.length > 0) &&
-                    (t = a.a.createElement(mn, { to: "/checkout" })),
+                    (t = a.a.createElement(hn, { to: "/checkout" })),
                   a.a.createElement(
                     "section",
                     { className: "container" },
                     this.props.inputs.isAuthindicated ? t : null,
                     a.a.createElement(
-                      sr,
+                      pr,
                       { toggle: this.props.inputs.isLoading },
                       a.a.createElement(
                         "div",
                         null,
-                        a.a.createElement(Sr, null)
+                        a.a.createElement(kr, null)
                       )
                     ),
                     a.a.createElement(
-                      sr,
+                      pr,
                       { toggle: this.state.badMail },
                       a.a.createElement(
                         "div",
@@ -16874,7 +16945,7 @@ object-assign
                       )
                     ),
                     a.a.createElement(
-                      sr,
+                      pr,
                       { toggle: this.state.badPass },
                       a.a.createElement(
                         "div",
@@ -16921,7 +16992,7 @@ object-assign
                             return e.keyDownHandler(event);
                           }
                         },
-                        a.a.createElement(Jr, {
+                        a.a.createElement(ea, {
                           inputs: this.props.inputs.inputs,
                           changeHandler: this.props.authOnInputFun
                         }),
@@ -16953,7 +17024,7 @@ object-assign
                           "div",
                           { className: "auth__link__cover" },
                           a.a.createElement(
-                            Cn,
+                            zn,
                             {
                               to: "/authentication/registration",
                               className: "auth__link"
@@ -16961,7 +17032,7 @@ object-assign
                             "Registration"
                           ),
                           a.a.createElement(
-                            Cn,
+                            zn,
                             {
                               to: "/authentication/forgot",
                               className: "auth__link"
@@ -16975,25 +17046,25 @@ object-assign
                 );
               }
             }
-          ]) && sa(n.prototype, r),
-          o && sa(n, o),
+          ]) && pa(n.prototype, r),
+          o && pa(n, o),
           t
         );
       })(a.a.Component),
-      ga = oe(
+      _a = oe(
         function(e) {
           return { inputs: e.auth, pizza: e.pizza, multi: e.multi };
         },
         function(e) {
           return {
             authOnInputFun: function(t) {
-              return e(Ae(t));
+              return e(Ie(t));
             },
             authSignInFun: function(t, n, r) {
               return e(
                 (function(e, t, n) {
                   return function(r) {
-                    r(Fe());
+                    r(Le());
                     var a = { mail: e, password: t, stayIn: n };
                     fetch("".concat(he, "/api/v1.0/user/authentication"), {
                       method: "POST",
@@ -17005,11 +17076,11 @@ object-assign
                       })
                       .then(function(e) {
                         e.error
-                          ? (r(Ie(e)), r(Le()))
-                          : (r(De(e)), r(Ue()), r(He(e)), r(Le()), r(Ve()));
+                          ? (r(Fe(e)), r(Ue()))
+                          : (r(De(e)), r(He()), r(Ve(e)), r(Ue()), r($e()));
                       })
                       .catch(function(e) {
-                        r(Le()), r(Ie(e));
+                        r(Ue()), r(Fe(e));
                       });
                   };
                 })(t, n, r)
@@ -17017,9 +17088,9 @@ object-assign
             }
           };
         }
-      )(ha);
-    function _a(e) {
-      return (_a =
+      )(ga);
+    function va(e) {
+      return (va =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -17033,7 +17104,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function va(e, t) {
+    function ya(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -17042,28 +17113,28 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function ya(e) {
-      return (ya = Object.setPrototypeOf
+    function ba(e) {
+      return (ba = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function ba(e) {
+    function wa(e) {
       if (void 0 === e)
         throw new ReferenceError(
           "this hasn't been initialised - super() hasn't been called"
         );
       return e;
     }
-    function wa(e, t) {
-      return (wa =
+    function Ea(e, t) {
+      return (Ea =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    function Ea(e, t, n) {
+    function Oa(e, t, n) {
       return (
         t in e
           ? Object.defineProperty(e, t, {
@@ -17076,7 +17147,7 @@ object-assign
         e
       );
     }
-    var Oa = (function(e) {
+    var Sa = (function(e) {
         function t() {
           var e, n;
           !(function(e, t) {
@@ -17087,12 +17158,12 @@ object-assign
             a[o] = arguments[o];
           return (
             (n = (function(e, t) {
-              return !t || ("object" !== _a(t) && "function" != typeof t)
-                ? ba(e)
+              return !t || ("object" !== va(t) && "function" != typeof t)
+                ? wa(e)
                 : t;
-            })(this, (e = ya(t)).call.apply(e, [this].concat(a)))),
-            Ea(ba(n), "state", { badMail: !1, badPass: !1 }),
-            Ea(ba(n), "onSubmitHandler", function(e) {
+            })(this, (e = ba(t)).call.apply(e, [this].concat(a)))),
+            Oa(wa(n), "state", { badMail: !1, badPass: !1 }),
+            Oa(wa(n), "onSubmitHandler", function(e) {
               e.preventDefault(),
                 /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(
                   n.props.inputs.inputs.mail.value
@@ -17112,7 +17183,7 @@ object-assign
                     n.props.inputs.inputs.password.value
                   );
             }),
-            Ea(ba(n), "keyDownHandler", function(e) {
+            Oa(wa(n), "keyDownHandler", function(e) {
               "Enter" === e.key && n.onSubmitHandler(e);
             }),
             n
@@ -17128,7 +17199,7 @@ object-assign
             (e.prototype = Object.create(t && t.prototype, {
               constructor: { value: e, writable: !0, configurable: !0 }
             })),
-              t && wa(e, t);
+              t && Ea(e, t);
           })(t, e),
           (n = t),
           (r = [
@@ -17136,25 +17207,25 @@ object-assign
               key: "render",
               value: function() {
                 var e = this,
-                  t = a.a.createElement(mn, { to: "/" });
+                  t = a.a.createElement(hn, { to: "/" });
                 return (
                   this.props.pizza.weight > 300 &&
-                    (t = a.a.createElement(mn, { to: "/checkout" })),
+                    (t = a.a.createElement(hn, { to: "/checkout" })),
                   a.a.createElement(
                     "section",
                     { className: "container" },
                     this.props.inputs.isAuthindicated ? t : null,
                     a.a.createElement(
-                      sr,
+                      pr,
                       { toggle: this.props.inputs.isLoading },
                       a.a.createElement(
                         "div",
                         null,
-                        a.a.createElement(Sr, null)
+                        a.a.createElement(kr, null)
                       )
                     ),
                     a.a.createElement(
-                      sr,
+                      pr,
                       { toggle: this.state.badMail },
                       a.a.createElement(
                         "div",
@@ -17175,7 +17246,7 @@ object-assign
                       )
                     ),
                     a.a.createElement(
-                      sr,
+                      pr,
                       { toggle: this.state.badPass },
                       a.a.createElement(
                         "div",
@@ -17222,7 +17293,7 @@ object-assign
                             return e.keyDownHandler(event);
                           }
                         },
-                        a.a.createElement(Jr, {
+                        a.a.createElement(ea, {
                           inputs: this.props.inputs.inputs,
                           changeHandler: this.props.authOnInputFun
                         }),
@@ -17239,7 +17310,7 @@ object-assign
                           "div",
                           { className: "auth__link__cover" },
                           a.a.createElement(
-                            Cn,
+                            zn,
                             { to: "/authentication", className: "auth__link" },
                             "Back to sign in"
                           )
@@ -17250,25 +17321,25 @@ object-assign
                 );
               }
             }
-          ]) && va(n.prototype, r),
-          o && va(n, o),
+          ]) && ya(n.prototype, r),
+          o && ya(n, o),
           t
         );
       })(a.a.Component),
-      Sa = oe(
+      ka = oe(
         function(e) {
           return { inputs: e.auth, pizza: e.pizza };
         },
         function(e) {
           return {
             authOnInputFun: function(t) {
-              return e(Ae(t));
+              return e(Ie(t));
             },
             authSignUpFun: function(t, n) {
               return e(
                 (function(e, t) {
                   return function(n) {
-                    n(Fe());
+                    n(Le());
                     var r = { mail: e, password: t };
                     fetch("".concat(he, "/api/v1.0/user/create"), {
                       method: "POST",
@@ -17280,11 +17351,11 @@ object-assign
                       })
                       .then(function(e) {
                         e.error
-                          ? (n(Ie(e)), n(Le()))
-                          : (n(De(e)), n(Ue()), n(He(e)), n(Le()), n(Ve()));
+                          ? (n(Fe(e)), n(Ue()))
+                          : (n(De(e)), n(He()), n(Ve(e)), n(Ue()), n($e()));
                       })
                       .catch(function(e) {
-                        n(Ie(e)), n(Le());
+                        n(Fe(e)), n(Ue());
                       });
                   };
                 })(t, n)
@@ -17292,9 +17363,9 @@ object-assign
             }
           };
         }
-      )(Oa);
-    function ka(e) {
-      return (ka =
+      )(Sa);
+    function xa(e) {
+      return (xa =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -17308,7 +17379,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function xa(e, t) {
+    function Na(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -17317,8 +17388,8 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function Na(e, t) {
-      return !t || ("object" !== ka(t) && "function" != typeof t)
+    function Ca(e, t) {
+      return !t || ("object" !== xa(t) && "function" != typeof t)
         ? (function(e) {
             if (void 0 === e)
               throw new ReferenceError(
@@ -17328,31 +17399,31 @@ object-assign
           })(e)
         : t;
     }
-    function Ca(e) {
-      return (Ca = Object.setPrototypeOf
+    function za(e) {
+      return (za = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function za(e, t) {
-      return (za =
+    function Ta(e, t) {
+      return (Ta =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    var Ta,
-      Pa,
+    var Pa,
       ja,
-      Ra = (function(e) {
+      Ra,
+      Ma = (function(e) {
         function t() {
           return (
             (function(e, t) {
               if (!(e instanceof t))
                 throw new TypeError("Cannot call a class as a function");
             })(this, t),
-            Na(this, Ca(t).apply(this, arguments))
+            Ca(this, za(t).apply(this, arguments))
           );
         }
         var n, r, o;
@@ -17365,7 +17436,7 @@ object-assign
             (e.prototype = Object.create(t && t.prototype, {
               constructor: { value: e, writable: !0, configurable: !0 }
             })),
-              t && za(e, t);
+              t && Ta(e, t);
           })(t, e),
           (n = t),
           (r = [
@@ -17393,16 +17464,16 @@ object-assign
                           "LogOut"
                         )
                       )
-                    : a.a.createElement(mn, { to: "/" })
+                    : a.a.createElement(hn, { to: "/" })
                 );
               }
             }
-          ]) && xa(n.prototype, r),
-          o && xa(n, o),
+          ]) && Na(n.prototype, r),
+          o && Na(n, o),
           t
         );
       })(a.a.Component),
-      Ma = oe(
+      Aa = oe(
         function(e) {
           return { auth: e.auth };
         },
@@ -17420,7 +17491,7 @@ object-assign
                         return e.json();
                       })
                       .then(function(t) {
-                        e(Be()), console.log(t);
+                        e(We()), console.log(t);
                       })
                       .catch(function(e) {
                         console.log(e);
@@ -17430,8 +17501,8 @@ object-assign
             }
           };
         }
-      )(Ra),
-      Aa = a.a.memo(function(e) {
+      )(Ma),
+      Ia = a.a.memo(function(e) {
         return a.a.createElement(
           "div",
           { className: "cabinet__info__cover" },
@@ -17461,9 +17532,9 @@ object-assign
           "div",
           null,
           a.a.createElement(
-            sr,
+            pr,
             { toggle: e.modal },
-            a.a.createElement(Sr, null)
+            a.a.createElement(kr, null)
           ),
           a.a.createElement(
             "form",
@@ -17473,7 +17544,7 @@ object-assign
               { className: "set_cabinet__form__title" },
               "Set your delivery info:"
             ),
-            a.a.createElement(Jr, {
+            a.a.createElement(ea, {
               inputs: e.inputs,
               changeHandler: e.onInput
             }),
@@ -17486,7 +17557,9 @@ object-assign
                   type: "submit",
                   className: "set_cabinet__form__submit",
                   onClick: function(t) {
-                    return e.check(t);
+                    e.check(t),
+                      localStorage.setItem("id", e.auth.localId),
+                      localStorage.setItem("nameChanged", "true");
                   }
                 },
                 "Send"
@@ -17508,7 +17581,11 @@ object-assign
                 id: "avatar",
                 method: "POST",
                 encType: "multipart/form-data",
-                className: "add__photo__form"
+                className: "add__photo__form",
+                onSubmit: function() {
+                  localStorage.setItem("id", e.auth.localId),
+                    localStorage.setItem("photoChanged", !0);
+                }
               },
               a.a.createElement(
                 "div",
@@ -17537,7 +17614,7 @@ object-assign
                   }
                 }),
                 a.a.createElement("img", {
-                  src: "/assets/img/preview.svg",
+                  src: n(108),
                   alt: "upload image",
                   className: "add__photo__preview",
                   id: "preview"
@@ -17562,10 +17639,10 @@ object-assign
           )
         );
       }),
-      Ia =
-        ((Pa =
+      Fa =
+        ((ja =
           "withRouter(" +
-          ((Ta = function(e) {
+          ((Pa = function(e) {
             for (var t = [], n = 0; n < e.num; n++) t.push(n + 1);
             return a.a.createElement(
               "div",
@@ -17595,18 +17672,18 @@ object-assign
                 })
               )
             );
-          }).displayName || Ta.name) +
+          }).displayName || Pa.name) +
           ")"),
-        ((ja = function(e) {
+        ((Ra = function(e) {
           var t = e.wrappedComponentRef,
             n = y(e, ["wrappedComponentRef"]);
-          return a.a.createElement(ln.Consumer, null, function(e) {
-            return e || It(!1), a.a.createElement(Ta, v({}, n, e, { ref: t }));
+          return a.a.createElement(un.Consumer, null, function(e) {
+            return e || Ft(!1), a.a.createElement(Pa, v({}, n, e, { ref: t }));
           });
-        }).displayName = Pa),
-        (ja.WrappedComponent = Ta),
-        w()(ja, Ta));
-    function Fa(e, t) {
+        }).displayName = ja),
+        (Ra.WrappedComponent = Pa),
+        w()(Ra, Pa));
+    function La(e, t) {
       return (
         (function(e) {
           if (Array.isArray(e)) return e;
@@ -17648,7 +17725,7 @@ object-assign
         })()
       );
     }
-    var La = a.a.memo(function(e) {
+    var Ua = a.a.memo(function(e) {
       var t = 1;
       e.orders.orders &&
         e.orders.orders.length > 0 &&
@@ -17657,13 +17734,13 @@ object-assign
           return e.viewOrders("?page=1&limit=4&id=".concat(e.id));
         }, []);
       var o,
-        i = Fa(Object(r.useState)(!1), 2),
+        i = La(Object(r.useState)(!1), 2),
         l = i[0],
         u = i[1],
-        c = Fa(Object(r.useState)(null), 2),
+        c = La(Object(r.useState)(null), 2),
         s = c[0],
         p = c[1],
-        f = Fa(Object(r.useState)(1), 2),
+        f = La(Object(r.useState)(1), 2),
         d = f[0],
         m = f[1];
       return (
@@ -17879,12 +17956,12 @@ object-assign
           "div",
           null,
           a.a.createElement(
-            sr,
+            pr,
             { toggle: e.orders.modal },
-            a.a.createElement("div", null, a.a.createElement(Sr, null))
+            a.a.createElement("div", null, a.a.createElement(kr, null))
           ),
           a.a.createElement(
-            sr,
+            pr,
             { toggle: l },
             a.a.createElement(
               "div",
@@ -17935,7 +18012,7 @@ object-assign
             "Refresh"
           ),
           o,
-          a.a.createElement(Ia, {
+          a.a.createElement(Fa, {
             num: t,
             page: d,
             changePage: m,
@@ -17945,8 +18022,8 @@ object-assign
         )
       );
     });
-    function Ua(e) {
-      return (Ua =
+    function Ha(e) {
+      return (Ha =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -17960,7 +18037,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function Ha(e, t) {
+    function Va(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -17969,28 +18046,28 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function Va(e) {
-      return (Va = Object.setPrototypeOf
+    function $a(e) {
+      return ($a = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function $a(e) {
+    function Ba(e) {
       if (void 0 === e)
         throw new ReferenceError(
           "this hasn't been initialised - super() hasn't been called"
         );
       return e;
     }
-    function Ba(e, t) {
-      return (Ba =
+    function Wa(e, t) {
+      return (Wa =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    function Wa(e, t, n) {
+    function qa(e, t, n) {
       return (
         t in e
           ? Object.defineProperty(e, t, {
@@ -18003,7 +18080,7 @@ object-assign
         e
       );
     }
-    var qa = (function(e) {
+    var Ga = (function(e) {
         function t() {
           var e, n;
           !(function(e, t) {
@@ -18014,12 +18091,12 @@ object-assign
             a[o] = arguments[o];
           return (
             (n = (function(e, t) {
-              return !t || ("object" !== Ua(t) && "function" != typeof t)
-                ? $a(e)
+              return !t || ("object" !== Ha(t) && "function" != typeof t)
+                ? Ba(e)
                 : t;
-            })(this, (e = Va(t)).call.apply(e, [this].concat(a)))),
-            Wa($a(n), "state", { showingContent: 1, trigger: !1 }),
-            Wa($a(n), "sendDataHnadler", function(e) {
+            })(this, (e = $a(t)).call.apply(e, [this].concat(a)))),
+            qa(Ba(n), "state", { showingContent: 1, trigger: !1 }),
+            qa(Ba(n), "sendDataHnadler", function(e) {
               e.preventDefault();
               var t = {
                 flat: n.props.cabinetSet.inputs.flat.value,
@@ -18030,13 +18107,13 @@ object-assign
               };
               n.props.fetchDataFun(t, n.props.cabinetSet.allGood);
             }),
-            Wa($a(n), "changeContentHandler", function(e) {
+            qa(Ba(n), "changeContentHandler", function(e) {
               n.setState({ trigger: !0 }),
                 setTimeout(function() {
                   n.setState({ showingContent: e, trigger: !1 });
                 }, 280);
             }),
-            Wa($a(n), "showModalHandler", function(e) {
+            qa(Ba(n), "showModalHandler", function(e) {
               n.props.deleteOrderfun(e, n.props.auth.localId);
             }),
             n
@@ -18052,7 +18129,7 @@ object-assign
             (e.prototype = Object.create(t && t.prototype, {
               constructor: { value: e, writable: !0, configurable: !0 }
             })),
-              t && Ba(e, t);
+              t && Wa(e, t);
           })(t, e),
           (n = t),
           (r = [
@@ -18070,15 +18147,15 @@ object-assign
                   "section",
                   { className: "container" },
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.props.cabinet.modalShow },
-                    a.a.createElement(Sr, null)
+                    a.a.createElement(kr, null)
                   ),
                   a.a.createElement(
                     "div",
                     { className: "room__change__mail__cover" },
                     a.a.createElement(
-                      Cn,
+                      zn,
                       { to: "/personalRoom/changeMail" },
                       a.a.createElement(
                         "button",
@@ -18089,7 +18166,7 @@ object-assign
                   ),
                   this.props.auth.isAuthindicated
                     ? null
-                    : a.a.createElement(mn, { to: "/" }),
+                    : a.a.createElement(hn, { to: "/" }),
                   a.a.createElement(
                     "nav",
                     { className: "room__nav" },
@@ -18100,7 +18177,7 @@ object-assign
                         "li",
                         { className: "room__item" },
                         a.a.createElement(
-                          Cn,
+                          zn,
                           {
                             to: "/personalRoom",
                             className: "room__link",
@@ -18115,7 +18192,7 @@ object-assign
                         "li",
                         { className: "room__item" },
                         a.a.createElement(
-                          Cn,
+                          zn,
                           {
                             to: "/personalRoom",
                             className: "room__link",
@@ -18130,7 +18207,7 @@ object-assign
                         "li",
                         { className: "room__item" },
                         a.a.createElement(
-                          Cn,
+                          zn,
                           {
                             to: "/personalRoom/1",
                             className: "room__link",
@@ -18147,22 +18224,49 @@ object-assign
                     "div",
                     {
                       className: this.state.trigger
-                        ? "room__output hide"
-                        : "room__output show"
+                        ? "room__output_cabinet hide"
+                        : "room__output_cabinet show"
                     },
+                    a.a.createElement(
+                      "div",
+                      { className: "cabinet__user__cover" },
+                      a.a.createElement(
+                        "div",
+                        { className: "log__out__cover" },
+                        a.a.createElement(
+                          "div",
+                          { className: "log__out__name__block" },
+                          a.a.createElement(
+                            "p",
+                            { className: "cabinet__user__name" },
+                            this.props.auth.name
+                          )
+                        ),
+                        a.a.createElement(
+                          "div",
+                          { className: "log__out__image__block" },
+                          a.a.createElement("img", {
+                            src: "assets/users/".concat(this.props.auth.photo),
+                            alt: this.props.auth.name,
+                            className: "log__out__image"
+                          })
+                        )
+                      )
+                    ),
                     1 == this.state.showingContent
-                      ? a.a.createElement(Aa, { info: this.props.cabinet })
+                      ? a.a.createElement(Ia, { info: this.props.cabinet })
                       : null,
                     2 == this.state.showingContent
                       ? a.a.createElement(Da, {
                           inputs: this.props.cabinetSet.inputs,
                           modal: this.props.cabinetSet.modalShow,
                           onInput: this.props.onInputFun,
-                          check: this.sendDataHnadler
+                          check: this.sendDataHnadler,
+                          auth: this.props.auth
                         })
                       : null,
                     3 == this.state.showingContent
-                      ? a.a.createElement(La, {
+                      ? a.a.createElement(Ua, {
                           viewOrders: this.props.viewOrdersFun,
                           orders: this.props.cabinetGet,
                           token: this.props.auth.token,
@@ -18174,12 +18278,12 @@ object-assign
                 );
               }
             }
-          ]) && Ha(n.prototype, r),
-          o && Ha(n, o),
+          ]) && Va(n.prototype, r),
+          o && Va(n, o),
           t
         );
       })(a.a.Component),
-      Ga = oe(
+      Qa = oe(
         function(e) {
           return {
             auth: e.auth,
@@ -18194,7 +18298,7 @@ object-assign
               return e(
                 (function(e) {
                   return function(t) {
-                    t(qe()),
+                    t(Ge()),
                       fetch(
                         "".concat(he, "/api/v1.0/user/getInfo?id=").concat(e),
                         { method: "GET" }
@@ -18203,10 +18307,10 @@ object-assign
                           return e.json();
                         })
                         .then(function(e) {
-                          t(Ge()), t(We(e.data));
+                          t(Qe()), t(qe(e.data));
                         })
                         .catch(function(e) {
-                          console.log(e), t(Ge());
+                          console.log(e), t(Qe());
                         });
                   };
                 })(t)
@@ -18224,7 +18328,7 @@ object-assign
                 (function(e, t) {
                   return function(n) {
                     t &&
-                      (n(Ye()),
+                      (n(Ze()),
                       fetch("".concat(he, "/api/v1.0/user/setAddress"), {
                         method: "PATCH",
                         headers: { "Content-Type": "application/json" },
@@ -18234,24 +18338,24 @@ object-assign
                           return e.json();
                         })
                         .then(function(e) {
-                          console.log(e), n(Ye()), n(Qe(e));
+                          console.log(e), n(Ze()), n(Ye(e));
                         })
                         .catch(function(e) {
-                          n(Ye()), n(Ze(e));
+                          n(Ze()), n(Ke(e));
                         }));
                   };
                 })(t, n)
               );
             },
             viewOrdersFun: function(t) {
-              return e(Ke(t));
+              return e(Xe(t));
             },
             deleteOrderfun: function(t, n) {
               return e(
                 (function(e, t) {
                   var n = { id: e };
                   return function(e) {
-                    e(Xe()),
+                    e(Je()),
                       fetch("".concat(he, "/api/v1.0/orders"), {
                         method: "DELETE",
                         headers: { "Content-Type": "application/json" },
@@ -18261,12 +18365,12 @@ object-assign
                           return e.json();
                         })
                         .then(function(n) {
-                          e(Je()),
-                            e(nt()),
-                            e(Ke("?page=1&limit=4&id=".concat(t)));
+                          e(et()),
+                            e(rt()),
+                            e(Xe("?page=1&limit=4&id=".concat(t)));
                         })
                         .catch(function(t) {
-                          e(Je()), e(tt(t));
+                          e(et()), e(nt(t));
                         });
                   };
                 })(t, n)
@@ -18274,9 +18378,9 @@ object-assign
             }
           };
         }
-      )(qa);
-    function Qa(e) {
-      return (Qa =
+      )(Ga);
+    function Ya(e) {
+      return (Ya =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -18290,7 +18394,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function Ya(e, t) {
+    function Za(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -18299,28 +18403,28 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function Za(e) {
-      return (Za = Object.setPrototypeOf
+    function Ka(e) {
+      return (Ka = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function Ka(e) {
+    function Xa(e) {
       if (void 0 === e)
         throw new ReferenceError(
           "this hasn't been initialised - super() hasn't been called"
         );
       return e;
     }
-    function Xa(e, t) {
-      return (Xa =
+    function Ja(e, t) {
+      return (Ja =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    function Ja(e, t, n) {
+    function eo(e, t, n) {
       return (
         t in e
           ? Object.defineProperty(e, t, {
@@ -18333,7 +18437,7 @@ object-assign
         e
       );
     }
-    var eo = (function(e) {
+    var to = (function(e) {
         function t() {
           var e, n;
           !(function(e, t) {
@@ -18344,16 +18448,16 @@ object-assign
             a[o] = arguments[o];
           return (
             (n = (function(e, t) {
-              return !t || ("object" !== Qa(t) && "function" != typeof t)
-                ? Ka(e)
+              return !t || ("object" !== Ya(t) && "function" != typeof t)
+                ? Xa(e)
                 : t;
-            })(this, (e = Za(t)).call.apply(e, [this].concat(a)))),
-            Ja(Ka(n), "resetHandler", function(e) {
+            })(this, (e = Ka(t)).call.apply(e, [this].concat(a)))),
+            eo(Xa(n), "resetHandler", function(e) {
               e.preventDefault(),
                 n.props.authReset.inputs.mail.isValid &&
                   n.props.fetchResetFun(n.props.authReset.inputs.mail.value);
             }),
-            Ja(Ka(n), "backHandler", function() {
+            eo(Xa(n), "backHandler", function() {
               n.props.history.push("/authentication");
             }),
             n
@@ -18369,7 +18473,7 @@ object-assign
             (e.prototype = Object.create(t && t.prototype, {
               constructor: { value: e, writable: !0, configurable: !0 }
             })),
-              t && Xa(e, t);
+              t && Ja(e, t);
           })(t, e),
           (n = t),
           (r = [
@@ -18381,9 +18485,9 @@ object-assign
                   "div",
                   { className: "container" },
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.props.authReset.modal },
-                    a.a.createElement("div", null, a.a.createElement(Sr, null))
+                    a.a.createElement("div", null, a.a.createElement(kr, null))
                   ),
                   a.a.createElement(
                     "button",
@@ -18397,7 +18501,7 @@ object-assign
                     "div",
                     { className: "auth__forgot" },
                     a.a.createElement(
-                      sr,
+                      pr,
                       { toggle: this.props.authReset.message },
                       a.a.createElement(
                         "h2",
@@ -18451,12 +18555,12 @@ object-assign
                 );
               }
             }
-          ]) && Ya(n.prototype, r),
-          o && Ya(n, o),
+          ]) && Za(n.prototype, r),
+          o && Za(n, o),
           t
         );
       })(a.a.Component),
-      to = oe(
+      no = oe(
         function(e) {
           return { auth: e.auth, authReset: e.authReset };
         },
@@ -18466,7 +18570,7 @@ object-assign
               return e(
                 (function(e) {
                   return function(t) {
-                    t(rt());
+                    t(at());
                     var n = { mail: e };
                     fetch("".concat(he, "/api/v1.0/resetPassword"), {
                       method: "POST",
@@ -18477,10 +18581,10 @@ object-assign
                         return e.json();
                       })
                       .then(function(e) {
-                        console.log(e), e.error || t(ot()), t(at());
+                        console.log(e), e.error || t(it()), t(ot());
                       })
                       .catch(function(e) {
-                        t(at()), console.log(n);
+                        t(ot()), console.log(n);
                       });
                   };
                 })(t)
@@ -18495,8 +18599,8 @@ object-assign
             }
           };
         }
-      )(eo),
-      no = function(e) {
+      )(to),
+      ro = function(e) {
         return (
           (e.builds[e.curPizza].name = e.curPizza),
           a.a.createElement(
@@ -18550,8 +18654,8 @@ object-assign
           )
         );
       };
-    function ro(e) {
-      return (ro =
+    function ao(e) {
+      return (ao =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -18565,7 +18669,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function ao(e, t) {
+    function oo(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -18574,28 +18678,28 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function oo(e) {
-      return (oo = Object.setPrototypeOf
+    function io(e) {
+      return (io = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function io(e) {
+    function lo(e) {
       if (void 0 === e)
         throw new ReferenceError(
           "this hasn't been initialised - super() hasn't been called"
         );
       return e;
     }
-    function lo(e, t) {
-      return (lo =
+    function uo(e, t) {
+      return (uo =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    function uo(e, t, n) {
+    function co(e, t, n) {
       return (
         t in e
           ? Object.defineProperty(e, t, {
@@ -18608,7 +18712,7 @@ object-assign
         e
       );
     }
-    var co = (function(e) {
+    var so = (function(e) {
         function t() {
           var e, n;
           !(function(e, t) {
@@ -18619,26 +18723,26 @@ object-assign
             a[o] = arguments[o];
           return (
             (n = (function(e, t) {
-              return !t || ("object" !== ro(t) && "function" != typeof t)
-                ? io(e)
+              return !t || ("object" !== ao(t) && "function" != typeof t)
+                ? lo(e)
                 : t;
-            })(this, (e = oo(t)).call.apply(e, [this].concat(a)))),
-            uo(io(n), "state", {
+            })(this, (e = io(t)).call.apply(e, [this].concat(a)))),
+            co(lo(n), "state", {
               modalIsShow: !1,
               selectedItem: "",
               redirect: !1,
               minusModal: !1
             }),
-            uo(io(n), "minusHandler", function(e) {
+            co(lo(n), "minusHandler", function(e) {
               n.setState({ minusModal: !0 });
             }),
-            uo(io(n), "toggleModalHandler", function() {
+            co(lo(n), "toggleModalHandler", function() {
               n.setState({ modalIsShow: !1 });
             }),
-            uo(io(n), "redirectHandler", function() {
+            co(lo(n), "redirectHandler", function() {
               n.setState({ redirect: !0 });
             }),
-            uo(io(n), "handleScroll", function(e) {
+            co(lo(n), "handleScroll", function(e) {
               var t = document.querySelectorAll(".ready__build__cover"),
                 n = document.querySelectorAll(".ready__build__single__pic");
               t.forEach(function(e, t) {
@@ -18660,7 +18764,7 @@ object-assign
             (e.prototype = Object.create(t && t.prototype, {
               constructor: { value: e, writable: !0, configurable: !0 }
             })),
-              t && lo(e, t);
+              t && uo(e, t);
           })(t, e),
           (n = t),
           (r = [
@@ -18685,10 +18789,10 @@ object-assign
                   "section",
                   { className: "ready__builds__main__cover" },
                   this.state.redirect
-                    ? a.a.createElement(mn, { to: "/checkout" })
+                    ? a.a.createElement(hn, { to: "/checkout" })
                     : null,
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.modalIsShow },
                     a.a.createElement(
                       "div",
@@ -18696,7 +18800,7 @@ object-assign
                         className: "modal__background",
                         onClick: this.toggleModalHandler
                       },
-                      a.a.createElement(no, {
+                      a.a.createElement(ro, {
                         add: this.props.addFun,
                         redirect: this.redirectHandler,
                         curPizza: this.state.selectedItem,
@@ -18705,7 +18809,7 @@ object-assign
                     )
                   ),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.minusModal },
                     a.a.createElement(
                       "div",
@@ -18754,7 +18858,7 @@ object-assign
                       a.a.createElement(
                         "div",
                         { className: "single__build__ingredients__cover" },
-                        a.a.createElement(Un, {
+                        a.a.createElement(Hn, {
                           ingredients: e.props.builds.builds[t].ingredients,
                           minus: e.minusHandler
                         })
@@ -18806,25 +18910,25 @@ object-assign
                 );
               }
             }
-          ]) && ao(n.prototype, r),
-          o && ao(n, o),
+          ]) && oo(n.prototype, r),
+          o && oo(n, o),
           t
         );
       })(a.a.Component),
-      so = oe(
+      po = oe(
         function(e) {
           return { builds: e.builds };
         },
         function(e) {
           return {
             addFun: function(t) {
-              return e(lt(t));
+              return e(ut(t));
             }
           };
         }
-      )(co);
-    function po(e) {
-      return (po =
+      )(so);
+    function fo(e) {
+      return (fo =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -18838,7 +18942,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function fo(e, t) {
+    function mo(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -18847,28 +18951,28 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function mo(e) {
-      return (mo = Object.setPrototypeOf
+    function ho(e) {
+      return (ho = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function ho(e) {
+    function go(e) {
       if (void 0 === e)
         throw new ReferenceError(
           "this hasn't been initialised - super() hasn't been called"
         );
       return e;
     }
-    function go(e, t) {
-      return (go =
+    function _o(e, t) {
+      return (_o =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    function _o(e, t, n) {
+    function vo(e, t, n) {
       return (
         t in e
           ? Object.defineProperty(e, t, {
@@ -18881,7 +18985,7 @@ object-assign
         e
       );
     }
-    var vo = (function(e) {
+    var yo = (function(e) {
         function t() {
           var e, n;
           !(function(e, t) {
@@ -18892,11 +18996,11 @@ object-assign
             a[o] = arguments[o];
           return (
             (n = (function(e, t) {
-              return !t || ("object" !== po(t) && "function" != typeof t)
-                ? ho(e)
+              return !t || ("object" !== fo(t) && "function" != typeof t)
+                ? go(e)
                 : t;
-            })(this, (e = mo(t)).call.apply(e, [this].concat(a)))),
-            _o(ho(n), "changeMailHandler", function(e) {
+            })(this, (e = ho(t)).call.apply(e, [this].concat(a)))),
+            vo(go(n), "changeMailHandler", function(e) {
               e.preventDefault(),
                 n.props.authReset.inputs.mail1.isValid &&
                   (n.props.fetchChangeEmailFun(
@@ -18906,7 +19010,7 @@ object-assign
                   ),
                   n.props.history.push("/"));
             }),
-            _o(ho(n), "backCabinetHandler", function() {
+            vo(go(n), "backCabinetHandler", function() {
               n.props.history.push("/personalRoom");
             }),
             n
@@ -18922,7 +19026,7 @@ object-assign
             (e.prototype = Object.create(t && t.prototype, {
               constructor: { value: e, writable: !0, configurable: !0 }
             })),
-              t && go(e, t);
+              t && _o(e, t);
           })(t, e),
           (n = t),
           (r = [
@@ -18935,11 +19039,11 @@ object-assign
                   { className: "container" },
                   this.props.auth.isAuthindicated
                     ? null
-                    : a.a.createElement(mn, { to: "/" }),
+                    : a.a.createElement(hn, { to: "/" }),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.props.authReset.modal },
-                    a.a.createElement("div", null, a.a.createElement(Sr, null))
+                    a.a.createElement("div", null, a.a.createElement(kr, null))
                   ),
                   a.a.createElement(
                     "button",
@@ -18953,7 +19057,7 @@ object-assign
                     "div",
                     { className: "auth__forgot" },
                     a.a.createElement(
-                      sr,
+                      pr,
                       { toggle: this.props.authReset.message },
                       a.a.createElement(
                         "h2",
@@ -19007,12 +19111,12 @@ object-assign
                 );
               }
             }
-          ]) && fo(n.prototype, r),
-          o && fo(n, o),
+          ]) && mo(n.prototype, r),
+          o && mo(n, o),
           t
         );
       })(a.a.Component),
-      yo = oe(
+      bo = oe(
         function(e) {
           return { auth: e.auth, authReset: e.authReset };
         },
@@ -19022,7 +19126,7 @@ object-assign
               return e(
                 (function(e, t, n) {
                   return function(r) {
-                    r(rt());
+                    r(at());
                     var a = { id: t, mail: e };
                     console.log(e, t, n),
                       fetch("".concat(he, "/api/v1.0/changeMail"), {
@@ -19038,13 +19142,13 @@ object-assign
                         })
                         .then(function(e) {
                           console.log(e),
-                            e.error || r(ot()),
-                            r(Be()),
-                            r(at()),
-                            r(it());
+                            e.error || r(it()),
+                            r(We()),
+                            r(ot()),
+                            r(lt());
                         })
                         .catch(function(e) {
-                          r(at()), r(it());
+                          r(ot()), r(lt());
                         });
                   };
                 })(t, n, r)
@@ -19059,8 +19163,8 @@ object-assign
             }
           };
         }
-      )(vo),
-      bo = function(e) {
+      )(yo),
+      wo = function(e) {
         var t = e.rooms
           ? e.rooms.map(function(t) {
               return a.a.createElement(
@@ -19078,8 +19182,8 @@ object-assign
           : null;
         return a.a.createElement("ul", { className: "chat__room__list" }, t);
       };
-    function wo(e) {
-      return (wo =
+    function Eo(e) {
+      return (Eo =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -19093,7 +19197,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function Eo(e, t) {
+    function Oo(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -19102,28 +19206,28 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function Oo(e) {
-      return (Oo = Object.setPrototypeOf
+    function So(e) {
+      return (So = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function So(e) {
+    function ko(e) {
       if (void 0 === e)
         throw new ReferenceError(
           "this hasn't been initialised - super() hasn't been called"
         );
       return e;
     }
-    function ko(e, t) {
-      return (ko =
+    function xo(e, t) {
+      return (xo =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    function xo(e, t, n) {
+    function No(e, t, n) {
       return (
         t in e
           ? Object.defineProperty(e, t, {
@@ -19136,24 +19240,24 @@ object-assign
         e
       );
     }
-    var No = "wss:" + location.origin.split(":")[1],
-      Co = new WebSocket(No);
-    (Co.onopen = function() {
+    var Co = "wss:" + location.origin.split(":")[1],
+      zo = new WebSocket(Co);
+    (zo.onopen = function() {
       console.log("Socket connected.");
     }),
-      (Co.onclose = function(e) {
+      (zo.onclose = function(e) {
         e.wasClean
           ? console.log("Socket connection closed clean")
           : console.log("Socket connection closed with error"),
           console.log("Code: ".concat(e.code, " reason:").concat(e.reason));
       }),
-      (Co.onmessage = function(e) {
-        Et(JSON.parse(e.data));
+      (zo.onmessage = function(e) {
+        Ot(JSON.parse(e.data));
       }),
-      (Co.onerror = function(e) {
+      (zo.onerror = function(e) {
         console.log("Error ".concat(e.message, "error.message"));
       });
-    var zo = (function(e) {
+    var To = (function(e) {
         function t() {
           var e, n;
           !(function(e, t) {
@@ -19164,11 +19268,11 @@ object-assign
             a[o] = arguments[o];
           return (
             (n = (function(e, t) {
-              return !t || ("object" !== wo(t) && "function" != typeof t)
-                ? So(e)
+              return !t || ("object" !== Eo(t) && "function" != typeof t)
+                ? ko(e)
                 : t;
-            })(this, (e = Oo(t)).call.apply(e, [this].concat(a)))),
-            xo(So(n), "state", {
+            })(this, (e = So(t)).call.apply(e, [this].concat(a)))),
+            No(ko(n), "state", {
               showList: !1,
               badName: !1,
               badMessage: !1,
@@ -19176,15 +19280,17 @@ object-assign
               messageQty: 100,
               currentLengthMessages: 0
             }),
-            xo(So(n), "toggleSelectRoomsHandler", function() {
+            No(ko(n), "toggleSelectRoomsHandler", function() {
               n.state.showList
                 ? n.setState({ showList: !1 })
                 : n.setState({ showList: !0 });
             }),
-            xo(So(n), "sendUserNameHandler", function() {
+            No(ko(n), "sendUserNameHandler", function() {
               if (
+                (localStorage.setItem("id", n.props.auth.localId),
+                localStorage.setItem("nameChanged", "true"),
                 n.props.chat.userNameValue.length < 5 ||
-                n.props.chat.userNameValue.length > 20
+                  n.props.chat.userNameValue.length > 20)
               )
                 n.setState({ badName: !0 });
               else {
@@ -19192,7 +19298,7 @@ object-assign
                 n.props.chatSetUserNameFun(e, n.props.auth.localId);
               }
             }),
-            xo(So(n), "sendMessageHanlder", function() {
+            No(ko(n), "sendMessageHanlder", function() {
               if (0 === n.props.chat.userName.length)
                 n.setState({ badName: !0 });
               else if (n.props.chat.messageValue.length > 100)
@@ -19207,20 +19313,20 @@ object-assign
                   id: n.props.auth.localId,
                   createAt: new Date().getTime()
                 };
-                Co.send(JSON.stringify(e)), n.props.chatResetMessageInputFun();
+                zo.send(JSON.stringify(e)), n.props.chatResetMessageInputFun();
               }
             }),
-            xo(So(n), "resetLoadMoreHandler", function() {
+            No(ko(n), "resetLoadMoreHandler", function() {
               n.setState({ loadMore: !1 });
             }),
-            xo(So(n), "scrollHandler", function(e) {
+            No(ko(n), "scrollHandler", function(e) {
               0 === e.target.scrollTop &&
                 n.state.messageQty === n.state.currentLengthMessages &&
                 n.setState(function(e) {
                   return { messageQty: e.messageQty + 100 };
                 });
             }),
-            xo(So(n), "keyDownHandler", function(e) {
+            No(ko(n), "keyDownHandler", function(e) {
               "Enter" === e.key && n.sendMessageHanlder();
             }),
             n
@@ -19236,7 +19342,7 @@ object-assign
             (e.prototype = Object.create(t && t.prototype, {
               constructor: { value: e, writable: !0, configurable: !0 }
             })),
-              t && ko(e, t);
+              t && xo(e, t);
           })(t, e),
           (r = t),
           (o = [
@@ -19250,8 +19356,8 @@ object-assign
                     : this.setState({
                         currentLengthMessages: this.props.chat.messages.length
                       }),
-                  1 === Co.readyState &&
-                    (Co.onmessage = function(t) {
+                  1 === zo.readyState &&
+                    (zo.onmessage = function(t) {
                       e.props.chatSetCurrentMessagesFun(JSON.parse(t.data));
                     });
                 var t = document.querySelector(".chat__head__view__port");
@@ -19301,9 +19407,9 @@ object-assign
                   { className: "chat__section" },
                   this.props.auth.isAuthindicated
                     ? null
-                    : a.a.createElement(mn, { to: "/" }),
+                    : a.a.createElement(hn, { to: "/" }),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.longMesssage },
                     a.a.createElement(
                       "div",
@@ -19323,7 +19429,7 @@ object-assign
                     )
                   ),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.badName },
                     a.a.createElement(
                       "div",
@@ -19343,7 +19449,7 @@ object-assign
                     )
                   ),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.state.badMessage },
                     a.a.createElement(
                       "div",
@@ -19363,9 +19469,9 @@ object-assign
                     )
                   ),
                   a.a.createElement(
-                    sr,
+                    pr,
                     { toggle: this.props.chat.modal },
-                    a.a.createElement("div", null, a.a.createElement(Sr, null))
+                    a.a.createElement("div", null, a.a.createElement(kr, null))
                   ),
                   a.a.createElement(
                     "div",
@@ -19385,9 +19491,9 @@ object-assign
                           "Choose room"
                         ),
                         a.a.createElement(
-                          rr,
+                          ar,
                           { toggle: this.state.showList },
-                          a.a.createElement(bo, {
+                          a.a.createElement(wo, {
                             rooms: this.props.chat.rooms,
                             choose: this.props.chatChooseRoomFun,
                             toggle: this.toggleSelectRoomsHandler,
@@ -19583,7 +19689,7 @@ object-assign
                             },
                             "Send",
                             a.a.createElement("img", {
-                              src: n(108),
+                              src: n(109),
                               alt: "spinner",
                               className: "chat__footer__send__btn__spinner"
                             })
@@ -19601,12 +19707,12 @@ object-assign
                 );
               }
             }
-          ]) && Eo(r.prototype, o),
-          i && Eo(r, i),
+          ]) && Oo(r.prototype, o),
+          i && Oo(r, i),
           t
         );
       })(a.a.Component),
-      To = oe(
+      Po = oe(
         function(e) {
           return { auth: e.auth, chat: e.chat };
         },
@@ -19618,7 +19724,7 @@ object-assign
                   var t = { name: e };
                   return function(n) {
                     e.length > 4 &&
-                      (n(ht()),
+                      (n(gt()),
                       fetch("".concat(he, "/api/v1.0/chatRooms"), {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -19628,10 +19734,10 @@ object-assign
                           return e.json();
                         })
                         .then(function(e) {
-                          n(dt()), n(gt()), console.log(e);
+                          n(mt()), n(_t()), console.log(e);
                         })
                         .catch(function(e) {
-                          console.log(e), n(ht());
+                          console.log(e), n(gt());
                         }));
                   };
                 })(t)
@@ -19648,7 +19754,7 @@ object-assign
               return e(
                 (function(e) {
                   return function(t) {
-                    t(ht()),
+                    t(gt()),
                       fetch(
                         "".concat(he, "/api/v1.0/roomMessages?room=").concat(e),
                         { method: "GET" }
@@ -19657,10 +19763,10 @@ object-assign
                           return e.json();
                         })
                         .then(function(n) {
-                          t(gt()), t(_t(e)), t(vt(n.data));
+                          t(_t()), t(vt(e)), t(yt(n.data));
                         })
                         .catch(function(e) {
-                          console.log(e), t(ht());
+                          console.log(e), t(gt());
                         });
                   };
                 })(t)
@@ -19677,7 +19783,7 @@ object-assign
               return e(
                 (function(e, t) {
                   return function(n) {
-                    n(ht()),
+                    n(gt()),
                       fetch("".concat(he, "/api/v1.0/user/setAddress"), {
                         method: "PATCH",
                         headers: { "Content-Type": "application/json" },
@@ -19687,10 +19793,10 @@ object-assign
                           return e.json();
                         })
                         .then(function(e) {
-                          n(gt()), n(mt()), n(wt(t)), console.log(e);
+                          n(_t()), n(ht()), n(Et(t)), console.log(e);
                         })
                         .catch(function(e) {
-                          console.log(e), n(ht());
+                          console.log(e), n(gt());
                         });
                   };
                 })(t, n)
@@ -19707,7 +19813,7 @@ object-assign
               return e({ type: fe.K });
             },
             chatDeleteMessageFun: function(t) {
-              return e(yt(t));
+              return e(bt(t));
             },
             chatNewMessageOnFun: function() {
               return e({ type: fe.F });
@@ -19716,10 +19822,10 @@ object-assign
               return e({ type: fe.E });
             },
             chatGetUsersNamesFun: function(t) {
-              return e(wt(t));
+              return e(Et(t));
             },
             chatSetCurrentMessagesFun: function(t) {
-              return e(Et(t));
+              return e(Ot(t));
             },
             chatResetMessageInputFun: function() {
               return e({ type: fe.I });
@@ -19728,7 +19834,7 @@ object-assign
               return e(
                 (function(e) {
                   return function(t) {
-                    t(ht()),
+                    t(gt()),
                       fetch(
                         "".concat(he, "/api/v1.0/roomMessages?room=").concat(e),
                         { method: "GET" }
@@ -19737,10 +19843,10 @@ object-assign
                           return e.json();
                         })
                         .then(function(e) {
-                          t(gt()), t(Et(e.data));
+                          t(_t()), t(Ot(e.data));
                         })
                         .catch(function(e) {
-                          console.log(e), t(ht());
+                          console.log(e), t(gt());
                         });
                   };
                 })(t)
@@ -19748,23 +19854,23 @@ object-assign
             },
             getChatRoomsFun: function() {
               return e(function(e) {
-                e(ht()),
+                e(gt()),
                   fetch("".concat(he, "/api/v1.0/chatRooms"), { method: "GET" })
                     .then(function(e) {
                       return e.json();
                     })
                     .then(function(t) {
-                      e(gt()), e(pt(t.data));
+                      e(_t()), e(ft(t.data));
                     })
                     .catch(function(t) {
-                      console.log(t), e(ht());
+                      console.log(t), e(gt());
                     });
               });
             }
           };
         }
-      )(zo),
-      Po = function(e) {
+      )(To),
+      jo = function(e) {
         return a.a.createElement(
           "section",
           null,
@@ -19772,7 +19878,7 @@ object-assign
             "div",
             null,
             a.a.createElement(
-              Cn,
+              zn,
               { to: "/", className: "page404__link" },
               a.a.createElement("img", {
                 src: "assets/img/404.gif",
@@ -19783,8 +19889,8 @@ object-assign
           )
         );
       };
-    function jo(e) {
-      return (jo =
+    function Ro(e) {
+      return (Ro =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -19798,7 +19904,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function Ro(e, t) {
+    function Mo(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -19807,8 +19913,8 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function Mo(e, t) {
-      return !t || ("object" !== jo(t) && "function" != typeof t)
+    function Ao(e, t) {
+      return !t || ("object" !== Ro(t) && "function" != typeof t)
         ? (function(e) {
             if (void 0 === e)
               throw new ReferenceError(
@@ -19818,8 +19924,8 @@ object-assign
           })(e)
         : t;
     }
-    function Ao(e) {
-      return (Ao = Object.setPrototypeOf
+    function Io(e) {
+      return (Io = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
@@ -19832,14 +19938,14 @@ object-assign
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    var Io = (function(e) {
+    var Fo = (function(e) {
       function t() {
         return (
           (function(e, t) {
             if (!(e instanceof t))
               throw new TypeError("Cannot call a class as a function");
           })(this, t),
-          Mo(this, Ao(t).apply(this, arguments))
+          Ao(this, Io(t).apply(this, arguments))
         );
       }
       var n, r, o;
@@ -19862,92 +19968,92 @@ object-assign
               return a.a.createElement(
                 a.a.Fragment,
                 null,
-                a.a.createElement(yn, { path: "/", component: Ln }),
+                a.a.createElement(bn, { path: "/", component: Un }),
                 a.a.createElement(
-                  kn,
+                  xn,
                   null,
-                  a.a.createElement(yn, {
+                  a.a.createElement(bn, {
                     exact: !0,
                     path: "/",
-                    component: Xr
+                    component: Jr
                   }),
-                  a.a.createElement(yn, {
+                  a.a.createElement(bn, {
                     exact: !0,
                     path: "/pizza-builder",
-                    component: yr
+                    component: br
                   }),
-                  a.a.createElement(yn, {
+                  a.a.createElement(bn, {
                     exact: !0,
                     path: "/reviews/addReview",
-                    component: Ur
+                    component: Hr
                   }),
-                  a.a.createElement(yn, {
+                  a.a.createElement(bn, {
                     exact: !0,
                     path: "/reviews/:page",
-                    component: jr
+                    component: Rr
                   }),
-                  a.a.createElement(yn, {
+                  a.a.createElement(bn, {
                     exact: !0,
                     path: "/checkout",
-                    component: ua
+                    component: ca
                   }),
-                  a.a.createElement(yn, {
+                  a.a.createElement(bn, {
                     exact: !0,
                     path: "/authentication",
-                    component: ga
+                    component: _a
                   }),
-                  a.a.createElement(yn, {
+                  a.a.createElement(bn, {
                     exact: !0,
                     path: "/personalRoom",
-                    component: Ga
+                    component: Qa
                   }),
-                  a.a.createElement(yn, {
+                  a.a.createElement(bn, {
                     exact: !0,
                     path: "/personalRoom/changeMail",
-                    component: yo
+                    component: bo
                   }),
-                  a.a.createElement(yn, {
+                  a.a.createElement(bn, {
                     exact: !0,
                     path: "/personalRoom/:page",
-                    component: Ga
+                    component: Qa
                   }),
-                  a.a.createElement(yn, {
+                  a.a.createElement(bn, {
                     exact: !0,
                     path: "/pizza-builds",
-                    component: so
+                    component: po
                   }),
-                  a.a.createElement(yn, {
+                  a.a.createElement(bn, {
                     exact: !0,
                     path: "/authentication/forgot",
-                    component: to
+                    component: no
                   }),
-                  a.a.createElement(yn, {
+                  a.a.createElement(bn, {
                     exact: !0,
                     path: "/logOut",
-                    component: Ma
+                    component: Aa
                   }),
-                  a.a.createElement(yn, {
+                  a.a.createElement(bn, {
                     exact: !0,
                     path: "/authentication/registration",
-                    component: Sa
+                    component: ka
                   }),
-                  a.a.createElement(yn, {
+                  a.a.createElement(bn, {
                     exact: !0,
                     path: "/chat",
-                    component: To
+                    component: Po
                   }),
-                  a.a.createElement(yn, { component: Po })
+                  a.a.createElement(bn, { component: jo })
                 )
               );
             }
           }
-        ]) && Ro(n.prototype, r),
-        o && Ro(n, o),
+        ]) && Mo(n.prototype, r),
+        o && Mo(n, o),
         t
       );
     })(a.a.Component);
-    function Fo(e) {
-      return (Fo =
+    function Lo(e) {
+      return (Lo =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -19961,7 +20067,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function Lo(e, t) {
+    function Uo(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -19970,8 +20076,8 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function Uo(e, t) {
-      return !t || ("object" !== Fo(t) && "function" != typeof t)
+    function Ho(e, t) {
+      return !t || ("object" !== Lo(t) && "function" != typeof t)
         ? (function(e) {
             if (void 0 === e)
               throw new ReferenceError(
@@ -19981,28 +20087,28 @@ object-assign
           })(e)
         : t;
     }
-    function Ho(e) {
-      return (Ho = Object.setPrototypeOf
+    function Vo(e) {
+      return (Vo = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function Vo(e, t) {
-      return (Vo =
+    function $o(e, t) {
+      return ($o =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    var $o = (function(e) {
+    var Bo = (function(e) {
         function t() {
           return (
             (function(e, t) {
               if (!(e instanceof t))
                 throw new TypeError("Cannot call a class as a function");
             })(this, t),
-            Uo(this, Ho(t).apply(this, arguments))
+            Ho(this, Vo(t).apply(this, arguments))
           );
         }
         var n, r, o;
@@ -20015,7 +20121,7 @@ object-assign
             (e.prototype = Object.create(t && t.prototype, {
               constructor: { value: e, writable: !0, configurable: !0 }
             })),
-              t && Vo(e, t);
+              t && $o(e, t);
           })(t, e),
           (n = t),
           (r = [
@@ -20029,7 +20135,7 @@ object-assign
               key: "render",
               value: function() {
                 return a.a.createElement(
-                  xn,
+                  Nn,
                   null,
                   a.a.createElement(
                     "div",
@@ -20037,26 +20143,26 @@ object-assign
                     a.a.createElement(
                       "div",
                       { className: "container" },
-                      a.a.createElement(Io, null)
+                      a.a.createElement(Fo, null)
                     )
                   )
                 );
               }
             }
-          ]) && Lo(n.prototype, r),
-          o && Lo(n, o),
+          ]) && Uo(n.prototype, r),
+          o && Uo(n, o),
           t
         );
       })(a.a.Component),
-      Bo = oe(null, function(e) {
+      Wo = oe(null, function(e) {
         return {
           getToketFun: function() {
-            return e(Ve());
+            return e($e());
           }
         };
-      })($o);
-    function Wo(e) {
-      return (Wo =
+      })(Bo);
+    function qo(e) {
+      return (qo =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -20070,7 +20176,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function qo(e, t) {
+    function Go(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -20079,8 +20185,8 @@ object-assign
           Object.defineProperty(e, r.key, r);
       }
     }
-    function Go(e, t) {
-      return !t || ("object" !== Wo(t) && "function" != typeof t)
+    function Qo(e, t) {
+      return !t || ("object" !== qo(t) && "function" != typeof t)
         ? (function(e) {
             if (void 0 === e)
               throw new ReferenceError(
@@ -20090,28 +20196,28 @@ object-assign
           })(e)
         : t;
     }
-    function Qo(e) {
-      return (Qo = Object.setPrototypeOf
+    function Yo(e) {
+      return (Yo = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function Yo(e, t) {
-      return (Yo =
+    function Zo(e, t) {
+      return (Zo =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
         })(e, t);
     }
-    var Zo = (function(e) {
+    var Ko = (function(e) {
       function t() {
         return (
           (function(e, t) {
             if (!(e instanceof t))
               throw new TypeError("Cannot call a class as a function");
           })(this, t),
-          Go(this, Qo(t).apply(this, arguments))
+          Qo(this, Yo(t).apply(this, arguments))
         );
       }
       var n, r, o;
@@ -20124,7 +20230,7 @@ object-assign
           (e.prototype = Object.create(t && t.prototype, {
             constructor: { value: e, writable: !0, configurable: !0 }
           })),
-            t && Yo(e, t);
+            t && Zo(e, t);
         })(t, e),
         (n = t),
         (r = [
@@ -20134,17 +20240,17 @@ object-assign
               return a.a.createElement(
                 _,
                 { store: l.a },
-                a.a.createElement(Bo, null)
+                a.a.createElement(Wo, null)
               );
             }
           }
-        ]) && qo(n.prototype, r),
-        o && qo(n, o),
+        ]) && Go(n.prototype, r),
+        o && Go(n, o),
         t
       );
     })(a.a.Component);
     Object(o.render)(
-      a.a.createElement(Zo, null),
+      a.a.createElement(Ko, null),
       document.getElementById("app")
     );
   }

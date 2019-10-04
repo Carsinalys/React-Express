@@ -32,6 +32,14 @@ const initState = {
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
+    case AC.GET_ORDERS_FINISH_PHOTO:
+      localStorage.setItem("name", `${action.payload.name}`);
+      localStorage.setItem("photo", `${action.payload.photo}`);
+      return {
+        ...state,
+        photo: action.payload.photo,
+        name: action.payload.name
+      };
     case AC.AUTH_ON_INPUT:
       let fuck = new RegExp(
         state.inputs[action.payload.target.dataset.name].pattern

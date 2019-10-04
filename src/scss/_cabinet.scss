@@ -280,3 +280,19 @@
 .add__photo__submit__cover {
   display: inline-block;
 }
+
+.room__output__cabinet {
+  width: 95%;
+  margin: 0 auto;
+  padding: 3rem;
+}
+
+.cabinet__user__cover {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.cabinet__user__name {
+  font-size: rem(20);
+}

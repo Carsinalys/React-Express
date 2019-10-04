@@ -66,3 +66,18 @@
     animation: shake 1s infinite;
   }
 }
+
+.log__out__cover {
+  display: flex;
+  align-items: center;
+}
+
+.log__out__name__block {
+  margin-right: 1rem;
+}
+
+.log__out__image {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}

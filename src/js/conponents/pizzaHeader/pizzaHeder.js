@@ -32,7 +32,7 @@ class PizzaHeader extends React.Component {
         <PizzaNav
           show={this.state.burgerIsShow}
           showClick={this.showMenuHandler}
-          auth={this.props.auth.isAuthindicated}
+          auth={this.props.auth}
           hideModal={this.hideMenuHandler}
           chat={this.props.chat}
           location={this.props.location.pathname}

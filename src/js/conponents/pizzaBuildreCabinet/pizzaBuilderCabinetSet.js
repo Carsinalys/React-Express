@@ -10,6 +10,16 @@ const cabinetSet = props => {
     output.src = URL.createObjectURL(event.target.files[0]);
   };
 
+  const setLocalStorage = () => {
+    localStorage.setItem("id", props.auth.localId);
+    localStorage.setItem("photoChanged", true);
+  };
+
+  const setLocalStorageName = () => {
+    localStorage.setItem("id", props.auth.localId);
+    localStorage.setItem("nameChanged", "true");
+  };
+
   return (
     <div>
       <Modal toggle={props.modal}>
@@ -22,7 +32,10 @@ const cabinetSet = props => {
           <button
             type="submit"
             className="set_cabinet__form__submit"
-            onClick={event => props.check(event)}
+            onClick={event => {
+              props.check(event);
+              setLocalStorageName();
+            }}
           >
             Send
           </button>
@@ -36,6 +49,7 @@ const cabinetSet = props => {
           method="POST"
           encType="multipart/form-data"
           className="add__photo__form"
+          onSubmit={setLocalStorage}
         >
           <div className="add__photo__input__cover">
             <input
@@ -56,7 +70,7 @@ const cabinetSet = props => {
               }}
             />
             <img
-              src={"/assets/img/preview.svg"}
+              src={require("../../../img/preview.svg")}
               alt="upload image"
               className="add__photo__preview"
               id="preview"

@@ -42,14 +42,14 @@ const pizzaNav = props => {
               Reviews
             </NavLink>
           </li>
-          {props.auth ? (
+          {props.auth.isAuthindicated ? (
             <li className="pizza__nav__item">
               <NavLink to="/checkout" className="pizza__nav__link">
                 Card & Checkout
               </NavLink>
             </li>
           ) : null}
-          {props.auth ? (
+          {props.auth.isAuthindicated ? (
             <li className="pizza__nav__item">
               <NavLink to="/logOut" className="pizza__nav__link">
                 LogOut
@@ -62,14 +62,25 @@ const pizzaNav = props => {
               </NavLink>
             </li>
           )}
-          {props.auth ? (
+          {props.auth.isAuthindicated ? (
             <li className="pizza__nav__item">
               <NavLink to="/personalRoom" className="pizza__nav__link">
-                My room
+                <div className="log__out__cover">
+                  <div className="log__out__name__block">
+                    <p>{props.auth.name != "" ? props.auth.name : "user"}</p>
+                  </div>
+                  <div className="log__out__image__block">
+                    <img
+                      src={`assets/users/${props.auth.photo}`}
+                      alt={props.auth.name}
+                      className="log__out__image"
+                    />
+                  </div>
+                </div>
               </NavLink>
             </li>
           ) : null}
-          {props.auth ? (
+          {props.auth.isAuthindicated ? (
             <li className="pizza__nav__item">
               <NavLink
                 to="/chat"

@@ -36,3 +36,26 @@ export const getError = error => {
     payload: error
   };
 };
+
+export const setPhoto = data => {
+  return {
+    type: AC.GET_ORDERS_FINISH_PHOTO,
+    payload: data
+  };
+};
+
+export const gerUserPhotoAfterChange = id => {
+  return dispatch => {
+    dispatch(startGetOrders());
+    fetch(`${port}/api/v1.0/user/getInfo?id=${id}`, {
+      method: "GET"
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        dispatch(setPhoto(data.data));
+      })
+      .catch(error => dispatch(getError(error)));
+  };
+};

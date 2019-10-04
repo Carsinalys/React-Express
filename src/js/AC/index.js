@@ -3,7 +3,8 @@ export {
   startGetOrders,
   gerOrders,
   setOrders,
-  getError
+  getError,
+  gerUserPhotoAfterChange
 } from "./fetchingOrders";
 export {
   getReviews,
