@@ -10,7 +10,7 @@ const cabinetSet = props => {
     output.src = URL.createObjectURL(event.target.files[0]);
   };
 
-  const setLocalStorage = () => {
+  const setLocalStorage = event => {
     localStorage.setItem("id", props.auth.localId);
     localStorage.setItem("photoChanged", true);
   };
@@ -49,7 +49,7 @@ const cabinetSet = props => {
           method="POST"
           encType="multipart/form-data"
           className="add__photo__form"
-          onSubmit={setLocalStorage}
+          onSubmit={event => setLocalStorage(event)}
         >
           <div className="add__photo__input__cover">
             <input
@@ -66,7 +66,8 @@ const cabinetSet = props => {
                 zIndex: 10,
                 top: 0,
                 left: 0,
-                position: "absolute"
+                position: "absolute",
+                cursor: "pointer"
               }}
             />
             <img

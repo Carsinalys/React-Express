@@ -103,11 +103,19 @@ class PersonalRoom extends React.Component {
           <div className="cabinet__user__cover">
             <div className="log__out__cover">
               <div className="log__out__name__block">
-                <p className="cabinet__user__name">{this.props.auth.name}</p>
+                <p className="cabinet__user__name">
+                  {this.props.auth.name !== "undefined"
+                    ? this.props.auth.name
+                    : "user"}
+                </p>
               </div>
               <div className="log__out__image__block">
                 <img
-                  src={`assets/users/${this.props.auth.photo}`}
+                  src={
+                    this.props.auth.photo.startsWith("data")
+                      ? `${this.props.auth.photo}`
+                      : `/assets/users/${this.props.auth.photo}`
+                  }
                   alt={this.props.auth.name}
                   className="log__out__image"
                 />

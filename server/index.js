@@ -12,6 +12,7 @@ const orders = require("./controllers/orders");
 const reviews = require("./controllers/reviews");
 const message = require("./controllers/message");
 const room = require("./controllers/rooms");
+const builds = require("./controllers/builds");
 const resetPass = require("./controllers/resetPassword");
 const globalErrorHandler = require("./controllers/error");
 const { isAuthenticated } = require("./controllers/isAuthenticated");
@@ -28,6 +29,17 @@ const cors = require("cors");
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
 const app = Express();
+//crossdomain headers
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Credentials", true);
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Methods", "GET, OPTIONS, POST, PUT, PATCH");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept,X-HTTP-Method-Override"
+//   );
+//   next();
+// });
 //for heroku because it`t act like proxy
 app.enable("trust proxy");
 
@@ -67,14 +79,10 @@ const limiter = rateLimit({
 app.use("/api", limiter);
 //compression data sending to client
 app.use(compression());
+
+app.disable("x-powered-by");
 //implement cors
 app.use(cors());
-//example for specific domain
-//app.use(cors({origin: "http://localhost:3001"}));
-//allow delete path put ... methods from all domains
-app.options("*", cors());
-//example for specific domain
-//app.options("/api/v1.0/user", cors());
 
 app.get("/test", (req, res) => {
   res.status("200").render("base", {
@@ -82,6 +90,11 @@ app.get("/test", (req, res) => {
     name: "Www"
   });
 });
+
+app
+  .route("/api/v1.0/builds")
+  .post(isAuthenticated, builds.setBuilds)
+  .get(builds.getBuilds);
 
 app
   .route("/api/v1.0/chatRooms")

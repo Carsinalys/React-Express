@@ -67,11 +67,19 @@ const pizzaNav = props => {
               <NavLink to="/personalRoom" className="pizza__nav__link">
                 <div className="log__out__cover">
                   <div className="log__out__name__block">
-                    <p>{props.auth.name != "" ? props.auth.name : "user"}</p>
+                    <p>
+                      {props.auth.name !== "undefined"
+                        ? props.auth.name
+                        : "user"}
+                    </p>
                   </div>
                   <div className="log__out__image__block">
                     <img
-                      src={`assets/users/${props.auth.photo}`}
+                      src={
+                        props.auth.photo.startsWith("data")
+                          ? `${props.auth.photo}`
+                          : `/assets/users/${props.auth.photo}`
+                      }
                       alt={props.auth.name}
                       className="log__out__image"
                     />

@@ -10,6 +10,8 @@ exports.getReviews = cachAsync(async (req, res) => {
       data: review
     });
   } else if (req.query.page && req.query.limit) {
+    const allReviews = await Reviews.find();
+    console.log(allReviews.filter(item => !item.build).length);
     const count = await Reviews.countDocuments();
     const page = req.query.page * 1;
     const limit = req.query.limit * 1;

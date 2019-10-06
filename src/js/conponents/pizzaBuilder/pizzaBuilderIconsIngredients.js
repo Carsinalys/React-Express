@@ -7,11 +7,13 @@ const icons = props => {
         <div className="pizza__view__icon__count">
           <strong>{props.ingredients[key].count}X</strong>
         </div>
-        <div
-          className="pizza__view__icon__delete"
-          data-value={key}
-          onClick={() => props.minus(event.target.dataset.value)}
-        ></div>
+        {props.showCross == "false" ? null : (
+          <div
+            className="pizza__view__icon__delete"
+            data-value={key}
+            onClick={() => props.minus(event.target.dataset.value)}
+          ></div>
+        )}
         <div className="pizza__view__icon__pic">
           <img
             src={`assets/img/${key}.png`}

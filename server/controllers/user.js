@@ -6,6 +6,7 @@ const multer = require("multer");
 const sharp = require("sharp");
 const fs = require("fs");
 const path = require("path");
+const base64js = require("base64-js");
 
 const multerStorage = multer.memoryStorage();
 const multerFilter = (req, file, cb) => {
@@ -36,10 +37,9 @@ const resizeUserPhoto = cachAsync(async (req, res, next) => {
 
   req.file.filename = `user-${req.user._id}-${Date.now()}.jpeg`;
   await sharp(req.file.buffer)
-    .resize(300)
-    .toFormat("jpeg")
-    .jpeg({ quality: 90 })
-    .toFile(`dist/assets/users/${req.file.filename}`);
+    .resize(200)
+    .toBuffer();
+  const photoForBase = base64js.fromByteArray(req.file.buffer);
   next();
 });
 //upload photo
@@ -72,18 +72,9 @@ const updateUserCached = cachAsync(async (req, res, next) => {
     res.status(200).json({ status: "ok", data: userRecord });
   } else if (req.file.filename) {
     const data = {
-      photo: req.file.filename
+      photo: "data:image/jpeg;base64," + base64js.fromByteArray(req.file.buffer)
     };
     await updateUserRecordParamCatch(req.user._id, data);
-    if (req.user.photo !== "man.svg") {
-      try {
-        fs.unlinkSync(
-          path.join(__dirname, `../../dist/assets/users/${req.user.photo}`)
-        );
-      } catch (e) {
-        console.log(e);
-      }
-    }
     res.status(200).redirect("/");
   }
 });

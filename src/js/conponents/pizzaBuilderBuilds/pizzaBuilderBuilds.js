@@ -4,17 +4,25 @@ import { Redirect } from "react-router-dom";
 import ModalBuilder from "./pizzaBuilderModal";
 
 import Ingredients from "../pizzaBuilder/pizzaBuilderIconsIngredients";
-import { multipleAdd } from "../../AC/index";
+import { multipleAdd, getBuilds } from "../../AC/index";
 import Modal from "../hoc/modal";
+import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 
 class Builds extends React.Component {
   componentDidMount() {
     this.handleScroll();
     document.addEventListener("scroll", this.handleScroll);
+    this.props.getBuildsFun();
   }
 
   componentWillUnmount() {
     document.removeEventListener("scroll", this.handleScroll);
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.builds.builds.length !== this.props.builds.builds.length) {
+      this.handleScroll();
+    }
   }
 
   state = {
@@ -53,6 +61,9 @@ class Builds extends React.Component {
     return (
       <section className="ready__builds__main__cover">
         {this.state.redirect ? <Redirect to="/checkout" /> : null}
+        <Modal toggle={this.props.builds.isLoading}>
+          <Spinner />
+        </Modal>
         <Modal toggle={this.state.modalIsShow}>
           <div className="modal__background" onClick={this.toggleModalHandler}>
             <ModalBuilder
@@ -78,39 +89,44 @@ class Builds extends React.Component {
             </div>
           </div>
         </Modal>
-        {Object.keys(this.props.builds.builds).map(item => {
-          return (
-            <div key={item} className="ready__build__cover">
-              <h3 className="builds__pizza__title__text">
-                <span className="builds__pizza__title">{item}</span>
-              </h3>
-              <div className="ready__build__single__pic">
-                <img src={`assets/img/${item}.png`} alt={item} />
+        {this.props.builds.builds.length > 0 ? (
+          this.props.builds.builds.map(item => {
+            return (
+              <div key={item.name} className="ready__build__cover">
+                <h3 className="builds__pizza__title__text">
+                  <span className="builds__pizza__title">{item.name}</span>
+                </h3>
+                <div className="ready__build__single__pic">
+                  <img src={`assets/img/${item.name}.png`} alt={item.name} />
+                </div>
+                <div className="single__build__ingredients__cover">
+                  <Ingredients
+                    ingredients={item.ingredients}
+                    minus={this.minusHandler}
+                    showCross="false"
+                  />
+                </div>
+                <div className="single__build__params__cover">
+                  <p>Weigth is: {[item].weight}g.</p>
+                  <p>Cost is: {[item].cost}$</p>
+                  <p>Diameter is: {[item].diameter}cm.</p>
+                </div>
+                <div className="single__build__order__cover">
+                  <button
+                    className="single__build__order"
+                    onClick={() =>
+                      this.setState({ modalIsShow: true, selectedItem: item })
+                    }
+                  >
+                    Order
+                  </button>
+                </div>
               </div>
-              <div className="single__build__ingredients__cover">
-                <Ingredients
-                  ingredients={this.props.builds.builds[item].ingredients}
-                  minus={this.minusHandler}
-                />
-              </div>
-              <div className="single__build__params__cover">
-                <p>Weigth is: {this.props.builds.builds[item].weight}g.</p>
-                <p>Cost is: {this.props.builds.builds[item].cost}$</p>
-                <p>Diameter is: {this.props.builds.builds[item].diameter}cm.</p>
-              </div>
-              <div className="single__build__order__cover">
-                <button
-                  className="single__build__order"
-                  onClick={() =>
-                    this.setState({ modalIsShow: true, selectedItem: item })
-                  }
-                >
-                  Order
-                </button>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })
+        ) : (
+          <h1>No builds yet</h1>
+        )}
       </section>
     );
   }
@@ -124,7 +140,8 @@ const stateToProps = state => {
 
 const dispatchToProps = dispatch => {
   return {
-    addFun: data => dispatch(multipleAdd(data))
+    addFun: data => dispatch(multipleAdd(data)),
+    getBuildsFun: () => dispatch(getBuilds())
   };
 };
 

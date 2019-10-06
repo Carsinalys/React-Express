@@ -9,7 +9,9 @@ const multiShow = props => {
             <li key={index} className="multi__order__item">
               <div className="pizza__view__order__content__flex">
                 <div className="multi__order__params__cover">
-                  {item.name ? <p className="multi__pizza__name__obj">{item.name}</p> : null}
+                  {item.name ? (
+                    <p className="multi__pizza__name__obj">{item.name}</p>
+                  ) : null}
                   <p>Weight is: {item.weight} g.</p>
                   <p>Diameter is: {item.diameter} cm.</p>
                   <p>Cost is: {item.cost} $</p>
