@@ -25,11 +25,6 @@ const reviewsBuildsShchema = new mongoose.Schema(
       min: 1,
       max: 5
     },
-    id: {
-      type: String,
-      required: [true, "No id"],
-      unique: false
-    },
     date: {
       type: Date,
       default: Date.now()

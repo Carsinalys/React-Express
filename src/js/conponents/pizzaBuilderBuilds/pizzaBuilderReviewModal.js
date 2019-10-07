@@ -5,7 +5,7 @@ const reviewsModal = props => {
   const [nameValue, setnameValue] = useState(false);
   const [textValue, settextValue] = useState(false);
   const nameRegExp = new RegExp(/^[a-zA-Z][a-zA-Z0-9-_ .]{5,20}$/);
-  const textRegExp = new RegExp(/^[a-zA-Z][a-zA-Z0-9-_ .]{10,200}$/);
+  const textRegExp = new RegExp(/^[a-zA-Z][a-zA-Z0-9-_ .,)(!?]{5,200}$/);
   const dataSend = () => {
     if (nameValue && textValue) {
       const name = document.querySelector("#builds__review__name").value;
@@ -15,7 +15,8 @@ const reviewsModal = props => {
         text: text,
         rating: currentRating
       };
-      console.log(data);
+      props.send(data);
+      props.modal();
     }
   };
   return (

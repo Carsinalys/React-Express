@@ -32,7 +32,7 @@ const buildsShchema = new mongoose.Schema(
     reviews: [
       {
         type: mongoose.Schema.ObjectId,
-        ref: "Reviews"
+        ref: "ReviewsBuilds"
       }
     ]
   },

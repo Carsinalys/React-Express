@@ -38,3 +38,25 @@ export const getBuildsModalOf = () => {
     type: AC.READY_BUILDS_MODAL_OFF
   };
 };
+
+export const sendReview = data => {
+  return dispatch => {
+    dispatch(getBuildsModalOn());
+    fetch(`${port}/api/v1.0/builds/addReview`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(data => data.json())
+      .then(data => {
+        dispatch(getBuildsModalOf());
+        dispatch(getBuilds());
+      })
+      .catch(error => {
+        dispatch(getBuildsModalOf());
+        console.log(error);
+      });
+  };
+};

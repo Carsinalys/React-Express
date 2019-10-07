@@ -174,7 +174,9 @@
 .builds__modal__reviews__add__cover {
   padding: 2rem;
   width: 70%;
-  height: 60%;
+  min-height: 60%;
+  max-height: 80%;
+  overflow-y: scroll;
   background: #d1d444;
   @include laptop {
     height: 70%;
@@ -280,4 +282,13 @@
 
 .build_review__star__icon__inactive {
   fill: rgba(0, 0, 0,0.5);
+}
+
+.builds__review__preview__stars__cover {
+  display: flex;
+  margin-right: 1rem;
+}
+
+.builds__review__preview__cover {
+  display: flex;
 }

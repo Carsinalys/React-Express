@@ -53,4 +53,4 @@ export {
   chatGetCurMessages,
   getChatRooms
 } from "./chat";
-export { getBuilds } from "./readyBuilds";
+export { getBuilds, sendReview } from "./readyBuilds";

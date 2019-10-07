@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import ModalBuilder from "./pizzaBuilderModal";
 
 import Ingredients from "../pizzaBuilder/pizzaBuilderIconsIngredients";
-import { multipleAdd, getBuilds } from "../../AC/index";
+import { multipleAdd, getBuilds, sendReview } from "../../AC/index";
 import Modal from "../hoc/modal";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Reviews from "./pizzaBuilderBuildsReviews";
@@ -71,6 +71,13 @@ class Builds extends React.Component {
     this.setState({ curBuildModalId: id });
   };
 
+  sendReviewHandler = data => {
+    const review = { ...data };
+    review.user = this.props.auth.localId;
+    review.build = this.state.curBuildModalId;
+    this.props.sendReviewFun(review);
+  };
+
   render() {
     return (
       <section className="ready__builds__main__cover">
@@ -93,7 +100,10 @@ class Builds extends React.Component {
             className="modal__background"
             onClick={this.toggleReviewModalHandler}
           >
-            <ReviewsModal modal={this.toggleReviewModalHandler} />
+            <ReviewsModal
+              modal={this.toggleReviewModalHandler}
+              send={this.sendReviewHandler}
+            />
           </div>
         </Modal>
         <Modal toggle={this.state.minusModal}>
@@ -176,7 +186,8 @@ const stateToProps = state => {
 const dispatchToProps = dispatch => {
   return {
     addFun: data => dispatch(multipleAdd(data)),
-    getBuildsFun: () => dispatch(getBuilds())
+    getBuildsFun: () => dispatch(getBuilds()),
+    sendReviewFun: data => dispatch(sendReview(data))
   };
 };
 
