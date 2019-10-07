@@ -7,6 +7,8 @@ import Ingredients from "../pizzaBuilder/pizzaBuilderIconsIngredients";
 import { multipleAdd, getBuilds } from "../../AC/index";
 import Modal from "../hoc/modal";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
+import Reviews from "./pizzaBuilderBuildsReviews";
+import ReviewsModal from "./pizzaBuilderReviewModal";
 
 class Builds extends React.Component {
   componentDidMount() {
@@ -29,7 +31,9 @@ class Builds extends React.Component {
     modalIsShow: false,
     selectedItem: "",
     redirect: false,
-    minusModal: false
+    minusModal: false,
+    reviewModal: false,
+    curBuildModalId: ""
   };
 
   minusHandler = event => {
@@ -57,6 +61,16 @@ class Builds extends React.Component {
     });
   };
 
+  toggleReviewModalHandler = () => {
+    this.setState(prevState => ({
+      reviewModal: !prevState.reviewModal
+    }));
+  };
+
+  curBuildModalIdHandler = id => {
+    this.setState({ curBuildModalId: id });
+  };
+
   render() {
     return (
       <section className="ready__builds__main__cover">
@@ -72,6 +86,14 @@ class Builds extends React.Component {
               curPizza={this.state.selectedItem}
               builds={this.props.builds.builds}
             />
+          </div>
+        </Modal>
+        <Modal toggle={this.state.reviewModal}>
+          <div
+            className="modal__background"
+            onClick={this.toggleReviewModalHandler}
+          >
+            <ReviewsModal modal={this.toggleReviewModalHandler} />
           </div>
         </Modal>
         <Modal toggle={this.state.minusModal}>
@@ -107,15 +129,27 @@ class Builds extends React.Component {
                   />
                 </div>
                 <div className="single__build__params__cover">
-                  <p>Weigth is: {[item].weight}g.</p>
-                  <p>Cost is: {[item].cost}$</p>
-                  <p>Diameter is: {[item].diameter}cm.</p>
+                  <div>
+                    <p>Weigth is: {item.weight}g.</p>
+                    <p>Cost is: {item.cost}$</p>
+                    <p>Diameter is: {item.diameter}cm.</p>
+                  </div>
+                  <Reviews
+                    auth={this.props.auth}
+                    reviews={item.reviews}
+                    modal={this.toggleReviewModalHandler}
+                    id={item._id}
+                    setId={this.curBuildModalIdHandler}
+                  />
                 </div>
                 <div className="single__build__order__cover">
                   <button
                     className="single__build__order"
                     onClick={() =>
-                      this.setState({ modalIsShow: true, selectedItem: item })
+                      this.setState({
+                        modalIsShow: true,
+                        selectedItem: item
+                      })
                     }
                   >
                     Order
@@ -134,7 +168,8 @@ class Builds extends React.Component {
 
 const stateToProps = state => {
   return {
-    builds: state.builds
+    builds: state.builds,
+    auth: state.auth
   };
 };
 

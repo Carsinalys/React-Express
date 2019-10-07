@@ -1,6 +1,7 @@
 const AppError = require("../utils/errorHandler");
 const catchAsync = require("../utils/catchErrors");
 const Builds = require("../models/builds");
+const ReviewsBuilds = require("../models/reviews_builds");
 
 exports.setBuilds = catchAsync(async (req, res, next) => {
   Object.keys(req.body).map(
@@ -25,4 +26,9 @@ exports.getBuilds = catchAsync(async (req, res, next) => {
     status: "ok",
     data: builds
   });
+});
+
+exports.addReview = catchAsync(async (req, res, next) => {
+  console.log(req.body);
+  next();
 });

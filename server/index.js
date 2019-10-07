@@ -91,11 +91,11 @@ app.get("/test", (req, res) => {
   });
 });
 
+app.route("/api/v1.0/builds/addReview").post(builds.addReview);
 app
   .route("/api/v1.0/builds")
   .post(isAuthenticated, builds.setBuilds)
   .get(builds.getBuilds);
-
 app
   .route("/api/v1.0/chatRooms")
   .post(room.createroom)
