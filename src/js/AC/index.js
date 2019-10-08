@@ -53,4 +53,9 @@ export {
   chatGetCurMessages,
   getChatRooms
 } from "./chat";
-export { getBuilds, sendReview } from "./readyBuilds";
+export {
+  getBuilds,
+  sendReview,
+  sendEditedReview,
+  setCurReviewsToShow
+} from "./readyBuilds";

@@ -15,8 +15,13 @@ const reviewsModal = props => {
         text: text,
         rating: currentRating
       };
-      props.send(data);
-      props.modal();
+      if (props.edit) {
+        props.send(data, true);
+        props.modal();
+      } else {
+        props.send(data);
+        props.modal();
+      }
     }
   };
   return (

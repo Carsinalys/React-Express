@@ -4,11 +4,18 @@ import { Redirect } from "react-router-dom";
 import ModalBuilder from "./pizzaBuilderModal";
 
 import Ingredients from "../pizzaBuilder/pizzaBuilderIconsIngredients";
-import { multipleAdd, getBuilds, sendReview } from "../../AC/index";
+import {
+  multipleAdd,
+  getBuilds,
+  sendReview,
+  sendEditedReview,
+  setCurReviewsToShow
+} from "../../AC/index";
 import Modal from "../hoc/modal";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Reviews from "./pizzaBuilderBuildsReviews";
 import ReviewsModal from "./pizzaBuilderReviewModal";
+import ReviewsModalShow from "./pizzaBuilderReviewsModalShow";
 
 class Builds extends React.Component {
   componentDidMount() {
@@ -33,7 +40,9 @@ class Builds extends React.Component {
     redirect: false,
     minusModal: false,
     reviewModal: false,
-    curBuildModalId: ""
+    reviewModalEdit: false,
+    curBuildModalId: "",
+    reviewsModalShow: false
   };
 
   minusHandler = event => {
@@ -54,28 +63,42 @@ class Builds extends React.Component {
     items.forEach((item, index) => {
       if (
         document.documentElement.scrollTop >=
-        item.offsetTop - item.offsetHeight * 2
+        item.offsetTop - item.offsetHeight * 3
       ) {
         pics[index].classList.add("ready__build__single__pic_active");
       }
     });
   };
 
-  toggleReviewModalHandler = () => {
+  toggleReviewModalHandler = editTrigger => {
     this.setState(prevState => ({
-      reviewModal: !prevState.reviewModal
+      reviewModal: !prevState.reviewModal,
+      reviewModalEdit: false
     }));
+    if (editTrigger === "edit") {
+      this.setState(prevState => ({
+        reviewModalEdit: !prevState.reviewModalEdit
+      }));
+    }
   };
 
   curBuildModalIdHandler = id => {
     this.setState({ curBuildModalId: id });
   };
 
-  sendReviewHandler = data => {
+  sendReviewHandler = (data, edit) => {
     const review = { ...data };
     review.user = this.props.auth.localId;
     review.build = this.state.curBuildModalId;
-    this.props.sendReviewFun(review);
+    edit
+      ? this.props.sendEditedReviewFun(review)
+      : this.props.sendReviewFun(review);
+  };
+
+  showReviewsIdModalHandler = () => {
+    this.setState(prevState => ({
+      reviewsModalShow: !prevState.reviewsModalShow
+    }));
   };
 
   render() {
@@ -84,6 +107,14 @@ class Builds extends React.Component {
         {this.state.redirect ? <Redirect to="/checkout" /> : null}
         <Modal toggle={this.props.builds.isLoading}>
           <Spinner />
+        </Modal>
+        <Modal toggle={this.state.reviewsModalShow}>
+          <div
+            className="modal__background"
+            onClick={this.showReviewsIdModalHandler}
+          >
+            <ReviewsModalShow reviews={this.props.builds.reviews} />
+          </div>
         </Modal>
         <Modal toggle={this.state.modalIsShow}>
           <div className="modal__background" onClick={this.toggleModalHandler}>
@@ -103,6 +134,7 @@ class Builds extends React.Component {
             <ReviewsModal
               modal={this.toggleReviewModalHandler}
               send={this.sendReviewHandler}
+              edit={this.state.reviewModalEdit}
             />
           </div>
         </Modal>
@@ -150,6 +182,8 @@ class Builds extends React.Component {
                     modal={this.toggleReviewModalHandler}
                     id={item._id}
                     setId={this.curBuildModalIdHandler}
+                    showReviews={this.props.setCurReviewsToShowFun}
+                    showReviewsModal={this.showReviewsIdModalHandler}
                   />
                 </div>
                 <div className="single__build__order__cover">
@@ -187,7 +221,9 @@ const dispatchToProps = dispatch => {
   return {
     addFun: data => dispatch(multipleAdd(data)),
     getBuildsFun: () => dispatch(getBuilds()),
-    sendReviewFun: data => dispatch(sendReview(data))
+    sendReviewFun: data => dispatch(sendReview(data)),
+    sendEditedReviewFun: data => dispatch(sendEditedReview(data)),
+    setCurReviewsToShowFun: data => dispatch(setCurReviewsToShow(data))
   };
 };
 

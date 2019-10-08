@@ -9,7 +9,6 @@ export const getBuilds = () => {
     })
       .then(data => data.json())
       .then(data => {
-        console.log(data.data);
         dispatch(getBuildsModalOf());
         dispatch(getBuildsFinish(data.data));
       })
@@ -39,11 +38,40 @@ export const getBuildsModalOf = () => {
   };
 };
 
+export const setCurReviewsToShow = data => {
+  return {
+    type: AC.READY_BUILDS_SET_CUR_REVIEWS,
+    payload: data
+  };
+};
+
 export const sendReview = data => {
   return dispatch => {
     dispatch(getBuildsModalOn());
     fetch(`${port}/api/v1.0/builds/addReview`, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(data => data.json())
+      .then(data => {
+        dispatch(getBuildsModalOf());
+        dispatch(getBuilds());
+      })
+      .catch(error => {
+        dispatch(getBuildsModalOf());
+        console.log(error);
+      });
+  };
+};
+
+export const sendEditedReview = data => {
+  return dispatch => {
+    dispatch(getBuildsModalOn());
+    fetch(`${port}/api/v1.0/builds/addReview`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json"
       },

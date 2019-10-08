@@ -178,6 +178,7 @@
   max-height: 80%;
   overflow-y: scroll;
   background: #d1d444;
+  box-shadow: 0 5px 10px #d1d444;
   @include laptop {
     height: 70%;
   }
@@ -291,4 +292,36 @@
 
 .builds__review__preview__cover {
   display: flex;
+}
+
+.builds__modal__reviews__show__cover {
+  padding: 1.5rem;
+}
+
+.review__modal__show__cover {
+  border-radius: 3px;
+  border: 1px transparent solid;
+  transition: 0.3s;
+  padding: 1rem;
+  margin-top: 1rem;
+  &:hover {
+    border: 1px #000000 solid;
+  }
+}
+
+.review__modal__show__rating__cover {
+  display: flex;
+}
+
+.review__modal__show__text__cover {
+  padding-left: 1.5rem;
+}
+
+.review__modal__show__text {
+  font-style: italic;
+}
+
+.review__modal__show__date__cover {
+  display: flex;
+  justify-content: flex-end;
 }

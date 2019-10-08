@@ -38,3 +38,18 @@ exports.addReview = catchAsync(async (req, res, next) => {
     data: reviewBuild
   });
 });
+
+exports.editreview = catchAsync(async (req, res, next) => {
+  const oldReview = await ReviewsBuilds.findOne({
+    user: req.body.user,
+    build: req.body.build
+  });
+  oldReview.name = req.body.name;
+  oldReview.text = req.body.text;
+  oldReview.rating = req.body.rating;
+  oldReview.save();
+  res.status(200).json({
+    status: "ok",
+    data: oldReview
+  });
+});
