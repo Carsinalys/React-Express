@@ -184,6 +184,23 @@
   }
 }
 
+.builds__modal__reviews__add__cover::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #ccc;
+}
+
+.builds__modal__reviews__add__cover::-webkit-scrollbar {
+  width: 12px;
+  background-color: #ccc;
+}
+
+.builds__modal__reviews__add__cover::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: rgb(143, 136, 136);
+}
+
 .builds__modal__reviews__add__text {
   resize: none;
   outline: none;
@@ -288,10 +305,24 @@
 .builds__review__preview__stars__cover {
   display: flex;
   margin-right: 1rem;
+  padding: 0.5rem;
+  transition: 0.3s;
+  border: 1px transparent solid;
+  &:hover {
+    border: 1px #000 solid;
+    box-shadow: 0 3px 4px rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.5);
+  }
+}
+
+.builds__review__preview__count {
+  display: block;
+  padding: 0.5rem;
 }
 
 .builds__review__preview__cover {
   display: flex;
+  align-content: center;
 }
 
 .builds__modal__reviews__show__cover {

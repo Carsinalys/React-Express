@@ -53,7 +53,9 @@ const buildsReviews = props => {
         }}
       >
         <div className="builds__review__preview__stars__cover">{stars()}</div>{" "}
-        <span>({props.reviews.length})</span>
+        <span className="builds__review__preview__count">
+          ({props.reviews.length})
+        </span>
       </div>
       {props.auth.isAuthindicated && ids.includes(props.auth.localId) ? (
         <span
