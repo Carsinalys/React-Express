@@ -32,7 +32,7 @@ const app = Express();
 //crossdomain headers
 // app.use(function(req, res, next) {
 //   res.header("Access-Control-Allow-Credentials", true);
-//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Origin", "http://localhost:3001");
 //   res.header("Access-Control-Allow-Methods", "GET, OPTIONS, POST, PUT, PATCH");
 //   res.header(
 //     "Access-Control-Allow-Headers",
@@ -82,7 +82,8 @@ app.use(compression());
 
 app.disable("x-powered-by");
 //implement cors
-app.use(cors());
+//app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3001" }));
 
 app.get("/test", (req, res) => {
   res.status("200").render("base", {
@@ -93,8 +94,8 @@ app.get("/test", (req, res) => {
 
 app
   .route("/api/v1.0/builds/addReview")
-  .post(builds.addReview)
-  .patch(builds.editreview);
+  .post(isAuthenticated, builds.addReview)
+  .patch(isAuthenticated, builds.editreview);
 app
   .route("/api/v1.0/builds")
   .post(isAuthenticated, builds.setBuilds)

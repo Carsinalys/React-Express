@@ -34,24 +34,6 @@ const PORT = process.env.PORT || 3000;
 
 const server = app.listen(PORT, () => console.log("lisening on ", PORT));
 
-const webSocketServer = new WebSocket({ server });
-
-webSocketServer.on(
-  "connection",
-  catchAsync(async webSocket => {
-    webSocket.on("message", async message => {
-      const newMessage = await Message.create(JSON.parse(message));
-      broadcast(JSON.stringify(newMessage));
-    });
-  })
-);
-
-function broadcast(data) {
-  webSocketServer.clients.forEach(client => {
-    client.send(data);
-  });
-}
-
 process.on("unhandledRejection", err => {
   console.log(err);
   console.log("In unhandled rejection...");
@@ -64,5 +46,20 @@ process.on("SIGTERM", () => {
   console.log("SIGTERM recieved, shouting down.");
   server.close(() => {
     console.log("process terminated.");
+  });
+});
+
+const socketIo = require("socket.io");
+
+const io = socketIo(server);
+
+io.on("connection", async function(socket) {
+  socket.emit("messageFromExpress", { socket: "connected" });
+  socket.on("messageFromReact", async data => {
+    const newMessage = await Message.create(data);
+    io.emit("messageToState", newMessage);
+  });
+  socket.on("disconnect", () => {
+    console.log("disconnected");
   });
 });

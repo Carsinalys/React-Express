@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Modal from "../hoc/modal";
 import ModalSlide from "../hoc/modalSlideUpDown";
+import io from "socket.io-client";
 
 import {
   createChatRoom,
@@ -25,22 +26,19 @@ import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Rooms from "./pizzaBuilderRooms.js";
 import { socketType } from "../../../../portForFront";
 
+//pas to socket when in production mode
 const HOST = socketType + location.origin.split(":")[1];
-const socket = new WebSocket(HOST);
-socket.onopen = function() {
-  console.log("Socket connected.");
-};
-socket.onclose = function(event) {
-  if (event.wasClean) console.log("Socket connection closed clean");
-  else console.log("Socket connection closed with error");
-  console.log(`Code: ${event.code} reason:${event.reason}`);
-};
-socket.onmessage = function(event) {
-  chatSetCurrentMessages(JSON.parse(event.data));
-};
-socket.onerror = function(error) {
-  console.log(`Error ${error.message}error.message`);
-};
+const socket = io("http://localhost:3000");
+socket.on("connect", () => {
+  //console.log("socket connected");
+  //socket.emit("messageFromReact", { msg: "hello" });
+  socket.on("messageFromExpress", data => {
+    console.log(data);
+  });
+});
+socket.on("disconnect", () => {
+  console.log("disconnected");
+});
 
 class Chat extends React.Component {
   state = {
@@ -53,15 +51,16 @@ class Chat extends React.Component {
   };
 
   componentDidMount() {
+    console.log(socket);
     this.props.chatGetUsersNamesFun(this.props.auth.localId);
     if (this.props.chat.messages.length === 0)
       this.props.chatGetCurMessagesFun(this.props.chat.room);
     else
       this.setState({ currentLengthMessages: this.props.chat.messages.length });
-    if (socket.readyState === 1) {
-      socket.onmessage = event => {
-        this.props.chatSetCurrentMessagesFun(JSON.parse(event.data));
-      };
+    if (socket.connected) {
+      socket.on("messageToState", data => {
+        this.props.chatSetCurrentMessagesFun(data);
+      });
     }
     const www = document.querySelector(".chat__head__view__port");
     www.scrollTop = www.scrollHeight;
@@ -135,7 +134,8 @@ class Chat extends React.Component {
         id: this.props.auth.localId,
         createAt: new Date().getTime()
       };
-      socket.send(JSON.stringify(data));
+      //socket.send(JSON.stringify(data));
+      socket.emit("messageFromReact", data);
       this.props.chatResetMessageInputFun();
     }
   };
