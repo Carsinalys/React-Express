@@ -16,7 +16,7 @@ const icons = props => {
         )}
         <div className="pizza__view__icon__pic">
           <img
-            src={`assets/img/${key}.png`}
+            src={`assets/img/webp/${key}.webp`}
             alt={key}
             className="pizza__view__icon__image"
           />
