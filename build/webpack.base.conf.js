@@ -37,6 +37,13 @@ module.exports = {
         }
       },
       {
+        test: /\.(webp)$/,
+        loader: "file-loader",
+        options: {
+          name: `${PATHS.assets}img/webp/[name].[ext]`
+        }
+      },
+      {
         test: /\.ttf$/,
         loader: "file-loader",
         options: {

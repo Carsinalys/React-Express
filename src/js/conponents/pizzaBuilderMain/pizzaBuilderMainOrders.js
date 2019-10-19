@@ -40,7 +40,7 @@ const mainOrders = props => {
                         </div>
                         <div className="pizza__view__icon__pic">
                           <img
-                            src={require(`../../../img/${key}.png`)}
+                            src={require(`../../../img/webp/${key}.webp`)}
                             alt={key}
                             className="pizza__view__icon__image"
                           />
