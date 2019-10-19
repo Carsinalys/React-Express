@@ -27,7 +27,11 @@ const checkoutContet = props => {
           <div>
             <div className="checkout__content__ingredients__cover">
               <p>Your pizza ingredients:</p>
-              <Icons ingredients={props.data.ingredients} minus={props.minus} />
+              <Icons
+                ingredients={props.data.ingredients}
+                minus={props.minus}
+                browser={props.browser}
+              />
             </div>
             <div className="checkout__content__params__cover">
               <p>

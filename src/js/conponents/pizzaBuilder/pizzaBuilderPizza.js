@@ -43,7 +43,11 @@ const pizzaBuilderPizza = props => {
         <div>
           <h4 className="pizza__view__info__small__title">ingredients:</h4>
           <div className="pizza__view__info__icons">
-            <Icons ingredients={props.ingredients} minus={props.minus} />
+            <Icons
+              ingredients={props.ingredients}
+              minus={props.minus}
+              browser={props.browser}
+            />
           </div>
         </div>
         <p>

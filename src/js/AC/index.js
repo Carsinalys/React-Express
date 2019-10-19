@@ -59,3 +59,4 @@ export {
   sendEditedReview,
   setCurReviewsToShow
 } from "./readyBuilds";
+export { checkBrowser } from "./browser";

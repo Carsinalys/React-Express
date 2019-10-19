@@ -15,11 +15,19 @@ const icons = props => {
           ></div>
         )}
         <div className="pizza__view__icon__pic">
-          <img
-            src={`assets/img/webp/${key}.webp`}
-            alt={key}
-            className="pizza__view__icon__image"
-          />
+          {props.browser.safari ? (
+            <img
+              src={`assets/img/${key}.png`}
+              alt={key}
+              className="pizza__view__icon__image"
+            />
+          ) : (
+            <img
+              src={`assets/img/webp/${key}.webp`}
+              alt={key}
+              className="pizza__view__icon__image"
+            />
+          )}
         </div>
       </div>
     ) : null;

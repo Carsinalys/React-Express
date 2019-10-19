@@ -203,6 +203,7 @@ class PizzaBuilderCheckout extends React.Component {
             multi={this.props.multi}
             delete={this.props.deleteMultiOrderFun}
             minusDlete={this.minusDeleteHandler}
+            browser={this.props.browser}
           />
         ) : (
           <Redirect to="/authentication" />
@@ -217,7 +218,8 @@ const stateToProps = state => {
     state: state.pizza,
     inputs: state.order,
     auth: state.auth,
-    multi: state.multi
+    multi: state.multi,
+    browser: state.browser
   };
 };
 

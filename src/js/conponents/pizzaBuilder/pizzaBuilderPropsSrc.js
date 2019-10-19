@@ -117,6 +117,7 @@ class pizzaBuilderPropsSrc extends React.Component {
             <UlSelect
               ingredients={this.props.state.ingredients}
               change={this.changeSelectHandler}
+              browser={this.props.browser}
             />
             <PizzaBuilderControls
               name={this.state.currentIngredient}
@@ -149,6 +150,7 @@ class pizzaBuilderPropsSrc extends React.Component {
             cost={this.props.state.cost}
             diameter={this.props.state.diameter}
             message={this.props.state.message}
+            browser={this.props.browser}
           />
         </div>
       </Cover>
@@ -159,7 +161,8 @@ class pizzaBuilderPropsSrc extends React.Component {
 const stateToProps = state => {
   return {
     state: state.pizza,
-    multi: state.multi
+    multi: state.multi,
+    browser: state.browser
   };
 };
 

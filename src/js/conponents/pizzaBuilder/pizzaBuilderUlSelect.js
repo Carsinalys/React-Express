@@ -31,11 +31,19 @@ const builderSelect = props => {
                   <p className="ul__select__title__ingredients">{item}</p>
                 </div>
                 <div>
-                  <img
-                    src={`/assets/img/${item}.png`}
-                    alt={item}
-                    className="select__item__pic"
-                  />
+                  {props.browser.safari ? (
+                    <img
+                      src={`/assets/img/${item}.png`}
+                      alt={item}
+                      className="select__item__pic"
+                    />
+                  ) : (
+                    <img
+                      src={`/assets/img/webp/${item}.webp`}
+                      alt={item}
+                      className="select__item__pic"
+                    />
+                  )}
                 </div>
               </li>
             );

@@ -161,16 +161,21 @@ class Builds extends React.Component {
                   <span className="builds__pizza__title">{item.name}</span>
                 </h3>
                 <div className="ready__build__single__pic">
-                  <img
-                    src={`assets/img/webp/${item.name}.webp`}
-                    alt={item.name}
-                  />
+                  {this.props.browser.safari ? (
+                    <img src={`assets/img/${item.name}.png`} alt={item.name} />
+                  ) : (
+                    <img
+                      src={`assets/img/webp/${item.name}.webp`}
+                      alt={item.name}
+                    />
+                  )}
                 </div>
                 <div className="single__build__ingredients__cover">
                   <Ingredients
                     ingredients={item.ingredients}
                     minus={this.minusHandler}
                     showCross="false"
+                    browser={this.props.browser}
                   />
                 </div>
                 <div className="single__build__params__cover">
@@ -216,7 +221,8 @@ class Builds extends React.Component {
 const stateToProps = state => {
   return {
     builds: state.builds,
-    auth: state.auth
+    auth: state.auth,
+    browser: state.browser
   };
 };
 

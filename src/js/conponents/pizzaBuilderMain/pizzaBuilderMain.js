@@ -76,6 +76,7 @@ class PizzaBuilderMainPage extends React.Component {
             <PrevOrders
               orders={this.props.orders}
               theSame={this.wantTheSameHanler}
+              browser={this.props.browser}
             />
           ) : (
             <div>Loading orders...</div>
@@ -92,7 +93,8 @@ const stateToProps = state => {
     isLoaded: state.orders.isLoaded,
     isLoading: state.orders.isLoading,
     error: state.orders.error,
-    getOrders: state.orders.getOrders
+    getOrders: state.orders.getOrders,
+    browser: state.browser
   };
 };
 

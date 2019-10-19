@@ -141,6 +141,7 @@ class PersonalRoom extends React.Component {
               token={this.props.auth.token}
               id={this.props.auth.localId}
               delete={this.showModalHandler}
+              browser={this.props.browser}
             />
           ) : null}
         </div>
@@ -154,7 +155,8 @@ const stateToProps = state => {
     auth: state.auth,
     cabinet: state.cabinet,
     cabinetSet: state.cabinetSet,
-    cabinetGet: state.cabinetGetOrders
+    cabinetGet: state.cabinetGetOrders,
+    browser: state.browser
   };
 };
 

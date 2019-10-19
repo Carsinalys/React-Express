@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getTokenFromCookie } from "./AC/index";
+import { getTokenFromCookie, checkBrowser } from "./AC/index";
 
 import PizzaBuilder from "./conponents/pizzaBuilder";
 import { BrowserRouter } from "react-router-dom";
@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 class App extends React.Component {
   componentDidMount() {
     this.props.getToketFun();
+    this.props.checkBrowserFun();
   }
 
   render() {
@@ -25,7 +26,8 @@ class App extends React.Component {
 
 const dispatchToProps = dispatch => {
   return {
-    getToketFun: () => dispatch(getTokenFromCookie())
+    getToketFun: () => dispatch(getTokenFromCookie()),
+    checkBrowserFun: () => dispatch(checkBrowser())
   };
 };
 

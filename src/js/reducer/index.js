@@ -10,6 +10,7 @@ import AuthReset from "./pizzaAuthReset";
 import MultiAdd from "./multipleOrder";
 import ReadyBuilds from "./readyBuilds";
 import Chat from "./chat";
+import Browser from "./browser";
 
 import { combineReducers } from "redux";
 
@@ -25,5 +26,6 @@ export default combineReducers({
   authReset: AuthReset,
   multi: MultiAdd,
   builds: ReadyBuilds,
-  chat: Chat
+  chat: Chat,
+  browser: Browser
 });
