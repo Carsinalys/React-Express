@@ -2,15 +2,14 @@ const mongoose = require("mongoose");
 const cluster = require("cluster");
 
 if (cluster.isMaster) {
-  var cpuCount = require("os").cpus().length;
-  console.log(cpuCount);
-  for (var i = 0; i < cpuCount; i += 1) {
+  // var cpuCount = require("os").cpus().length;
+  // for (var i = 0; i < cpuCount; i += 1) {
+  cluster.fork();
+  cluster.on("exit", function(worker) {
+    console.log("Worker %d died", worker.id);
     cluster.fork();
-    cluster.on("exit", function(worker) {
-      console.log("Worker %d died", worker.id);
-      cluster.fork();
-    });
-  }
+  });
+  // }
 } else {
   process.on("uncaughtException", err => {
     console.log(err);
