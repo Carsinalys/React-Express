@@ -117,11 +117,19 @@ const myOrdersCabinet = props => {
                               <strong>{key.ingredients[ing].count}X</strong>
                             </div>
                             <div className="pizza__view__icon__pic">
-                              <img
-                                src={require(`../../../img/${ing}.png`)}
-                                alt={ing}
-                                className="pizza__view__icon__image"
-                              />
+                              {props.browser.safari ? (
+                                <img
+                                  src={require(`../../../img/${ing}.png`)}
+                                  alt={ing}
+                                  className="pizza__view__icon__image"
+                                />
+                              ) : (
+                                <img
+                                  src={require(`../../../img/webp/${ing}.webp`)}
+                                  alt={ing}
+                                  className="pizza__view__icon__image"
+                                />
+                              )}
                             </div>
                           </div>
                         ) : null;

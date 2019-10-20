@@ -28,7 +28,7 @@ class PizzaHeader extends React.Component {
   render() {
     return (
       <div className="pizza__header">
-        <PizzaLogo />
+        <PizzaLogo browser={this.props.browser} />
         <PizzaNav
           show={this.state.burgerIsShow}
           showClick={this.showMenuHandler}
@@ -45,7 +45,8 @@ class PizzaHeader extends React.Component {
 const stateToProps = state => {
   return {
     auth: state.auth,
-    chat: state.chat
+    chat: state.chat,
+    browser: state.browser
   };
 };
 

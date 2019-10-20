@@ -5,7 +5,7 @@ import { StaticRouter } from "react-router";
 import fs from "fs";
 import App from "../src/js/serverConnectProps";
 import path from "path";
-import Obj, { uploadUserPhoto } from "./controllers/user";
+import Obj from "./controllers/user";
 const morgan = require("morgan");
 const ErrorHandler = require("./utils/errorHandler");
 const orders = require("./controllers/orders");
