@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const cluster = require("cluster");
+const socket = require("./server/socket");
 
 if (cluster.isMaster) {
   // var cpuCount = require("os").cpus().length;
@@ -16,12 +17,9 @@ if (cluster.isMaster) {
     console.log("In uncaught exception...");
     process.exit(1);
   });
-
+  // env variabels
   require("dotenv").config({ path: "./config.env" });
   const app = require("./server/index");
-  const WebSocket = require("ws").Server;
-  const Message = require("./server/models/message");
-  const catchAsync = require("./server/utils/catchErrors");
 
   const DB = process.env.DATABASE.replace(
     "<password>",
@@ -60,18 +58,5 @@ if (cluster.isMaster) {
     });
   });
 
-  const socketIo = require("socket.io");
-
-  const io = socketIo(server);
-
-  io.on("connection", async function(socket) {
-    socket.emit("messageFromExpress", { socket: "connected" });
-    socket.on("messageFromReact", async data => {
-      const newMessage = await Message.create(data);
-      io.emit("messageToState", newMessage);
-    });
-    socket.on("disconnect", () => {
-      console.log("disconnected");
-    });
-  });
+  socket(server);
 }

@@ -71,7 +71,7 @@ class PizzaBuilderMainPage extends React.Component {
             <Spinner />
           </Modal>
           {this.state.rediect ? <Redirect to="/checkout" /> : null}
-          <MainInfo />
+          <MainInfo browser={this.props.browser} />
           {this.props.getOrders ? (
             <PrevOrders
               orders={this.props.orders}
