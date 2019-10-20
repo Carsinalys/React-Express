@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const cluster = require("cluster");
-const socket = require("./server/socket");
+const socket = require("./server/socket/socket");
 
 if (cluster.isMaster) {
   // var cpuCount = require("os").cpus().length;

@@ -51,7 +51,8 @@ export {
   chatGetUsersNames,
   chatSetCurrentMessages,
   chatGetCurMessages,
-  getChatRooms
+  getChatRooms,
+  userCount
 } from "./chat";
 export {
   getBuilds,

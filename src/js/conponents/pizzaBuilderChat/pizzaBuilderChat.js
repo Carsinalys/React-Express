@@ -20,7 +20,8 @@ import {
   chatGetUsersNames,
   chatSetCurrentMessages,
   chatGetCurMessages,
-  getChatRooms
+  getChatRooms,
+  userCount
 } from "../../AC/index";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Rooms from "./pizzaBuilderRooms.js";
@@ -51,7 +52,6 @@ class Chat extends React.Component {
   };
 
   componentDidMount() {
-    console.log(socket);
     this.props.chatGetUsersNamesFun(this.props.auth.localId);
     if (this.props.chat.messages.length === 0)
       this.props.chatGetCurMessagesFun(this.props.chat.room);
@@ -65,6 +65,10 @@ class Chat extends React.Component {
     const www = document.querySelector(".chat__head__view__port");
     www.scrollTop = www.scrollHeight;
     this.props.getChatRoomsFun();
+    socket.on("userCount", msg => {
+      console.log(msg);
+      this.props.userCountFun(msg);
+    });
   }
 
   componentWillUnmount() {
@@ -161,6 +165,10 @@ class Chat extends React.Component {
     if (event.key === "Enter") this.sendMessageHanlder();
   };
 
+  joinRoomHandler = room => {
+    socket.emit(room);
+  };
+
   render() {
     return (
       <section className="chat__section">
@@ -215,6 +223,7 @@ class Chat extends React.Component {
                   choose={this.props.chatChooseRoomFun}
                   toggle={this.toggleSelectRoomsHandler}
                   resetLoadmore={this.resetLoadMoreHandler}
+                  join={this.joinRoomHandler}
                 />
               </ModalSlide>
             </div>
@@ -372,7 +381,8 @@ const dispatchToProps = dispatch => {
     chatSetCurrentMessagesFun: data => dispatch(chatSetCurrentMessages(data)),
     chatResetMessageInputFun: () => dispatch(chatResetMessageInput()),
     chatGetCurMessagesFun: room => dispatch(chatGetCurMessages(room)),
-    getChatRoomsFun: () => dispatch(getChatRooms())
+    getChatRoomsFun: () => dispatch(getChatRooms()),
+    userCountFun: num => dispatch(userCount(num))
   };
 };
 

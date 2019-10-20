@@ -11,11 +11,17 @@ const initState = {
   role: "",
   sending: false,
   newMessage: false,
-  messages: []
+  messages: [],
+  userCount: 0
 };
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
+    case AC.CHAT_USER_COUNT:
+      return {
+        ...state,
+        userCount: action.payload
+      };
     case AC.CHAT_ROOMS_MSG_TO_CHOOSE:
       if (action.payload.length > 0) {
         return {

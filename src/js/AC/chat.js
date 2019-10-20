@@ -280,3 +280,10 @@ export const chatGetCurMessages = room => {
       });
   };
 };
+
+export const userCount = num => {
+  return {
+    type: AC.CHAT_USER_COUNT,
+    payload: num
+  };
+};

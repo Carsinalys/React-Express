@@ -11,6 +11,7 @@ const rooms = props => {
               props.choose(item.name);
               props.toggle();
               props.resetLoadmore();
+              props.join(item.name);
             }}
           >
             {item.name}
