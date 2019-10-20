@@ -27,7 +27,14 @@ const pizzaBuilderControls = props => {
         </button>
       </div>
       <div className="pizza__controls__image">
-        <img src={`/assets/img/${props.name}.png`} alt="" />
+        {props.browser.safari ? (
+          <img src={`/assets/img/${props.name}.png`} alt="Current ingredient" />
+        ) : (
+          <img
+            src={`/assets/img/webp/${props.name}.webp`}
+            alt="Current ingredient"
+          />
+        )}
       </div>
     </div>
   );

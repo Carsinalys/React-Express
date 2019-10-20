@@ -98,6 +98,7 @@ class pizzaBuilderPropsSrc extends React.Component {
               minus={this.props.minusFun}
               checkout={this.checkoutHandler}
               add={this.addPizzaHandler}
+              browser={this.props.browser}
             />
           </ModalBuilder>
         </Modal>
@@ -130,6 +131,7 @@ class pizzaBuilderPropsSrc extends React.Component {
               }
               plus={this.props.plusFun}
               minus={this.props.minusFun}
+              browser={this.props.browser}
             />
             <OrderControls
               toggleModal={this.toggleModalHandler}

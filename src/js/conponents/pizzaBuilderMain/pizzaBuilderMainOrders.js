@@ -103,11 +103,19 @@ const mainOrders = props => {
                                   </strong>
                                 </div>
                                 <div className="pizza__view__icon__pic">
-                                  <img
-                                    src={require(`../../../img/${key}.png`)}
-                                    alt={key}
-                                    className="pizza__view__icon__image"
-                                  />
+                                  {props.browser.safari ? (
+                                    <img
+                                      src={require(`../../../img/${key}.png`)}
+                                      alt={key}
+                                      className="pizza__view__icon__image"
+                                    />
+                                  ) : (
+                                    <img
+                                      src={require(`../../../img/webp/${key}.webp`)}
+                                      alt={key}
+                                      className="pizza__view__icon__image"
+                                    />
+                                  )}
                                 </div>
                               </div>
                             ) : null;

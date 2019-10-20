@@ -13,7 +13,11 @@ const modalContent = props => {
           <p>Cost is: {props.cost} $</p>
         </div>
         <div className="pizza__view__order__modal__icons">
-          <Icons ingredients={props.ingredients} minus={props.minus} />
+          <Icons
+            ingredients={props.ingredients}
+            minus={props.minus}
+            browser={props.browser}
+          />
         </div>
       </div>
       <button
