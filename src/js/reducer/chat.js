@@ -5,7 +5,7 @@ const initState = {
   messageValue: "",
   userNameValue: "",
   rooms: [],
-  room: "Default",
+  room: "default",
   modal: false,
   userName: "",
   role: "",

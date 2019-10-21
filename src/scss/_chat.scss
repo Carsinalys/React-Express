@@ -286,20 +286,3 @@
 .chat__message__date {
   font-size: rem(8);
 }
-
-.chat__message__name__cover {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.chat__message__name__cover_left {
-  justify-content: flex-end;
-}
-
-.chat__message__pic {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  margin: 0 0.5rem 0 0.5rem;
-}
