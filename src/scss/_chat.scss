@@ -184,12 +184,13 @@
 }
 
 .chat__message__name {
-  font-weight: bold;
+  font-style: italic;
+  font-size: rem(10);
   color: rgb(36, 27, 27);
 }
 
 .chat__message__message {
-  font-style: italic;
+  font-weight: bold;
 }
 
 .chat__message__cover {
@@ -263,4 +264,42 @@
   &:hover {
     background: rgb(172, 47, 47);
   }
+}
+
+.chat__head__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat__head__info__users {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.chat__head__info__users__pic {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.chat__message__date {
+  font-size: rem(8);
+}
+
+.chat__message__name__cover {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.chat__message__name__cover_left {
+  justify-content: flex-end;
+}
+
+.chat__message__pic {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  margin: 0 0.5rem 0 0.5rem;
 }

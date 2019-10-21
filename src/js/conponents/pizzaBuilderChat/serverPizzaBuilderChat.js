@@ -22,16 +22,6 @@ import {
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Rooms from "./pizzaBuilderRooms.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDyUaUeFIdEP-t40XognUX4nOFU5X2Uy8s",
-  authDomain: "pizzabuilder-e9539.firebaseapp.com",
-  databaseURL: "https://pizzabuilder-e9539.firebaseio.com",
-  projectId: "pizzabuilder-e9539",
-  storageBucket: "pizzabuilder-e9539.appspot.com",
-  messagingSenderId: "131366940948",
-  appId: "1:131366940948:web:e7dd40e9005f2e80"
-};
-
 class Chat extends React.Component {
   state = {
     showList: false,

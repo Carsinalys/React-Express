@@ -34,8 +34,8 @@ messageShchema.pre(
   "save",
   catchAsync(async function(next) {
     const countMsg = await Message.countDocuments();
-    if (countMsg > 500) {
-      const needToDelete = await Message.find().limit(countMsg - 15);
+    if (countMsg > 5000) {
+      const needToDelete = await Message.find().limit(countMsg - 150);
       needToDelete.length > 0
         ? needToDelete.map(
             async item => await Message.deleteOne({ _id: item._id })

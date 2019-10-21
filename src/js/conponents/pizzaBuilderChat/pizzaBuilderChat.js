@@ -29,10 +29,9 @@ import { socketType } from "../../../../portForFront";
 
 //pas to socket when in production mode
 const HOST = socketType + location.origin.split(":")[1];
-const socket = io("http://localhost:3000");
+//const socket = io("http://localhost:3000");
+const socket = io(HOST);
 socket.on("connect", () => {
-  //console.log("socket connected");
-  //socket.emit("messageFromReact", { msg: "hello" });
   socket.on("messageFromExpress", data => {
     console.log(data);
   });
@@ -65,8 +64,8 @@ class Chat extends React.Component {
     const www = document.querySelector(".chat__head__view__port");
     www.scrollTop = www.scrollHeight;
     this.props.getChatRoomsFun();
+    socket.emit("joinToDefault");
     socket.on("userCount", msg => {
-      console.log(msg);
       this.props.userCountFun(msg);
     });
   }
@@ -297,7 +296,16 @@ class Chat extends React.Component {
             </p>
           </div>
           <div className="chat__head__cover">
-            <div className="chat__head__title">Message window:</div>
+            <div className="chat__head__info">
+              <div className="chat__head__title">Message window:</div>
+              <div className="chat__head__info__users">
+                <div>{this.props.chat.userCount}</div>
+                <div className="chat__head__info__users__pic">
+                  <img src={"/assets/img/man.svg"} alt="" />
+                </div>
+              </div>
+            </div>
+
             <div
               className="chat__head__view__port"
               onScroll={event => this.scrollHandler(event)}
@@ -321,7 +329,26 @@ class Chat extends React.Component {
                               : false
                           }
                         ></span>
-                        <p className="chat__message__name">{item.name}</p>
+                        <div
+                          className={
+                            this.props.auth.localId === item.id
+                              ? "chat__message__name__cover"
+                              : "chat__message__name__cover chat__message__name__cover_left"
+                          }
+                        >
+                          <div>
+                            <img
+                              src={this.props.auth.photo}
+                              className="chat__message__pic"
+                              alt="user avatar"
+                            />
+                          </div>
+                          <p className="chat__message__name">{item.name}</p>
+                        </div>
+
+                        <p className="chat__message__date">
+                          {item.createAt.replace("T", " ").split(".")[0]}
+                        </p>
                         <p className="chat__message__message">{item.message}</p>
                       </div>
                     );
