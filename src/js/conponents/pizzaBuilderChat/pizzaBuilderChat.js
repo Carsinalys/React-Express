@@ -84,7 +84,7 @@ class Chat extends React.Component {
       this.props.chatNewMessageOffFun();
     }
     if (
-      prevProps.chat.messages.length !== this.props.chat.messages.length &&
+      prevProps.chat.messages.length !== this.props.chat.messages.length ||
       prevProps.chat.messages.length === 0
     ) {
       const www = document.querySelector(".chat__head__view__port");
