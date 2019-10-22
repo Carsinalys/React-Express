@@ -36,6 +36,7 @@ if (cluster.isMaster) {
     })
     .catch(err => console.log(err));
 
+  // some kind of middleware for querry to mongoDB
   require("./server/caching/caching");
 
   const PORT = process.env.PORT || 3000;
