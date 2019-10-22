@@ -110,22 +110,29 @@ class PersonalRoom extends React.Component {
                 </p>
               </div>
               <div className="log__out__image__block">
-                <img
-                  src={
-                    this.props.auth.photo.startsWith("data")
-                      ? `${this.props.auth.photo}`
-                      : `/assets/users/${this.props.auth.photo}`
-                  }
-                  alt={this.props.auth.name}
-                  className="log__out__image"
-                />
+                {this.props.auth.photo.startsWith("data") ? (
+                  <div
+                    className="log__out__image__div"
+                    style={{
+                      backgroundImage: "url(" + this.props.auth.photo + ")"
+                    }}
+                  ></div>
+                ) : (
+                  <div
+                    className="log__out__image__div"
+                    style={{
+                      backgroundImage:
+                        "url(" + "/assets/users/" + this.props.auth.photo + ")"
+                    }}
+                  ></div>
+                )}
               </div>
             </div>
           </div>
-          {this.state.showingContent == 1 ? (
+          {this.state.showingContent === 1 ? (
             <CabinetInfo info={this.props.cabinet} />
           ) : null}
-          {this.state.showingContent == 2 ? (
+          {this.state.showingContent === 2 ? (
             <CabinetSet
               inputs={this.props.cabinetSet.inputs}
               modal={this.props.cabinetSet.modalShow}
@@ -134,7 +141,7 @@ class PersonalRoom extends React.Component {
               auth={this.props.auth}
             />
           ) : null}
-          {this.state.showingContent == 3 ? (
+          {this.state.showingContent === 3 ? (
             <CabinetOrders
               viewOrders={this.props.viewOrdersFun}
               orders={this.props.cabinetGet}

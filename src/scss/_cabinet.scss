@@ -267,6 +267,10 @@
   width: 20rem;
   height: 20rem;;
   position: absolute;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../img/preview.svg");
   top: 0;
   left: 0;
   z-index: 9;
@@ -295,4 +299,19 @@
 
 .cabinet__user__name {
   font-size: rem(20);
+}
+
+.log__out__image__div {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#preview {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }

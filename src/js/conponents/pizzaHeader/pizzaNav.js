@@ -73,16 +73,23 @@ const pizzaNav = props => {
                         : "user"}
                     </p>
                   </div>
-                  <div className="log__out__image__block">
-                    <img
-                      src={
-                        props.auth.photo.startsWith("data")
-                          ? `${props.auth.photo}`
-                          : `/assets/users/${props.auth.photo}`
-                      }
-                      alt={props.auth.name}
-                      className="log__out__image"
-                    />
+                  <div className="log__out__image">
+                    {props.auth.photo.startsWith("data") ? (
+                      <div
+                        className="log__out__image"
+                        style={{
+                          backgroundImage: "url(" + props.auth.photo + ")"
+                        }}
+                      ></div>
+                    ) : (
+                      <div
+                        className="log__out__image"
+                        style={{
+                          backgroundImage:
+                            "url(" + "/assets/users/" + props.auth.photo + ")"
+                        }}
+                      ></div>
+                    )}
                   </div>
                 </div>
               </NavLink>

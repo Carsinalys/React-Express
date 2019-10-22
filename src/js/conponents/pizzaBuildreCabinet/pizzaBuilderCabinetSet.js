@@ -6,8 +6,10 @@ import { port } from "../../../../portForFront";
 
 const cabinetSet = props => {
   const changePreview = event => {
-    var output = document.getElementById("preview");
-    output.src = URL.createObjectURL(event.target.files[0]);
+    const el = document.getElementById("preview1");
+    el.style.backgroundImage =
+      "url(" + URL.createObjectURL(event.target.files[0]) + ")";
+    el.style.borderRadius = "50%";
   };
 
   const setLocalStorage = event => {
@@ -54,7 +56,7 @@ const cabinetSet = props => {
           <div className="add__photo__input__cover">
             <input
               type="file"
-              id="avatar__file"
+              id=""
               name="avatar"
               form="avatar"
               onChange={event => changePreview(event)}
@@ -70,12 +72,7 @@ const cabinetSet = props => {
                 cursor: "pointer"
               }}
             />
-            <img
-              src={require("../../../img/preview.svg")}
-              alt="upload image"
-              className="add__photo__preview"
-              id="preview"
-            />
+            <div className="add__photo__preview" id="preview1"></div>
           </div>
           <div className="add__photo__submit__cover">
             <button

@@ -37,7 +37,7 @@ const resizeUserPhoto = cachAsync(async (req, res, next) => {
 
   req.file.filename = `user-${req.user._id}-${Date.now()}.jpeg`;
   await sharp(req.file.buffer)
-    .resize(200)
+    .resize(200, 200)
     .toBuffer();
   const photoForBase = base64js.fromByteArray(req.file.buffer);
   next();

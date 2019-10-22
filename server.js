@@ -36,6 +36,8 @@ if (cluster.isMaster) {
     })
     .catch(err => console.log(err));
 
+  require("./server/caching/caching");
+
   const PORT = process.env.PORT || 3000;
 
   const server = app.listen(PORT, () => console.log("lisening on ", PORT));
