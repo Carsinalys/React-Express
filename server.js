@@ -3,14 +3,11 @@ const cluster = require("cluster");
 const socket = require("./server/socket/socket");
 
 if (cluster.isMaster) {
-  // var cpuCount = require("os").cpus().length;
-  // for (var i = 0; i < cpuCount; i += 1) {
   cluster.fork();
   cluster.on("exit", function(worker) {
     console.log("Worker %d died", worker.id);
     cluster.fork();
   });
-  // }
 } else {
   process.on("uncaughtException", err => {
     console.log(err);

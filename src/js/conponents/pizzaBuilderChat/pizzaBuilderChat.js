@@ -84,7 +84,7 @@ class Chat extends React.Component {
       this.props.chatNewMessageOffFun();
     }
     if (
-      prevProps.chat.messages.length !== this.props.chat.messages.length &&
+      prevProps.chat.messages.length !== this.props.chat.messages.length ||
       prevProps.chat.messages.length === 0
     ) {
       const www = document.querySelector(".chat__head__view__port");
@@ -329,23 +329,7 @@ class Chat extends React.Component {
                               : false
                           }
                         ></span>
-                        <div
-                          className={
-                            this.props.auth.localId === item.id
-                              ? "chat__message__name__cover"
-                              : "chat__message__name__cover chat__message__name__cover_left"
-                          }
-                        >
-                          <div>
-                            <img
-                              src={this.props.auth.photo}
-                              className="chat__message__pic"
-                              alt="user avatar"
-                            />
-                          </div>
-                          <p className="chat__message__name">{item.name}</p>
-                        </div>
-
+                        <p className="chat__message__name">{item.name}</p>
                         <p className="chat__message__date">
                           {item.createAt.replace("T", " ").split(".")[0]}
                         </p>
