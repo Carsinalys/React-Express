@@ -1,5 +1,5 @@
 const puppeteer = require("puppeteer");
-
+require("regenerator-runtime");
 test("add two numbers", () => {
   const a = 7;
   const c = 1;
@@ -20,8 +20,7 @@ test("simple start browser", async () => {
 //     const page = await browser.newPage();
 //     await page.goto("https://www.tut.by/", { waitUntil: "domcontentloaded" });
 //
-//     await new Promise(resolve => setTimeout(resolve, 5000));
-//     console.log("done");
+//     //await new Promise(resolve => setTimeout(resolve, 5000));
 //     await browser.close();
 //   } catch (e) {
 //     console.log("Err", e);

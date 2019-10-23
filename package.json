@@ -85,7 +85,8 @@
     "jest": "^24.9.0",
     "jest-puppeteer": "^4.3.0",
     "path": "^0.12.7",
-    "puppeteer": "^1.20.0"
+    "puppeteer": "^1.20.0",
+    "regenerator-runtime": "^0.13.3"
   },
   "scripts": {
     "dev": "webpack-dev-server --open --port 3001 --config ./build/webpack.dev.conf.js",
