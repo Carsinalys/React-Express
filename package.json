@@ -72,6 +72,7 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
+    "babel-jest": "^24.9.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.4.0",
@@ -81,12 +82,16 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.1.2",
-    "path": "^0.12.7"
+    "jest": "^24.9.0",
+    "jest-puppeteer": "^4.3.0",
+    "path": "^0.12.7",
+    "puppeteer": "^1.20.0"
   },
   "scripts": {
     "dev": "webpack-dev-server --open --port 3001 --config ./build/webpack.dev.conf.js",
     "build": "webpack --config ./build/webpack.build.conf.js",
     "lint": "eslint \"src/**/*{js,jsx}\" --quiet",
+    "test": "jest",
     "dev:mock": "cross-env PET_MOCK=mock npm run dev",
     "dev_parcel": "parcel src/index.html",
     "start": "NODE_ENV=production nodemon --exec babel-node server.js",
@@ -102,5 +107,9 @@
   "license": "ISC",
   "engine": {
     "node": ">=10.0.0"
+  },
+  "jest": {
+    "verbose": true,
+    "preset": "jest-puppeteer"
   }
 }
