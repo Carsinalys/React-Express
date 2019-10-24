@@ -31,6 +31,18 @@ test("check logo", async () => {
   expect(logoLink).toContain("logo");
 });
 
+test("click on auth buttton", async () => {
+  await page.waitFor(".prev__order__cover");
+  await page.$$eval(".pizza__nav__link", el => {
+    el[4].click();
+  });
+  await page.waitFor("#signIn");
+  await page.click(".auth__submit");
+  await page.waitFor(1000);
+  const url = await page.url();
+  expect(url).toMatch("authentication");
+});
+
 // test("simple start browser", async () => {
 //   const browser = await puppeteer
 //     .launch({
