@@ -31,49 +31,29 @@ test("check logo", async () => {
   expect(logoLink).toContain("logo");
 });
 
-test("click on auth buttton", async () => {
+test("authentication", async () => {
   await page.waitFor(".prev__order__cover");
   await page.$$eval(".pizza__nav__link", el => {
     el[4].click();
   });
   await page.waitFor("#signIn");
+  await page.focus("#auth__email");
+  await page.keyboard.type("Cardinalys81@gmail.com");
+  await page.focus("#auth__password");
+  await page.keyboard.type("Cardinalys81");
   await page.click(".auth__submit");
-  await page.waitFor(1000);
-  const url = await page.url();
-  expect(url).toMatch("authentication");
+  await page.waitFor(
+    () => document.querySelectorAll(".pizza__nav__link").length > 5
+  );
 });
 
-// test("simple start browser", async () => {
-//   const browser = await puppeteer
-//     .launch({
-//       headless: false
-//     })
-//     .then(async browser => {
-//       const page = await browser.newPage();
-//       await page.goto("https://www.tut.by/", { waitUntil: "domcontentloaded" });
-//       await browser.close();
-//     });
-// }, 20000);
-
-// test("test", async () => {
-//   try {
-//     const browser = await puppeteer.launch({ headless: false });
-//     const page = await browser.newPage();
-//     await page.goto("https://www.tut.by/", { waitUntil: "domcontentloaded" });
-//
-//     //await new Promise(resolve => setTimeout(resolve, 5000));
-//     await browser.close();
-//   } catch (e) {
-//     console.log("Err", e);
-//   }
-// });
-
-// describe("Google", () => {
-//   beforeAll(async () => {
-//     await page.goto("https://google.com");
-//   });
-//
-//   it('should be titled "Google"', async () => {
-//     await expect(page.title()).resolves.toMatch("Google");
-//   });
-// });
+test("inject Jquery", async () => {
+  await page.addScriptTag({
+    url: "https://code.jquery.com/jquery-3.4.1.min.js"
+  });
+  const title = await page.evaluate(() => {
+    const $ = window.$; //otherwise the transpiler will rename it and won't work
+    return $("h2").text();
+  });
+  expect(title).toMatch("Welcome to custom pizza builder!");
+});

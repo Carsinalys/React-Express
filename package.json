@@ -108,5 +108,10 @@
   "license": "ISC",
   "engine": {
     "node": ">=10.0.0"
+  },
+  "jest": {
+    "verbose": true,
+    "setupFilesAfterEnv": ["./tests/setup.js"]
   }
+
 }
