@@ -81,9 +81,10 @@
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
-    "eslint-plugin-react-hooks": "^2.1.2",
+    "eslint-plugin-react-hooks": "^2.2.0",
     "jest": "^24.9.0",
     "jest-puppeteer": "^4.3.0",
+    "node-fetch": "^2.6.0",
     "path": "^0.12.7",
     "puppeteer": "^1.20.0",
     "regenerator-runtime": "^0.13.3"
@@ -111,7 +112,8 @@
   },
   "jest": {
     "verbose": true,
-    "setupFilesAfterEnv": ["./tests/setup.js"]
+    "setupFilesAfterEnv": [
+      "./tests/setup.js"
+    ]
   }
-
 }
