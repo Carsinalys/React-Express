@@ -1,6 +1,6 @@
 module.exports = image => {
   if (image) {
-    if (image.indexOf("http") >= 0 && image.length > 10) {
+    if (image.indexOf("http") >= 0 && image.length > 20) {
       return true;
     }
   }

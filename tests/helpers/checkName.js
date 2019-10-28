@@ -1,8 +1,7 @@
 module.exports = name => {
   if (name) {
-    if (name.length > 0) {
-      return true;
-    }
+    if (name === "Done with error") return false;
+    if (name.length > 0) return true;
   }
   return false;
 };
