@@ -146,7 +146,10 @@ describe("test list of shops", () => {
         try {
           multiResult = await page.evaluate(curRules.multi_products_getter);
         } catch (e) {
-          console.log("can`t execute multi getter code in", curShop);
+          console.log(
+            "can`t execute multi getter for getting single url in",
+            curShop
+          );
         }
         if (multiResult) singleUrl = multiResult[0][2];
         else singleUrl = multipleUrl;
