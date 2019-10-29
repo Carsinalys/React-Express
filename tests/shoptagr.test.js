@@ -9,7 +9,11 @@ const readFile = util.promisify(fs.readFile);
 const nameCheck = require("./helpers/checkName");
 const imageCheck = require("./helpers/imageCheck");
 const priceCheck = require("./helpers/checkPrice");
+const originalPriceCheck = require("./helpers/checkOriginalPrice");
 const multipleCheck = require("./helpers/multipleCheck");
+const tryCatchForRules = require("./helpers/tryCatchForRules");
+const addjQuery = require("./helpers/addjQuery");
+const tryCatchForMultiple = require("./helpers/tryCatchForMultiple");
 
 let browser, page;
 let url = "https://www.google.com/";
@@ -128,10 +132,11 @@ describe("test list of shops", () => {
         }
         await page.goto(`${multipleUrl}`, { waitUntil: "domcontentloaded" });
         //inject jQuery
-        await addjQuery();
-        //try to ghet single url from supposed mulriple link
+        await addjQuery(page);
+        //try to get single url from supposed multiple link
         let multiResult = await tryCatchForMultiple(
-          curRules.multi_products_getter
+          curRules.multi_products_getter,
+          page
         );
         if (multiResult) singleUrl = multiResult[0][2];
         else singleUrl = multipleUrl;
@@ -144,12 +149,15 @@ describe("test list of shops", () => {
         await page.goto(`${singleUrl}`, { waitUntil: "domcontentloaded" });
         await page.setDefaultNavigationTimeout(60000);
         //inject jQuery
-        await addjQuery();
+        await addjQuery(page);
         let name, image, price, originalPrice, multiple;
-        name = await tryCatchForRules(curRules.name_getter);
-        image = await tryCatchForRules(curRules.image_getter);
-        price = await tryCatchForRules(curRules.price_getter);
-        originalPrice = await tryCatchForRules(curRules.original_price_getter);
+        name = await tryCatchForRules(curRules.name_getter, page);
+        image = await tryCatchForRules(curRules.image_getter, page);
+        price = await tryCatchForRules(curRules.price_getter, page);
+        originalPrice = await tryCatchForRules(
+          curRules.original_price_getter,
+          page
+        );
         await page.goto(url, { waitUntil: "domcontentloaded" });
         result[i] = {
           url: singleUrl,
@@ -166,7 +174,7 @@ describe("test list of shops", () => {
             value: price
           },
           originalPrice: {
-            valid: priceCheck(originalPrice),
+            valid: originalPriceCheck(originalPrice),
             value: originalPrice
           },
           multiple: {
@@ -183,43 +191,3 @@ describe("test list of shops", () => {
     console.log(result);
   });
 });
-
-async function tryCatchForRules(method) {
-  let variable;
-  try {
-    variable = await page.evaluate(method);
-  } catch (e) {
-    variable = "Done with error";
-  }
-  return variable;
-}
-
-async function addjQuery() {
-  try {
-    await page.evaluate(() => {
-      const jQuery = window.$;
-    });
-  } catch (e) {
-    console.log("can`t find and associate $ with jQuery in", curShop);
-  }
-  try {
-    await page.addScriptTag({
-      url: "https://code.jquery.com/jquery-3.4.1.min.js"
-    });
-  } catch (e) {
-    console.log("can`t inject jQuery in", curShop);
-  }
-}
-
-async function tryCatchForMultiple(rule) {
-  let multiResult;
-  try {
-    multiResult = await page.evaluate(rule);
-  } catch (e) {
-    console.log(
-      "can`t execute multi getter for getting single url in",
-      curShop
-    );
-  }
-  return multiResult;
-}
