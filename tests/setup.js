@@ -3,3 +3,5 @@
 // mongoose.Promise = global.Promise
 
 console.log("logging from setup script");
+
+jest.setTimeout(60000);

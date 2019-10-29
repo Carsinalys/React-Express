@@ -177,7 +177,7 @@ describe("test list of shops", () => {
       }
       singleUrl = "";
     }
-  }, 600000);
+  });
 
   test("console.log result", () => {
     console.log(result);
