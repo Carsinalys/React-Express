@@ -128,29 +128,11 @@ describe("test list of shops", () => {
         }
         await page.goto(`${multipleUrl}`, { waitUntil: "domcontentloaded" });
         //inject jQuery
-        try {
-          await page.evaluate(() => {
-            const jQuery = window.$;
-          });
-        } catch (e) {
-          console.log("can`t find and associate $ with jQuery in", curShop);
-        }
-        try {
-          await page.addScriptTag({
-            url: "https://code.jquery.com/jquery-3.4.1.min.js"
-          });
-        } catch (e) {
-          console.log("can`t inject jQuery in", curShop);
-        }
-        let multiResult;
-        try {
-          multiResult = await page.evaluate(curRules.multi_products_getter);
-        } catch (e) {
-          console.log(
-            "can`t execute multi getter for getting single url in",
-            curShop
-          );
-        }
+        await addjQuery();
+        //try to ghet single url from supposed mulriple link
+        let multiResult = await tryCatchForMultiple(
+          curRules.multi_products_getter
+        );
         if (multiResult) singleUrl = multiResult[0][2];
         else singleUrl = multipleUrl;
       }
@@ -162,46 +144,12 @@ describe("test list of shops", () => {
         await page.goto(`${singleUrl}`, { waitUntil: "domcontentloaded" });
         await page.setDefaultNavigationTimeout(60000);
         //inject jQuery
-        try {
-          await page.evaluate(() => {
-            const jQuery = window.$;
-          });
-        } catch (e) {
-          console.log("can`t find and associate $ with jQuery in", curShop);
-        }
-        try {
-          await page.addScriptTag({
-            url: "https://code.jquery.com/jquery-3.4.1.min.js"
-          });
-        } catch (e) {
-          console.log("can`t inject jQuery in", curShop);
-        }
+        await addjQuery();
         let name, image, price, originalPrice, multiple;
-        try {
-          name = await page.evaluate(curRules.name_getter);
-        } catch (e) {
-          name = "Done with error";
-        }
-        try {
-          image = await page.evaluate(curRules.image_getter);
-        } catch (e) {
-          image = "Done with error";
-        }
-        try {
-          price = await page.evaluate(curRules.price_getter);
-        } catch (e) {
-          price = "Done with error";
-        }
-        try {
-          originalPrice = await page.evaluate(curRules.original_price_getter);
-        } catch (e) {
-          originalPrice = "Done with error";
-        }
-        try {
-          multiple = await page.evaluate(curRules.multi_products_getter);
-        } catch (e) {
-          multiple = "Done with error";
-        }
+        name = await tryCatchForRules(curRules.name_getter);
+        image = await tryCatchForRules(curRules.image_getter);
+        price = await tryCatchForRules(curRules.price_getter);
+        originalPrice = await tryCatchForRules(curRules.original_price_getter);
         await page.goto(url, { waitUntil: "domcontentloaded" });
         result[i] = {
           url: singleUrl,
@@ -235,3 +183,43 @@ describe("test list of shops", () => {
     console.log(result);
   });
 });
+
+async function tryCatchForRules(method) {
+  let variable;
+  try {
+    variable = await page.evaluate(method);
+  } catch (e) {
+    variable = "Done with error";
+  }
+  return variable;
+}
+
+async function addjQuery() {
+  try {
+    await page.evaluate(() => {
+      const jQuery = window.$;
+    });
+  } catch (e) {
+    console.log("can`t find and associate $ with jQuery in", curShop);
+  }
+  try {
+    await page.addScriptTag({
+      url: "https://code.jquery.com/jquery-3.4.1.min.js"
+    });
+  } catch (e) {
+    console.log("can`t inject jQuery in", curShop);
+  }
+}
+
+async function tryCatchForMultiple(rule) {
+  let multiResult;
+  try {
+    multiResult = await page.evaluate(rule);
+  } catch (e) {
+    console.log(
+      "can`t execute multi getter for getting single url in",
+      curShop
+    );
+  }
+  return multiResult;
+}
