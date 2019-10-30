@@ -2,21 +2,6 @@ import Express from "express";
 import React from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
-import fs from "fs";
-import App from "../src/js/serverConnectProps";
-import path from "path";
-import Obj from "./controllers/user";
-const morgan = require("morgan");
-const ErrorHandler = require("./utils/errorHandler");
-const orders = require("./controllers/orders");
-const reviews = require("./controllers/reviews");
-const message = require("./controllers/message");
-const room = require("./controllers/rooms");
-const builds = require("./controllers/builds");
-const resetPass = require("./controllers/resetPassword");
-const globalErrorHandler = require("./controllers/error");
-const { isAuthenticated } = require("./controllers/isAuthenticated");
-const restrictTo = require("./controllers/restrictTo");
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
@@ -25,21 +10,23 @@ const hpp = require("hpp");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
 const cors = require("cors");
+const morgan = require("morgan");
+
+const fs = require("fs");
+import App from "../src/js/serverConnectProps";
+const path = require("path");
+const ErrorHandler = require("./utils/errorHandler");
+const globalErrorHandler = require("./controllers/error");
 
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
 const app = Express();
-//crossdomain headers
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Credentials", true);
-//   res.header("Access-Control-Allow-Origin", "http://localhost:3001");
-//   res.header("Access-Control-Allow-Methods", "GET, OPTIONS, POST, PUT, PATCH");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept,X-HTTP-Method-Override"
-//   );
-//   next();
-// });
+
+const routeOrders = require("./routes/orders");
+const routeReviews = require("./routes/reviews");
+const routeBuilds = require("./routes/builds");
+const routeChat = require("./routes/chat");
+const routeUser = require("./routes/user");
 //for heroku because it`t act like proxy
 app.enable("trust proxy");
 
@@ -76,7 +63,7 @@ const limiter = rateLimit({
   windowMs: 10 * 20 * 1000,
   message: "Too many requests from this IP, try again later."
 });
-app.use("/api", limiter);
+app.use("/api", limiter, routeReviews);
 //compression data sending to client
 app.use(compression());
 
@@ -91,52 +78,7 @@ app.get("/test", (req, res) => {
     name: "Www"
   });
 });
-
-app
-  .route("/api/v1.0/builds/addReview")
-  .post(isAuthenticated, builds.addReview)
-  .patch(isAuthenticated, builds.editreview);
-app
-  .route("/api/v1.0/builds")
-  .post(isAuthenticated, builds.setBuilds)
-  .get(builds.getBuilds);
-app
-  .route("/api/v1.0/chatRooms")
-  .post(room.createroom)
-  .get(room.getRooms);
-app
-  .route("/api/v1.0/roomMessages")
-  .get(message.getMessages)
-  .delete(message.deleteMessage);
-app.route("/api/v1.0/resetPassword").post(resetPass.resetPassword);
-app.route("/api/v1.0/confirmPassword/:id").get(resetPass.confirmPassword);
-app.route("/api/v1.0/confirmRefresh").post(resetPass.confirmRefresh);
-app.route("/api/v1.0/changeMail").patch(isAuthenticated, Obj.changeEmailFun);
-app.route("/api/v1.0/user/logOut").post(Obj.logOutFun);
-app
-  .route("/api/v1.0/user/setPhoto")
-  .post(
-    isAuthenticated,
-    Obj.uploadUserPhotoFun,
-    Obj.resizeUserPhotoFun,
-    Obj.updateUserFun
-  );
-app
-  .route("/api/v1.0/user/:query")
-  .get(Obj.getUserInfoFun)
-  .post(Obj.UserFun)
-  .patch(isAuthenticated, Obj.updateUserFun);
-app
-  .route("/api/v1.0/orders")
-  .get(orders.getOrders)
-  .post(isAuthenticated, orders.addOrder)
-  .delete(isAuthenticated, restrictTo("user", "admin"), orders.deleteOrder);
-app
-  .route("/api/v1.0/reviews")
-  .get(reviews.getReviews)
-  .post(isAuthenticated, reviews.addReviews)
-  .patch(isAuthenticated, reviews.editReviews)
-  .delete(isAuthenticated, restrictTo("user", "admin"), reviews.deleteReview);
+app.use("/", routeOrders, routeBuilds, routeReviews, routeChat, routeUser);
 app.use((req, res) => {
   const context = {};
 
