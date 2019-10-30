@@ -59,6 +59,7 @@ const cabinetSet = props => {
               id=""
               name="avatar"
               form="avatar"
+              accept="image/*"
               onChange={event => changePreview(event)}
               style={{
                 width: 20 + "rem",
