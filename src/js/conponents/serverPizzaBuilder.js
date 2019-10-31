@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import PizzaHeader from "./pizzaHeader/pizzaHeder";
 import PizzaBuilderPropsSrc from "./pizzaBuilder/pizzaBuilderPropsSrc";
@@ -15,6 +15,8 @@ import Cabinet from "./pizzaBuildreCabinet/pizzaBuilderCabinet";
 import Forgot from "./pizzaBuilderAuth/pizzaBuilderAuthForgot";
 import ReadyBuilds from "./pizzaBuilderBuilds/pizzaBuilderBuilds";
 import Chat from "./pizzaBuilderChat/serverPizzaBuilderChat";
+import Page404 from "./pizzaBuilder404/pizzaBuilder404";
+import ChangeMail from "./pizzaBuildreCabinet/pizzaBuilderCabinetChangeMail";
 
 class PizzaApp extends React.Component {
   render() {
@@ -37,6 +39,8 @@ class PizzaApp extends React.Component {
         <Route path="/authentication/forgot" component={Forgot} />
         <Route path="/logOut" component={LogOut} />
         <Route component={PizzaBuilderMainPage} />
+        <Route exact path="/personalRoom/changeMail" component={ChangeMail} />
+        <Route component={Page404} />
       </Cover>
     );
   }
