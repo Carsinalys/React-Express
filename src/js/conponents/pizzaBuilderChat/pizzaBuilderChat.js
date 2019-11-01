@@ -21,16 +21,19 @@ import {
   chatSetCurrentMessages,
   chatGetCurMessages,
   getChatRooms,
-  userCount
+  userCount,
+  chatmessageFromAnotherRoom,
+  chatmessageFromAnotherRoomReset,
+  chatNewMessageBanner
 } from "../../AC/index";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Rooms from "./pizzaBuilderRooms.js";
 import { socketType } from "../../../../portForFront";
 
 //pas to socket when in production mode
-const HOST = socketType + location.origin.split(":")[1];
-//const socket = io("http://localhost:3000");
-const socket = io(HOST);
+//const HOST = socketType + location.origin.split(":")[1];
+const socket = io("http://localhost:3000");
+//const socket = io(HOST);
 socket.on("connect", () => {
   socket.on("messageFromExpress", data => {
     console.log(data);
@@ -59,6 +62,8 @@ class Chat extends React.Component {
     if (socket.connected) {
       socket.on("messageToState", data => {
         this.props.chatSetCurrentMessagesFun(data);
+        this.props.chatmessageFromAnotherRoomFun(data);
+        this.props.chatNewMessageBannerFun();
       });
     }
     const www = document.querySelector(".chat__head__view__port");
@@ -223,6 +228,7 @@ class Chat extends React.Component {
                   toggle={this.toggleSelectRoomsHandler}
                   resetLoadmore={this.resetLoadMoreHandler}
                   join={this.joinRoomHandler}
+                  resetCounter={this.props.chatmessageFromAnotherRoomResetFun}
                 />
               </ModalSlide>
             </div>
@@ -393,7 +399,12 @@ const dispatchToProps = dispatch => {
     chatResetMessageInputFun: () => dispatch(chatResetMessageInput()),
     chatGetCurMessagesFun: room => dispatch(chatGetCurMessages(room)),
     getChatRoomsFun: () => dispatch(getChatRooms()),
-    userCountFun: num => dispatch(userCount(num))
+    userCountFun: num => dispatch(userCount(num)),
+    chatmessageFromAnotherRoomFun: msg =>
+      dispatch(chatmessageFromAnotherRoom(msg)),
+    chatmessageFromAnotherRoomResetFun: room =>
+      dispatch(chatmessageFromAnotherRoomReset(room)),
+    chatNewMessageBannerFun: () => dispatch(chatNewMessageBanner())
   };
 };
 

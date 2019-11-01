@@ -28,7 +28,6 @@ const routeBuilds = require("./routes/builds");
 const routeChat = require("./routes/chat");
 const routeUser = require("./routes/user");
 
-import Markup from "./viewsJSX/exapmle";
 //for heroku because it`t act like proxy
 app.enable("trust proxy");
 
@@ -74,17 +73,7 @@ app.disable("x-powered-by");
 //app.use(cors());
 app.use(cors({ credentials: true, origin: "http://localhost:3001" }));
 
-app.get("/test", (req, res) => {
-  res.status("200").render("base", {
-    id: "12345",
-    name: "Www"
-  });
-});
 app.use("/", routeOrders, routeBuilds, routeReviews, routeChat, routeUser);
-//just for testing
-app.get("/react", (req, res) => {
-  res.status(200).send(renderToString(<Markup content="Fuck you!!!" />));
-});
 app.use((req, res) => {
   const context = {};
 

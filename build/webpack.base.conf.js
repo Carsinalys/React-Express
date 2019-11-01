@@ -111,3 +111,28 @@ module.exports = {
     ])
   ]
 };
+
+// optimization: {
+//   splitChunks: {
+//     chunks: "all",
+//         minSize: 30000,
+//         maxSize: 0,
+//         minChunks: 1,
+//         maxAsyncRequests: 5,
+//         maxInitialRequests: 3,
+//         automaticNameDelimiter: "~",
+//         automaticNameMaxLength: 30,
+//         name: false,
+//         cacheGroups: {
+//       vendors: {
+//         test: /[\\/]node_modules[\\/]/,
+//             priority: -10
+//       },
+//     default: {
+//         minChunks: 2,
+//             priority: -20,
+//             reuseExistingChunk: true
+//       }
+//     }
+//   }
+// },

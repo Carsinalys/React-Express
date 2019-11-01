@@ -12,9 +12,11 @@ const rooms = props => {
               props.toggle();
               props.resetLoadmore();
               props.join(item.name);
+              props.resetCounter(item.name);
             }}
           >
             {item.name}
+            <span>{item.new}</span>
           </li>
         );
       })

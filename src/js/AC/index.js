@@ -52,7 +52,10 @@ export {
   chatSetCurrentMessages,
   chatGetCurMessages,
   getChatRooms,
-  userCount
+  userCount,
+  chatmessageFromAnotherRoom,
+  chatmessageFromAnotherRoomReset,
+  chatNewMessageBanner
 } from "./chat";
 export {
   getBuilds,

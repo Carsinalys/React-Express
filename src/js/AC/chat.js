@@ -287,3 +287,23 @@ export const userCount = num => {
     payload: num
   };
 };
+
+export const chatmessageFromAnotherRoom = data => {
+  return {
+    type: AC.CHAT_MESSAGE_FROM_ANOTHER_ROOM,
+    payload: data
+  };
+};
+
+export const chatmessageFromAnotherRoomReset = data => {
+  return {
+    type: AC.CHAT_MESSAGE_FROM_ANOTHER_ROOM_RESET,
+    payload: data
+  };
+};
+
+export const chatNewMessageBanner = () => {
+  return {
+    type: AC.CHAT_NEW_MESSAGE
+  };
+};

@@ -2,13 +2,18 @@ import React from "react";
 import { connect } from "react-redux";
 import { getReviews, editReview, deleteReview } from "../../AC/index";
 import Modal from "../hoc/modal";
+import { withRouter } from "react-router-dom";
 
 import ShowReviews from "./pizzaBuilderShowReviews";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 
 class Reviews extends React.Component {
   componentDidMount() {
-    this.props.getReviews("?page=1&limit=5");
+    if (this.props.location.pathname.indexOf("/reviews/") >= 0) {
+      const page = this.props.location.pathname.replace("/reviews/", "").trim();
+      this.props.getReviews(`?page=${page}&limit=5`);
+      this.setState({ currentPage: page });
+    } else this.props.getReviews("?page=1&limit=5");
   }
 
   state = {
@@ -70,7 +75,9 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(Reviews);
+export default withRouter(
+  connect(
+    stateToProps,
+    dispatchToProps
+  )(Reviews)
+);

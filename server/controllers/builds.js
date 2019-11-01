@@ -3,6 +3,8 @@ const catchAsync = require("../utils/catchErrors");
 const Builds = require("../models/builds");
 const ReviewsBuilds = require("../models/reviews_builds");
 
+let buffer = {};
+
 exports.setBuilds = catchAsync(async (req, res, next) => {
   Object.keys(req.body).map(
     async item =>
@@ -17,15 +19,23 @@ exports.setBuilds = catchAsync(async (req, res, next) => {
 });
 
 exports.getBuilds = catchAsync(async (req, res, next) => {
-  const builds = await Builds.find().populate({
-    path: "reviews",
-    select: "-__v -build"
-  });
-  if (!builds) next(new AppError("No build find", 404));
-  res.status(200).json({
-    status: "ok",
-    data: builds
-  });
+  if (buffer.builds) {
+    res.status(200).json({
+      status: "ok",
+      data: buffer.builds
+    });
+  } else {
+    const builds = await Builds.find().populate({
+      path: "reviews",
+      select: "-__v -build"
+    });
+    buffer.builds = builds;
+    if (!builds) next(new AppError("No build find", 404));
+    res.status(200).json({
+      status: "ok",
+      data: builds
+    });
+  }
 });
 
 exports.addReview = catchAsync(async (req, res, next) => {
@@ -33,6 +43,7 @@ exports.addReview = catchAsync(async (req, res, next) => {
   const reviewBuild = await Builds.findById(newReview.build);
   reviewBuild.reviews.push(newReview._id);
   reviewBuild.save();
+  buffer = {};
   res.status(200).json({
     status: "ok",
     data: reviewBuild
@@ -48,6 +59,7 @@ exports.editreview = catchAsync(async (req, res, next) => {
   oldReview.text = req.body.text;
   oldReview.rating = req.body.rating;
   oldReview.save();
+  buffer = {};
   res.status(200).json({
     status: "ok",
     data: oldReview

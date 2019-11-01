@@ -152,6 +152,38 @@ const reducer = (state = initState, action) => {
           ...state
         };
       }
+    case AC.CHAT_MESSAGE_FROM_ANOTHER_ROOM:
+      const newRooms = state.rooms.map(room => {
+        if (
+          room.name === action.payload.name &&
+          state.room !== action.payload.name
+        ) {
+          return room.new ? room.new++ : (room.new = 1);
+        } else {
+          return room;
+        }
+      });
+      return {
+        ...state,
+        rooms: newRooms
+      };
+    case AC.CHAT_MESSAGE_FROM_ANOTHER_ROOM_RESET:
+      const newRoomsReset = state.rooms.map(room => {
+        if (room.name === action.payload) {
+          return delete room.new;
+        } else {
+          return room;
+        }
+      });
+      return {
+        ...state,
+        rooms: newRoomsReset
+      };
+    case AC.CHAT_NEW_MESSAGE:
+      console.log("new message");
+      return {
+        ...state
+      };
     default:
       return {
         ...state
