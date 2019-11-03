@@ -286,3 +286,29 @@
 .chat__message__date {
   font-size: rem(8);
 }
+
+.chat__room__item__newMsg {
+  color: #f0000e;
+}
+
+.chat__create__room__btn_relative {
+  position: relative;
+}
+
+.chat__create__room__btn_newBanner {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #a8000d;
+  &:after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url(../img/eye.svg) no-repeat center center;
+    transition: 0.3s;
+    animation: shake 1s infinite;
+    left: -2.5rem;
+    top: -0.5rem;
+  }
+}

@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+  - "10"
+dist: trusty
+services:
+  - mongodb
+env:
+  - NODE_ENV=ci
+  - PORT=3000
+  - SALT=Pidor_ultra_pidor_tempo_govno_ebanoe_gde_moi_avtomat
+  - EXPIRE=60
+  - SRAYIN=10080
+  - EMAIL_USERNAME=andrei.baranau@onthespotdev.com
+  - EMAIL_PASSWORD=Cardinalys
+  - SENDGRID_NAME=apikey
+  - SENDGRID_PASSWORD=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
+cache:
+  directories:
+    - node_modules
+before_script:
+  - mongo mydb_test --eval 'db.createUser({user:"Cardinalya81@gmail.com",pwd:"Cardinalys81",roles:["admin"]});'
+install:
+  - npm install
+  - npm run build
+script:
+  - nohup npm run start &
+  - sleep 3
+  - npm run test

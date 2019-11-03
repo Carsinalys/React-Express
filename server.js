@@ -18,10 +18,15 @@ if (cluster.isMaster) {
   require("dotenv").config({ path: "./config.env" });
   const app = require("./server/index");
 
-  const DB = process.env.DATABASE.replace(
-    "<password>",
-    process.env.DATABASE_PASSWORD
-  );
+  let DB;
+  if (process.env.NODE_ENV === "ci") {
+    DB = "mongodb://127.0.0.1:27017/Orders";
+  } else {
+    DB = process.env.DATABASE.replace(
+      "<password>",
+      process.env.DATABASE_PASSWORD
+    );
+  }
 
   mongoose
     .connect(DB, {

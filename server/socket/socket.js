@@ -18,6 +18,7 @@ const socket = server => {
     socket.on("messageFromReact", async data => {
       const newMessage = await Message.create(data);
       io.emit("messageToState", newMessage);
+      io.emit("messageToNav", newMessage);
     });
     socket.on("disconnect", async () => {
       const curRooms = await Rooms.find();

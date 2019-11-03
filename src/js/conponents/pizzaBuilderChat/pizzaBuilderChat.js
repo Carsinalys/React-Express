@@ -30,10 +30,13 @@ import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Rooms from "./pizzaBuilderRooms.js";
 import { socketType } from "../../../../portForFront";
 
+import Store from "../../store/store";
+import * as AC from "../../AC/ac";
+
 //pas to socket when in production mode
-//const HOST = socketType + location.origin.split(":")[1];
-const socket = io("http://localhost:3000");
-//const socket = io(HOST);
+const HOST = socketType + location.origin.split(":")[1];
+//const socket = io("http://localhost:3000");
+const socket = io(HOST);
 socket.on("connect", () => {
   socket.on("messageFromExpress", data => {
     console.log(data);
@@ -41,6 +44,13 @@ socket.on("connect", () => {
 });
 socket.on("disconnect", () => {
   console.log("disconnected");
+});
+socket.on("messageToNav", msg => {
+  if (location.href.indexOf("chat") < 0) {
+    Store.dispatch({
+      type: AC.CHAT_NEW_MESSAGE_ON
+    });
+  }
 });
 
 class Chat extends React.Component {
@@ -69,25 +79,16 @@ class Chat extends React.Component {
     const www = document.querySelector(".chat__head__view__port");
     www.scrollTop = www.scrollHeight;
     this.props.getChatRoomsFun();
+    this.props.chatNewMessageOffFun();
     socket.emit("joinToDefault");
     socket.on("userCount", msg => {
       this.props.userCountFun(msg);
     });
   }
 
-  componentWillUnmount() {
-    this.props.chatNewMessageOffFun();
-  }
-
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.chat.messages.length !== this.props.chat.messages.length)
       this.setState({ currentLengthMessages: this.props.chat.messages.length });
-    if (prevProps.chat.room !== this.props.chat.room) {
-      this.props.chatNewMessageOffFun();
-    }
-    if (prevState.messageQty !== this.state.messageQty) {
-      this.props.chatNewMessageOffFun();
-    }
     if (
       prevProps.chat.messages.length !== this.props.chat.messages.length ||
       prevProps.chat.messages.length === 0
@@ -217,9 +218,12 @@ class Chat extends React.Component {
             <div className="chat__rooms__select__cover">
               <button
                 onClick={this.toggleSelectRoomsHandler}
-                className="chat__create__room__btn"
+                className="chat__create__room__btn chat__create__room__btn_relative"
               >
                 Choose room
+                {this.props.chat.newMsg && this.props.chat.newMsg !== "0" ? (
+                  <span className="chat__create__room__btn_newBanner">1</span>
+                ) : null}
               </button>
               <ModalSlide toggle={this.state.showList}>
                 <Rooms
@@ -229,6 +233,8 @@ class Chat extends React.Component {
                   resetLoadmore={this.resetLoadMoreHandler}
                   join={this.joinRoomHandler}
                   resetCounter={this.props.chatmessageFromAnotherRoomResetFun}
+                  newMsg={this.props.chat.newMsgCounter}
+                  newMsgBanner={this.props.chatNewMessageBannerFun}
                 />
               </ModalSlide>
             </div>

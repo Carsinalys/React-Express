@@ -12,7 +12,9 @@ const initState = {
   sending: false,
   newMessage: false,
   messages: [],
-  userCount: 0
+  userCount: 0,
+  newMsgCounter: {},
+  newMsg: ""
 };
 
 const reducer = (state = initState, action) => {
@@ -41,9 +43,16 @@ const reducer = (state = initState, action) => {
       }
 
     case AC.CHAT_ROOMS_TO_STORE:
+      let obj = {};
+      if (action.payload.length > 0) {
+        action.payload.forEach(room => {
+          obj[room.name] = "";
+        });
+      }
       return {
         ...state,
-        rooms: action.payload
+        rooms: action.payload,
+        newMsgCounter: { ...obj }
       };
     case AC.CHAT_SET_USER_ROLE:
       return {
@@ -153,37 +162,31 @@ const reducer = (state = initState, action) => {
         };
       }
     case AC.CHAT_MESSAGE_FROM_ANOTHER_ROOM:
-      const newRooms = state.rooms.map(room => {
-        if (
-          room.name === action.payload.name &&
-          state.room !== action.payload.name
-        ) {
-          return room.new ? room.new++ : (room.new = 1);
-        } else {
-          return room;
-        }
-      });
+      let counter = { ...state.newMsgCounter };
+      if (state.room !== action.payload.room) {
+        counter[action.payload.room] = +counter[action.payload.room] + 1;
+      }
       return {
         ...state,
-        rooms: newRooms
+        newMsgCounter: counter
       };
     case AC.CHAT_MESSAGE_FROM_ANOTHER_ROOM_RESET:
-      const newRoomsReset = state.rooms.map(room => {
-        if (room.name === action.payload) {
-          return delete room.new;
-        } else {
-          return room;
-        }
+      let newCounter = { ...state.newMsgCounter };
+      newCounter[action.payload] = "";
+      return {
+        ...state,
+        newMsgCounter: newCounter
+      };
+    case AC.CHAT_NEW_MESSAGE:
+      let countAll = "";
+      Object.keys(state.newMsgCounter).map(item => {
+        countAll = +countAll + state.newMsgCounter[item];
       });
       return {
         ...state,
-        rooms: newRoomsReset
+        newMsg: countAll
       };
-    case AC.CHAT_NEW_MESSAGE:
-      console.log("new message");
-      return {
-        ...state
-      };
+
     default:
       return {
         ...state

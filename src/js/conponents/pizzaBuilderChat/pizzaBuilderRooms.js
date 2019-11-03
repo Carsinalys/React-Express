@@ -13,10 +13,13 @@ const rooms = props => {
               props.resetLoadmore();
               props.join(item.name);
               props.resetCounter(item.name);
+              props.newMsgBanner();
             }}
           >
             {item.name}
-            <span>{item.new}</span>
+            <span className="chat__room__item__newMsg">
+              {props.newMsg[item.name] ? ` (${props.newMsg[item.name]})` : null}
+            </span>
           </li>
         );
       })
