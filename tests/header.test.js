@@ -50,20 +50,20 @@ describe("main page", () => {
     expect(title).toMatch("Welcome to custom pizza builder!");
   });
 
-  test("the same button", async () => {
-    await page.waitFor(
-      () => document.querySelectorAll(".prev__order__hover__btn").length === 3
-    );
-    await page.hover(".prev__order__cover");
-    await page.$eval(".prev__order__hover__btn", el => {
-      el.click();
-    });
-    await page.waitFor("#signIn");
-    const pageTitle = await page.evaluate(() => {
-      return document.querySelector(".auth__sign__in__title").textContent;
-    });
-    expect(pageTitle).toMatch("Sign in:");
-  });
+  // test("the same button", async () => {
+  //   await page.waitFor(
+  //     () => document.querySelectorAll(".prev__order__hover__btn").length === 3
+  //   );
+  //   await page.hover(".prev__order__cover");
+  //   await page.$eval(".prev__order__hover__btn", el => {
+  //     el.click();
+  //   });
+  //   await page.waitFor("#signIn");
+  //   const pageTitle = await page.evaluate(() => {
+  //     return document.querySelector(".auth__sign__in__title").textContent;
+  //   });
+  //   expect(pageTitle).toMatch("Sign in:");
+  // });
 
   // test("the same button with login", async () => {
   //   await page.waitFor(".pizza__view__icon");
