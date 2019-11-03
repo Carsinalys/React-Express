@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - "10"
+os: linux
 dist: trusty
 services:
   - mongodb
@@ -11,8 +12,7 @@ cache:
     - node_modules
 install:
   - npm install
-  - npm run build
 script:
-  - nohup npm run start &
-  - sleep 6
+  - nohup npm run startTravis &
+  - sleep 30
   - npm run test
