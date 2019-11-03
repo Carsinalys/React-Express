@@ -17,7 +17,7 @@ if (cluster.isMaster) {
   // env variabels
   require("dotenv").config({ path: "./config.env" });
   const app = require("./server/index");
-
+  // condition for testing in travis
   let DB;
   if (process.env.NODE_ENV === "ci") {
     DB = "mongodb://127.0.0.1:27017/Orders";
