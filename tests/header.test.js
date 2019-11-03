@@ -65,33 +65,33 @@ describe("main page", () => {
     expect(pageTitle).toMatch("Sign in:");
   });
 
-  test("the same button with login", async () => {
-    await page.waitFor(".pizza__view__icon");
-    await page.evaluate(() => {
-      document.querySelectorAll(".pizza__nav__link")[4].click();
-    });
-    await page.waitFor("#signIn");
-    await page.focus("#auth__email");
-    await page.keyboard.type("Cardinalys81@gmail.com");
-    await page.focus("#auth__password");
-    await page.keyboard.type("Cardinalys81");
-    await page.click(".auth__submit");
-    await page.waitFor(
-      () => document.querySelectorAll(".pizza__nav__link").length > 5
-    );
-    await page.waitFor(
-      () => document.querySelectorAll(".prev__order__hover__btn").length === 3
-    );
-    await page.hover(".prev__order__cover");
-    await page.$eval(".prev__order__hover__btn", el => {
-      el.click();
-    });
-    await page.waitFor("#checkout__form");
-    const pageTitle = await page.evaluate(() => {
-      return document.querySelector(".checkout__content__title").textContent;
-    });
-    expect(pageTitle).toMatch("Checkout form:");
-  });
+  // test("the same button with login", async () => {
+  //   await page.waitFor(".pizza__view__icon");
+  //   await page.evaluate(() => {
+  //     document.querySelectorAll(".pizza__nav__link")[4].click();
+  //   });
+  //   await page.waitFor("#signIn");
+  //   await page.focus("#auth__email");
+  //   await page.keyboard.type("Cardinalys81@gmail.com");
+  //   await page.focus("#auth__password");
+  //   await page.keyboard.type("Cardinalys81");
+  //   await page.click(".auth__submit");
+  //   await page.waitFor(
+  //     () => document.querySelectorAll(".pizza__nav__link").length > 5
+  //   );
+  //   await page.waitFor(
+  //     () => document.querySelectorAll(".prev__order__hover__btn").length === 3
+  //   );
+  //   await page.hover(".prev__order__cover");
+  //   await page.$eval(".prev__order__hover__btn", el => {
+  //     el.click();
+  //   });
+  //   await page.waitFor("#checkout__form");
+  //   const pageTitle = await page.evaluate(() => {
+  //     return document.querySelector(".checkout__content__title").textContent;
+  //   });
+  //   expect(pageTitle).toMatch("Checkout form:");
+  // });
 });
 
 // test("authentication", async () => {

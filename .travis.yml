@@ -17,8 +17,6 @@ env:
 cache:
   directories:
     - node_modules
-before_script:
-  - mongo mydb_test --eval 'db.createUser({user:"Cardinalya81@gmail.com",pwd:"Cardinalys81",roles:["admin"]});'
 install:
   - npm install
   - npm run build
