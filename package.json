@@ -13,6 +13,7 @@
     "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
+    "@hot-loader/react-dom": "^16.10.2",
     "base64-js": "^1.3.1",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
@@ -48,7 +49,6 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
-    "@hot-loader/react-dom": "^16.10.2",
     "@reach/router": "^1.2.1",
     "@types/react": "^16.9.11",
     "autoprefixer": "^9.7.1",
