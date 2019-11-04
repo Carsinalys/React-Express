@@ -12,8 +12,8 @@ const compression = require("compression");
 const cors = require("cors");
 const morgan = require("morgan");
 const path = require("path");
-
 const fs = require("fs");
+
 import App from "../src/js/serverConnectProps";
 
 const ErrorHandler = require("./utils/errorHandler");

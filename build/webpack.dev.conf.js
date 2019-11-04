@@ -7,19 +7,27 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   devtool: "cheap-module-eval-source-map",
   devServer: {
     contentBase: baseWebpackConfig.externals.paths.dist,
-    port: 8081,
+    port: 3001,
+    hot: true,
+    open: true,
+    compress: true,
     historyApiFallback: {
       index: "index.html" // this option is redirecting all requests to index.html for workibg reloading
+    },
+    stats: {
+      colors: true
     },
     overlay: {
       warnings: true,
       errors: true
     }
   },
+  cache: true,
   plugins: [
     new webpack.SourceMapDevToolPlugin({
       filename: "[file].map"
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
 });
 

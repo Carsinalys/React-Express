@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import PizzaHeader from "./pizzaHeader/pizzaHeder";
@@ -22,27 +22,37 @@ class PizzaApp extends React.Component {
     return (
       <>
         <Route path="/" component={PizzaHeader} />
-        <Switch>
-          <Route exact path="/" component={PizzaBuilderMainPage} />
-          <Route exact path="/pizza-builder" component={PizzaBuilderPropsSrc} />
-          <Route exact path="/reviews/addReview" component={AddReview} />
-          <Route exact path="/reviews/:page" component={Reviews} />
-          <Route exact path="/checkout" component={PizzaBuilderCheckout} />
-          <Route exact path="/authentication" component={Authendication} />
-          <Route exact path="/personalRoom" component={Cabinet} />
-          <Route exact path="/personalRoom/changeMail" component={ChangeMail} />
-          <Route exact path="/personalRoom/:page" component={Cabinet} />
-          <Route exact path="/pizza-builds" component={ReadyBuilds} />
-          <Route exact path="/authentication/forgot" component={Forgot} />
-          <Route exact path="/logOut" component={LogOut} />
-          <Route
-            exact
-            path="/authentication/registration"
-            component={AuthendicationSignUp}
-          />
-          <Route exact path="/chat" component={Chat} />
-          <Route component={Page404} />
-        </Switch>
+        <Suspense fallback={<h1>Loading</h1>}>
+          <Switch>
+            <Route exact path="/" component={PizzaBuilderMainPage} />
+            <Route
+              exact
+              path="/pizza-builder"
+              component={PizzaBuilderPropsSrc}
+            />
+            <Route exact path="/reviews/addReview" component={AddReview} />
+            <Route exact path="/reviews/:page" component={Reviews} />
+            <Route exact path="/checkout" component={PizzaBuilderCheckout} />
+            <Route exact path="/authentication" component={Authendication} />
+            <Route exact path="/personalRoom" component={Cabinet} />
+            <Route
+              exact
+              path="/personalRoom/changeMail"
+              component={ChangeMail}
+            />
+            <Route exact path="/personalRoom/:page" component={Cabinet} />
+            <Route exact path="/pizza-builds" component={ReadyBuilds} />
+            <Route exact path="/authentication/forgot" component={Forgot} />
+            <Route exact path="/logOut" component={LogOut} />
+            <Route
+              exact
+              path="/authentication/registration"
+              component={AuthendicationSignUp}
+            />
+            <Route exact path="/chat" component={Chat} />
+            <Route component={Page404} />
+          </Switch>
+        </Suspense>
       </>
     );
   }

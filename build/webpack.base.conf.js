@@ -22,6 +22,11 @@ module.exports = {
     publicPath: `/`,
     chunkFilename: `${PATHS.assets}js/chunk/[name].[id].js`
   },
+  resolve: {
+    alias: {
+      "react-dom": "@hot-loader/react-dom"
+    }
+  },
   module: {
     rules: [
       {

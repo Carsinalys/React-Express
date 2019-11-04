@@ -4,6 +4,8 @@ import { getTokenFromCookie, checkBrowser } from "./AC/index";
 
 import PizzaBuilder from "./conponents/pizzaBuilder";
 import { BrowserRouter } from "react-router-dom";
+//hot reloading
+import { hot } from "react-hot-loader/root";
 
 class App extends React.Component {
   componentDidMount() {
@@ -31,7 +33,9 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  dispatchToProps
-)(App);
+export default hot(
+  connect(
+    null,
+    dispatchToProps
+  )(App)
+);
