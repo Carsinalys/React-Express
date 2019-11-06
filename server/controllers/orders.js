@@ -4,10 +4,26 @@ const factory = require("./handleFactory");
 
 exports.getOrders = cachAsync(async (req, res) => {
   if (req.query.count !== undefined) {
-    let response = await getRandomOrders(req);
+    const count = await Orders.countDocuments();
+    let response;
+    if (count > req.query.count)
+      response = await Orders.find().skip(count - req.query.count);
+    else response = await Orders.find();
     res.status(200).json({
       status: "success",
-      data: response
+      data: response,
+      count
+    });
+  } else if (req.query.show !== undefined) {
+    const countShow = await Orders.countDocuments();
+    let responseShow;
+    if (countShow > req.query.show)
+      responseShow = await Orders.find().limit(+req.query.show);
+    else responseShow = await Orders.find();
+    res.status(200).json({
+      status: "success",
+      data: responseShow,
+      countShow
     });
   } else if (
     req.query.page !== undefined &&
@@ -45,20 +61,3 @@ exports.getOrders = cachAsync(async (req, res) => {
 exports.addOrder = factory.addOne(Orders);
 
 exports.deleteOrder = factory.deleteOne(Orders);
-
-async function getRandomOrders(req) {
-  let arr = [];
-  const count = await Orders.countDocuments();
-  do {
-    let random = Math.floor(Math.random() * count);
-    let randomOrder = await Orders.findOne().skip(random);
-    if (
-      arr.filter(item => item._id.toString() === randomOrder._id.toString())
-        .length === 0
-    ) {
-      arr.push(randomOrder);
-    } else {
-    }
-  } while (arr.length < req.query.count);
-  return arr;
-}

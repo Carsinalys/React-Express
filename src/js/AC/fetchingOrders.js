@@ -17,6 +17,30 @@ export const gerOrders = () => {
   };
 };
 
+export const getMoreOrders = count => {
+  return dispatch => {
+    dispatch(startGetOrders());
+    fetch(`${port}/api/v1.0/orders?show=${count}`, {
+      method: "GET"
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        dispatch(setMoreOrders(data));
+      })
+      .catch(error => dispatch(getError(error)));
+  };
+};
+
+export const setMoreOrders = data => {
+  return {
+    type: AC.GET_MORE_ORDERS_FINISH,
+    payload: data.data,
+    count: data.countShow
+  };
+};
+
 export const startGetOrders = () => {
   return {
     type: AC.GET_ORDERS_START

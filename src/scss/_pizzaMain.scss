@@ -53,6 +53,7 @@
   display: flex;
   padding: 2rem;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .prev__orders__info {
@@ -124,4 +125,42 @@
 
 .multi__pizza__main__cover {
   margin: 1rem 0 0 0;
+}
+
+
+.prev__orders__show__more__btn {
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  padding-bottom: 1rem;
+  &:hover {
+    color: #7f6b1b;
+    text-decoration: underline;
+  }
+}
+
+.main__show__more__cover {
+  width: 100%;
+  max-height: 70vh;
+  overflow-y: scroll;
+  border: 1px solid #000;
+  border-right: 5px;
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  @include littleDesctop {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  @include laptop {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @include semiMobile {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
 }

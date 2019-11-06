@@ -9,12 +9,14 @@ import {
   multiPizzaTheSame,
   resetMultiPizza,
   reset_build,
-  gerUserPhotoAfterChange
+  gerUserPhotoAfterChange,
+  getMoreOrders
 } from "../../AC/index";
 
 import PrevOrders from "./pizzaBuilderMainOrders";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import MainInfo from "./pizzaBuilderMainInfo";
+import ShowMore from "./pizzaBuilderMainShowMore";
 
 class PizzaBuilderMainPage extends React.Component {
   componentDidMount() {
@@ -35,7 +37,9 @@ class PizzaBuilderMainPage extends React.Component {
   }
 
   state = {
-    rediect: false
+    rediect: false,
+    showMore: false,
+    curCounter: 10
   };
 
   wantTheSameHanler = event => {
@@ -63,6 +67,29 @@ class PizzaBuilderMainPage extends React.Component {
     this.setState({ rediect: true });
   };
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (
+      prevState.curCounter !== this.state.curCounter &&
+      this.props.moreOrders.length < this.state.curCounter
+    ) {
+      this.props.getMoreOrdersFun(this.state.curCounter);
+    }
+  }
+
+  showMoreHandler = () => {
+    this.setState(prevState => {
+      return { showMore: !prevState.showMore };
+    });
+  };
+
+  moreOrdersHandler = () => {
+    this.setState(prevState => {
+      return {
+        curCounter: +prevState.curCounter + 10
+      };
+    });
+  };
+
   render() {
     return (
       <>
@@ -77,10 +104,26 @@ class PizzaBuilderMainPage extends React.Component {
               orders={this.props.orders}
               theSame={this.wantTheSameHanler}
               browser={this.props.browser}
+              showMore={this.showMoreHandler}
+              showMoreFetch={this.props.getMoreOrdersFun}
+              triggerForFetch={this.state.showMore}
+              counter={this.state.curCounter}
+              counterStore={this.props.stateCounter}
+              moreOrders={this.props.moreOrders}
             />
           ) : (
             <div>Loading orders...</div>
           )}
+          <Modal toggle={this.state.showMore}>
+            <ShowMore
+              orders={this.props.moreOrders}
+              theSame={this.wantTheSameHanler}
+              browser={this.props.browser}
+              counterStore={this.props.stateCounter}
+              counter={this.state.curCounter}
+              more={this.moreOrdersHandler}
+            />
+          </Modal>
         </section>
       </>
     );
@@ -89,6 +132,8 @@ class PizzaBuilderMainPage extends React.Component {
 
 const stateToProps = state => {
   return {
+    stateCounter: state.orders.count,
+    moreOrders: state.orders.moreOrders,
     orders: state.orders.orders,
     isLoaded: state.orders.isLoaded,
     isLoading: state.orders.isLoading,
@@ -105,7 +150,8 @@ const dispatchToProps = dispatch => {
     multiTheSameFun: obj => dispatch(multiPizzaTheSame(obj)),
     resetMultiPizzaFun: () => dispatch(resetMultiPizza()),
     reset_buildFun: () => dispatch(reset_build()),
-    gerUserPhotoAfterChangeFun: id => dispatch(gerUserPhotoAfterChange(id))
+    gerUserPhotoAfterChangeFun: id => dispatch(gerUserPhotoAfterChange(id)),
+    getMoreOrdersFun: count => dispatch(getMoreOrders(count))
   };
 };
 

@@ -5,7 +5,9 @@ const initState = {
   isLoaded: false,
   getOrders: false,
   isLoading: false,
-  error: false
+  error: false,
+  moreOrders: [],
+  count: 0
 };
 
 const ordersReducer = (state = initState, action) => {
@@ -19,6 +21,13 @@ const ordersReducer = (state = initState, action) => {
         getOrders: true,
         isLoaded: true,
         orders: action.payload
+      };
+    case AC.GET_MORE_ORDERS_FINISH:
+      return {
+        ...state,
+        isLoading: false,
+        moreOrders: action.payload,
+        count: action.count
       };
     case AC.GET_ORDERS_FINISH_PHOTO:
       return {
