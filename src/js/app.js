@@ -33,9 +33,24 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default hot(
-  connect(
-    null,
-    dispatchToProps
-  )(App)
-);
+const AppToExp =
+  process.env.NODE_ENV === "production"
+    ? connect(
+        null,
+        dispatchToProps
+      )(App)
+    : hot(
+        connect(
+          null,
+          dispatchToProps
+        )(App)
+      );
+
+export default AppToExp;
+
+// export default hot(
+//     connect(
+//         null,
+//         dispatchToProps
+//     )(App)
+// );
