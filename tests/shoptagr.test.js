@@ -1,10 +1,6 @@
 const puppeteer = require("puppeteer");
 const fetch = require("node-fetch");
 require("regenerator-runtime");
-const fs = require("fs");
-const path = require("path");
-const util = require("util");
-const readFile = util.promisify(fs.readFile);
 
 const nameCheck = require("./helpers/checkName");
 const imageCheck = require("./helpers/imageCheck");
@@ -16,11 +12,18 @@ const addjQuery = require("./helpers/addjQuery");
 const tryCatchForMultiple = require("./helpers/tryCatchForMultiple");
 
 let browser, page;
-let url = "https://www.google.com/";
+const url = "https://www.google.com/";
 let curRules;
 let curShop;
 let singleUrl;
-let urlList;
+const urlList = [
+  "https://www.fashioneyewear.co.uk",
+  "https://www.agadondesignerradiators.co.uk",
+  "https://us.princesspolly.com",
+  "https://www.altrarunning.com/",
+  "https://us.tonybianco.com",
+  "https://boombod.com/"
+];
 let result = {};
 
 beforeAll(async () => {
@@ -36,7 +39,6 @@ beforeAll(async () => {
       //"--proxy-server=159.65.237.253:8080"
     ]
   });
-  getUrls();
 });
 
 beforeEach(async () => {
@@ -52,16 +54,10 @@ afterEach(async () => {
   await page.close();
 });
 
-const getUrls = async () => {
-  const urls = await readFile(path.join(__dirname, "./list.json"));
-  urlList = JSON.parse(urls.toString()).URLS;
-};
-
 describe("test list of shops", () => {
-  test("testing list shops", async () => {
-    console.log(urlList);
-    //loop shops
-    for (let i = 0; i < urlList.length; i++) {
+  //loop shops
+  for (let i = 0; i < urlList.length; i++) {
+    test(`testing list shops, shop - ${i + 1}`, async () => {
       curShop =
         urlList[i].indexOf("https://") >= 0
           ? urlList[i]
@@ -184,8 +180,8 @@ describe("test list of shops", () => {
         };
       }
       singleUrl = "";
-    }
-  });
+    });
+  }
 
   test("console.log result", () => {
     console.log(result);

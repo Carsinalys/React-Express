@@ -143,20 +143,23 @@
 }
 
 .chat__room__list::-webkit-scrollbar-track,
-.chat__head__view__port::-webkit-scrollbar-track {
+.chat__head__view__port::-webkit-scrollbar-track,
+.main__show__more__cover::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   background-color: #ccc;
 }
 
 .chat__room__list::-webkit-scrollbar,
-.chat__head__view__port::-webkit-scrollbar {
+.chat__head__view__port::-webkit-scrollbar,
+.main__show__more__cover::-webkit-scrollbar {
   width: 12px;
   background-color: #ccc;
 }
 
 .chat__room__list::-webkit-scrollbar-thumb,
-.chat__head__view__port::-webkit-scrollbar-thumb {
+.chat__head__view__port::-webkit-scrollbar-thumb,
+.main__show__more__cover::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: rgb(143, 136, 136);

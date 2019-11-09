@@ -46,6 +46,11 @@ class PizzaBuilderMainPage extends React.Component {
     let order = this.props.orders.filter(
       item => item._id.toString() === event.target.dataset.id
     )[0];
+    if (!order) {
+      order = this.props.moreOrders.filter(
+        item => item._id.toString() === event.target.dataset.id
+      )[0];
+    }
     // this is copy of ingredients for prevent mutating data
     let ingredients = {};
     Object.keys(order.ingredients).map(item => {
