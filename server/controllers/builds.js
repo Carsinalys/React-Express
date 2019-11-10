@@ -2,6 +2,13 @@ const AppError = require("../utils/errorHandler");
 const catchAsync = require("../utils/catchErrors");
 const Builds = require("../models/builds");
 const ReviewsBuilds = require("../models/reviews_builds");
+const Redis = require("redis");
+const Client = Redis.createClient(process.env.REDIS_URL);
+Client.set("test", "fucking test");
+Client.get("test", (err, data) => {
+  if (err) console.log(err);
+  console.log(data);
+});
 
 let buffer = {};
 
