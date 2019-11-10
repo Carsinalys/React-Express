@@ -95,7 +95,7 @@
     "test": "jest",
     "dev:mock": "cross-env PET_MOCK=mock npm run dev",
     "dev_parcel": "parcel src/index.html",
-    "start": "NODE_ENV=production nodemon --exec babel-node server.js",
+    "start": "NODE_ENV=NODE_ENV nodemon --exec babel-node server.js",
     "startTravis": "nodemon --exec babel-node server.js",
     "nodemon": "nodemon --exec babel-node server.js",
     "debug": "ndb server.js"
