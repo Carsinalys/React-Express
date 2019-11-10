@@ -3,6 +3,7 @@ const catchAsync = require("../utils/catchErrors");
 const Builds = require("../models/builds");
 const ReviewsBuilds = require("../models/reviews_builds");
 const Redis = require("redis");
+console.log(process.env);
 const Client =
   process.env.NODE_ENV === "production"
     ? Redis.createClient(process.env.REDIS_URL)
