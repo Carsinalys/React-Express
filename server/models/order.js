@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const catchAsync = require("../utils/catchErrors");
 
 const ordersShchema = new mongoose.Schema({
   name: {
