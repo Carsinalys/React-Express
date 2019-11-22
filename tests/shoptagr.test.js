@@ -1,5 +1,4 @@
 const puppeteer = require("puppeteer");
-const fetch = require("node-fetch");
 require("regenerator-runtime");
 
 const nameCheck = require("./helpers/checkName");
@@ -10,21 +9,14 @@ const multipleCheck = require("./helpers/multipleCheck");
 const tryCatchForRules = require("./helpers/tryCatchForRules");
 const addjQuery = require("./helpers/addjQuery");
 const tryCatchForMultiple = require("./helpers/tryCatchForMultiple");
+const fetchData = require("./helpers/fetch");
 
 let browser, page;
-const url = "https://www.google.com/";
 let curRules;
 let curShop;
 let singleUrl;
-const urlList = [
-  "https://www.fashioneyewear.co.uk",
-  "https://www.agadondesignerradiators.co.uk",
-  "https://us.princesspolly.com",
-  "https://www.altrarunning.com/",
-  "https://us.tonybianco.com",
-  "https://boombod.com/"
-];
 let result = {};
+let singleTagLink = "";
 
 beforeAll(async () => {
   browser = await puppeteer.launch({
@@ -36,14 +28,13 @@ beforeAll(async () => {
       "-disable-gpu",
       "--no-first-run",
       "--disable-notifications"
-      //"--proxy-server=159.65.237.253:8080"
+      //"--proxy-server=174.127.155.118:32505"
     ]
   });
 });
 
 beforeEach(async () => {
   page = await browser.newPage();
-  await page.goto(url, { waitUntil: "domcontentloaded" });
 });
 
 afterAll(async () => {
@@ -56,94 +47,28 @@ afterEach(async () => {
 
 describe("test list of shops", () => {
   //loop shops
-  for (let i = 0; i < urlList.length; i++) {
+  for (let i = 0; i < 20; i++) {
     test(`testing list shops, shop - ${i + 1}`, async () => {
-      curShop =
-        urlList[i].indexOf("https://") >= 0
-          ? urlList[i]
-          : "https://" + urlList[i];
+      curShop = "";
       //fetching rules for single shop
-      await fetch(
-        `https://api-beta.shoptagr.com/v2/admin/rule?url=${curShop}`,
-        {
-          method: "GET",
-          headers: {
-            authorization:
-              "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3Mjg3NjE5Nzd9.scvbbx_tnxNRoEi9-AQX623MJYWAdgx31SdtiRD851k"
-          }
-        }
-      )
-        .then(data => data.json())
-        .then(data => (curRules = data));
-      //searching for single item url
-      await page.focus('[role="combobox"]');
-      await page.keyboard.type(curShop + " " + curRules.url_pattern + " item");
-      await page.keyboard.press("\n");
-      await page.waitFor(1000);
-      const props = {
-        shopUrl: curShop,
-        regexp: curRules.url_pattern
-      };
-      // if rules have url_pattern try to search in google single page
-      if (curRules.url_pattern) {
-        singleUrl = await page.evaluate(props => {
-          let url = "";
-          document
-            .querySelectorAll("[data-async-context] a[href]")
-            .forEach(item => {
-              const reg = new RegExp(props.regexp);
-              if (reg.test(item.href) && item.href.startsWith(props.shopUrl)) {
-                url = item.href;
-              }
-            });
-          return url;
-        }, props);
-      }
-      // if google search doesn`t find url matches conditions
-      if (!singleUrl) {
-        await page.goto(url, { waitUntil: "domcontentloaded" });
-        await page.focus('[role="combobox"]');
-        await page.keyboard.type(curShop + " item buy");
-        await page.keyboard.press("\n");
-        await page.waitFor(1000);
-        let multipleUrl;
-        try {
-          multipleUrl = await page.evaluate(props => {
-            let url = "";
-            document
-              .querySelectorAll("[data-async-context] a[href]")
-              .forEach(item => {
-                if (item.href.startsWith(props.shopUrl)) {
-                  if (url.length < item.href.length) url = item.href;
-                }
-              });
-            return url;
-          }, props);
-        } catch (e) {
-          console.log("can`t find url in goolgle for ", curShop);
-        }
-        // if can`t find url in google
-        if (!multipleUrl) {
-          multipleUrl = curShop;
-        }
-        await page.goto(`${multipleUrl}`, { waitUntil: "domcontentloaded" });
-        //inject jQuery
-        await addjQuery(page);
-        //try to get single url from supposed multiple link
-        let multiResult = await tryCatchForMultiple(
-          curRules.multi_products_getter,
-          page
-        );
-        if (multiResult) singleUrl = multiResult[0][2];
-        else singleUrl = multipleUrl;
-      }
+      curRules = await fetchData(
+        `https://api-beta.shoptagr.com/v2/rules/${i + 1}`
+      );
+      singleTagLink = await fetchData(
+        `https://api-beta.shoptagr.com/v2/stores/${i + 1}/popular_tag`
+      );
+      curShop = curRules.url_regex;
       // if can`t find url in google
-      if (!singleUrl || !singleUrl.startsWith("http")) {
-        result[i] = { error: "can`t find url" };
+      if (!singleTagLink.tag_url) {
+        result[i] = { error: "can`t fget urls form server" };
       } else {
         // if url has been find do shit
-        await page.goto(`${singleUrl}`, { waitUntil: "domcontentloaded" });
         await page.setDefaultNavigationTimeout(60000);
+        console.log(singleTagLink.tag_url);
+        await page.goto(singleTagLink.tag_url, {
+          waitUntil: "domcontentloaded"
+        });
+        await page.waitFor(1000);
         //inject jQuery
         await addjQuery(page);
         let name, image, price, originalPrice, multiple;
@@ -154,9 +79,13 @@ describe("test list of shops", () => {
           curRules.original_price_getter,
           page
         );
-        await page.goto(url, { waitUntil: "domcontentloaded" });
+        console.log(price);
+        multiple = await tryCatchForMultiple(
+          curRules.multi_products_getter,
+          page
+        );
         result[i] = {
-          url: singleUrl,
+          url: singleTagLink.tag_url,
           name: {
             valid: nameCheck(name),
             value: name
