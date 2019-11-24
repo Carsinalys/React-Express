@@ -1,4 +1,4 @@
-module.exports = async (rule, page) => {
+module.exports = async (rule, page, curShop) => {
   let multiResult;
   try {
     multiResult = await page.evaluate(rule);
@@ -7,6 +7,7 @@ module.exports = async (rule, page) => {
       "can`t execute multi getter for getting single url in",
       curShop
     );
+    multiResult = "Done with error";
   }
   return multiResult;
 };

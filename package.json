@@ -111,6 +111,7 @@
   },
   "jest": {
     "verbose": true,
+    "testEnvironment": "node",
     "setupFilesAfterEnv": [
       "./tests/setup.js"
     ]
