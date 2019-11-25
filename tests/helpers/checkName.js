@@ -3,7 +3,7 @@ module.exports = name => {
     if (name === "Done with error") return false;
     if (
       name.match(
-        /^[a-zA-Z0-9-@!.,'"]{1}[a-zA-Z0-9-@!.,#'"& ]+[a-zA-Z0-9-@!.,'"]{1}$/
+        /^[\wА-Яа-я-@!.,'"]{1}[\wА-Яа-я-@!.,#'"& ]+[\wА-Яа-я-@!.,'"]{1}$/
       )
     )
       return true;

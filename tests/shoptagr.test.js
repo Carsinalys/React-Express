@@ -50,7 +50,7 @@ afterEach(async () => {
 
 describe("test list of shops", () => {
   //loop shops
-  for (let i = 110; i < 120; i++) {
+  for (let i = 170; i < 180; i++) {
     test(`testing list shops, shop - ${i + 1}`, async () => {
       curShop = "";
       //fetching rules for single shop
@@ -74,17 +74,42 @@ describe("test list of shops", () => {
             multiple,
             brand,
             jquery,
-            passCheck = false;
+            passCheck = false,
+            error = false;
           // check for valid result
           do {
             // if url has been find do shit
             await page.setDefaultNavigationTimeout(60000);
-            await page.goto(singleTagLink.tag_url, {
-              waitUntil: "domcontentloaded"
-            });
-            await page.waitFor(2000);
+            // check if present some errors in navigation
+            try {
+              await page.goto(singleTagLink.tag_url, {
+                waitUntil: "domcontentloaded"
+              });
+            } catch (e) {
+              error =
+                "Error something wrong with navigation, maybe too many redirects";
+            }
             //inject jQuery
             jquery = await addjQuery(page, curRules.url_regex);
+            // implementation waitForFunction
+            let waitForCounter = 0,
+              waitForResult = false;
+            do {
+              try {
+                await page.waitFor(2000);
+                let curWaiter = curRules.wait
+                  .split("return")
+                  .pop()
+                  .split("})")[0];
+                waitForResult = await page.evaluate(curWaiter);
+                waitForCounter++;
+              } catch (e) {
+                error = "wait for function done with error";
+              }
+            } while (!waitForResult && waitForCounter < 3);
+            waitForCounter = 0;
+            waitForResult = false;
+            // testing rules
             name = await tryCatchForRules(curRules.name_getter, page);
             brand = await tryCatchForRules(curRules.brand_getter, page);
             image = await tryCatchForRules(curRules.image_getter, page);
@@ -115,12 +140,14 @@ describe("test list of shops", () => {
             nameCheck(brand) &&
             imageCheck(image) &&
             priceCheck(price) &&
-            parseFloat(price.replace(/^[A-Z$€£]{1,3}/, "")) <=
-              parseFloat(originalPrice.replace(/^[A-Z$€£]{1,3}/, ""))
+            priceCheck(originalPrice)
           ) {
-            passCheck = true;
+            if (
+              parseFloat(price.replace(/^[A-Z$€£]{1,3}/, "")) <=
+              parseFloat(originalPrice.replace(/^[A-Z$€£]{1,3}/, ""))
+            )
+              passCheck = true;
           }
-          //console.log(curRules.wait);
           result[i + 1] = {
             url: curRules.url_regex,
             arrUrls: arrOfSingleUrls.length > 0 ? arrOfSingleUrls : [],
@@ -149,7 +176,8 @@ describe("test list of shops", () => {
               valid: multipleCheck(multiple),
               value: multiple
             },
-            jquery: jquery
+            jquery: jquery,
+            error: error
           };
         }
         arrOfSingleUrls = [];
