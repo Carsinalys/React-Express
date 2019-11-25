@@ -30,7 +30,8 @@ beforeAll(async () => {
       "--disable-setuid-sandbox",
       "-disable-gpu",
       "--no-first-run",
-      "--disable-notifications"
+      "--disable-notifications",
+      "--incognito"
       //"--proxy-server=174.127.155.118:32505"
     ]
   });
