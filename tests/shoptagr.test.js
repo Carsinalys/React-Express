@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer");
 require("regenerator-runtime");
 const mongoose = require("mongoose");
+const Tests = require("./schema");
 
 const nameCheck = require("./helpers/checkName");
 const imageCheck = require("./helpers/imageCheck");
@@ -11,6 +12,7 @@ const tryCatchForRules = require("./helpers/tryCatchForRules");
 const addjQuery = require("./helpers/addjQuery");
 const tryCatchForMultiple = require("./helpers/tryCatchForMultiple");
 const fetchData = require("./helpers/fetch");
+const waitFor = require("./helpers/waitFor");
 
 let browser, page;
 let curRules;
@@ -20,6 +22,7 @@ let result = {};
 let singleTagLink = "";
 let arrOfSingleUrls = [];
 let counter = 0;
+let context;
 
 beforeAll(async () => {
   browser = await puppeteer.launch({
@@ -28,17 +31,18 @@ beforeAll(async () => {
       "--disable-extensions",
       "--no-sandbox",
       "--disable-setuid-sandbox",
-      "-disable-gpu",
+      "--disable-gpu",
       "--no-first-run",
       "--disable-notifications",
       "--incognito"
       //"--proxy-server=174.127.155.118:32505"
     ]
   });
+  context = await browser.createIncognitoBrowserContext();
 });
 
 beforeEach(async () => {
-  page = await browser.newPage();
+  page = await context.newPage();
 });
 
 afterAll(async () => {
@@ -51,7 +55,7 @@ afterEach(async () => {
 
 describe("test list of shops", () => {
   //loop shops
-  for (let i = 170; i < 180; i++) {
+  for (let i = 244; i < 245; i++) {
     test(`testing list shops, shop - ${i + 1}`, async () => {
       curShop = "";
       //fetching rules for single shop
@@ -93,23 +97,7 @@ describe("test list of shops", () => {
             //inject jQuery
             jquery = await addjQuery(page, curRules.url_regex);
             // implementation waitForFunction
-            let waitForCounter = 0,
-              waitForResult = false;
-            do {
-              try {
-                await page.waitFor(2000);
-                let curWaiter = curRules.wait
-                  .split("return")
-                  .pop()
-                  .split("})")[0];
-                waitForResult = await page.evaluate(curWaiter);
-                waitForCounter++;
-              } catch (e) {
-                error = "wait for function done with error";
-              }
-            } while (!waitForResult && waitForCounter < 3);
-            waitForCounter = 0;
-            waitForResult = false;
+            error = await waitFor(page, curRules.wait);
             // testing rules
             name = await tryCatchForRules(curRules.name_getter, page);
             brand = await tryCatchForRules(curRules.brand_getter, page);
@@ -181,6 +169,8 @@ describe("test list of shops", () => {
             error: error
           };
         }
+        console.log("wwwwww!!!!!!!!!!!wwwwwwwwwwww");
+        await Tests.create(result[i + 1]);
         arrOfSingleUrls = [];
         counter = 0;
         singleUrl = "";

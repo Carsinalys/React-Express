@@ -20,4 +20,4 @@ mongoose
   })
   .catch(err => console.log(err));
 
-jest.setTimeout(60000);
+jest.setTimeout(6000000);
