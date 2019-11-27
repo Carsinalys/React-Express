@@ -8,6 +8,9 @@ const testResults = new mongoose.Schema({
   arrUrls: {
     type: Array
   },
+  id: {
+    type: String
+  },
   validShop: {
     type: Boolean
   },
@@ -33,7 +36,7 @@ const testResults = new mongoose.Schema({
     type: Boolean
   },
   error: {
-    default: ""
+    type: String
   }
 });
 

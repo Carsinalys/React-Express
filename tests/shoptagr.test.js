@@ -24,9 +24,12 @@ let arrOfSingleUrls = [];
 let counter = 0;
 let context;
 
+//const iPhone = puppeteer.devices['iPhone 6'];
+//await page.emulate(iPhone);
+
 beforeAll(async () => {
   browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     args: [
       "--disable-extensions",
       "--no-sandbox",
@@ -35,6 +38,7 @@ beforeAll(async () => {
       "--no-first-run",
       "--disable-notifications",
       "--incognito"
+      //"--user-data-dir=/tmp/session"
       //"--proxy-server=174.127.155.118:32505"
     ]
   });
@@ -55,7 +59,7 @@ afterEach(async () => {
 
 describe("test list of shops", () => {
   //loop shops
-  for (let i = 244; i < 245; i++) {
+  for (let i = 61; i < 65; i++) {
     test(`testing list shops, shop - ${i + 1}`, async () => {
       curShop = "";
       //fetching rules for single shop
@@ -66,10 +70,12 @@ describe("test list of shops", () => {
         `https://api-beta.shoptagr.com/v2/stores/${i + 1}/popular_tag`
       );
       if (curRules.url_regex) {
+        console.log(`testing ${curRules.url_regex} id ${i + 1}`);
         curShop = curRules.url_regex;
         if (!singleTagLink.tag_url) {
           result[i + 1] = {
-            error: `can\`t get tag url form server for ${curRules.url_regex}`
+            url: curRules.url_regex,
+            error: `can\`t get tag url form server for`
           };
         } else {
           let name,
@@ -80,7 +86,7 @@ describe("test list of shops", () => {
             brand,
             jquery,
             passCheck = false,
-            error = false;
+            error = "false";
           // check for valid result
           do {
             // if url has been find do shit
@@ -140,6 +146,7 @@ describe("test list of shops", () => {
           result[i + 1] = {
             url: curRules.url_regex,
             arrUrls: arrOfSingleUrls.length > 0 ? arrOfSingleUrls : [],
+            id: curRules.id,
             validShop: passCheck,
             name: {
               valid: nameCheck(name),
@@ -169,17 +176,16 @@ describe("test list of shops", () => {
             error: error
           };
         }
-        console.log("wwwwww!!!!!!!!!!!wwwwwwwwwwww");
         await Tests.create(result[i + 1]);
         arrOfSingleUrls = [];
         counter = 0;
         singleUrl = "";
       }
-    });
+    }, 90000);
   }
 
-  test("console.log result", () => {
-    console.log(result);
-    mongoose.connection.close();
-  });
+  test("console.log result", async () => {
+    //console.log(result);
+    await mongoose.connection.close();
+  }, 10000);
 });
