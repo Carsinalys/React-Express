@@ -155,60 +155,64 @@ class Builds extends React.Component {
         </Modal>
         {this.props.builds.builds.length > 0 ? (
           this.props.builds.builds.map(item => {
-            return (
-              <div key={item.name} className="ready__build__cover">
-                <h3 className="builds__pizza__title__text">
-                  <span className="builds__pizza__title">{item.name}</span>
-                </h3>
-                <div className="ready__build__single__pic">
-                  {this.props.browser.safari ? (
-                    <img src={`assets/img/${item.name}.png`} alt={item.name} />
-                  ) : (
-                    <img
-                      src={`assets/img/webp/${item.name}.webp`}
-                      alt={item.name}
-                    />
-                  )}
-                </div>
-                <div className="single__build__ingredients__cover">
-                  <Ingredients
-                    ingredients={item.ingredients}
-                    minus={this.minusHandler}
-                    showCross="false"
-                    browser={this.props.browser}
-                  />
-                </div>
-                <div className="single__build__params__cover">
-                  <div>
-                    <p>Weigth is: {item.weight}g.</p>
-                    <p>Cost is: {item.cost}$</p>
-                    <p>Diameter is: {item.diameter}cm.</p>
+            if (item.ingredients)
+              return (
+                <div key={item.name} className="ready__build__cover">
+                  <h3 className="builds__pizza__title__text">
+                    <span className="builds__pizza__title">{item.name}</span>
+                  </h3>
+                  <div className="ready__build__single__pic">
+                    {this.props.browser.safari ? (
+                      <img
+                        src={`assets/img/${item.name}.png`}
+                        alt={item.name}
+                      />
+                    ) : (
+                      <img
+                        src={`assets/img/webp/${item.name}.webp`}
+                        alt={item.name}
+                      />
+                    )}
                   </div>
-                  <Reviews
-                    auth={this.props.auth}
-                    reviews={item.reviews}
-                    modal={this.toggleReviewModalHandler}
-                    id={item._id}
-                    setId={this.curBuildModalIdHandler}
-                    showReviews={this.props.setCurReviewsToShowFun}
-                    showReviewsModal={this.showReviewsIdModalHandler}
-                  />
+                  <div className="single__build__ingredients__cover">
+                    <Ingredients
+                      ingredients={item.ingredients}
+                      minus={this.minusHandler}
+                      showCross="false"
+                      browser={this.props.browser}
+                    />
+                  </div>
+                  <div className="single__build__params__cover">
+                    <div>
+                      <p>Weigth is: {item.weight}g.</p>
+                      <p>Cost is: {item.cost}$</p>
+                      <p>Diameter is: {item.diameter}cm.</p>
+                    </div>
+                    <Reviews
+                      auth={this.props.auth}
+                      reviews={item.reviews}
+                      modal={this.toggleReviewModalHandler}
+                      id={item._id}
+                      setId={this.curBuildModalIdHandler}
+                      showReviews={this.props.setCurReviewsToShowFun}
+                      showReviewsModal={this.showReviewsIdModalHandler}
+                    />
+                  </div>
+                  <div className="single__build__order__cover">
+                    <button
+                      className="single__build__order"
+                      onClick={() =>
+                        this.setState({
+                          modalIsShow: true,
+                          selectedItem: item
+                        })
+                      }
+                    >
+                      Order
+                    </button>
+                  </div>
                 </div>
-                <div className="single__build__order__cover">
-                  <button
-                    className="single__build__order"
-                    onClick={() =>
-                      this.setState({
-                        modalIsShow: true,
-                        selectedItem: item
-                      })
-                    }
-                  >
-                    Order
-                  </button>
-                </div>
-              </div>
-            );
+              );
           })
         ) : (
           <h1>No builds yet</h1>
@@ -236,7 +240,4 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(Builds);
+export default connect(stateToProps, dispatchToProps)(Builds);

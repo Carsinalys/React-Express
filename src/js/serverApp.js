@@ -26,7 +26,4 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  dispatchToProps
-)(App);
+export default connect(null, dispatchToProps)(App);
