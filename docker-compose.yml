@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  pizza:
+    container_name: pizza
+    build: .
+    ports:
+      - 3000:3000
+
+  redis_instance:
+    image: redis:5.0.6
+    container_name: redis_server
+    ports:
+      - 7001:6379
