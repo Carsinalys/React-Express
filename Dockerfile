@@ -1,4 +1,4 @@
-FROM node:10-alpine
+FROM node:13-alpine
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
@@ -14,7 +14,9 @@ COPY package*.json ./
 
 COPY --chown=node:node . .
 
-RUN npm install --only=production && npm cache clean --force
+RUN apk add --no-cache --virtual .gyp  python make g++ && \
+    npm install --only=production && npm cache clean --force \
+    && apk del .gyp
 
 USER node
 
