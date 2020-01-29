@@ -10,5 +10,6 @@ services:
   redis_instance:
     image: redis:5.0.6
     container_name: redis_server
+    restart: always
     ports:
       - 7001:6379

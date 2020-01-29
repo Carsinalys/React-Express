@@ -1,0 +1,13 @@
+.git
+node_modules
+tests
+.eslintrc.json
+.prettierrc
+.travis.yml
+config.env
+.dockeringnore
+Dockerfile
+docker-compose.yml
+portFotFront.js
+README.md
+.idea

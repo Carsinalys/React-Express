@@ -1,10 +1,13 @@
 const Redis = require("redis");
 
-const Client =
-  process.env.NODE_ENV === "production"
-    ? Redis.createClient(process.env.REDIS_URL)
-    : Redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST);
-//: Redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST);
+//in future need to solve ports for heroku in production
+const Client = Redis.createClient(
+  process.env.REDIS_PORT,
+  process.env.REDIS_HOST
+);
+// const Client = process.env.NODE_ENV === "production"
+//   ? Redis.createClient(process.env.REDIS_URL)
+//   : Redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST);
 Client.set("test", "redis online");
 Client.get("test", (err, data) => {
   if (err) console.log(err);

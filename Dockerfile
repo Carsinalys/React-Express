@@ -4,16 +4,19 @@ RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
 WORKDIR /home/node/app
 
+ENV NODE_ENV=production PORT=3000 SALT=Pidor_ultra_pidor_tempo_govno_ebanoe_gde_moi_avtomat \
+EXPIRE=60 SRAYIN=10080 DATABASE=mongodb+srv://User:<password>@cluster0-vfbi9.mongodb.net/Orders?retryWrites=true&w=majority \
+DATABASE_LOCAL=mongodb://localhost:27017/dbname DATABASE_PASSWORD=Cardinalys EMAIL_USERNAME=andrei.baranau@onthespotdev.com \
+EMAIL_PASSWORD=Cardinalys SENDGRID_NAME=apikey SENDGRID_PASSWORD=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 \
+REDIS_PORT=7001 REDIS_HOST='172.17.0.1'
+
 COPY package*.json ./
 
 COPY --chown=node:node . .
 
-USER node
+RUN npm install --only=production && npm cache clean --force
 
-RUN npm install && npm cache clean --force
-RUN rm -rf node_modules/sharp
-RUN npm install --arch=x64 --platform=linux --target=8.10.0 sharp
-RUN npm rebuild
+USER node
 
 EXPOSE 3000
 

@@ -15,7 +15,8 @@ if (cluster.isMaster) {
     process.exit(1);
   });
   // env variabels
-  require("dotenv").config({ path: "./config.env" });
+  if (process.NODE_ENV !== "production")
+    require("dotenv").config({ path: "./config.env" });
   const app = require("./server/index");
   // condition for testing in travis
   let DB;
@@ -56,12 +57,16 @@ if (cluster.isMaster) {
     });
   });
   // this is heroku event with shoting down server every 24 hours
-  process.on("SIGTERM", () => {
-    console.log("SIGTERM recieved, shouting down.");
+  const exitProcces = () => {
+    console.log("SIGTERM or SIGINT recieved, shouting down.");
     server.close(() => {
       console.log("process terminated.");
+      process.exit(1);
     });
-  });
+  };
+  process.on("SIGINT", exitProcces);
+  process.on("SIGTERM", exitProcces);
+  process.on("SIGQUIT", exitProcces);
 
   socket(server);
 }
