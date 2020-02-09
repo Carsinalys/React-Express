@@ -178,7 +178,4 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(PersonalRoom);
+export default connect(stateToProps, dispatchToProps)(PersonalRoom);

@@ -2,19 +2,13 @@ import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import PizzaHeader from "./pizzaHeader/pizzaHeder";
-//import PizzaBuilderPropsSrc from "./pizzaBuilder/pizzaBuilderPropsSrc";
-//import Reviews from "./pizzaReviews/pizzaBuilderReviews";
 import AddReview from "./pizzaReviews/pizzaReviewsAddReview";
 import PizzaBuilderMainPage from "./pizzaBuilderMain/pizzaBuilderMain";
-//import PizzaBuilderCheckout from "./pizzaBuilderCheckout/pizzaBuilderCheckout";
 import Authendication from "./pizzaBuilderAuth/pizzaBuilderAuth";
 import AuthendicationSignUp from "./pizzaBuilderAuth/pizzaBuilderAuthSignUp";
 import LogOut from "./pizzaBuilderLogOut/pizzaBuilderLogOut";
-//import Cabinet from "./pizzaBuildreCabinet/pizzaBuilderCabinet";
 import Forgot from "./pizzaBuilderAuth/pizzaBuilderAuthForgot";
-//import ReadyBuilds from "./pizzaBuilderBuilds/pizzaBuilderBuilds";
 import ChangeMail from "./pizzaBuildreCabinet/pizzaBuilderCabinetChangeMail";
-//import Chat from "./pizzaBuilderChat/pizzaBuilderChat";
 import Page404 from "./pizzaBuilder404/pizzaBuilder404";
 
 const BuldsLazy = React.lazy(() =>

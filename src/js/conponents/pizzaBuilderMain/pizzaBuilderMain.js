@@ -160,7 +160,4 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(PizzaBuilderMainPage);
+export default connect(stateToProps, dispatchToProps)(PizzaBuilderMainPage);

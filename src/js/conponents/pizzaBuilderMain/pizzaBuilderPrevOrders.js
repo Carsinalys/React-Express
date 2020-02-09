@@ -41,13 +41,13 @@ const orders = props => {
                         <div className="pizza__view__icon__pic">
                           {props.browser.safari ? (
                             <img
-                              src={require(`../../../img/${key}.png`)}
+                              src={`assets/img/${key}.png`}
                               alt={key}
                               className="pizza__view__icon__image"
                             />
                           ) : (
                             <img
-                              src={require(`../../../img/webp/${key}.webp`)}
+                              src={`assets/img/webp/${key}.webp`}
                               alt={key}
                               className="pizza__view__icon__image"
                             />
@@ -105,13 +105,13 @@ const orders = props => {
                                 <div className="pizza__view__icon__pic">
                                   {props.browser.safari ? (
                                     <img
-                                      src={require(`../../../img/${key}.png`)}
+                                      src={`assets/img/${key}.png`}
                                       alt={key}
                                       className="pizza__view__icon__image"
                                     />
                                   ) : (
                                     <img
-                                      src={require(`../../../img/webp/${key}.webp`)}
+                                      src={`assets/img/webp/${key}.webp`}
                                       alt={key}
                                       className="pizza__view__icon__image"
                                     />

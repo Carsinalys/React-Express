@@ -130,7 +130,4 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(Authendication);
+export default connect(stateToProps, dispatchToProps)(Authendication);

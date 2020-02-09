@@ -4,10 +4,7 @@ const pizzaSpiner = props => {
   return (
     <div className="modal__sending">
       <div>
-        <img
-          src={require("../../../img/doubleRingSpinner.svg")}
-          alt="spinner"
-        />
+        <img src={"assets/img/doubleRingSpinner.svg"} alt="spinner" />
       </div>
     </div>
   );

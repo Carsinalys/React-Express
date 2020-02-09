@@ -4,8 +4,6 @@ import { getTokenFromCookie, checkBrowser } from "./AC/index";
 
 import PizzaBuilder from "./conponents/pizzaBuilder";
 import { BrowserRouter } from "react-router-dom";
-//hot reloading
-import { hot } from "react-hot-loader/root";
 
 class App extends React.Component {
   componentDidMount() {
@@ -33,24 +31,4 @@ const dispatchToProps = dispatch => {
   };
 };
 
-const AppToExp =
-  process.env.NODE_ENV === "production"
-    ? connect(
-        null,
-        dispatchToProps
-      )(App)
-    : hot(
-        connect(
-          null,
-          dispatchToProps
-        )(App)
-      );
-
-export default AppToExp;
-
-// export default hot(
-//     connect(
-//         null,
-//         dispatchToProps
-//     )(App)
-// );
+export default connect(null, dispatchToProps)(App);

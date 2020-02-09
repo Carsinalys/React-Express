@@ -80,7 +80,4 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(ForgotPass);
+export default connect(stateToProps, dispatchToProps)(ForgotPass);

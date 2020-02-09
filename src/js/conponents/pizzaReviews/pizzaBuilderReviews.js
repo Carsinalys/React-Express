@@ -75,9 +75,4 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(
-  connect(
-    stateToProps,
-    dispatchToProps
-  )(Reviews)
-);
+export default withRouter(connect(stateToProps, dispatchToProps)(Reviews));

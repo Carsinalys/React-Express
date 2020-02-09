@@ -421,7 +421,4 @@ const stateToProps = state => {
   };
 };
 
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(Chat);
+export default connect(stateToProps, dispatchToProps)(Chat);

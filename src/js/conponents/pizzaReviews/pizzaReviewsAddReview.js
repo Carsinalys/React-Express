@@ -258,7 +258,4 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(AddReview);
+export default connect(stateToProps, dispatchToProps)(AddReview);

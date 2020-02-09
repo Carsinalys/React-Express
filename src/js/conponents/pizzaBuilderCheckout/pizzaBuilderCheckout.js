@@ -234,7 +234,4 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(PizzaBuilderCheckout);
+export default connect(stateToProps, dispatchToProps)(PizzaBuilderCheckout);
