@@ -6,17 +6,17 @@ const resolvers = {
       const result = await Builds.findOne({ name: args.name }).populate(
         "reviews"
       );
-      console.log(result);
       return {
         id: result._id,
         name: result.name,
         diameter: result.diameter,
-        price: result.cost,
+        cost: result.cost,
         weight: result.weight,
         ingredients: result.ingredients,
         reviews: result.reviews
       };
-    }
+    },
+    getBuilds: async () => await Builds.find().populate("reviews")
   }
 };
 

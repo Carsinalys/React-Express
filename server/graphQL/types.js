@@ -5,11 +5,11 @@ const typeDefs = gql`
   scalar Date
 
   type Pizza {
-    id: String!
+    id: ID!
     name: String!
     diameter: Int!
     weight: Int!
-    price: Float!
+    cost: Float!
     ingredients: Object
     reviews: [Review]
   }
@@ -24,6 +24,7 @@ const typeDefs = gql`
 
   type Query {
     getReadyPizza(name: String!): Pizza
+    getBuilds: [Pizza]!
   }
 `;
 
