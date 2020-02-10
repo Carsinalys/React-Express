@@ -13,6 +13,12 @@ const cors = require("cors");
 const morgan = require("morgan");
 const path = require("path");
 const fs = require("fs");
+//GrqphQL
+const { ApolloServer } = require("apollo-server-express");
+const types = require("./graphQL/types");
+const resolvers = require("./graphQL/resolves");
+
+const server = new ApolloServer({ typeDefs: types, resolvers });
 
 import App from "../src/js/serverConnectProps";
 
@@ -21,6 +27,9 @@ const globalErrorHandler = require("./controllers/error");
 const html = fs.readFileSync("dist/index.html").toString();
 const parts = html.split("Loading...");
 const app = Express();
+//GrqphQL
+server.applyMiddleware({ app });
+console.log(`for GraphQL query ${server.graphqlPath}`);
 
 const routeOrders = require("./routes/orders");
 const routeReviews = require("./routes/reviews");
