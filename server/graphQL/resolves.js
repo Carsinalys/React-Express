@@ -13,7 +13,8 @@ const resolvers = {
         diameter: result.diameter,
         price: result.cost,
         weight: result.weight,
-        ingredients: result.ingredients
+        ingredients: result.ingredients,
+        reviews: result.reviews
       };
     }
   }
