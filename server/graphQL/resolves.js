@@ -16,13 +16,14 @@ const resolvers = {
     },
     getBuilds: async (_, { input }) => {
       let builds;
-      if (input.minCost || input.maxCost) {
-        console.log(input.maxCost);
-        const min = input.minCost || 0;
-        const max = input.maxCost || 1000;
-        builds = await Builds.find({ cost: { $gt: min, $lt: max } }).populate(
-          "reviews"
-        );
+      if (input) {
+        if (input.minCost || input.maxCost) {
+          const min = input.minCost || 0;
+          const max = input.maxCost || 1000;
+          builds = await Builds.find({ cost: { $gt: min, $lt: max } }).populate(
+            "reviews"
+          );
+        }
       } else {
         builds = await Builds.find().populate("reviews");
       }
