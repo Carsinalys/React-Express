@@ -2,10 +2,8 @@ const Builds = require("../models/builds");
 
 const resolvers = {
   Query: {
-    getReadyPizza: async (_, args) => {
-      const result = await Builds.findOne({ name: args.name }).populate(
-        "reviews"
-      );
+    getReadyPizza: async (_, { name }) => {
+      const result = await Builds.findOne({ name }).populate("reviews");
       return {
         id: result._id,
         name: result.name,
@@ -16,7 +14,26 @@ const resolvers = {
         reviews: result.reviews
       };
     },
-    getBuilds: async () => await Builds.find().populate("reviews")
+    getBuilds: async (_, { input }) => {
+      let builds;
+      if (input.minCost || input.maxCost) {
+        console.log(input.maxCost);
+        const min = input.minCost || 0;
+        const max = input.maxCost || 1000;
+        builds = await Builds.find({ cost: { $gt: min, $lt: max } }).populate(
+          "reviews"
+        );
+      } else {
+        builds = await Builds.find().populate("reviews");
+      }
+      return builds;
+    }
+  },
+  Mutation: {
+    createPizzaBuild: async (_, { input }) => {
+      console.log(input);
+      return input;
+    }
   }
 };
 

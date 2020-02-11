@@ -22,9 +22,27 @@ const typeDefs = gql`
     text: String!
   }
 
+  input PizzasInput {
+    minCost: Float
+    maxCost: Float
+  }
+
+  input NewPizzaInput {
+    name: String!
+    diameter: Int!
+    weight: Int!
+    cost: Float!
+    ingredients: Object
+    reviews: Object
+  }
+
   type Query {
     getReadyPizza(name: String!): Pizza
-    getBuilds: [Pizza]!
+    getBuilds(input: PizzasInput): [Pizza]!
+  }
+
+  type Mutation {
+    createPizzaBuild(input: NewPizzaInput!): Pizza!
   }
 `;
 
