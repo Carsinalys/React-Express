@@ -34,7 +34,4 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(LogingOut);
+export default connect(stateToProps, dispatchToProps)(LogingOut);

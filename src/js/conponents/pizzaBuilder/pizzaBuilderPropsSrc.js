@@ -179,7 +179,4 @@ const dispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(pizzaBuilderPropsSrc);
+export default connect(stateToProps, dispatchToProps)(pizzaBuilderPropsSrc);
