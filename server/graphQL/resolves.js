@@ -1,4 +1,5 @@
 const Builds = require("../models/builds");
+const BuldReviews = require("../models/reviews_builds");
 
 const resolvers = {
   Query: {
@@ -20,12 +21,10 @@ const resolvers = {
         if (input.minCost || input.maxCost) {
           const min = input.minCost || 0;
           const max = input.maxCost || 1000;
-          builds = await Builds.find({ cost: { $gt: min, $lt: max } }).populate(
-            "reviews"
-          );
+          builds = await Builds.find({ cost: { $gt: min, $lt: max } });
         }
       } else {
-        builds = await Builds.find().populate("reviews");
+        builds = await Builds.find();
       }
       return builds;
     }
@@ -34,6 +33,20 @@ const resolvers = {
     createPizzaBuild: async (_, { input }) => {
       console.log(input);
       return input;
+    }
+  },
+  Pizza: {
+    reviews: async pizza => {
+      const reviews = await BuldReviews.find()
+        .where("_id")
+        .in(pizza.reviews);
+      return (pizza.reviews = [...reviews]);
+    }
+  },
+  Review: {
+    build: async review => {
+      const build = await Builds.findById(review.build);
+      return (review.build = build);
     }
   }
 };

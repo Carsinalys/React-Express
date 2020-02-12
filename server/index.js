@@ -18,7 +18,13 @@ const { ApolloServer } = require("apollo-server-express");
 const types = require("./graphQL/types");
 const resolvers = require("./graphQL/resolves");
 
-const server = new ApolloServer({ typeDefs: types, resolvers });
+const server = new ApolloServer({
+  typeDefs: types,
+  resolvers,
+  context({ req }) {
+    return req;
+  }
+});
 
 import App from "../src/js/serverConnectProps";
 

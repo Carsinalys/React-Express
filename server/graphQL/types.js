@@ -20,7 +20,7 @@ const typeDefs = gql`
     date: Date!
     rating: Int
     text: String!
-    build: [Pizza]
+    build: Pizza
   }
 
   input PizzasInput {
