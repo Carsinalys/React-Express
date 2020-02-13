@@ -6,14 +6,13 @@ const resolvers = {
   Query: {
     SignIn: async (_, { input }, { req, res }) => {
       const { result, newToken } = await SignIn(input);
-      if (input.stayIn) {
-        let time = input.stayIn ? 604800 : 3600;
-        res.cookie("jwt", newToken, {
-          expires: new Date(Date.now() + time * 1000),
-          httpOnly: true,
-          secure: req.secure
-        });
-      }
+      let time = input.stayIn ? 604800 : 3600;
+      res.cookie("jwt", newToken, {
+        expires: new Date(Date.now() + time * 1000),
+        httpOnly: true,
+        secure: req.secure
+      });
+      console.log(res);
       return result;
     },
     getReadyPizza: async (_, { name }) => {

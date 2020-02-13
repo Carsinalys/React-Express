@@ -4,26 +4,6 @@ import client from "../graphql/client";
 import gql from "graphql-tag";
 
 export const getBuilds = () => {
-  const query = gql`
-    {
-      getReadyPizza(name: "florentine") {
-        id
-        name
-        weight
-        diameter
-        cost
-        ingredients
-        reviews {
-          rating
-        }
-      }
-    }
-  `;
-  client
-    .query({ query })
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
-
   return dispatch => {
     dispatch(getBuildsModalOn());
     fetch(`${port}/api/v1.0/builds`, {

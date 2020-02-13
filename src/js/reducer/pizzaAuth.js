@@ -59,8 +59,8 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         isAuthindicated: true,
-        expiresAt: action.payload.expireAt,
-        localId: action.payload.localId,
+        expiresAt: action.payload.data.SignIn.expireAt,
+        localId: action.payload.data.SignIn.localId,
         error: null,
         isLoading: false
       };
@@ -98,11 +98,11 @@ const reducer = (state = initState, action) => {
     case AC.AUTH_STORE_AUTH_DATA:
       localStorage.setItem(
         "expiresAt",
-        `${new Date().getTime() + action.payload.expireAt * 1000}`
+        `${new Date().getTime() + action.payload.data.SignIn.expireAt * 1000}`
       );
-      localStorage.setItem("localId", `${action.payload.localId}`);
-      localStorage.setItem("name", `${action.payload.name}`);
-      localStorage.setItem("photo", `${action.payload.photo}`);
+      localStorage.setItem("localId", `${action.payload.data.SignIn.localId}`);
+      localStorage.setItem("name", `${action.payload.data.SignIn.name}`);
+      localStorage.setItem("photo", `${action.payload.data.SignIn.photo}`);
       return {
         ...state
       };
