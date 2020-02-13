@@ -7,7 +7,13 @@ let client;
 if (process.browser) {
   const link = new createHttpLink({ uri: `${port}/graphql` });
   const cache = new InMemoryCache();
-  client = new ApolloClient({ link, cache });
+  client = new ApolloClient({
+    link,
+    cache,
+    fetchOptions: {
+      credentials: "include"
+    }
+  });
 }
 
 export default client;

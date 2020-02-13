@@ -21,8 +21,8 @@ const resolvers = require("./graphQL/resolves");
 const server = new ApolloServer({
   typeDefs: types,
   resolvers,
-  context({ req }) {
-    return req;
+  context({ req, res }) {
+    return { req, res };
   }
 });
 

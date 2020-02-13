@@ -1,8 +1,21 @@
 const Builds = require("../models/builds");
 const BuldReviews = require("../models/reviews_builds");
+const SignIn = require("./resolversFunctions/singIn");
 
 const resolvers = {
   Query: {
+    SignIn: async (_, { input }, { req, res }) => {
+      const { result, newToken } = await SignIn(input);
+      if (input.stayIn) {
+        let time = input.stayIn ? 604800 : 3600;
+        res.cookie("jwt", newToken, {
+          expires: new Date(Date.now() + time * 1000),
+          httpOnly: true,
+          secure: req.secure
+        });
+      }
+      return result;
+    },
     getReadyPizza: async (_, { name }) => {
       const result = await Builds.findOne({ name }).populate("reviews");
       return {

@@ -1,6 +1,8 @@
 import * as AC from "./ac";
 import { logOut } from "./index";
 import { port } from "../../../portForFront";
+import client from "../graphql/client";
+import gql from "graphql-tag";
 
 export const authOnInput = event => {
   return {

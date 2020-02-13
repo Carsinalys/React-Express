@@ -23,6 +23,16 @@ const typeDefs = gql`
     build: Pizza
   }
 
+  type UserAuthObj {
+    expireAt: Int
+    localId: String
+    name: String
+    photo: String
+    error: String
+    status: String
+    message: String
+  }
+
   input PizzasInput {
     minCost: Float
     maxCost: Float
@@ -37,7 +47,14 @@ const typeDefs = gql`
     reviews: Object
   }
 
+  input UserSignInInput {
+    mail: String!
+    password: String!
+    stayIn: Boolean!
+  }
+
   type Query {
+    SignIn(input: UserSignInInput): UserAuthObj
     getReadyPizza(name: String!): Pizza
     getBuilds(input: PizzasInput): [Pizza]!
   }
