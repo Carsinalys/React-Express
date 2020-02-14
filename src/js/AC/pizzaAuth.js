@@ -18,16 +18,23 @@ export const authSignUp = (mail, pass) => {
       mail: mail,
       password: pass
     };
-    fetch(`${port}/api/v1.0/user/create`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
+    const singUp = gql`
+      query singUp($input: UserSignUpInput!) {
+        SignUp(input: $input) {
+          expireAt
+          localId
+          name
+          photo
+          error
+          status
+          message
+        }
+      }
+    `;
+    client
+      .query({ query: singUp, variables: { input: data } })
       .then(res => {
-        if (res.error) {
+        if (res.data.SignUp.error) {
           dispatch(authError(res));
           dispatch(authModalOff());
         } else {
@@ -39,8 +46,8 @@ export const authSignUp = (mail, pass) => {
         }
       })
       .catch(error => {
-        dispatch(authError(error));
         dispatch(authModalOff());
+        dispatch(authError(error));
       });
   };
 };
@@ -70,7 +77,7 @@ export const authSignIn = (mail, pass, stayIn) => {
       .query({ query: singIn, variables: { input: data } })
       .then(res => {
         console.log(res);
-        if (res.error) {
+        if (res.data.SignIn.error) {
           dispatch(authError(res));
           dispatch(authModalOff());
         } else {
@@ -87,6 +94,40 @@ export const authSignIn = (mail, pass, stayIn) => {
       });
   };
 };
+
+// export const authSignUp = (mail, pass) => {
+//   return dispatch => {
+//     dispatch(authModalOn());
+//     let data = {
+//       mail: mail,
+//       password: pass
+//     };
+//     fetch(`${port}/api/v1.0/user/create`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify(data)
+//     })
+//         .then(res => res.json())
+//         .then(res => {
+//           if (res.error) {
+//             dispatch(authError(res));
+//             dispatch(authModalOff());
+//           } else {
+//             dispatch(authFinish(res));
+//             dispatch(authClearInputs());
+//             dispatch(storeToken(res));
+//             dispatch(authModalOff());
+//             dispatch(getTokenFromCookie());
+//           }
+//         })
+//         .catch(error => {
+//           dispatch(authError(error));
+//           dispatch(authModalOff());
+//         });
+//   };
+// };
 
 // export const authSignIn = (mail, pass, stayIn) => {
 //   return dispatch => {

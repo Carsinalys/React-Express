@@ -86,7 +86,7 @@ class Authendication extends React.Component {
           <h3 className="auth__sign__in__title">Sign up:</h3>
           {this.props.inputs.error ? (
             <h4 className="auth__sign__in__title_error">
-              {this.props.inputs.error.message}
+              {this.props.inputs.error}
             </h4>
           ) : null}
           <form

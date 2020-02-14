@@ -6,7 +6,9 @@ import { port } from "../../../portForFront";
 let client;
 if (process.browser) {
   const link = new createHttpLink({ uri: `${port}/graphql` });
-  const cache = new InMemoryCache();
+  const cache = new InMemoryCache({
+    dataIdFromObject: o => (o._id ? `${o.__typename}:${o._id}` : null)
+  });
   client = new ApolloClient({
     link,
     cache,

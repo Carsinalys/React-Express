@@ -151,7 +151,7 @@ const stateToProps = state => {
 const dispatchToProps = dispatch => {
   return {
     theSameFun: obj => dispatch(the_same(obj)),
-    getOrders: () => dispatch(gerOrders()),
+    getOrders: num => dispatch(gerOrders(num)),
     multiTheSameFun: obj => dispatch(multiPizzaTheSame(obj)),
     resetMultiPizzaFun: () => dispatch(resetMultiPizza()),
     reset_buildFun: () => dispatch(reset_build()),
