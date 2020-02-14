@@ -1,5 +1,7 @@
 import * as AC from "./ac";
 import { port } from "../../../portForFront";
+import client from "../graphql/client";
+import gql from "graphql-tag";
 
 export const logOut = () => {
   return {
@@ -8,19 +10,30 @@ export const logOut = () => {
 };
 
 export const fetchLogOut = () => {
-  console.log("in logout");
   return dispatch => {
-    console.log("in logout1", port);
-    fetch(`${port}/api/v1.0/user/logOut`, {
-      method: "POST"
-    })
-      .then(res => res.json())
-      .then(res => {
-        dispatch(logOut());
-        console.log(res);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    const logOutQuery = gql`
+      {
+        LogOut
+      }
+    `;
+    client.query({ query: logOutQuery }).then(() => {
+      dispatch(logOut());
+    });
   };
 };
+
+// export const fetchLogOut = () => {
+//   return dispatch => {
+//     fetch(`${port}/api/v1.0/user/logOut`, {
+//       method: "POST"
+//     })
+//         .then(res => res.json())
+//         .then(res => {
+//           dispatch(logOut());
+//           console.log(res);
+//         })
+//         .catch(error => {
+//           console.log(error);
+//         });
+//   };
+// };

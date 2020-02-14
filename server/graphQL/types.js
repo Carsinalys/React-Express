@@ -14,6 +14,22 @@ const typeDefs = gql`
     reviews: [Review]
   }
 
+  type Order {
+    id: ID!
+    name: String!
+    pizzaName: String!
+    diameter: Int
+    weight: Int
+    cost: Float
+    totalCost: Float
+    phone: String!
+    street: String!
+    house: Int!
+    flat: Int!
+    pizzas: [Pizza]
+    ingredients: Object
+  }
+
   type Review {
     id: ID!
     name: String!
@@ -31,6 +47,11 @@ const typeDefs = gql`
     error: String
     status: String
     message: String
+  }
+
+  type GetMoreOrders {
+    orders: [Order]!
+    count: Int!
   }
 
   input PizzasInput {
@@ -53,8 +74,21 @@ const typeDefs = gql`
     stayIn: Boolean!
   }
 
+  input UserSignUpInput {
+    mail: String!
+    password: String!
+  }
+
+  input GetOrdersInput {
+    count: Int
+  }
+
   type Query {
-    SignIn(input: UserSignInInput): UserAuthObj
+    GetOrders(input: GetOrdersInput): [Order]!
+    GetMoreOrders(input: GetOrdersInput): GetMoreOrders!
+    SignUp(input: UserSignUpInput!): UserAuthObj!
+    SignIn(input: UserSignInInput!): UserAuthObj!
+    LogOut: String
     getReadyPizza(name: String!): Pizza
     getBuilds(input: PizzasInput): [Pizza]!
   }

@@ -1,5 +1,5 @@
 const User = require("../../models/user");
-const jwt = require("jsonwebtoken");
+const createToken = require("./createToken");
 const AppError = require("../../utils/errorHandler");
 
 const signIn = async input => {
@@ -38,7 +38,7 @@ const signIn = async input => {
     ) {
       newToken = createToken(userRecord._id, process.env.SRAYIN);
       // updating user record (time)
-      updateUserRecordCached(userRecord._id);
+      await updateUserRecordCached(userRecord._id);
       //sending new token
       result = {
         expireAt: 604800,
@@ -47,11 +47,11 @@ const signIn = async input => {
         photo: userRecord.photo
       };
     } else {
-      return (result = {
+      result = {
         error: "password is don't match",
         status: "fail",
         message: "password is don't match"
-      });
+      };
     }
   return { result, newToken };
 };
@@ -73,10 +73,3 @@ const updateUserRecordCached = async function updateUserRecord(id) {
     }
   );
 };
-
-function createToken(id, time) {
-  return jwt.sign(
-    { id: id, exp: Math.floor(Date.now() / 1000) + 60 * time },
-    process.env.SALT
-  );
-}
