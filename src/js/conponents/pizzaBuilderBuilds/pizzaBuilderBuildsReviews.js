@@ -42,7 +42,6 @@ const buildsReviews = props => {
     }
     return markup;
   };
-
   return (
     <div className="builds__reviews__block__cover">
       <div

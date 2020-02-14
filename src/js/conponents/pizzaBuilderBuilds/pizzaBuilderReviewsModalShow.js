@@ -44,10 +44,7 @@ const reviewsModalShow = props => {
         <div className="builds__modal__reviews__show__cover">
           {props.reviews.length > 0 ? (
             props.reviews.map(item => (
-              <div
-                key={item._id.toString()}
-                className="review__modal__show__cover"
-              >
+              <div key={item.id} className="review__modal__show__cover">
                 <div>
                   <p className="review__modal__show__title">{item.name}</p>
                 </div>

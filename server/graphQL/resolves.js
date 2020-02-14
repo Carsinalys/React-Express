@@ -1,8 +1,11 @@
 const Builds = require("../models/builds");
 const BuldReviews = require("../models/reviews_builds");
+const User = require("../models/user");
 const SignIn = require("./resolversFunctions/singIn");
 const SignUp = require("./resolversFunctions/signUp");
 const GetOrdegs = require("./resolversFunctions/getOrders");
+const { set, get } = require("../caching/redis");
+const addBuildsReviews = require("./resolversFunctions/addBuildsReviews");
 
 const resolvers = {
   Query: {
@@ -63,23 +66,26 @@ const resolvers = {
       };
     },
     getBuilds: async (_, { input }) => {
-      let builds;
-      if (input) {
-        if (input.minCost || input.maxCost) {
-          const min = input.minCost || 0;
-          const max = input.maxCost || 1000;
-          builds = await Builds.find({ cost: { $gt: min, $lt: max } });
+      let builds = await get("builds");
+      if (!builds) {
+        if (input) {
+          if (input.minCost || input.maxCost) {
+            const min = input.minCost || 0;
+            const max = input.maxCost || 1000;
+            builds = await Builds.find({ cost: { $gt: min, $lt: max } });
+          }
+        } else {
+          builds = await Builds.find();
         }
-      } else {
-        builds = await Builds.find();
+        await set("builds", JSON.stringify(builds));
       }
-      return builds;
+      return JSON.parse(builds);
     }
   },
   Mutation: {
-    createPizzaBuild: async (_, { input }) => {
-      console.log(input);
-      return input;
+    addBuildsReview: async (_, { input }) => {
+      const review = await addBuildsReviews(input);
+      return review;
     }
   },
   Pizza: {
@@ -95,6 +101,10 @@ const resolvers = {
       const build = await Builds.findById(review.build);
       return (review.build = build);
     }
+    // user: async review => {
+    //   const user = await User.findById(review.user);
+    //   return (review.user = user);
+    // }
   }
 };
 

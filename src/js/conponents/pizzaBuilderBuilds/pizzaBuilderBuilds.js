@@ -192,7 +192,7 @@ class Builds extends React.Component {
                       auth={this.props.auth}
                       reviews={item.reviews}
                       modal={this.toggleReviewModalHandler}
-                      id={item._id}
+                      id={item.id}
                       setId={this.curBuildModalIdHandler}
                       showReviews={this.props.setCurReviewsToShowFun}
                       showReviewsModal={this.showReviewsIdModalHandler}

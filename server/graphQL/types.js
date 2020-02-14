@@ -37,6 +37,7 @@ const typeDefs = gql`
     rating: Int
     text: String!
     build: Pizza
+    user: String
   }
 
   type UserAuthObj {
@@ -83,6 +84,14 @@ const typeDefs = gql`
     count: Int
   }
 
+  input BuildsReviewsInput {
+    name: String!
+    rating: String!
+    text: String!
+    build: String!
+    user: String!
+  }
+
   type Query {
     GetOrders(input: GetOrdersInput): [Order]!
     GetMoreOrders(input: GetOrdersInput): GetMoreOrders!
@@ -94,6 +103,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    addBuildsReview(input: BuildsReviewsInput): Review!
+    editBuildsReview(input: BuildsReviewsInput): Review!
     createPizzaBuild(input: NewPizzaInput!): Pizza!
   }
 `;
