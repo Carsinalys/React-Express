@@ -89,7 +89,6 @@ export const getMoreOrders = count => {
       }
     `;
     client.query({ query: getOrders, variables: { input: data } }).then(res => {
-      console.log(res);
       if (res.error) dispatch(getError(res.error));
       else dispatch(setMoreOrders(res.data.GetMoreOrders));
     });
@@ -106,7 +105,6 @@ export const getMoreOrders = count => {
 //         return response.json();
 //       })
 //       .then(data => {
-//         console.log(data);
 //         dispatch(setMoreOrders(data));
 //       })
 //       .catch(error => dispatch(getError(error)));

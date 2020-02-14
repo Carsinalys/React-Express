@@ -2,7 +2,6 @@ import React from "react";
 import Orders from "./pizzaBuilderPrevOrders";
 
 const showMore = props => {
-  console.log(props);
   return (
     <div className="main__show__more__cover">
       <Orders
