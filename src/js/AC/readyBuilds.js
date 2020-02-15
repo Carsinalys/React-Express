@@ -1,32 +1,11 @@
-import { port } from "../../../portForFront";
 import * as AC from "../AC/ac";
 import client from "../graphql/client";
-import gql from "graphql-tag";
+import * as GQL from "../graphql/gql-tags";
 
 export const getBuilds = () => {
   return dispatch => {
     dispatch(getBuildsModalOn());
-    const query = gql`
-      {
-        getBuilds {
-          id
-          name
-          diameter
-          weight
-          cost
-          ingredients
-          reviews {
-            id
-            name
-            date
-            rating
-            text
-            user
-          }
-        }
-      }
-    `;
-    client.query({ query }).then(res => {
+    client.query({ query: GQL.getBuilds }).then(res => {
       if (res.error) console.log(error);
       else {
         dispatch(getBuildsModalOf());
@@ -35,24 +14,6 @@ export const getBuilds = () => {
     });
   };
 };
-
-// export const getBuilds = () => {
-//   return dispatch => {
-//     dispatch(getBuildsModalOn());
-//     fetch(`${port}/api/v1.0/builds`, {
-//       method: "GET"
-//     })
-//       .then(data => data.json())
-//       .then(data => {
-//         dispatch(getBuildsModalOf());
-//         dispatch(getBuildsFinish(data.data));
-//       })
-//       .catch(error => {
-//         dispatch(getBuildsModalOf());
-//         console.log(error);
-//       });
-//   };
-// };
 
 export const getBuildsFinish = data => {
   return {
@@ -81,21 +42,28 @@ export const setCurReviewsToShow = data => {
 };
 
 export const sendReview = data => {
+  data.rating = data.rating.toString();
   return dispatch => {
     dispatch(getBuildsModalOn());
-    const newReview = gql`
-      mutation addBuildsReview($input: BuildsReviewsInput) {
-        addBuildsReview(input: $input) {
-          id
-          name
-          date
-          rating
-          text
-        }
-      }
-    `;
     client
-      .mutate({ mutation: newReview, variables: { input: data } })
+      .mutate({
+        mutation: GQL.addBuildsReview,
+        variables: { input: data },
+        update: (cache, payload) => {
+          const { getBuilds } = cache.readQuery({
+            query: GQL.getBuilds
+          });
+          getBuilds.forEach(item => {
+            if (item.name === payload.data.addBuildsReview.build.name) {
+              item.reviews.push(payload.data.addBuildsReview);
+            }
+          });
+          cache.writeQuery({
+            query: GQL.getBuilds,
+            data: { getBuilds }
+          });
+        }
+      })
       .then(res => {
         if (res.error) console.log(error);
         else {
@@ -106,46 +74,43 @@ export const sendReview = data => {
   };
 };
 
-// export const sendReview = data => {
-//   return dispatch => {
-//     dispatch(getBuildsModalOn());
-//     fetch(`${port}/api/v1.0/builds/addReview`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify(data)
-//     })
-//       .then(data => data.json())
-//       .then(data => {
-//         dispatch(getBuildsModalOf());
-//         dispatch(getBuilds());
-//       })
-//       .catch(error => {
-//         dispatch(getBuildsModalOf());
-//         console.log(error);
-//       });
-//   };
-// };
-
 export const sendEditedReview = data => {
+  data.rating = data.rating.toString();
   return dispatch => {
     dispatch(getBuildsModalOn());
-    fetch(`${port}/api/v1.0/builds/addReview`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then(data => data.json())
-      .then(data => {
-        dispatch(getBuildsModalOf());
-        dispatch(getBuilds());
+    client
+      .mutate({
+        mutation: GQL.editBuildsReview,
+        variables: { input: data },
+        update: (cache, payload) => {
+          const { getBuilds } = cache.readQuery({
+            query: GQL.getBuilds
+          });
+          getBuilds.forEach(item => {
+            if (item.name === payload.data.editBuildsReview.build.name) {
+              if (item.reviews.length) {
+                item.reviews.forEach(review => {
+                  if (review.user === payload.data.editBuildsReview.user) {
+                    review.rating = payload.data.editBuildsReview.rating;
+                    review.text = payload.data.editBuildsReview.text;
+                    review.name = payload.data.editBuildsReview.name;
+                  }
+                });
+              }
+            }
+          });
+          cache.writeQuery({
+            query: GQL.getBuilds,
+            data: { getBuilds }
+          });
+        }
       })
-      .catch(error => {
-        dispatch(getBuildsModalOf());
-        console.log(error);
+      .then(res => {
+        if (res.error) console.log(error);
+        else {
+          dispatch(getBuildsModalOf());
+          dispatch(getBuilds());
+        }
       });
   };
 };

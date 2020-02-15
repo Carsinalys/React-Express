@@ -15,7 +15,7 @@ const reviewsBuildsShchema = new mongoose.Schema(
       trim: true,
       required: [true, "No text"],
       unique: false,
-      minlength: 10,
+      minlength: 5,
       maxlength: 300
     },
     rating: {

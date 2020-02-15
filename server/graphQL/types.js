@@ -30,6 +30,18 @@ const typeDefs = gql`
     ingredients: Object
   }
 
+  type User {
+    id: String!
+    createdAt: Date
+    role: String
+    photo: String
+    phone: Float
+    mail: String
+    flat: Int
+    house: Int
+    street: String
+  }
+
   type Review {
     id: ID!
     name: String!
@@ -92,12 +104,17 @@ const typeDefs = gql`
     user: String!
   }
 
+  input GetUserInfoInput {
+    id: String!
+  }
+
   type Query {
     GetOrders(input: GetOrdersInput): [Order]!
     GetMoreOrders(input: GetOrdersInput): GetMoreOrders!
     SignUp(input: UserSignUpInput!): UserAuthObj!
     SignIn(input: UserSignInInput!): UserAuthObj!
     LogOut: String
+    GetUserInfo(input: GetUserInfoInput!): User!
     getReadyPizza(name: String!): Pizza
     getBuilds(input: PizzasInput): [Pizza]!
   }

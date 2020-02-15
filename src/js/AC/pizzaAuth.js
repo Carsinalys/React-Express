@@ -1,8 +1,7 @@
 import * as AC from "./ac";
 import { logOut } from "./index";
-import { port } from "../../../portForFront";
 import client from "../graphql/client";
-import gql from "graphql-tag";
+import * as GQL from "../graphql/gql-tags";
 
 export const authOnInput = event => {
   return {
@@ -18,21 +17,15 @@ export const authSignUp = (mail, pass) => {
       mail: mail,
       password: pass
     };
-    const singUp = gql`
-      query singUp($input: UserSignUpInput!) {
-        SignUp(input: $input) {
-          expireAt
-          localId
-          name
-          photo
-          error
-          status
-          message
-        }
-      }
-    `;
     client
-      .query({ query: singUp, variables: { input: data } })
+      .query({
+        query: GQL.singUp,
+        variables: { input: data }
+      })
+      .then(res => {
+        client.resetStore();
+        return res;
+      })
       .then(res => {
         if (res.data.SignUp.error) {
           dispatch(authError(res));
@@ -60,23 +53,13 @@ export const authSignIn = (mail, pass, stayIn) => {
       password: pass,
       stayIn: stayIn
     };
-    const singIn = gql`
-      query singIn($input: UserSignInInput!) {
-        SignIn(input: $input) {
-          expireAt
-          localId
-          name
-          photo
-          error
-          status
-          message
-        }
-      }
-    `;
     client
-      .query({ query: singIn, variables: { input: data } })
+      .query({ query: GQL.singIn, variables: { input: data } })
       .then(res => {
-        console.log(res);
+        client.resetStore();
+        return res;
+      })
+      .then(res => {
         if (res.data.SignIn.error) {
           dispatch(authError(res));
           dispatch(authModalOff());
@@ -94,75 +77,6 @@ export const authSignIn = (mail, pass, stayIn) => {
       });
   };
 };
-
-// export const authSignUp = (mail, pass) => {
-//   return dispatch => {
-//     dispatch(authModalOn());
-//     let data = {
-//       mail: mail,
-//       password: pass
-//     };
-//     fetch(`${port}/api/v1.0/user/create`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify(data)
-//     })
-//         .then(res => res.json())
-//         .then(res => {
-//           if (res.error) {
-//             dispatch(authError(res));
-//             dispatch(authModalOff());
-//           } else {
-//             dispatch(authFinish(res));
-//             dispatch(authClearInputs());
-//             dispatch(storeToken(res));
-//             dispatch(authModalOff());
-//             dispatch(getTokenFromCookie());
-//           }
-//         })
-//         .catch(error => {
-//           dispatch(authError(error));
-//           dispatch(authModalOff());
-//         });
-//   };
-// };
-
-// export const authSignIn = (mail, pass, stayIn) => {
-//   return dispatch => {
-//     dispatch(authModalOn());
-//     let data = {
-//       mail: mail,
-//       password: pass,
-//       stayIn: stayIn
-//     };
-//     fetch(`${port}/api/v1.0/user/authentication`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify(data)
-//     })
-//       .then(res => res.json())
-//       .then(res => {
-//         if (res.error) {
-//           dispatch(authError(res));
-//           dispatch(authModalOff());
-//         } else {
-//           dispatch(authFinish(res));
-//           dispatch(authClearInputs());
-//           dispatch(storeToken(res));
-//           dispatch(authModalOff());
-//           dispatch(getTokenFromCookie());
-//         }
-//       })
-//       .catch(error => {
-//         dispatch(authModalOff());
-//         dispatch(authError(error));
-//       });
-//   };
-// };
 
 export const authFinish = data => {
   return {

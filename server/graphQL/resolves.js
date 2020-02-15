@@ -1,11 +1,14 @@
 const Builds = require("../models/builds");
 const BuldReviews = require("../models/reviews_builds");
 const User = require("../models/user");
+const isAuthenticated = require("./resolversFunctions/isAuthenticated");
 const SignIn = require("./resolversFunctions/singIn");
 const SignUp = require("./resolversFunctions/signUp");
 const GetOrdegs = require("./resolversFunctions/getOrders");
 const { set, get } = require("../caching/redis");
 const addBuildsReviews = require("./resolversFunctions/addBuildsReviews");
+const editBuildsReviews = require("./resolversFunctions/editBuildsReviews");
+const GetUSerInfo = require("./resolversFunctions/getUserInfo");
 
 const resolvers = {
   Query: {
@@ -40,6 +43,9 @@ const resolvers = {
       });
       return "";
     },
+    GetUserInfo: async (_, { input }) => {
+      return await GetUSerInfo(input);
+    },
     GetOrders: async (_, { input }) => {
       const { result } = await GetOrdegs(input);
       return result;
@@ -47,11 +53,10 @@ const resolvers = {
     GetMoreOrders: async (_, { input }) => {
       const { result, allCount } = await GetOrdegs(input);
       if (!input.count) throw new Error("No count");
-      const orders = {
+      return {
         orders: result,
         count: allCount
       };
-      return orders;
     },
     getReadyPizza: async (_, { name }) => {
       const result = await Builds.findOne({ name }).populate("reviews");
@@ -67,7 +72,8 @@ const resolvers = {
     },
     getBuilds: async (_, { input }) => {
       let builds = await get("builds");
-      if (!builds) {
+      if (builds) builds = JSON.parse(builds);
+      else {
         if (input) {
           if (input.minCost || input.maxCost) {
             const min = input.minCost || 0;
@@ -79,13 +85,19 @@ const resolvers = {
         }
         await set("builds", JSON.stringify(builds));
       }
-      return JSON.parse(builds);
+      return builds;
     }
   },
   Mutation: {
-    addBuildsReview: async (_, { input }) => {
-      const review = await addBuildsReviews(input);
-      return review;
+    addBuildsReview: async (_, { input }, { req }) => {
+      await isAuthenticated(req);
+      if (req.user) return await addBuildsReviews(input);
+      else throw new Error("not authenticated");
+    },
+    editBuildsReview: async (_, { input }, { req }) => {
+      await isAuthenticated(req);
+      if (req.user) return await editBuildsReviews(input);
+      else throw new Error("not authenticated");
     }
   },
   Pizza: {

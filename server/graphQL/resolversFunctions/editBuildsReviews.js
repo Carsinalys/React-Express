@@ -3,12 +3,12 @@ const { del } = require("../../caching/redis");
 
 const editBuildsRviews = async input => {
   const oldReview = await ReviewsBuilds.findOne({
-    user: req.body.user,
-    build: req.body.build
+    user: input.user,
+    build: input.build
   });
-  oldReview.name = req.body.name;
-  oldReview.text = req.body.text;
-  oldReview.rating = req.body.rating;
+  oldReview.name = input.name;
+  oldReview.text = input.text;
+  oldReview.rating = input.rating;
   oldReview.save();
   await del("builds");
   return oldReview;
