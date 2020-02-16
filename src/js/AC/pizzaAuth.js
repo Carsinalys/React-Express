@@ -27,20 +27,14 @@ export const authSignUp = (mail, pass) => {
         return res;
       })
       .then(res => {
-        if (res.data.SignUp.error) {
-          dispatch(authError(res));
-          dispatch(authModalOff());
-        } else {
+        dispatch(authModalOff());
+        if (res.data.SignUp.error) dispatch(authError(res));
+        else {
           dispatch(authFinish(res));
           dispatch(authClearInputs());
           dispatch(storeToken(res));
-          dispatch(authModalOff());
           dispatch(getTokenFromCookie());
         }
-      })
-      .catch(error => {
-        dispatch(authModalOff());
-        dispatch(authError(error));
       });
   };
 };
@@ -60,20 +54,14 @@ export const authSignIn = (mail, pass, stayIn) => {
         return res;
       })
       .then(res => {
-        if (res.data.SignIn.error) {
-          dispatch(authError(res));
-          dispatch(authModalOff());
-        } else {
+        dispatch(authModalOff());
+        if (res.data.SignIn.error) dispatch(authError(res));
+        else {
           dispatch(authFinish(res));
           dispatch(authClearInputs());
           dispatch(storeToken(res));
-          dispatch(authModalOff());
           dispatch(getTokenFromCookie());
         }
-      })
-      .catch(error => {
-        dispatch(authModalOff());
-        dispatch(authError(error));
       });
   };
 };

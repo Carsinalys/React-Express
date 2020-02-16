@@ -58,18 +58,6 @@ const resolvers = {
         count: allCount
       };
     },
-    getReadyPizza: async (_, { name }) => {
-      const result = await Builds.findOne({ name }).populate("reviews");
-      return {
-        id: result._id,
-        name: result.name,
-        diameter: result.diameter,
-        cost: result.cost,
-        weight: result.weight,
-        ingredients: result.ingredients,
-        reviews: result.reviews
-      };
-    },
     getBuilds: async (_, { input }) => {
       let builds = await get("builds");
       if (builds) builds = JSON.parse(builds);

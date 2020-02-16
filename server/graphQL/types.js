@@ -115,7 +115,6 @@ const typeDefs = gql`
     SignIn(input: UserSignInInput!): UserAuthObj!
     LogOut: String
     GetUserInfo(input: GetUserInfoInput!): User!
-    getReadyPizza(name: String!): Pizza
     getBuilds(input: PizzasInput): [Pizza]!
   }
 

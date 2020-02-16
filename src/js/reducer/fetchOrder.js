@@ -116,40 +116,34 @@ const reducer = (state = initState, action) => {
         }
       };
     case AC.SEND_ORDER_ADDRES:
-      let key = "";
-      if (!action.payload.error && Object.keys(action.payload).length > 0) {
-        Object.keys(action.payload).map(item => {
-          return (key = item);
-        });
-      }
       return {
         ...state,
         inputs: {
           ...state.inputs,
           name: {
             ...state.inputs.name,
-            value: action.payload[key].name || "",
-            isValid: action.payload[key].name != undefined ? true : false
+            value: action.payload.name || "",
+            isValid: action.payload.name != undefined ? true : false
           },
           phone: {
             ...state.inputs.phone,
-            value: action.payload[key].phone || "",
-            isValid: action.payload[key].phone != undefined ? true : false
+            value: action.payload.phone || "",
+            isValid: action.payload.phone != undefined ? true : false
           },
           street: {
             ...state.inputs.street,
-            value: action.payload[key].street || "",
-            isValid: action.payload[key].street != undefined ? true : false
+            value: action.payload.street || "",
+            isValid: action.payload.street != undefined ? true : false
           },
           house: {
             ...state.inputs.house,
-            value: action.payload[key].house || "",
-            isValid: action.payload[key].house != undefined ? true : false
+            value: action.payload.house || "",
+            isValid: action.payload.house != undefined ? true : false
           },
           flat: {
             ...state.inputs.flat,
-            value: action.payload[key].flat || "",
-            isValid: action.payload[key].flat != undefined ? true : false
+            value: action.payload.flat || "",
+            isValid: action.payload.flat != undefined ? true : false
           }
         }
       };

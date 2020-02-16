@@ -6,11 +6,9 @@ export const getBuilds = () => {
   return dispatch => {
     dispatch(getBuildsModalOn());
     client.query({ query: GQL.getBuilds }).then(res => {
+      dispatch(getBuildsModalOf());
       if (res.error) console.log(error);
-      else {
-        dispatch(getBuildsModalOf());
-        dispatch(getBuildsFinish(res.data.getBuilds));
-      }
+      else dispatch(getBuildsFinish(res.data.getBuilds));
     });
   };
 };
@@ -55,7 +53,8 @@ export const sendReview = data => {
           });
           getBuilds.forEach(item => {
             if (item.name === payload.data.addBuildsReview.build.name) {
-              item.reviews.push(payload.data.addBuildsReview);
+              const curReviews = [...item.reviews];
+              item.reviews = [...curReviews, ...payload.data.addBuildsReview];
             }
           });
           cache.writeQuery({
@@ -65,11 +64,9 @@ export const sendReview = data => {
         }
       })
       .then(res => {
+        dispatch(getBuildsModalOf());
         if (res.error) console.log(error);
-        else {
-          dispatch(getBuildsModalOf());
-          dispatch(getBuilds());
-        }
+        else dispatch(getBuilds());
       });
   };
 };
@@ -91,9 +88,7 @@ export const sendEditedReview = data => {
               if (item.reviews.length) {
                 item.reviews.forEach(review => {
                   if (review.user === payload.data.editBuildsReview.user) {
-                    review.rating = payload.data.editBuildsReview.rating;
-                    review.text = payload.data.editBuildsReview.text;
-                    review.name = payload.data.editBuildsReview.name;
+                    review = { ...payload.data.editBuildsReview };
                   }
                 });
               }
@@ -106,11 +101,9 @@ export const sendEditedReview = data => {
         }
       })
       .then(res => {
+        dispatch(getBuildsModalOf());
         if (res.error) console.log(error);
-        else {
-          dispatch(getBuildsModalOf());
-          dispatch(getBuilds());
-        }
+        else dispatch(getBuilds());
       });
   };
 };

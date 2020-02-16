@@ -1,6 +1,8 @@
 import * as AC from "./ac";
 import { reset_build } from "./index";
 import { port } from "../../../portForFront";
+import client from "../graphql/client";
+import * as GQL from "../graphql/gql-tags";
 
 export const onInput = event => {
   return {
@@ -12,17 +14,12 @@ export const onInput = event => {
 export const getInfoAddresCheckout = id => {
   return dispatch => {
     dispatch(toggleModalOn());
-    fetch(`${port}/api/v1.0/user/getInfo?id=${id}`, {
-      method: "get"
-    })
-      .then(res => res.json())
+    client
+      .query({ query: GQL.getUSerInfo, variables: { input: { id } } })
       .then(res => {
-        dispatch(getAddressCheckout(res));
         dispatch(toggleModalOff());
-      })
-      .catch(error => {
-        console.log(error);
-        dispatch(toggleModalOff());
+        if (res.error) console.log(res.error);
+        else dispatch(getAddressCheckout(res.data.GetUserInfo));
       });
   };
 };
