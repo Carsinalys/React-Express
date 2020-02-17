@@ -6,19 +6,15 @@ const mainInfo = props => {
       <h2>Welcome to custom pizza builder!</h2>
       <div className="main__info__block">
         <div className="main__info__block__pic">
-          {props.browser.safari ? (
-            <img
-              src={"/assets/img/pizzaChef.jpg"}
-              alt="Pizza Chef"
-              className="main__info__block__image"
-            />
-          ) : (
-            <img
-              src={"/assets/img/webp/pizzaChef.webp"}
-              alt="Pizza Chef"
-              className="main__info__block__image"
-            />
-          )}
+          <img
+            src={
+              props.browser.safari
+                ? `/assets/img/pizzaChef.jpg`
+                : `/assets/img/webp/pizzaChef.webp`
+            }
+            alt="Pizza Chef"
+            className="main__info__block__image"
+          />
         </div>
         <div className="main__info__block__text">
           <p>

@@ -156,3 +156,18 @@ export const getUSerInfo = gql`
     }
   }
 `;
+
+export const getReviews = gql`
+  query getReviews($input: ReviewsInput) {
+    getReviews(input: $input) {
+      data {
+        _id
+        name
+        rating
+        text
+        date
+      }
+      count
+    }
+  }
+`;

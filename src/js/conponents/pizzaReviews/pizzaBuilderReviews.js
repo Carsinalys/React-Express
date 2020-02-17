@@ -11,9 +11,9 @@ class Reviews extends React.Component {
   componentDidMount() {
     if (this.props.location.pathname.indexOf("/reviews/") >= 0) {
       const page = this.props.location.pathname.replace("/reviews/", "").trim();
-      this.props.getReviews(`?page=${page}&limit=5`);
+      this.props.getReviews(`page=${page}&limit=5`);
       this.setState({ currentPage: page });
-    } else this.props.getReviews("?page=1&limit=5");
+    } else this.props.getReviews("page=1&limit=5");
   }
 
   state = {

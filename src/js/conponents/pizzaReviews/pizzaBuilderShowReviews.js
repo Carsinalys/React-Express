@@ -18,7 +18,7 @@ const showReviews = props => {
           to={path}
           key={i}
           onClick={() => {
-            props.changePage(`?page=${i + 1}&limit=5`);
+            props.changePage(`page=${i + 1}&limit=5`);
             props.changeCurPage(i + 1);
           }}
           className={

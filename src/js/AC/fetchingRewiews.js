@@ -1,17 +1,21 @@
 import * as AC from "./ac";
 import { port } from "../../../portForFront";
+import client from "../graphql/client";
+import * as GQL from "../graphql/gql-tags";
 
 export const getReviews = param => {
   return dispatch => {
     dispatch(startGetReviews());
-    fetch(`${port}/api/v1.0/reviews${param}`, {
-      method: "GET"
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => dispatch(setReviews(data.data, data.count)))
-      .catch(error => dispatch(getError(error)));
+    const input = Object.fromEntries(
+      param.split("&").map(item => item.split("="))
+    );
+    client.query({ query: GQL.getReviews, variables: { input } }).then(res => {
+      if (res.error) dispatch(getError(error));
+      else {
+        const { data, count } = res.data.getReviews;
+        dispatch(setReviews(data, count));
+      }
+    });
   };
 };
 

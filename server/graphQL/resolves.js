@@ -9,6 +9,7 @@ const { set, get } = require("../caching/redis");
 const addBuildsReviews = require("./resolversFunctions/addBuildsReviews");
 const editBuildsReviews = require("./resolversFunctions/editBuildsReviews");
 const GetUSerInfo = require("./resolversFunctions/getUserInfo");
+const reviewsRegular = require("./resolversFunctions/reviews");
 
 const resolvers = {
   Query: {
@@ -74,6 +75,9 @@ const resolvers = {
         await set("builds", JSON.stringify(builds));
       }
       return builds;
+    },
+    getReviews: async (_, { input }) => {
+      return await reviewsRegular(input);
     }
   },
   Mutation: {
@@ -96,7 +100,7 @@ const resolvers = {
       return (pizza.reviews = [...reviews]);
     }
   },
-  Review: {
+  Review_Build: {
     build: async review => {
       const build = await Builds.findById(review.build);
       return (review.build = build);

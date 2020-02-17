@@ -11,7 +11,7 @@ const typeDefs = gql`
     weight: Int!
     cost: Float!
     ingredients: Object
-    reviews: [Review]
+    reviews: [Review_Build]
   }
 
   type Order {
@@ -42,7 +42,7 @@ const typeDefs = gql`
     street: String
   }
 
-  type Review {
+  type Review_Build {
     id: ID!
     name: String!
     date: Date!
@@ -50,6 +50,19 @@ const typeDefs = gql`
     text: String!
     build: Pizza
     user: String
+  }
+
+  type Review {
+    _id: String!
+    date: Date!
+    name: String!
+    rating: Int!
+    text: String!
+  }
+
+  type ReviewAnswer {
+    data: [Review]!
+    count: Int
   }
 
   type UserAuthObj {
@@ -104,6 +117,12 @@ const typeDefs = gql`
     user: String!
   }
 
+  input ReviewsInput {
+    page: String
+    limit: String
+    id: String
+  }
+
   input GetUserInfoInput {
     id: String!
   }
@@ -116,11 +135,12 @@ const typeDefs = gql`
     LogOut: String
     GetUserInfo(input: GetUserInfoInput!): User!
     getBuilds(input: PizzasInput): [Pizza]!
+    getReviews(input: ReviewsInput): ReviewAnswer
   }
 
   type Mutation {
-    addBuildsReview(input: BuildsReviewsInput): Review!
-    editBuildsReview(input: BuildsReviewsInput): Review!
+    addBuildsReview(input: BuildsReviewsInput): Review_Build!
+    editBuildsReview(input: BuildsReviewsInput): Review_Build!
     createPizzaBuild(input: NewPizzaInput!): Pizza!
   }
 `;
