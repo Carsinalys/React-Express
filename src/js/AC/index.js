@@ -9,6 +9,7 @@ export {
 } from "./fetchingOrders";
 export {
   getReviews,
+  addReview,
   editReview,
   editReviewSend,
   deleteReview

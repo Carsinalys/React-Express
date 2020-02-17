@@ -38,7 +38,7 @@ const showReviews = props => {
     let stars = [];
     let counter = 0;
     for (let i = 0; i < 5; i++) {
-      if (counter < +props.reviews[item].rating) {
+      if (counter < +item.rating) {
         stars.push(<Star key={item + i} />);
         counter++;
       } else if (counter < 6) {
@@ -77,22 +77,22 @@ const showReviews = props => {
         </div>
       </Modal>
       <div className="reviews__cover__global">
-        {Object.keys(props.reviews).map(item => {
+        {props.reviews.map(item => {
           return (
-            <section className="review" key={item}>
-              {props.id === props.reviews[item].id ? (
+            <section className="review" key={item._id}>
+              {props.id === item.id ? (
                 <span
                   className="reviews__edit_btn"
-                  data-id={props.reviews[item]._id}
+                  data-id={item._id}
                   onClick={event => props.edit(event)}
                 >
                   edit
                 </span>
               ) : null}
-              {props.id === props.reviews[item].id ? (
+              {props.id === item.id ? (
                 <span
                   className="reviews__edit_btn"
-                  data-id={props.reviews[item]._id}
+                  data-id={item._id}
                   onClick={event => {
                     setModal(true);
                     setId(event.target.dataset.id);
@@ -102,14 +102,12 @@ const showReviews = props => {
                 </span>
               ) : null}
               <div className="review__head">
-                <p className="review__author">{props.reviews[item].name}</p>
+                <p className="review__author">{item.name}</p>
                 <p className="review__rating">{getRating(item)}</p>
-                <p className="review__date">
-                  {props.reviews[item].date.split("T")[0]}
-                </p>
+                <p className="review__date">{item.date.split("T")[0]}</p>
               </div>
               <div className="review__body">
-                <p className="review__text">{props.reviews[item].text}</p>
+                <p className="review__text">{item.text}</p>
               </div>
             </section>
           );

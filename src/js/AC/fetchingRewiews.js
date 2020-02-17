@@ -19,6 +19,18 @@ export const getReviews = param => {
   };
 };
 
+export const addReview = input => {
+  return dispatch => {
+    console.log(input);
+    client
+      .mutate({
+        mutation: GQL.addReview,
+        variables: { input }
+      })
+      .then(res => client.resetStore());
+  };
+};
+
 export const editReview = id => {
   return dispatch => {
     fetch(`${port}/api/v1.0/reviews?id=${id.target.dataset.id}`, {
@@ -35,6 +47,7 @@ export const editReview = id => {
 };
 
 export const editReviewSend = (data, id) => {
+  console.log("in editReviewSend");
   let sendData = { ...data, _id: id };
   return dispatch => {
     fetch(`${port}/api/v1.0/reviews`, {

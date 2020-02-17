@@ -2,6 +2,7 @@ exports.deleteOne = Model => async data => {
   try {
     const doc = await Model.findByIdAndRemove(data.id);
     if (!doc) throw new Error("Record with this id is doesn`t exist.");
+    return doc;
   } catch (e) {
     console.log(e.message);
   }
@@ -9,7 +10,7 @@ exports.deleteOne = Model => async data => {
 
 exports.addOne = Model => async data => {
   try {
-    await Model.create(data);
+    return await Model.create(data);
   } catch (e) {
     console.log(e);
   }
@@ -23,7 +24,8 @@ exports.updateOne = Model => async input => {
       new: true,
       runValidators: true
     });
-    throw new Error("No document with that id.");
+    if (!record) throw new Error("No document with that id.");
+    return record;
   } catch (e) {
     console.log(e.message);
   }

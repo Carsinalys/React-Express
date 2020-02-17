@@ -2,9 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
-import { editReviewSend } from "../../AC/index";
+import { editReviewSend, addReview } from "../../AC/index";
 import { port } from "../../../../portForFront";
-import { useMutation } from "@apollo/react-hooks";
 
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 
@@ -49,25 +48,14 @@ class AddReview extends React.Component {
         id: this.props.auth.localId
       };
       if (!this.props.reviews.editMode) {
-        fetch(`${port}/api/v1.0/reviews`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(data)
-        })
-          .then(response => {
-            name.value = "";
-            text.value = "";
-            this.setState({ currentRating: 5 });
-            this.setState({ isLoading: false });
-            console.log(response);
-          })
-          .catch(error => {
-            this.setState({ isLoading: false });
-            console.log(error);
-          });
+        console.log("in addreview");
+        this.props.addReviewFun(data);
+        name.value = "";
+        text.value = "";
+        this.setState({ currentRating: 5 });
+        this.setState({ isLoading: false });
       } else {
+        console.log("in editreview");
         this.props.editReviewSendFun(
           data,
           this.props.reviews.editReviewData._id
@@ -255,7 +243,8 @@ const stateToProps = state => {
 
 const dispatchToProps = dispatch => {
   return {
-    editReviewSendFun: (data, id) => dispatch(editReviewSend(data, id))
+    editReviewSendFun: (data, id) => dispatch(editReviewSend(data, id)),
+    addReviewFun: data => dispatch(addReview(data))
   };
 };
 

@@ -1,6 +1,5 @@
 const Builds = require("../models/builds");
 const BuldReviews = require("../models/reviews_builds");
-const User = require("../models/user");
 const isAuthenticated = require("./resolversFunctions/isAuthenticated");
 const SignIn = require("./resolversFunctions/singIn");
 const SignUp = require("./resolversFunctions/signUp");
@@ -10,6 +9,12 @@ const addBuildsReviews = require("./resolversFunctions/addBuildsReviews");
 const editBuildsReviews = require("./resolversFunctions/editBuildsReviews");
 const GetUSerInfo = require("./resolversFunctions/getUserInfo");
 const reviewsRegular = require("./resolversFunctions/reviews");
+const {
+  deleteOne,
+  addOne,
+  updateOne
+} = require("./resolversFunctions/handleFactory");
+const Reviews = require("../models/reviews");
 
 const resolvers = {
   Query: {
@@ -90,6 +95,10 @@ const resolvers = {
       await isAuthenticated(req);
       if (req.user) return await editBuildsReviews(input);
       else throw new Error("not authenticated");
+    },
+    addReview: async (_, { input }, { req }) => {
+      const addFun = addOne(Reviews);
+      return await addFun(input);
     }
   },
   Pizza: {

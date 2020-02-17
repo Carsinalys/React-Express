@@ -166,8 +166,23 @@ export const getReviews = gql`
         rating
         text
         date
+        id
       }
       count
+    }
+  }
+`;
+
+export const addReview = gql`
+  mutation addReview($input: MutationReviewsInput) {
+    addReview(input: $input) {
+      _id
+      date
+      name
+      rating
+      text
+      id
+      edited
     }
   }
 `;

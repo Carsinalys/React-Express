@@ -58,6 +58,8 @@ const typeDefs = gql`
     name: String!
     rating: Int!
     text: String!
+    id: String!
+    edited: Boolean
   }
 
   type ReviewAnswer {
@@ -83,15 +85,6 @@ const typeDefs = gql`
   input PizzasInput {
     minCost: Float
     maxCost: Float
-  }
-
-  input NewPizzaInput {
-    name: String!
-    diameter: Int!
-    weight: Int!
-    cost: Float!
-    ingredients: Object
-    reviews: Object
   }
 
   input UserSignInInput {
@@ -123,6 +116,15 @@ const typeDefs = gql`
     id: String
   }
 
+  input MutationReviewsInput {
+    name: String!
+    rating: Int!
+    text: String!
+    id: String!
+    date: Date
+    edited: Boolean
+  }
+
   input GetUserInfoInput {
     id: String!
   }
@@ -141,7 +143,8 @@ const typeDefs = gql`
   type Mutation {
     addBuildsReview(input: BuildsReviewsInput): Review_Build!
     editBuildsReview(input: BuildsReviewsInput): Review_Build!
-    createPizzaBuild(input: NewPizzaInput!): Pizza!
+    addReview(input: MutationReviewsInput): Review!
+    editReview(input: MutationReviewsInput): Review!
   }
 `;
 
