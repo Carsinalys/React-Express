@@ -186,3 +186,17 @@ export const addReview = gql`
     }
   }
 `;
+
+export const editReview = gql`
+  mutation editReview($input: EditReviewsInput) {
+    editReview(input: $input) {
+      _id
+      date
+      name
+      rating
+      text
+      id
+      edited
+    }
+  }
+`;

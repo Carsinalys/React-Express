@@ -125,6 +125,11 @@ const typeDefs = gql`
     edited: Boolean
   }
 
+  input EditReviewsInput {
+    data: MutationReviewsInput
+    _id: String!
+  }
+
   input GetUserInfoInput {
     id: String!
   }
@@ -144,7 +149,8 @@ const typeDefs = gql`
     addBuildsReview(input: BuildsReviewsInput): Review_Build!
     editBuildsReview(input: BuildsReviewsInput): Review_Build!
     addReview(input: MutationReviewsInput): Review!
-    editReview(input: MutationReviewsInput): Review!
+    editReview(input: EditReviewsInput): Review!
+    deleteReview(input: EditReviewsInput): Review
   }
 `;
 

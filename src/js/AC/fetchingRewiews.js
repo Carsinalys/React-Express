@@ -21,7 +21,6 @@ export const getReviews = param => {
 
 export const addReview = input => {
   return dispatch => {
-    console.log(input);
     client
       .mutate({
         mutation: GQL.addReview,
@@ -33,38 +32,31 @@ export const addReview = input => {
 
 export const editReview = id => {
   return dispatch => {
-    fetch(`${port}/api/v1.0/reviews?id=${id.target.dataset.id}`, {
-      method: "GET"
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        dispatch(reviewsEditModeOn(data.data));
-      })
-      .catch(error => dispatch(getReviewsError(error)));
+    client
+      .query({ query: GQL.getReviews, variables: { input: { id } } })
+      .then(res => {
+        if (res.error) dispatch(getReviewsError(error));
+        else {
+          const { data, count } = res.data.getReviews;
+          dispatch(reviewsEditModeOn(data));
+        }
+      });
   };
 };
 
 export const editReviewSend = (data, id) => {
-  console.log("in editReviewSend");
-  let sendData = { ...data, _id: id };
+  let sendData = { data, _id: id };
   return dispatch => {
-    fetch(`${port}/api/v1.0/reviews`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(sendData)
-    })
-      .then(response => {
-        return response.json();
+    client
+      .mutate({
+        mutation: GQL.editReview,
+        variables: { input: sendData }
       })
-      .then(data => {
-        console.log(data);
-        dispatch(reviewsEditModeOff());
+      .then(res => {
+        if (res.error) dispatch(getReviewsError(error));
+        client.resetStore();
       })
-      .catch(error => dispatch(getReviewsError(error)));
+      .then(() => dispatch(reviewsEditModeOff()));
   };
 };
 

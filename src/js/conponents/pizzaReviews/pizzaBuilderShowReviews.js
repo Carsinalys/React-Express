@@ -84,7 +84,7 @@ const showReviews = props => {
                 <span
                   className="reviews__edit_btn"
                   data-id={item._id}
-                  onClick={event => props.edit(event)}
+                  onClick={event => props.edit(event.target.dataset.id)}
                 >
                   edit
                 </span>

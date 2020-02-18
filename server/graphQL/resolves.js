@@ -99,6 +99,10 @@ const resolvers = {
     addReview: async (_, { input }, { req }) => {
       const addFun = addOne(Reviews);
       return await addFun(input);
+    },
+    editReview: async (_, { input }) => {
+      const editFun = updateOne(Reviews);
+      return await editFun(input);
     }
   },
   Pizza: {

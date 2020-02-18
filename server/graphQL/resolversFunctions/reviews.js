@@ -1,9 +1,12 @@
 const Reviews = require("../../models/reviews");
 
 const reviewsRegular = async input => {
-  let response = {};
-  if (input.id) response.data = await Reviews.findOne({ _id: input.id });
-  else if (input.page && input.limit) {
+  let response = { data: [], count: 0 };
+  if (input.id) {
+    const review = await Reviews.findOne({ _id: input.id });
+    response.data = [review];
+    response.count = 1;
+  } else if (input.page && input.limit) {
     const allReviews = await Reviews.find();
     const count = await Reviews.countDocuments();
     const page = input.page * 1;

@@ -30,7 +30,7 @@ const ordersReducer = (state = initState, action) => {
       return {
         ...state,
         editMode: true,
-        editReviewData: action.payload
+        editReviewData: action.payload[0]
       };
     case AC.REVIEWS_EDIT_MODE_OFF:
       return {

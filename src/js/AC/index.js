@@ -12,7 +12,8 @@ export {
   addReview,
   editReview,
   editReviewSend,
-  deleteReview
+  deleteReview,
+  reviewsEditModeOff
 } from "./fetchingRewiews";
 export { onInput, getInfoAddresCheckout, callApiAddOrderr } from "./fetchOrder";
 export {

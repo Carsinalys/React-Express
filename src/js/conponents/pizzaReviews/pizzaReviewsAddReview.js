@@ -1,9 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
-import { editReviewSend, addReview } from "../../AC/index";
-import { port } from "../../../../portForFront";
+import { editReviewSend, addReview, reviewsEditModeOff } from "../../AC/index";
 
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 
@@ -29,6 +27,11 @@ class AddReview extends React.Component {
     this.setState({ currentRating: rating });
   };
 
+  back = () => {
+    this.props.reviewsEditModeOffFun();
+    this.props.history.push("/reviews/1");
+  };
+
   addReviewHandler = event => {
     event.preventDefault();
     let name = document.querySelector("#author__name"),
@@ -48,23 +51,17 @@ class AddReview extends React.Component {
         id: this.props.auth.localId
       };
       if (!this.props.reviews.editMode) {
-        console.log("in addreview");
         this.props.addReviewFun(data);
-        name.value = "";
-        text.value = "";
-        this.setState({ currentRating: 5 });
-        this.setState({ isLoading: false });
       } else {
-        console.log("in editreview");
         this.props.editReviewSendFun(
           data,
           this.props.reviews.editReviewData._id
         );
-        name.value = "";
-        text.value = "";
-        this.setState({ currentRating: 5 });
-        this.setState({ isLoading: false });
       }
+      name.value = "";
+      text.value = "";
+      this.setState({ currentRating: 5 });
+      this.setState({ isLoading: false });
     } else {
       this.setState({ badData: true });
     }
@@ -226,7 +223,7 @@ class AddReview extends React.Component {
         </form>
         <div className="add__form__back__btn__cover">
           <button className="add__form__back__btn">
-            <Link to="/reviews/1">Back to reviews</Link>
+            <a onClick={this.back}>Back to reviews</a>
           </button>
         </div>
       </section>
@@ -244,7 +241,8 @@ const stateToProps = state => {
 const dispatchToProps = dispatch => {
   return {
     editReviewSendFun: (data, id) => dispatch(editReviewSend(data, id)),
-    addReviewFun: data => dispatch(addReview(data))
+    addReviewFun: data => dispatch(addReview(data)),
+    reviewsEditModeOffFun: () => dispatch(reviewsEditModeOff())
   };
 };
 
