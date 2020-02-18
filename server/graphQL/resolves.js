@@ -1,5 +1,6 @@
 const Builds = require("../models/builds");
 const BuldReviews = require("../models/reviews_builds");
+const Orders = require("../models/order");
 const isAuthenticated = require("./resolversFunctions/isAuthenticated");
 const SignIn = require("./resolversFunctions/singIn");
 const SignUp = require("./resolversFunctions/signUp");
@@ -97,12 +98,29 @@ const resolvers = {
       else throw new Error("not authenticated");
     },
     addReview: async (_, { input }, { req }) => {
-      const addFun = addOne(Reviews);
-      return await addFun(input);
+      await isAuthenticated(req);
+      if (req.user) {
+        const addFun = addOne(Reviews);
+        return await addFun(input);
+      } else throw new Error("not authenticated");
     },
-    editReview: async (_, { input }) => {
-      const editFun = updateOne(Reviews);
-      return await editFun(input);
+    editReview: async (_, { input }, { req }) => {
+      await isAuthenticated(req);
+      if (req.user) {
+        const editFun = updateOne(Reviews);
+        return await editFun(input);
+      } else throw new Error("not authenticated");
+    },
+    deleteReview: async (_, { input }, { req }) => {
+      await isAuthenticated(req);
+      if (req.user) {
+        const deleteFun = deleteOne(Reviews);
+        return await deleteFun(input);
+      } else throw new Error("not authenticated");
+    },
+    addOrder: async (_, { input }, { req }) => {
+      const addFun = addOne(Orders);
+      return await addFun(input);
     }
   },
   Pizza: {

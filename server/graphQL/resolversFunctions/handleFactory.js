@@ -1,8 +1,7 @@
 exports.deleteOne = Model => async data => {
   try {
-    const doc = await Model.findByIdAndRemove(data.id);
+    const doc = await Model.findByIdAndRemove(data._id);
     if (!doc) throw new Error("Record with this id is doesn`t exist.");
-    console.log(doc);
     return doc;
   } catch (e) {
     console.log(e.message);

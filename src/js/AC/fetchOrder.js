@@ -25,28 +25,49 @@ export const getInfoAddresCheckout = id => {
 };
 
 export const callApiAddOrderr = data => {
+  console.log(data);
   return dispatch => {
     dispatch(toggleModalOn());
-    fetch(`${port}/api/v1.0/orders`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then(data => data.json())
-      .then(data => {
+    client
+      .mutate({ mutation: GQL.addOrder, variables: { input: data } })
+      .then(res => {
         dispatch(toggleModalOff());
-        dispatch(resetState());
-        dispatch(reset_build());
-        dispatch(resetMultiBuild());
+        if (res.error) dispatch(catchError(error));
+        else {
+          dispatch(resetState());
+          dispatch(reset_build());
+          dispatch(resetMultiBuild());
+          console.log(res);
+        }
       })
-      .catch(error => {
-        dispatch(catchError(error));
-        dispatch(toggleModalOff());
-      });
+      .then(() => client.resetStore());
   };
 };
+
+// export const callApiAddOrderr = data => {
+//   console.log(data);
+//   return dispatch => {
+//     dispatch(toggleModalOn());
+//     fetch(`${port}/api/v1.0/orders`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify(data)
+//     })
+//       .then(data => data.json())
+//       .then(data => {
+//         dispatch(toggleModalOff());
+//         dispatch(resetState());
+//         dispatch(reset_build());
+//         dispatch(resetMultiBuild());
+//       })
+//       .catch(error => {
+//         dispatch(catchError(error));
+//         dispatch(toggleModalOff());
+//       });
+//   };
+// };
 
 export const resetMultiBuild = () => {
   return {

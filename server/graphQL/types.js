@@ -15,7 +15,7 @@ const typeDefs = gql`
   }
 
   type Order {
-    id: ID!
+    _id: ID!
     name: String!
     pizzaName: String!
     diameter: Int
@@ -28,6 +28,7 @@ const typeDefs = gql`
     flat: Int!
     pizzas: [Pizza]
     ingredients: Object
+    id: String
   }
 
   type User {
@@ -134,6 +135,32 @@ const typeDefs = gql`
     id: String!
   }
 
+  input PizzaInput {
+    name: String!
+    diameter: Int!
+    weight: Int!
+    cost: Float!
+    ingredients: Object
+    reviews: Object
+    id: String!
+  }
+
+  input OrderInput {
+    name: String!
+    pizzaName: String!
+    diameter: Int
+    weight: Int
+    cost: String
+    totalCost: String
+    phone: Float!
+    street: String!
+    house: Int!
+    flat: Int!
+    pizzas: [PizzaInput]
+    ingredients: Object
+    id: String!
+  }
+
   type Query {
     GetOrders(input: GetOrdersInput): [Order]!
     GetMoreOrders(input: GetOrdersInput): GetMoreOrders!
@@ -150,7 +177,8 @@ const typeDefs = gql`
     editBuildsReview(input: BuildsReviewsInput): Review_Build!
     addReview(input: MutationReviewsInput): Review!
     editReview(input: EditReviewsInput): Review!
-    deleteReview(input: EditReviewsInput): Review
+    deleteReview(input: EditReviewsInput): Review!
+    addOrder(input: OrderInput): Order!
   }
 `;
 

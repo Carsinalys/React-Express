@@ -200,3 +200,44 @@ export const editReview = gql`
     }
   }
 `;
+
+export const deleteReview = gql`
+  mutation deleteReview($input: EditReviewsInput) {
+    deleteReview(input: $input) {
+      _id
+      date
+      name
+      rating
+      text
+      id
+      edited
+    }
+  }
+`;
+
+export const addOrder = gql`
+  mutation addOrder($input: OrderInput) {
+    addOrder(input: $input) {
+      _id
+      name
+      pizzaName
+      diameter
+      weight
+      cost
+      totalCost
+      phone
+      street
+      house
+      flat
+      pizzas {
+        name
+        diameter
+        weight
+        cost
+        ingredients
+      }
+      ingredients
+      id
+    }
+  }
+`;

@@ -61,27 +61,19 @@ export const editReviewSend = (data, id) => {
 };
 
 export const deleteReview = id => {
-  let data = { id: id };
+  let data = { _id: id };
   return dispatch => {
     dispatch(deleteReviewModalOn());
-    fetch(`${port}/api/v1.0/reviews`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then(response => {
-        return response.json();
+    client
+      .mutate({
+        mutation: GQL.deleteReview,
+        variables: { input: data }
       })
       .then(res => {
-        dispatch(deleteReviewModalOff(data.id));
-        console.log(res);
+        dispatch(deleteReviewModalOff(res.data.deleteReview._id));
+        if (res.error) console.log(error);
       })
-      .catch(error => {
-        console.log(error);
-        dispatch(deleteReviewModalOff(data.id));
-      });
+      .then(() => client.resetStore());
   };
 };
 
