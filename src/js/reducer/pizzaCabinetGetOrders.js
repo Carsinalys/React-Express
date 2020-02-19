@@ -12,7 +12,7 @@ const reducer = (state = initState, action) => {
     case AC.CABINET_VIEW_ORDERS_SET:
       return {
         ...state,
-        orders: action.payload.data,
+        orders: action.payload.orders,
         count: action.payload.count
       };
     case AC.CABINET_VIEW_ORDERS_MODAL_ON:

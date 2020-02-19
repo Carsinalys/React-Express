@@ -44,7 +44,7 @@ class PizzaBuilderMainPage extends React.Component {
 
   wantTheSameHanler = event => {
     let order = this.props.orders.filter(
-      item => item._id.toString() === event.target.dataset.id
+      item => item._id === event.target.dataset.id
     )[0];
     if (!order) {
       order = this.props.moreOrders.filter(
@@ -52,14 +52,29 @@ class PizzaBuilderMainPage extends React.Component {
       )[0];
     }
     // this is copy of ingredients for prevent mutating data
-    let ingredients = {};
-    Object.keys(order.ingredients).map(item => {
-      ingredients[item] = { ...order.ingredients[item] };
-    });
-    const wantsOrder = {
-      ...order,
-      ingredients: ingredients
-    };
+    if (order.ingredients) {
+      let ingredients = {};
+      Object.keys(order.ingredients).map(item => {
+        ingredients[item] = { ...order.ingredients[item] };
+      });
+      const wantsOrder = {
+        ...order,
+        ingredients: ingredients
+      };
+    } else {
+      let newPizzas = order.pizzas.map(pizza => {
+        let ingredients = {};
+        Object.keys(pizza.ingredients).map(item => {
+          pizza.ingredients[item] = { ...order.ingredients[item] };
+        });
+        return pizza;
+      });
+      const wantsOrder = {
+        ...order,
+        ingredients: ingredients
+      };
+    }
+
     if (order.pizzas.length > 0) {
       this.props.resetMultiPizzaFun();
       this.props.reset_buildFun();

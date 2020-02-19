@@ -6,11 +6,11 @@ const orders = props => {
       ? props.orders.map((item, index) => {
           if (item.pizzas.length === 0) {
             return (
-              <div key={item.id + index} className="prev__order__cover">
+              <div key={item._id} className="prev__order__cover">
                 <div className="prev__order__hover">
                   <button
                     className="prev__order__hover__btn"
-                    data-id={item.id}
+                    data-id={item._id}
                     onClick={event => props.theSame(event)}
                   >
                     Want the same...
@@ -61,7 +61,7 @@ const orders = props => {
             );
           } else {
             return (
-              <div key={item.id + index} className="prev__order__cover">
+              <div key={item._id} className="prev__order__cover">
                 <div className="prev__order__hover">
                   <button
                     className="prev__order__hover__btn"

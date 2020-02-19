@@ -10,7 +10,7 @@ const myOrdersCabinet = props => {
       pageNum = Math.ceil(props.orders.count / 4);
     }
 
-  useEffect(() => props.viewOrders(`?page=1&limit=4&id=${props.id}`), []);
+  useEffect(() => props.viewOrders(`page=1&limit=4&id=${props.id}`), []);
 
   const [modal, setModal] = useState(false);
   const [id, setId] = useState(null);
@@ -23,12 +23,12 @@ const myOrdersCabinet = props => {
     prevOrders = props.orders.orders.map((item, index) => {
       if (!item.pizzas.length > 0) {
         return (
-          <div key={item._id.toString()} className="prev__order__cover">
+          <div key={item._id} className="prev__order__cover">
             <div
               className="delete__order"
               onClick={() => {
                 setModal(true);
-                setId(item._id.toString());
+                setId(item._id);
               }}
             ></div>
             <div className="prev__order__info__cover">
@@ -53,19 +53,15 @@ const myOrdersCabinet = props => {
                       <strong>{item.ingredients[key].count}X</strong>
                     </div>
                     <div className="pizza__view__icon__pic">
-                      {props.browser.safari ? (
-                        <img
-                          src={require(`../../../img/${key}.png`)}
-                          alt={key}
-                          className="pizza__view__icon__image"
-                        />
-                      ) : (
-                        <img
-                          src={require(`../../../img/webp/${key}.webp`)}
-                          alt={key}
-                          className="pizza__view__icon__image"
-                        />
-                      )}
+                      <img
+                        src={
+                          props.browser.safari
+                            ? `/assets/img/${key}.png`
+                            : `/assets/img/webp/${key}.webp`
+                        }
+                        alt={key}
+                        className="pizza__view__icon__image"
+                      />
                     </div>
                   </div>
                 ) : null;
@@ -75,7 +71,7 @@ const myOrdersCabinet = props => {
         );
       } else {
         return (
-          <div key={item._id.toString()} className="prev__order__cover">
+          <div key={item._id} className="prev__order__cover">
             <div
               className="delete__order"
               onClick={() => {
@@ -117,19 +113,15 @@ const myOrdersCabinet = props => {
                               <strong>{key.ingredients[ing].count}X</strong>
                             </div>
                             <div className="pizza__view__icon__pic">
-                              {props.browser.safari ? (
-                                <img
-                                  src={require(`../../../img/${ing}.png`)}
-                                  alt={ing}
-                                  className="pizza__view__icon__image"
-                                />
-                              ) : (
-                                <img
-                                  src={require(`../../../img/webp/${ing}.webp`)}
-                                  alt={ing}
-                                  className="pizza__view__icon__image"
-                                />
-                              )}
+                              <img
+                                src={
+                                  props.browser.safari
+                                    ? `/assets/img/${ing}.png`
+                                    : `/assets/img/webp/${ing}.webp`
+                                }
+                                alt={ing}
+                                className="pizza__view__icon__image"
+                              />
                             </div>
                           </div>
                         ) : null;
