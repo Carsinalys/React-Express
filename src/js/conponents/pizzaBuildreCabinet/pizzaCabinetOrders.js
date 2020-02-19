@@ -76,7 +76,7 @@ const myOrdersCabinet = props => {
               className="delete__order"
               onClick={() => {
                 setModal(true);
-                setId(item);
+                setId(item._id);
               }}
             ></div>
             <div className="prev__order__info__cover">

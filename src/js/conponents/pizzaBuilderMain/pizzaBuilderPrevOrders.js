@@ -65,7 +65,7 @@ const orders = props => {
                 <div className="prev__order__hover">
                   <button
                     className="prev__order__hover__btn"
-                    data-id={item.id + index}
+                    data-id={item._id}
                     onClick={event => props.theSame(event)}
                   >
                     Want the same...

@@ -1,23 +1,17 @@
 import * as AC from "./ac";
-import { port } from "../../../portForFront";
+import client from "../graphql/client";
+import * as GQL from "../graphql/gql-tags";
 
 export const getInfo = id => {
   return dispatch => {
-    dispatch(cabinetGetInfoModalON());
-    fetch(`${port}/api/v1.0/user/getInfo?id=${id}`, {
-      method: "GET"
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
+    client
+      .query({ query: GQL.getUSerInfo, variables: { input: { id } } })
+      .then(res => {
         dispatch(cabinetGetInfoModalOFF());
-        dispatch(cabinetGetInfo(data.data));
-      })
-      .catch(error => {
-        console.log(error);
-        dispatch(cabinetGetInfoModalOFF());
+        if (res.error) console.log(res.error);
+        else dispatch(cabinetGetInfo(res.data.GetUserInfo));
       });
+    dispatch(cabinetGetInfoModalON());
   };
 };
 

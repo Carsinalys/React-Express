@@ -1,5 +1,4 @@
 import * as AC from "./ac";
-import { port } from "../../../portForFront";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
 
@@ -12,6 +11,10 @@ export const viewOrdersCabinet = query => {
     client
       .query({ query: GQL.getMoreOrders, variables: { input } })
       .then(res => {
+        client.resetStore();
+        return res;
+      })
+      .then(res => {
         dispatch(viewOrdersCabinetModalOff());
         if (res.error) dispatch(viewOrdersCabinetError(res.error));
         else dispatch(viewOrdesCabinetSet(res.data.GetMoreOrders));
@@ -20,29 +23,17 @@ export const viewOrdersCabinet = query => {
 };
 
 export const deleteOrder = (id, localId) => {
-  let data = {
-    id: id
-  };
   return dispatch => {
     dispatch(viewOrdersCabinetModalOn());
-    fetch(`${port}/api/v1.0/orders`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
+    client
+      .mutate({ mutation: GQL.deleteOrder, variables: { input: { _id: id } } })
+      .then(res => {
         dispatch(viewOrdersCabinetModalOff());
-        dispatch(resetOrdersCabinet());
-        dispatch(viewOrdersCabinet(`?page=1&limit=4&id=${localId}`));
-      })
-      .catch(error => {
-        dispatch(viewOrdersCabinetModalOff());
-        dispatch(viewOrdersCabinetError(error));
+        if (res.error) dispatch(viewOrdersCabinetError(res.error));
+        else {
+          dispatch(resetOrdersCabinet());
+          dispatch(viewOrdersCabinet(`page=1&limit=4&id=${localId}`));
+        }
       });
   };
 };

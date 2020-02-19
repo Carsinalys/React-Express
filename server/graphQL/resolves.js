@@ -123,6 +123,13 @@ const resolvers = {
         const addFun = addOne(Orders);
         return await addFun(input);
       } else throw new Error("not authenticated");
+    },
+    deleteOrder: async (_, { input }, { req }) => {
+      await isAuthenticated(req);
+      if (req.user) {
+        const deleteFun = deleteOne(Orders);
+        return await deleteFun(input);
+      } else throw new Error("not authenticated");
     }
   },
   Pizza: {

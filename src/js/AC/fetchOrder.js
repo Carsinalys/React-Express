@@ -1,6 +1,5 @@
 import * as AC from "./ac";
 import { reset_build } from "./index";
-import { port } from "../../../portForFront";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
 
@@ -25,6 +24,7 @@ export const getInfoAddresCheckout = id => {
 };
 
 export const callApiAddOrderr = data => {
+  if (data.totalCost) data.totalCost = data.totalCost.toString();
   return dispatch => {
     dispatch(toggleModalOn());
     client
@@ -41,31 +41,6 @@ export const callApiAddOrderr = data => {
       .then(() => client.resetStore());
   };
 };
-
-// export const callApiAddOrderr = data => {
-//   console.log(data);
-//   return dispatch => {
-//     dispatch(toggleModalOn());
-//     fetch(`${port}/api/v1.0/orders`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify(data)
-//     })
-//       .then(data => data.json())
-//       .then(data => {
-//         dispatch(toggleModalOff());
-//         dispatch(resetState());
-//         dispatch(reset_build());
-//         dispatch(resetMultiBuild());
-//       })
-//       .catch(error => {
-//         dispatch(catchError(error));
-//         dispatch(toggleModalOff());
-//       });
-//   };
-// };
 
 export const resetMultiBuild = () => {
   return {

@@ -145,7 +145,7 @@ const typeDefs = gql`
     cost: Float!
     ingredients: Object
     reviews: Object
-    id: String!
+    id: String
   }
 
   input OrderInput {
@@ -162,6 +162,10 @@ const typeDefs = gql`
     pizzas: [PizzaInput]
     ingredients: Object
     id: String!
+  }
+
+  input DeleteOrderInput {
+    _id: String!
   }
 
   type Query {
@@ -182,6 +186,7 @@ const typeDefs = gql`
     editReview(input: EditReviewsInput): Review!
     deleteReview(input: EditReviewsInput): Review!
     addOrder(input: OrderInput): Order!
+    deleteOrder(input: DeleteOrderInput): Order!
   }
 `;
 

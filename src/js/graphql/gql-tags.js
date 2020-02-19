@@ -243,3 +243,30 @@ export const addOrder = gql`
     }
   }
 `;
+
+export const deleteOrder = gql`
+  mutation deleteOrder($input: DeleteOrderInput) {
+    deleteOrder(input: $input) {
+      _id
+      name
+      pizzaName
+      diameter
+      weight
+      cost
+      totalCost
+      phone
+      street
+      house
+      flat
+      pizzas {
+        name
+        diameter
+        weight
+        cost
+        ingredients
+      }
+      ingredients
+      id
+    }
+  }
+`;
