@@ -1,22 +1,20 @@
 import * as AC from "./ac";
 import { port } from "../../../portForFront";
+import client from "../graphql/client";
+import * as GQL from "../graphql/gql-tags";
 
 export const viewOrdersCabinet = query => {
+  const input = Object.fromEntries(
+    query.split("&").map(item => item.split("="))
+  );
   return dispatch => {
     dispatch(viewOrdersCabinetModalOn());
-    fetch(`${port}/api/v1.0/orders${query}`, {
-      method: "GET"
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
+    client
+      .query({ query: GQL.getMoreOrders, variables: { input } })
+      .then(res => {
         dispatch(viewOrdersCabinetModalOff());
-        dispatch(viewOrdesCabinetSet(data));
-      })
-      .catch(error => {
-        dispatch(viewOrdersCabinetError());
-        dispatch(viewOrdersCabinetError(error));
+        if (res.error) dispatch(viewOrdersCabinetError(res.error));
+        else dispatch(viewOrdesCabinetSet(res.data.GetMoreOrders));
       });
   };
 };

@@ -59,7 +59,6 @@ const resolvers = {
     },
     GetMoreOrders: async (_, { input }) => {
       const { result, allCount } = await GetOrdegs(input);
-      if (!input.count) throw new Error("No count");
       return {
         orders: result,
         count: allCount
@@ -119,8 +118,11 @@ const resolvers = {
       } else throw new Error("not authenticated");
     },
     addOrder: async (_, { input }, { req }) => {
-      const addFun = addOne(Orders);
-      return await addFun(input);
+      await isAuthenticated(req);
+      if (req.user) {
+        const addFun = addOne(Orders);
+        return await addFun(input);
+      } else throw new Error("not authenticated");
     }
   },
   Pizza: {

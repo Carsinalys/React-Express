@@ -61,6 +61,7 @@ export const editBuildsReview = gql`
 export const getOrders = gql`
   query getOrders($input: GetOrdersInput) {
     GetOrders(input: $input) {
+      _id
       id
       name
       pizzaName
@@ -88,6 +89,7 @@ export const getMoreOrders = gql`
   query getMoreOrders($input: GetOrdersInput) {
     GetMoreOrders(input: $input) {
       orders {
+        _id
         id
         name
         pizzaName

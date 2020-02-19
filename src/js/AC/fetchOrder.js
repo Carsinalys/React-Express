@@ -25,7 +25,6 @@ export const getInfoAddresCheckout = id => {
 };
 
 export const callApiAddOrderr = data => {
-  console.log(data);
   return dispatch => {
     dispatch(toggleModalOn());
     client
@@ -37,7 +36,6 @@ export const callApiAddOrderr = data => {
           dispatch(resetState());
           dispatch(reset_build());
           dispatch(resetMultiBuild());
-          console.log(res);
         }
       })
       .then(() => client.resetStore());

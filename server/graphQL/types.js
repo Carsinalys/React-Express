@@ -5,13 +5,13 @@ const typeDefs = gql`
   scalar Date
 
   type Pizza {
-    id: ID!
     name: String!
     diameter: Int!
     weight: Int!
     cost: Float!
     ingredients: Object
     reviews: [Review_Build]
+    id: String
   }
 
   type Order {
@@ -101,6 +101,9 @@ const typeDefs = gql`
 
   input GetOrdersInput {
     count: Int
+    page: String
+    limit: String
+    id: String
   }
 
   input BuildsReviewsInput {

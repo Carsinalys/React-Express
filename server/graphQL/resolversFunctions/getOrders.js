@@ -16,7 +16,6 @@ const getOrders = async input => {
       responseShow = await Orders.find().limit(+input.show);
     else responseShow = await Orders.find();
     result = {
-      status: "success",
       data: responseShow,
       countShow
     };
@@ -25,24 +24,13 @@ const getOrders = async input => {
     input.limit !== undefined &&
     input.id !== undefined
   ) {
-    const count = await Orders.countDocuments({ id: input.id });
+    allCount = await Orders.countDocuments({ id: input.id });
     const page = input.page * 1;
     const limit = input.limit * 1;
     const skip = (page - 1) * limit;
-    const collection = await Orders.find({ id: input.id })
+    result = await Orders.find({ id: input.id })
       .skip(skip)
       .limit(limit);
-    if (skip >= count) {
-      return res.status(404).json({
-        status: "fail",
-        message: "this page is doesn't exist"
-      });
-    }
-    result = {
-      status: "success",
-      data: collection,
-      count: count
-    };
   } else {
     const orders = await Orders.find();
 
