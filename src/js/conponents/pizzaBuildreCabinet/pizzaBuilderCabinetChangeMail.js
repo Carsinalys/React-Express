@@ -11,8 +11,7 @@ class ForgotPass extends React.Component {
     if (this.props.authReset.inputs.mail1.isValid) {
       this.props.fetchChangeEmailFun(
         this.props.authReset.inputs.mail1.value,
-        this.props.auth.localId,
-        this.props.auth.token
+        this.props.auth.localId
       );
       this.props.history.push("/");
     }
@@ -56,7 +55,7 @@ class ForgotPass extends React.Component {
                   }
                   placeholder="Email"
                   value={this.props.authReset.inputs.mail1.value}
-                  onChange={() => this.props.authChangeMailOnInputFun(event)}
+                  onChange={event => this.props.authChangeMailOnInputFun(event)}
                 />
               </label>
             </div>

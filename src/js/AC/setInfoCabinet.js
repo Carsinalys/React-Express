@@ -1,5 +1,6 @@
 import * as AC from "./ac";
-import { port } from "../../../portForFront";
+import client from "../graphql/client";
+import * as GQL from "../graphql/gql-tags";
 
 export const setCabinetOnInput = event => {
   return {
@@ -8,34 +9,41 @@ export const setCabinetOnInput = event => {
   };
 };
 
-export const setCabinetFetchOrder = (data, allGood) => {
+export const setCabinetFetchOrder = (data, allGood, id) => {
   return dispatch => {
     if (allGood) {
       dispatch(setCabinetToggleModal());
-      fetch(`${port}/api/v1.0/user/setAddress`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      })
-        .then(res => res.json())
-        .then(res => {
-          console.log(res);
-          dispatch(setCabinetToggleModal());
-          dispatch(setCabinetResetState(res));
+      const sendObj = {
+        data,
+        _id: id
+      };
+      client
+        .mutate({
+          mutation: GQL.changeUserInfo,
+          variables: { input: sendObj }
         })
-        .catch(error => {
+        .then(res => {
           dispatch(setCabinetToggleModal());
-          dispatch(setCabinetCatchError(error));
-        });
+          if (res.error) dispatch(setCabinetCatchError(res.error));
+          else {
+            dispatch(setCabinetResetState());
+            dispatch(setCabinetNewAddress(res.data.changeUserInfo));
+          }
+        })
+        .then(() => client.resetStore());
     }
   };
 };
 
-export const setCabinetResetState = res => {
+export const setCabinetResetState = () => {
   return {
-    type: AC.CABINET_SET_INFO_RESET,
+    type: AC.CABINET_SET_INFO_RESET
+  };
+};
+
+export const setCabinetNewAddress = res => {
+  return {
+    type: AC.CABINET_NEW_ADDRESS_SET,
     payload: res
   };
 };

@@ -36,6 +36,18 @@ const reducer = (state = initState, action) => {
           flat: action.payload.flat
         }
       };
+    case AC.CABINET_NEW_ADDRESS_SET:
+      return {
+        ...state,
+        info: {
+          ...state.info,
+          name: action.payload.name,
+          phone: action.payload.phone,
+          street: action.payload.street,
+          house: action.payload.house,
+          flat: action.payload.flat
+        }
+      };
     case AC.CABINET_MODAL_ON:
       return {
         ...state,

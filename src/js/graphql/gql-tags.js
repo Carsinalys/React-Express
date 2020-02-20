@@ -146,7 +146,8 @@ export const singIn = gql`
 export const getUSerInfo = gql`
   query getUserInfo($input: GetUserInfoInput!) {
     GetUserInfo(input: $input) {
-      id
+      _id
+      name
       createdAt
       role
       photo
@@ -267,6 +268,38 @@ export const deleteOrder = gql`
       }
       ingredients
       id
+    }
+  }
+`;
+
+export const changeUserInfo = gql`
+  mutation changeUserInfo($input: ChangeUserInfo!) {
+    changeUserInfo(input: $input) {
+      _id
+      createdAt
+      role
+      photo
+      phone
+      mail
+      flat
+      house
+      street
+    }
+  }
+`;
+
+export const changeUserMail = gql`
+  mutation changeUserMail($input: ChangeUserInfo!) {
+    changeUserMail(input: $input) {
+      _id
+      createdAt
+      role
+      photo
+      phone
+      mail
+      flat
+      house
+      street
     }
   }
 `;

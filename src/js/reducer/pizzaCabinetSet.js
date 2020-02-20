@@ -38,7 +38,7 @@ const initState = {
       type: "text",
       value: "",
       isValid: false,
-      pattern: "^[0-9]{1,4}$"
+      pattern: "^[0-9]+$"
     },
     flat: {
       id: "checkout__flat",
@@ -47,7 +47,7 @@ const initState = {
       type: "text",
       value: "",
       isValid: false,
-      pattern: "^[0-9]{1,4}$"
+      pattern: "^[0-9]+$"
     }
   }
 };

@@ -68,9 +68,7 @@ const pizzaNav = props => {
                 <div className="log__out__cover">
                   <div className="log__out__name__block">
                     <p>
-                      {props.auth.name !== "undefined"
-                        ? props.auth.name
-                        : "user"}
+                      {props.auth.name !== "null" ? props.auth.name : "user"}
                     </p>
                   </div>
                   <div className="log__out__image">

@@ -32,7 +32,7 @@ const typeDefs = gql`
   }
 
   type User {
-    id: String!
+    _id: ID!
     createdAt: Date
     role: String
     photo: String
@@ -41,6 +41,7 @@ const typeDefs = gql`
     flat: Int
     house: Int
     street: String
+    name: String
   }
 
   type Review_Build {
@@ -168,6 +169,20 @@ const typeDefs = gql`
     _id: String!
   }
 
+  input ChangeUserInfoFields {
+    flat: String
+    house: String
+    name: String
+    street: String
+    phone: String
+    mail: String
+  }
+
+  input ChangeUserInfo {
+    data: ChangeUserInfoFields
+    _id: String
+  }
+
   type Query {
     GetOrders(input: GetOrdersInput): [Order]!
     GetMoreOrders(input: GetOrdersInput): GetMoreOrders!
@@ -187,6 +202,8 @@ const typeDefs = gql`
     deleteReview(input: EditReviewsInput): Review!
     addOrder(input: OrderInput): Order!
     deleteOrder(input: DeleteOrderInput): Order!
+    changeUserInfo(input: ChangeUserInfo): User
+    changeUserMail(input: ChangeUserInfo): User
   }
 `;
 

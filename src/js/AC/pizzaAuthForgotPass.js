@@ -1,6 +1,8 @@
 import * as AC from "./ac";
 import { port } from "../../../portForFront";
 import { logOut } from "./index";
+import client from "../graphql/client";
+import * as GQL from "../graphql/gql-tags";
 
 export const fetchResetPass = mail => {
   return dispatch => {
@@ -32,40 +34,62 @@ export const fetchResetPass = mail => {
   };
 };
 
-export const fetchChangeEmail = (mail, id, token) => {
+export const fetchChangeEmail = (mail, id) => {
   return dispatch => {
     dispatch(authResetMOdalOn());
     let data = {
-      id: id,
-      mail: mail
+      _id: id,
+      data: { mail }
     };
-    console.log(mail, id, token);
-    fetch(`${port}/api/v1.0/changeMail`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify(data)
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        console.log(data);
-        if (!data.error) {
-          dispatch(authResetMessage());
-        }
-        dispatch(logOut());
+    client
+      .mutate({ mutation: GQL.changeUserMail, variables: { input: data } })
+      .then(res => {
+        console.log(error);
         dispatch(authResetMOdalOff());
         dispatch(authResetInput());
+        if (res.error) {
+          console.log(error);
+          ispatch(authResetMessage());
+        } else dispatch(logOut());
       })
-      .catch(error => {
-        dispatch(authResetMOdalOff());
-        dispatch(authResetInput());
-      });
+      .then(() => client.resetStore());
   };
 };
+
+// export const fetchChangeEmail = (mail, id, token) => {
+//   return dispatch => {
+//     dispatch(authResetMOdalOn());
+//     let data = {
+//       id: id,
+//       mail: mail
+//     };
+//     console.log(mail, id, token);
+//     fetch(`${port}/api/v1.0/changeMail`, {
+//       method: "PATCH",
+//       headers: {
+//         "Content-Type": "application/json",
+//         authorization: `Bearer ${token}`
+//       },
+//       body: JSON.stringify(data)
+//     })
+//       .then(response => {
+//         return response.json();
+//       })
+//       .then(data => {
+//         console.log(data);
+//         if (!data.error) {
+//           dispatch(authResetMessage());
+//         }
+//         dispatch(logOut());
+//         dispatch(authResetMOdalOff());
+//         dispatch(authResetInput());
+//       })
+//       .catch(error => {
+//         dispatch(authResetMOdalOff());
+//         dispatch(authResetInput());
+//       });
+//   };
+// };
 
 export const authResetOnInput = event => {
   return {

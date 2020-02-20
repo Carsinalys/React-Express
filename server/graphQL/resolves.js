@@ -1,6 +1,8 @@
 const Builds = require("../models/builds");
 const BuldReviews = require("../models/reviews_builds");
 const Orders = require("../models/order");
+const User = require("../models/user");
+const Reviews = require("../models/reviews");
 const isAuthenticated = require("./resolversFunctions/isAuthenticated");
 const SignIn = require("./resolversFunctions/singIn");
 const SignUp = require("./resolversFunctions/signUp");
@@ -15,7 +17,7 @@ const {
   addOne,
   updateOne
 } = require("./resolversFunctions/handleFactory");
-const Reviews = require("../models/reviews");
+const changeUserMail = require("./resolversFunctions/chabgeMail");
 
 const resolvers = {
   Query: {
@@ -130,6 +132,20 @@ const resolvers = {
         const deleteFun = deleteOne(Orders);
         return await deleteFun(input);
       } else throw new Error("not authenticated");
+    },
+    changeUserInfo: async (_, { input }, { req }) => {
+      await isAuthenticated(req);
+      if (req.user) {
+        const editFun = updateOne(User);
+        return await editFun(input);
+      } else throw new Error("not authenticated");
+    },
+    changeUserMail: async (_, { input }, { req }) => {
+      console.log(input);
+      const answer = await changeUserMail(input);
+      console.log(answer);
+      if (typeof answer === "string") throw new Error(answer);
+      else return answer;
     }
   },
   Pizza: {

@@ -35,8 +35,11 @@ class PersonalRoom extends React.Component {
       street: this.props.cabinetSet.inputs.street.value,
       phone: this.props.cabinetSet.inputs.phone.value
     };
-
-    this.props.fetchDataFun(data, this.props.cabinetSet.allGood);
+    this.props.fetchDataFun(
+      data,
+      this.props.cabinetSet.allGood,
+      this.props.auth.localId
+    );
   };
 
   changeContentHandler = num => {
@@ -104,7 +107,7 @@ class PersonalRoom extends React.Component {
             <div className="log__out__cover">
               <div className="log__out__name__block">
                 <p className="cabinet__user__name">
-                  {this.props.auth.name !== "undefined"
+                  {this.props.auth.name !== "null"
                     ? this.props.auth.name
                     : "user"}
                 </p>
@@ -171,8 +174,8 @@ const dispatchToProps = dispatch => {
   return {
     getInfoFun: id => dispatch(getInfo(id)),
     onInputFun: event => dispatch(setCabinetOnInput(event)),
-    fetchDataFun: (data, allGood) =>
-      dispatch(setCabinetFetchOrder(data, allGood)),
+    fetchDataFun: (data, allGood, id) =>
+      dispatch(setCabinetFetchOrder(data, allGood, id)),
     viewOrdersFun: query => dispatch(viewOrdersCabinet(query)),
     deleteOrderfun: (id, localId) => dispatch(deleteOrder(id, localId))
   };

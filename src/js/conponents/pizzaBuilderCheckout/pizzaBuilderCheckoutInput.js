@@ -17,7 +17,7 @@ const checkoutInput = props => {
             form="checkout__form"
             placeholder={props.inputs[item].placeholder}
             value={props.inputs[item].value}
-            onChange={() => props.changeHandler(event)}
+            onChange={event => props.changeHandler(event)}
             data-name={item}
           />
         </label>
