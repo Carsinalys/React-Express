@@ -44,12 +44,11 @@ export const fetchChangeEmail = (mail, id) => {
     client
       .mutate({ mutation: GQL.changeUserMail, variables: { input: data } })
       .then(res => {
-        console.log(error);
         dispatch(authResetMOdalOff());
         dispatch(authResetInput());
-        if (res.error) {
-          console.log(error);
-          ispatch(authResetMessage());
+        if (res.data.changeUserMail.error) {
+          console.log(res.data.changeUserMail.error);
+          dispatch(authResetMessage());
         } else dispatch(logOut());
       })
       .then(() => client.resetStore());

@@ -141,11 +141,14 @@ const resolvers = {
       } else throw new Error("not authenticated");
     },
     changeUserMail: async (_, { input }, { req }) => {
-      console.log(input);
+      const response = {
+        data: {},
+        error: ""
+      };
       const answer = await changeUserMail(input);
-      console.log(answer);
-      if (typeof answer === "string") throw new Error(answer);
-      else return answer;
+      if (typeof answer === "string") response.error = answer;
+      else response.data = answer;
+      return response;
     }
   },
   Pizza: {

@@ -32,7 +32,7 @@ const typeDefs = gql`
   }
 
   type User {
-    _id: ID!
+    _id: ID
     createdAt: Date
     role: String
     photo: String
@@ -82,6 +82,11 @@ const typeDefs = gql`
   type GetMoreOrders {
     orders: [Order]!
     count: Int!
+  }
+
+  type ChangeMailResponse {
+    data: User
+    error: String
   }
 
   input PizzasInput {
@@ -203,7 +208,7 @@ const typeDefs = gql`
     addOrder(input: OrderInput): Order!
     deleteOrder(input: DeleteOrderInput): Order!
     changeUserInfo(input: ChangeUserInfo): User
-    changeUserMail(input: ChangeUserInfo): User
+    changeUserMail(input: ChangeUserInfo): ChangeMailResponse
   }
 `;
 

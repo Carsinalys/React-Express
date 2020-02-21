@@ -291,15 +291,18 @@ export const changeUserInfo = gql`
 export const changeUserMail = gql`
   mutation changeUserMail($input: ChangeUserInfo!) {
     changeUserMail(input: $input) {
-      _id
-      createdAt
-      role
-      photo
-      phone
-      mail
-      flat
-      house
-      street
+      data {
+        _id
+        createdAt
+        role
+        photo
+        phone
+        mail
+        flat
+        house
+        street
+      }
+      error
     }
   }
 `;
