@@ -2,7 +2,6 @@ import * as AC from "../AC/ac";
 
 const initState = {
   modal: false,
-  message: false,
   inputs: {
     mail: {
       value: "",
@@ -54,11 +53,6 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         modal: false
-      };
-    case AC.AUTH_RESET_MESSAGE:
-      return {
-        ...state,
-        message: true
       };
     case AC.AUTH_RESET_INPUT:
       return {

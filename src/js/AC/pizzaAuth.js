@@ -28,11 +28,11 @@ export const authSignUp = (mail, pass) => {
       })
       .then(res => {
         dispatch(authModalOff());
-        if (res.data.SignUp.error) dispatch(authError(res));
+        if (res.data.SignUp.error) dispatch(authError(res.data.SignUp.error));
         else {
-          dispatch(authFinish(res));
+          dispatch(authFinish(res.data.SignUp));
           dispatch(authClearInputs());
-          dispatch(storeToken(res));
+          dispatch(storeToken(res.data.SignUp));
           dispatch(getTokenFromCookie());
         }
       });
@@ -55,11 +55,11 @@ export const authSignIn = (mail, pass, stayIn) => {
       })
       .then(res => {
         dispatch(authModalOff());
-        if (res.data.SignIn.error) dispatch(authError(res));
+        if (res.data.SignIn.error) dispatch(authError(res.data.SignIn.error));
         else {
-          dispatch(authFinish(res));
+          dispatch(authFinish(res.data.SignIn));
           dispatch(authClearInputs());
-          dispatch(storeToken(res));
+          dispatch(storeToken(res.data.SignIn));
           dispatch(getTokenFromCookie());
         }
       });

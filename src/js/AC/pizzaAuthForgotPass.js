@@ -46,49 +46,29 @@ export const fetchChangeEmail = (mail, id) => {
       .then(res => {
         dispatch(authResetMOdalOff());
         dispatch(authResetInput());
-        if (res.data.changeUserMail.error) {
-          console.log(res.data.changeUserMail.error);
-          dispatch(authResetMessage());
-        } else dispatch(logOut());
+        if (res.data.changeUserMail.error)
+          dispatch(changeMailError(res.data.changeUserMail.error));
+        else {
+          dispatch(changeMailRedirect());
+          dispatch(logOut());
+        }
       })
       .then(() => client.resetStore());
   };
 };
 
-// export const fetchChangeEmail = (mail, id, token) => {
-//   return dispatch => {
-//     dispatch(authResetMOdalOn());
-//     let data = {
-//       id: id,
-//       mail: mail
-//     };
-//     console.log(mail, id, token);
-//     fetch(`${port}/api/v1.0/changeMail`, {
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type": "application/json",
-//         authorization: `Bearer ${token}`
-//       },
-//       body: JSON.stringify(data)
-//     })
-//       .then(response => {
-//         return response.json();
-//       })
-//       .then(data => {
-//         console.log(data);
-//         if (!data.error) {
-//           dispatch(authResetMessage());
-//         }
-//         dispatch(logOut());
-//         dispatch(authResetMOdalOff());
-//         dispatch(authResetInput());
-//       })
-//       .catch(error => {
-//         dispatch(authResetMOdalOff());
-//         dispatch(authResetInput());
-//       });
-//   };
-// };
+export const changeMailError = err => {
+  return {
+    type: AC.CABINET_CHANGE_MAIL_ERROR,
+    payload: err
+  };
+};
+
+export const changeMailRedirect = () => {
+  return {
+    type: AC.CABINET_CHANGE_MAIL_CLEAR_ERROR
+  };
+};
 
 export const authResetOnInput = event => {
   return {
@@ -113,12 +93,6 @@ export const authResetMOdalOn = () => {
 export const authResetMOdalOff = () => {
   return {
     type: AC.AUTH_RESET_MODAL_OFF
-  };
-};
-
-export const authResetMessage = () => {
-  return {
-    type: AC.AUTH_RESET_MESSAGE
   };
 };
 

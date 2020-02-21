@@ -277,6 +277,7 @@ export const changeUserInfo = gql`
     changeUserInfo(input: $input) {
       _id
       createdAt
+      name
       role
       photo
       phone
@@ -295,6 +296,7 @@ export const changeUserMail = gql`
         _id
         createdAt
         role
+        name
         photo
         phone
         mail
@@ -303,6 +305,23 @@ export const changeUserMail = gql`
         street
       }
       error
+    }
+  }
+`;
+
+export const changeUserPhoto = gql`
+  mutation changeUserPhoto($input: ChangeUserInfo!) {
+    changeUserPhoto(input: $input) {
+      _id
+      createdAt
+      role
+      photo
+      name
+      phone
+      mail
+      flat
+      house
+      street
     }
   }
 `;

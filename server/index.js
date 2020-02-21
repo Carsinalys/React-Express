@@ -13,6 +13,20 @@ const cors = require("cors");
 const morgan = require("morgan");
 const path = require("path");
 const fs = require("fs");
+
+const routeOrders = require("./routes/orders");
+const routeReviews = require("./routes/reviews");
+const routeBuilds = require("./routes/builds");
+const routeChat = require("./routes/chat");
+const routeUser = require("./routes/user");
+
+import App from "../src/js/serverConnectProps";
+
+const ErrorHandler = require("./utils/errorHandler");
+const globalErrorHandler = require("./controllers/error");
+const html = fs.readFileSync("dist/index.html").toString();
+const parts = html.split("Loading...");
+
 //GrqphQL
 const { ApolloServer } = require("apollo-server-express");
 const types = require("./graphQL/types");
@@ -26,22 +40,11 @@ const server = new ApolloServer({
   }
 });
 
-import App from "../src/js/serverConnectProps";
-
-const ErrorHandler = require("./utils/errorHandler");
-const globalErrorHandler = require("./controllers/error");
-const html = fs.readFileSync("dist/index.html").toString();
-const parts = html.split("Loading...");
 const app = Express();
-//GrqphQL
-server.applyMiddleware({ app });
-console.log(`for GraphQL query ${server.graphqlPath}`);
-
-const routeOrders = require("./routes/orders");
-const routeReviews = require("./routes/reviews");
-const routeBuilds = require("./routes/builds");
-const routeChat = require("./routes/chat");
-const routeUser = require("./routes/user");
+//body, form and cookie parsers
+app.use(Express.json({ limit: "300kb" }));
+app.use(Express.urlencoded({ extended: true, limit: "10kb" }));
+app.use(cookieParser());
 
 //for heroku because it`t act like proxy
 app.enable("trust proxy");
@@ -58,11 +61,6 @@ if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
 //security http headers
 app.use(helmet());
-
-//body, form and cookie parsers
-app.use(Express.json({ limit: "10kb" }));
-app.use(Express.urlencoded({ extended: true, limit: "10kb" }));
-app.use(cookieParser());
 
 //data sanitization against NoSQL query injection
 app.use(mongoSanitize());
@@ -84,9 +82,13 @@ app.use("/api", limiter, routeReviews);
 app.use(compression());
 
 app.disable("x-powered-by");
-//implement cors
+
+//GrqphQL
+server.applyMiddleware({ app });
+console.log(`for GraphQL query ${server.graphqlPath}`);
+
 //app.use(cors());
-app.use(cors({ credentials: true, origin: "http://localhost:3001" }));
+app.use(cors({ credentials: true, origin: "http://localhost:3001/" }));
 
 app.use("/", routeOrders, routeBuilds, routeReviews, routeChat, routeUser);
 app.use((req, res) => {

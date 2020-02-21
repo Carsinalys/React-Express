@@ -18,6 +18,7 @@ const {
   updateOne
 } = require("./resolversFunctions/handleFactory");
 const changeUserMail = require("./resolversFunctions/chabgeMail");
+const changeUSerPhoto = require("./resolversFunctions/chabgeUserPhoto");
 
 const resolvers = {
   Query: {
@@ -141,14 +142,23 @@ const resolvers = {
       } else throw new Error("not authenticated");
     },
     changeUserMail: async (_, { input }, { req }) => {
-      const response = {
-        data: {},
-        error: ""
-      };
-      const answer = await changeUserMail(input);
-      if (typeof answer === "string") response.error = answer;
-      else response.data = answer;
-      return response;
+      await isAuthenticated(req);
+      if (req.user) {
+        const response = {
+          data: {},
+          error: ""
+        };
+        const answer = await changeUserMail(input);
+        if (typeof answer === "string") response.error = answer;
+        else response.data = answer;
+        return response;
+      } else throw new Error("not authenticated");
+    },
+    changeUserPhoto: async (_, { input }, { req }) => {
+      await isAuthenticated(req);
+      if (req.user) {
+        return await changeUSerPhoto(input);
+      } else throw new Error("not authenticated");
     }
   },
   Pizza: {

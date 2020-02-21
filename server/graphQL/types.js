@@ -181,6 +181,7 @@ const typeDefs = gql`
     street: String
     phone: String
     mail: String
+    photo: String
   }
 
   input ChangeUserInfo {
@@ -200,15 +201,16 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addBuildsReview(input: BuildsReviewsInput): Review_Build!
-    editBuildsReview(input: BuildsReviewsInput): Review_Build!
-    addReview(input: MutationReviewsInput): Review!
-    editReview(input: EditReviewsInput): Review!
-    deleteReview(input: EditReviewsInput): Review!
-    addOrder(input: OrderInput): Order!
-    deleteOrder(input: DeleteOrderInput): Order!
-    changeUserInfo(input: ChangeUserInfo): User
-    changeUserMail(input: ChangeUserInfo): ChangeMailResponse
+    addBuildsReview(input: BuildsReviewsInput!): Review_Build!
+    editBuildsReview(input: BuildsReviewsInput!): Review_Build!
+    addReview(input: MutationReviewsInput!): Review!
+    editReview(input: EditReviewsInput!): Review!
+    deleteReview(input: EditReviewsInput!): Review!
+    addOrder(input: OrderInput!): Order!
+    deleteOrder(input: DeleteOrderInput!): Order!
+    changeUserInfo(input: ChangeUserInfo!): User!
+    changeUserMail(input: ChangeUserInfo!): ChangeMailResponse
+    changeUserPhoto(input: ChangeUserInfo!): User!
   }
 `;
 

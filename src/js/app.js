@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getTokenFromCookie, checkBrowser } from "./AC/index";
-import { ApolloProvider } from "@apollo/react-hooks";
-import Client from "./graphql/client";
 
 import PizzaBuilder from "./conponents/pizzaBuilder";
 import { BrowserRouter } from "react-router-dom";
@@ -16,13 +14,11 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <ApolloProvider client={Client}>
-          <div className="container__color">
-            <div className="container">
-              <PizzaBuilder />
-            </div>
+        <div className="container__color">
+          <div className="container">
+            <PizzaBuilder />
           </div>
-        </ApolloProvider>
+        </div>
       </BrowserRouter>
     );
   }

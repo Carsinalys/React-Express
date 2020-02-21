@@ -28,6 +28,7 @@ export const setCabinetFetchOrder = (data, allGood, id) => {
           else {
             dispatch(setCabinetResetState());
             dispatch(setCabinetNewAddress(res.data.changeUserInfo));
+            dispatch(setCabinetStoreNewPhotoAndName(res.data.changeUserInfo));
           }
         })
         .then(() => client.resetStore());
@@ -35,9 +36,36 @@ export const setCabinetFetchOrder = (data, allGood, id) => {
   };
 };
 
+export const setCabinetChangePhoto = (data, id) => {
+  return dispatch => {
+    dispatch(setCabinetToggleModal());
+    const sendObj = {
+      data: { photo: data },
+      _id: id
+    };
+    client
+      .mutate({
+        mutation: GQL.changeUserPhoto,
+        variables: { input: sendObj }
+      })
+      .then(res => {
+        dispatch(setCabinetToggleModal());
+        dispatch(setCabinetStoreNewPhotoAndName(res.data.changeUserPhoto));
+      })
+      .then(() => client.resetStore());
+  };
+};
+
 export const setCabinetResetState = () => {
   return {
     type: AC.CABINET_SET_INFO_RESET
+  };
+};
+
+export const setCabinetStoreNewPhotoAndName = data => {
+  return {
+    type: AC.CABINET_CHANGE_MAIL_STORE_PHOTO,
+    payload: data
   };
 };
 

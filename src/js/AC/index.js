@@ -4,7 +4,6 @@ export {
   gerOrders,
   setOrders,
   getError,
-  gerUserPhotoAfterChange,
   getMoreOrders
 } from "./fetchingOrders";
 export {
@@ -24,7 +23,11 @@ export {
 } from "./pizzaAuth";
 export { logOut, fetchLogOut } from "./pizzaLogOut";
 export { getInfo } from "./getInfoCabinet";
-export { setCabinetOnInput, setCabinetFetchOrder } from "./setInfoCabinet";
+export {
+  setCabinetOnInput,
+  setCabinetFetchOrder,
+  setCabinetChangePhoto
+} from "./setInfoCabinet";
 export { viewOrdersCabinet, deleteOrder } from "./viewOrdersCabinet";
 export {
   fetchResetPass,

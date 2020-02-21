@@ -12,14 +12,16 @@ const cabinetSet = props => {
     el.style.borderRadius = "50%";
   };
 
-  const setLocalStorage = event => {
+  const sendPhoto = event => {
+    event.preventDefault();
+    const reader = new FileReader();
+    const photo = document.querySelector("#avatarInput").files[0];
+    reader.onloadend = function() {
+      props.sendPhoto(reader.result, props.auth.localId);
+    };
+    reader.readAsDataURL(photo);
     localStorage.setItem("id", props.auth.localId);
     localStorage.setItem("photoChanged", true);
-  };
-
-  const setLocalStorageName = () => {
-    localStorage.setItem("id", props.auth.localId);
-    localStorage.setItem("nameChanged", "true");
   };
 
   return (
@@ -36,7 +38,6 @@ const cabinetSet = props => {
             className="set_cabinet__form__submit"
             onClick={event => {
               props.check(event);
-              setLocalStorageName();
             }}
           >
             Send
@@ -51,12 +52,12 @@ const cabinetSet = props => {
           method="POST"
           encType="multipart/form-data"
           className="add__photo__form"
-          onSubmit={event => setLocalStorage(event)}
+          onSubmit={event => sendPhoto(event)}
         >
           <div className="add__photo__input__cover">
             <input
               type="file"
-              id=""
+              id="avatarInput"
               name="avatar"
               form="avatar"
               accept="image/*"

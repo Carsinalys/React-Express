@@ -55,22 +55,3 @@ export const getError = error => {
     payload: error
   };
 };
-
-export const setPhoto = data => {
-  return {
-    type: AC.GET_ORDERS_FINISH_PHOTO,
-    payload: data
-  };
-};
-
-export const gerUserPhotoAfterChange = id => {
-  return dispatch => {
-    dispatch(startGetOrders());
-    client
-      .query({ query: GQL.getUSerInfo, variables: { input: { id } } })
-      .then(res => {
-        if (res.error) dispatch(getError(res.error));
-        else dispatch(setPhoto(res.data.GetUserInfo));
-      });
-  };
-};

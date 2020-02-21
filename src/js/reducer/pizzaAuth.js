@@ -40,6 +40,14 @@ const reducer = (state = initState, action) => {
         photo: action.payload.photo,
         name: action.payload.name
       };
+    case AC.CABINET_CHANGE_MAIL_STORE_PHOTO:
+      localStorage.setItem("build", action.payload);
+      localStorage.setItem("name", action.payload);
+      return {
+        ...state,
+        photo: action.payload.photo,
+        name: action.payload.name
+      };
     case AC.AUTH_ON_INPUT:
       let fuck = new RegExp(
         state.inputs[action.payload.target.dataset.name].pattern
@@ -59,12 +67,8 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         isAuthindicated: true,
-        expiresAt: action.payload.data.SignIn
-          ? action.payload.data.SignIn.expireAt
-          : action.payload.data.SignUp.expireAt,
-        localId: action.payload.data.SignIn
-          ? action.payload.data.SignIn.localId
-          : action.payload.data.SignUp.localId,
+        expiresAt: action.payload.expireAt,
+        localId: action.payload.localId,
         error: null,
         isLoading: false
       };
@@ -72,9 +76,7 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         isLoading: false,
-        error: action.payload.data.SignIn
-          ? action.payload.data.SignIn.error
-          : action.payload.data.SignUp.error
+        error: action.payload.error
       };
     case AC.AUTH_MODAL_ON:
       return {
@@ -104,36 +106,11 @@ const reducer = (state = initState, action) => {
     case AC.AUTH_STORE_AUTH_DATA:
       localStorage.setItem(
         "expiresAt",
-        `${new Date().getTime() +
-          (action.payload.data.SignIn
-            ? action.payload.data.SignIn.expireAt
-            : action.payload.data.SignUp.expireAt) *
-            1000}`
+        `${new Date().getTime() + action.payload.expireAt * 1000}`
       );
-      localStorage.setItem(
-        "localId",
-        `${
-          action.payload.data.SignIn
-            ? action.payload.data.SignIn.localId
-            : action.payload.data.SignUp.localId
-        }`
-      );
-      localStorage.setItem(
-        "name",
-        `${
-          action.payload.data.SignIn
-            ? action.payload.data.SignIn.name
-            : action.payload.data.SignUp.name
-        }`
-      );
-      localStorage.setItem(
-        "photo",
-        `${
-          action.payload.data.SignIn
-            ? action.payload.data.SignIn.photo
-            : action.payload.data.SignUp.photo
-        }`
-      );
+      localStorage.setItem("localId", `${action.payload.localId}`);
+      localStorage.setItem("name", `${action.payload.name}`);
+      localStorage.setItem("photo", `${action.payload.photo}`);
       return {
         ...state
       };

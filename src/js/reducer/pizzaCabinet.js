@@ -11,7 +11,8 @@ const initState = {
     phone: "unset",
     street: "unset",
     house: "unset",
-    flat: "unset"
+    flat: "unset",
+    mailChangeError: ""
   },
   modalShow: false,
   isAddresFilled: false
@@ -35,6 +36,16 @@ const reducer = (state = initState, action) => {
           house: action.payload.house,
           flat: action.payload.flat
         }
+      };
+    case AC.CABINET_CHANGE_MAIL_ERROR:
+      return {
+        ...state,
+        mailChangeError: action.payload
+      };
+    case AC.CABINET_CHANGE_MAIL_CLEAR_ERROR:
+      return {
+        ...state,
+        mailChangeError: ""
       };
     case AC.CABINET_NEW_ADDRESS_SET:
       return {

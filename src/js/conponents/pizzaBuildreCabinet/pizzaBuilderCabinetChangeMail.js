@@ -13,7 +13,6 @@ class ForgotPass extends React.Component {
         this.props.authReset.inputs.mail1.value,
         this.props.auth.localId
       );
-      this.props.history.push("/");
     }
   };
 
@@ -37,13 +36,14 @@ class ForgotPass extends React.Component {
           Back to my room
         </button>
         <div className="auth__forgot">
-          <Modal toggle={this.props.authReset.message}>
-            <h2>Your email is must be changed...</h2>
-          </Modal>
           <form action="#" id="chnageMail">
             <div>
               <label htmlFor="forgot__name">
-                Enter your new email:
+                {this.props.cabinet.mailChangeError ? (
+                  <h2>{this.props.cabinet.mailChangeError}</h2>
+                ) : (
+                  "Enter your new email:"
+                )}
                 <input
                   type="text"
                   form="chnageMail"
@@ -79,7 +79,8 @@ class ForgotPass extends React.Component {
 const stateToProps = state => {
   return {
     auth: state.auth,
-    authReset: state.authReset
+    authReset: state.authReset,
+    cabinet: state.cabinet
   };
 };
 

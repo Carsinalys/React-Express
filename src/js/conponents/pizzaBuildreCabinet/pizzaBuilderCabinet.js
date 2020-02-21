@@ -12,7 +12,8 @@ import {
   setCabinetOnInput,
   setCabinetFetchOrder,
   viewOrdersCabinet,
-  deleteOrder
+  deleteOrder,
+  setCabinetChangePhoto
 } from "../../AC/index";
 
 class PersonalRoom extends React.Component {
@@ -142,6 +143,7 @@ class PersonalRoom extends React.Component {
               onInput={this.props.onInputFun}
               check={this.sendDataHnadler}
               auth={this.props.auth}
+              sendPhoto={this.props.setCabinetChangePhotoFun}
             />
           ) : null}
           {this.state.showingContent === 3 ? (
@@ -177,7 +179,9 @@ const dispatchToProps = dispatch => {
     fetchDataFun: (data, allGood, id) =>
       dispatch(setCabinetFetchOrder(data, allGood, id)),
     viewOrdersFun: query => dispatch(viewOrdersCabinet(query)),
-    deleteOrderfun: (id, localId) => dispatch(deleteOrder(id, localId))
+    deleteOrderfun: (id, localId) => dispatch(deleteOrder(id, localId)),
+    setCabinetChangePhotoFun: (data, id) =>
+      dispatch(setCabinetChangePhoto(data, id))
   };
 };
 
