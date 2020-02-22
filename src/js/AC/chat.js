@@ -268,6 +268,17 @@ export const chatGetUsersNames = id => {
 };
 
 export const chatSetCurrentMessages = data => {
+  if (data.room) {
+    const { getMessagesRoom } = client.readQuery({
+      query: GQL.getMessagesRoom,
+      variables: { input: { room: data.room } }
+    });
+    const newMessages = [...getMessagesRoom, data];
+    client.writeQuery({
+      query: GQL.getMessagesRoom,
+      data: { getMessagesRoom: newMessages }
+    });
+  }
   return {
     type: AC.CHAT_SET_CURRENT_MESSAGES,
     payload: data
@@ -298,6 +309,17 @@ export const userCount = num => {
 };
 
 export const chatmessageFromAnotherRoom = data => {
+  if (data.room) {
+    const { getMessagesRoom } = client.readQuery({
+      query: GQL.getMessagesRoom,
+      variables: { input: { room: data.room } }
+    });
+    const newMessages = [...getMessagesRoom, data];
+    client.writeQuery({
+      query: GQL.getMessagesRoom,
+      data: { getMessagesRoom: newMessages }
+    });
+  }
   return {
     type: AC.CHAT_MESSAGE_FROM_ANOTHER_ROOM,
     payload: data
