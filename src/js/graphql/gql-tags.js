@@ -325,3 +325,47 @@ export const changeUserPhoto = gql`
     }
   }
 `;
+
+export const getMessagesRoom = gql`
+  query getMessagesRoom($input: GetMessagesInput!) {
+    getMessagesRoom(input: $input) {
+      _id
+      createAt
+      id
+      message
+      room
+    }
+  }
+`;
+
+export const getRooms = gql`
+  {
+    getRooms {
+      _id
+      createAt
+      name
+    }
+  }
+`;
+
+export const addRoom = gql`
+  mutation addRoomInput($input: AddRoomInput!) {
+    addRoomInput(input: $input) {
+      _id
+      createAt
+      name
+    }
+  }
+`;
+
+export const deleteMessageRoom = gql`
+  mutation deleteMessageInput($input: DeleteMessageInput!) {
+    deleteMessageInput(input: $input) {
+      _id
+      createAt
+      id
+      message
+      room
+    }
+  }
+`;

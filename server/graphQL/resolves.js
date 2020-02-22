@@ -3,6 +3,8 @@ const BuldReviews = require("../models/reviews_builds");
 const Orders = require("../models/order");
 const User = require("../models/user");
 const Reviews = require("../models/reviews");
+const Room = require("../models/rooms");
+const Message = require("../models/message");
 const isAuthenticated = require("./resolversFunctions/isAuthenticated");
 const SignIn = require("./resolversFunctions/singIn");
 const SignUp = require("./resolversFunctions/signUp");
@@ -19,6 +21,8 @@ const {
 } = require("./resolversFunctions/handleFactory");
 const changeUserMail = require("./resolversFunctions/chabgeMail");
 const changeUSerPhoto = require("./resolversFunctions/chabgeUserPhoto");
+const getMessageRoom = require("./resolversFunctions/getMessagesRoom");
+const getRooms = require("./resolversFunctions/getRooms");
 
 const resolvers = {
   Query: {
@@ -86,6 +90,12 @@ const resolvers = {
     },
     getReviews: async (_, { input }) => {
       return await reviewsRegular(input);
+    },
+    getMessagesRoom: async (_, { input }) => {
+      return await getMessageRoom(input.room);
+    },
+    getRooms: async () => {
+      return await getRooms();
     }
   },
   Mutation: {
@@ -159,6 +169,17 @@ const resolvers = {
       if (req.user) {
         return await changeUSerPhoto(input);
       } else throw new Error("not authenticated");
+    },
+    addRoomInput: async (_, { input }, { req }) => {
+      await isAuthenticated(req);
+      if (req.user) {
+        const addFun = addOne(Room);
+        return await addFun(input);
+      } else throw new Error("not authenticated");
+    },
+    deleteMessageInput: async (_, { input }, { req }) => {
+      const deleteFun = deleteOne(Message);
+      return await deleteFun(input);
     }
   },
   Pizza: {

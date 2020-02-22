@@ -89,6 +89,20 @@ const typeDefs = gql`
     error: String
   }
 
+  type Message {
+    _id: ID!
+    createAt: Date!
+    message: String!
+    room: String!
+    id: String
+  }
+
+  type Room {
+    _id: ID!
+    createAt: Date
+    name: String
+  }
+
   input PizzasInput {
     minCost: Float
     maxCost: Float
@@ -174,6 +188,10 @@ const typeDefs = gql`
     _id: String!
   }
 
+  input DeleteMessageInput {
+    _id: String!
+  }
+
   input ChangeUserInfoFields {
     flat: String
     house: String
@@ -189,6 +207,14 @@ const typeDefs = gql`
     _id: String
   }
 
+  input GetMessagesInput {
+    room: String!
+  }
+
+  input AddRoomInput {
+    name: String!
+  }
+
   type Query {
     GetOrders(input: GetOrdersInput): [Order]!
     GetMoreOrders(input: GetOrdersInput): GetMoreOrders!
@@ -198,6 +224,8 @@ const typeDefs = gql`
     GetUserInfo(input: GetUserInfoInput!): User!
     getBuilds(input: PizzasInput): [Pizza]!
     getReviews(input: ReviewsInput): ReviewAnswer
+    getMessagesRoom(input: GetMessagesInput!): [Message]
+    getRooms: [Room]
   }
 
   type Mutation {
@@ -211,6 +239,8 @@ const typeDefs = gql`
     changeUserInfo(input: ChangeUserInfo!): User!
     changeUserMail(input: ChangeUserInfo!): ChangeMailResponse
     changeUserPhoto(input: ChangeUserInfo!): User!
+    addRoomInput(input: AddRoomInput!): Room
+    deleteMessageInput(input: DeleteMessageInput!): Message
   }
 `;
 

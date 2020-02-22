@@ -113,8 +113,6 @@ class Chat extends React.Component {
   };
 
   sendUserNameHandler = () => {
-    localStorage.setItem("id", this.props.auth.localId);
-    localStorage.setItem("nameChanged", "true");
     if (
       this.props.chat.userNameValue.length < 5 ||
       this.props.chat.userNameValue.length > 20
@@ -275,7 +273,7 @@ class Chat extends React.Component {
                 </div>
               )}
             </div>
-            {this.props.chat.role == "admin" ? (
+            {this.props.chat.role === "admin" ? (
               <div className="chat__create__room__cover">
                 <div className="chat__create__room__btn__cover">
                   <input
@@ -283,7 +281,7 @@ class Chat extends React.Component {
                     placeholder="room name..."
                     className="chat__create__room__input"
                     value={this.props.chat.roomValue}
-                    onChange={() => this.props.chatOnInputFun(event)}
+                    onChange={event => this.props.chatOnInputFun(event)}
                   />
                 </div>
                 <div className="chat__create__room__btn__cover">
@@ -337,7 +335,10 @@ class Chat extends React.Component {
                           className="chat__message__delete__single"
                           onClick={() =>
                             this.props.auth.localId === item.id
-                              ? this.props.chatDeleteMessageFun(item._id)
+                              ? this.props.chatDeleteMessageFun(
+                                  item._id,
+                                  this.props.chat.room
+                                )
                               : false
                           }
                         ></span>
@@ -375,7 +376,7 @@ class Chat extends React.Component {
               >
                 Send
                 <img
-                  src={require(`../../../img/pacman.svg`)}
+                  src={`/assets/img/pacman.svg`}
                   alt="spinner"
                   className="chat__footer__send__btn__spinner"
                 />
@@ -397,7 +398,7 @@ const dispatchToProps = dispatch => {
     chatSetUserNameFun: (data, id) => dispatch(chatSetUserName(data, id)),
     chatOnNameInputFun: event => dispatch(chatOnNameInput(event)),
     chatDeleteUserNameFun: () => dispatch(chatDeleteUserName()),
-    chatDeleteMessageFun: id => dispatch(chatDeleteMessage(id)),
+    chatDeleteMessageFun: (id, room) => dispatch(chatDeleteMessage(id, room)),
     chatNewMessageOnFun: () => dispatch(chatNewMessageOn()),
     chatNewMessageOffFun: () => dispatch(chatNewMessageOff()),
     chatGetUsersNamesFun: id => dispatch(chatGetUsersNames(id)),

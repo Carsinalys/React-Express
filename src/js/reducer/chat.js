@@ -24,6 +24,11 @@ const reducer = (state = initState, action) => {
         ...state,
         userCount: action.payload
       };
+    case AC.CHAT_SET_NEW_NAME:
+      return {
+        ...state,
+        userName: action.payload
+      };
     case AC.CHAT_ROOMS_MSG_TO_CHOOSE:
       if (action.payload.length > 0) {
         return {
