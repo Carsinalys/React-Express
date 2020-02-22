@@ -35,8 +35,8 @@ import * as AC from "../../AC/ac";
 
 //pas to socket when in production mode
 const HOST = socketType + location.origin.split(":")[1];
-const socket = io("http://localhost:3000");
-//const socket = io(HOST);
+//const socket = io("http://localhost:3000");
+const socket = io(HOST);
 socket.on("connect", () => {
   socket.on("messageFromExpress", data => {
     console.log(data);
