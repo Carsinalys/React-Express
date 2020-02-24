@@ -5,6 +5,7 @@ const typeDefs = gql`
   scalar Date
 
   type Pizza {
+    _id: ID!
     name: String!
     diameter: Int!
     weight: Int!
@@ -45,7 +46,7 @@ const typeDefs = gql`
   }
 
   type Review_Build {
-    id: ID!
+    _id: ID!
     name: String!
     date: Date!
     rating: Int

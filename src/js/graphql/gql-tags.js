@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 export const getBuilds = gql`
   {
     getBuilds {
+      _id
       id
       name
       diameter
@@ -10,7 +11,7 @@ export const getBuilds = gql`
       cost
       ingredients
       reviews {
-        id
+        _id
         name
         date
         rating
@@ -25,9 +26,9 @@ export const getBuilds = gql`
 `;
 
 export const addBuildsReview = gql`
-  mutation addBuildsReview($input: BuildsReviewsInput) {
+  mutation addBuildsReview($input: BuildsReviewsInput!) {
     addBuildsReview(input: $input) {
-      id
+      _id
       name
       date
       rating
@@ -42,9 +43,9 @@ export const addBuildsReview = gql`
 `;
 
 export const editBuildsReview = gql`
-  mutation editBuildsReview($input: BuildsReviewsInput) {
+  mutation editBuildsReview($input: BuildsReviewsInput!) {
     editBuildsReview(input: $input) {
-      id
+      _id
       name
       date
       rating
@@ -177,7 +178,7 @@ export const getReviews = gql`
 `;
 
 export const addReview = gql`
-  mutation addReview($input: MutationReviewsInput) {
+  mutation addReview($input: MutationReviewsInput!) {
     addReview(input: $input) {
       _id
       date
@@ -191,7 +192,7 @@ export const addReview = gql`
 `;
 
 export const editReview = gql`
-  mutation editReview($input: EditReviewsInput) {
+  mutation editReview($input: EditReviewsInput!) {
     editReview(input: $input) {
       _id
       date
@@ -205,7 +206,7 @@ export const editReview = gql`
 `;
 
 export const deleteReview = gql`
-  mutation deleteReview($input: EditReviewsInput) {
+  mutation deleteReview($input: EditReviewsInput!) {
     deleteReview(input: $input) {
       _id
       date
@@ -219,7 +220,7 @@ export const deleteReview = gql`
 `;
 
 export const addOrder = gql`
-  mutation addOrder($input: OrderInput) {
+  mutation addOrder($input: OrderInput!) {
     addOrder(input: $input) {
       _id
       name
@@ -246,7 +247,7 @@ export const addOrder = gql`
 `;
 
 export const deleteOrder = gql`
-  mutation deleteOrder($input: DeleteOrderInput) {
+  mutation deleteOrder($input: DeleteOrderInput!) {
     deleteOrder(input: $input) {
       _id
       name

@@ -55,41 +55,34 @@ const initState = {
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case AC.CABINET_SET_INFO_ON_INPUT: {
-      let fuck = new RegExp(
+      const regExp = new RegExp(
         state.inputs[action.payload.target.dataset.name].pattern
       );
-      let arr = Object.keys(state.inputs).map(
-        item => state.inputs[item].isValid
+      const valid = regExp.test(action.payload.target.value);
+      let copyState = {
+        ...state,
+        allGood: false,
+        inputs: {
+          ...state.inputs,
+          [action.payload.target.dataset.name]: {
+            ...state.inputs[action.payload.target.dataset.name],
+            value: action.payload.target.value,
+            isValid: valid
+          }
+        }
+      };
+      let arr = Object.keys(copyState.inputs).map(
+        item => copyState.inputs[item].isValid
       );
       let valueValid = 0;
-      arr.forEach(item => (item == true ? valueValid++ : valueValid));
-      if (arr.length == valueValid) {
-        return {
-          ...state,
-          allGood: true,
-          inputs: {
-            ...state.inputs,
-            [action.payload.target.dataset.name]: {
-              ...state.inputs[action.payload.target.dataset.name],
-              value: action.payload.target.value,
-              isValid: fuck.test(action.payload.target.value)
-            }
-          }
-        };
-      } else {
-        return {
-          ...state,
-          allGood: false,
-          inputs: {
-            ...state.inputs,
-            [action.payload.target.dataset.name]: {
-              ...state.inputs[action.payload.target.dataset.name],
-              value: action.payload.target.value,
-              isValid: fuck.test(action.payload.target.value)
-            }
-          }
-        };
-      }
+      arr.forEach(item => (item === true ? valueValid++ : valueValid));
+      console.log(arr.length === valueValid);
+      console.log(arr.length, valueValid);
+
+      return {
+        ...copyState,
+        allGood: arr.length === valueValid
+      };
     }
     case AC.CABINET_SET_INFO_RESET:
       return {

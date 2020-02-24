@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Inputs from "../pizzaBuilderCheckout/pizzaBuilderCheckoutInput";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Modal from "../hoc/modal";
@@ -12,16 +12,21 @@ const cabinetSet = props => {
     el.style.borderRadius = "50%";
   };
 
+  const [error, setError] = useState(false);
+
   const sendPhoto = event => {
     event.preventDefault();
     const reader = new FileReader();
     const photo = document.querySelector("#avatarInput").files[0];
-    reader.onloadend = function() {
-      props.sendPhoto(reader.result, props.auth.localId);
-    };
-    reader.readAsDataURL(photo);
-    localStorage.setItem("id", props.auth.localId);
-    localStorage.setItem("photoChanged", true);
+    if (photo.size < 307200) {
+      setError(false);
+      reader.onloadend = function() {
+        props.sendPhoto(reader.result, props.auth.localId);
+      };
+      reader.readAsDataURL(photo);
+    } else {
+      setError(true);
+    }
   };
 
   return (
@@ -77,6 +82,11 @@ const cabinetSet = props => {
             <div className="add__photo__preview" id="preview1"></div>
           </div>
           <div className="add__photo__submit__cover">
+            {error ? (
+              <p className="error_cabinet_photo">
+                too large file (maxSize - 300kb)
+              </p>
+            ) : null}
             <button
               type="submit"
               id="avatar__submit"

@@ -54,7 +54,7 @@ export const sendReview = data => {
           getBuilds.forEach(item => {
             if (item.name === payload.data.addBuildsReview.build.name) {
               const curReviews = [...item.reviews];
-              item.reviews = [...curReviews, ...payload.data.addBuildsReview];
+              item.reviews = [...curReviews, payload.data.addBuildsReview];
             }
           });
           cache.writeQuery({

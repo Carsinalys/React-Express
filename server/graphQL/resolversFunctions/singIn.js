@@ -6,7 +6,11 @@ const signIn = async input => {
   let result;
   let newToken;
   if (!input.mail || !input.password)
-    return new AppError("You must enter mail and password to proceed", 400);
+    return {
+      error: "You must enter mail and password to proceed",
+      status: "fail",
+      message: "You must enter mail and password to proceed"
+    };
   const userRecord = await User.findOne({ mail: input.mail });
   //checking for right mail
   if (!userRecord) {
@@ -15,9 +19,7 @@ const signIn = async input => {
       status: "fail",
       message: "this mail is doesn't exist"
     };
-  }
-  //condition if esle for stayin stayout and checking validation password
-  if (userRecord)
+  } else if (userRecord)
     if (
       (await userRecord.correctPassword(input.password, userRecord.password)) &&
       !input.stayIn

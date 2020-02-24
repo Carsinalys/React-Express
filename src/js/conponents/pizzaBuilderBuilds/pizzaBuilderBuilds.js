@@ -157,7 +157,7 @@ class Builds extends React.Component {
           this.props.builds.builds.map(item => {
             if (item.ingredients)
               return (
-                <div key={item.name} className="ready__build__cover">
+                <div key={item._id} className="ready__build__cover">
                   <h3 className="builds__pizza__title__text">
                     <span className="builds__pizza__title">{item.name}</span>
                   </h3>
