@@ -5,6 +5,20 @@ const baseWebpackConfig = require("./webpack.base.conf");
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: "development",
   devtool: "cheap-module-eval-source-map",
+  module: {
+    rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        loader: "ts-loader",
+        exclude: "/node_modules/",
+        options: {
+          compilerOptions: {
+            sourceMap: this.mode === "development"
+          }
+        }
+      }
+    ]
+  },
   devServer: {
     contentBase: baseWebpackConfig.externals.paths.dist,
     port: 3001,
