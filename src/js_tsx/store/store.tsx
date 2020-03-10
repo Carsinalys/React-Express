@@ -3,12 +3,18 @@ import Thunk from "redux-thunk";
 
 import reducer from "../reducer/index";
 
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+
 import Logger from "../middleWares/logger";
 // this constant needs for connect browser redux extention to your app
 const isBrowser = typeof window !== "undefined";
-let store;
+let store: any
 if (isBrowser) {
-  const composeEnhancers =
+  const composeEnhancers = 
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   store = createStore(

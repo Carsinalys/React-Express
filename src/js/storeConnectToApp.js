@@ -5,6 +5,7 @@ import App from "./app";
 
 class AppWithStore extends React.Component {
   render() {
+    console.log(store)
     return (
       <Provider store={store}>
         <App />

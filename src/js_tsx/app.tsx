@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getTokenFromCookie, checkBrowser } from "./AC/index";
-
 import PizzaBuilder from "./conponents/pizzaBuilder";
 import { BrowserRouter } from "react-router-dom";
+import { Dispatch } from "redux";
 
 class App extends React.Component {
   componentDidMount() {
@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 }
 
-const dispatchToProps = dispatch => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
     getToketFun: () => dispatch(getTokenFromCookie()),
     checkBrowserFun: () => dispatch(checkBrowser())

@@ -2,28 +2,30 @@ import * as AC from "./ac";
 import { logOut } from "./index";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
+import { Dispatch } from "redux";
+import { UserAuthObj, DispatchVoid } from '../interfaces/interfaces';
 
-export const authOnInput = event => {
+export const authOnInput = (event: Event) => {
   return {
     type: AC.AUTH_ON_INPUT,
     payload: event
   };
 };
 
-export const authSignUp = (mail, pass) => {
-  return dispatch => {
+export const authSignUp = (mail: string, pass: string) => {
+  return (dispatch: DispatchVoid) => {
     dispatch(authModalOn());
     let data = {
       mail: mail,
       password: pass
     };
-    client
+    client!
       .query({
         query: GQL.singUp,
         variables: { input: data }
       })
       .then(res => {
-        client.resetStore();
+        client!.resetStore();
         return res;
       })
       .then(res => {
@@ -39,18 +41,18 @@ export const authSignUp = (mail, pass) => {
   };
 };
 
-export const authSignIn = (mail, pass, stayIn) => {
-  return dispatch => {
+export const authSignIn = (mail: string, pass: string, stayIn: string) => {
+  return (dispatch: DispatchVoid) => {
     dispatch(authModalOn());
     let data = {
       mail: mail,
       password: pass,
       stayIn: stayIn
     };
-    client
+    client!
       .query({ query: GQL.singIn, variables: { input: data } })
       .then(res => {
-        client.resetStore();
+        client!.resetStore();
         return res;
       })
       .then(res => {
@@ -66,14 +68,14 @@ export const authSignIn = (mail, pass, stayIn) => {
   };
 };
 
-export const authFinish = data => {
+export const authFinish = (data: UserAuthObj) => {
   return {
     type: AC.AUTH_SIGN_IN_FINISH,
     payload: data
   };
 };
 
-export const authError = error => {
+export const authError = (error:string) => {
   return {
     type: AC.AUTH_SIGN_IN_ERROR,
     payload: error
@@ -98,7 +100,7 @@ export const authClearInputs = () => {
   };
 };
 
-export const storeToken = data => {
+export const storeToken = (data: UserAuthObj) => {
   return {
     type: AC.AUTH_STORE_AUTH_DATA,
     payload: data
@@ -106,7 +108,7 @@ export const storeToken = data => {
 };
 
 export const getTokenFromCookie = () => {
-  return dispatch => {
+  return (dispatch: Dispatch) => {
     dispatch(checkCookie());
     let remainingTime =
       new Date().getTime() < localStorage.expiresAt

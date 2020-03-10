@@ -11,11 +11,13 @@ if (process.browser) {
   });
   client = new ApolloClient({
     link,
-    cache,
-    fetchOptions: {
-      credentials: "include"
-    }
+    cache
   });
 }
 
 export default client;
+
+// must help in apollo client for cors pocily
+    // fetchOptions: {
+    //   credentials: "include"
+    // }
