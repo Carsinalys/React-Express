@@ -3,7 +3,7 @@ import { logOut } from "./index";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
 import { Dispatch } from "redux";
-import { UserAuthObj, DispatchVoid } from '../interfaces/interfaces';
+import { UserAuthObj, DispatchVoid } from "../interfaces/interfaces";
 
 export const authOnInput = (event: Event) => {
   return {
@@ -75,7 +75,7 @@ export const authFinish = (data: UserAuthObj) => {
   };
 };
 
-export const authError = (error:string) => {
+export const authError = (error: string) => {
   return {
     type: AC.AUTH_SIGN_IN_ERROR,
     payload: error

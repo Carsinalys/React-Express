@@ -3,9 +3,14 @@ import { connect } from "react-redux";
 import { getTokenFromCookie, checkBrowser } from "./AC/index";
 import PizzaBuilder from "./conponents/pizzaBuilder";
 import { BrowserRouter } from "react-router-dom";
-import { Dispatch } from "redux";
+import { DispatchVoid } from "./interfaces/interfaces";
 
-class App extends React.Component {
+interface CurProps {
+  getToketFun: () => { type: string };
+  checkBrowserFun: () => void;
+}
+
+class App extends React.Component<CurProps, {}> {
   componentDidMount() {
     this.props.getToketFun();
     this.props.checkBrowserFun();
@@ -24,7 +29,7 @@ class App extends React.Component {
   }
 }
 
-const dispatchToProps = (dispatch: Dispatch) => {
+const dispatchToProps = (dispatch: DispatchVoid) => {
   return {
     getToketFun: () => dispatch(getTokenFromCookie()),
     checkBrowserFun: () => dispatch(checkBrowser())

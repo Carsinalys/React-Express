@@ -2,15 +2,22 @@ import * as AC from "./ac";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
 import { setCabinetStoreNewPhotoAndName } from "./setInfoCabinet";
+import { Dispatch } from "redux";
+import {
+  DispatchVoid,
+  Rooms,
+  ChangeUserInfoFields,
+  Message
+} from "../interfaces/interfaces";
 
-export const createChatRoom = str => {
+export const createChatRoom = (str: string) => {
   const data = {
     name: str
   };
-  return dispatch => {
+  return (dispatch: DispatchVoid) => {
     if (str.length > 4) {
       dispatch(chatMdalOn());
-      client
+      client!
         .mutate({
           mutation: GQL.addRoom,
           variables: { input: data },
@@ -25,64 +32,57 @@ export const createChatRoom = str => {
         })
         .then(res => {
           dispatch(chatMdalOff());
-          if (res.error) console.log(res.error);
-          else {
-            dispatch(getChatRooms());
-            dispatch(chatResetRoomInput());
-          }
+          dispatch(getChatRooms());
+          dispatch(chatResetRoomInput());
         });
     }
   };
 };
 
 export const getChatRooms = () => {
-  return dispatch => {
+  return (dispatch: Dispatch) => {
     dispatch(chatMdalOn());
-    client.query({ query: GQL.getRooms }).then(res => {
+    client!.query({ query: GQL.getRooms }).then(res => {
       dispatch(chatMdalOff());
-      if (res.error) console.log(res.error);
-      else dispatch(roomsToStore(res.data.getRooms));
+      dispatch(roomsToStore(res.data.getRooms));
     });
   };
 };
 
-export const roomsToStore = data => {
+export const roomsToStore = (data: Rooms) => {
   return {
     type: AC.CHAT_ROOMS_TO_STORE,
     payload: data
   };
 };
 
-export const chatSetUserName = (obj, id) => {
-  return dispatch => {
+export const chatSetUserName = (obj: ChangeUserInfoFields, id: string) => {
+  return (dispatch: Dispatch) => {
     dispatch(chatMdalOn());
     const sendObj = {
       data: obj,
       _id: id
     };
-    client
+    client!
       .mutate({
         mutation: GQL.changeUserInfo,
         variables: { input: sendObj }
       })
       .then(res => {
-        client.resetStore();
+        client!.resetStore();
         return res;
       })
       .then(res => {
         dispatch(chatMdalOff());
-        if (res.error) console.log(error);
-        else {
-          localStorage.setItem("name", res.data.changeUserInfo.name);
-          dispatch(chatResetNameInput());
-          dispatch(setCabinetStoreNewPhotoAndName(res.data.changeUserInfo));
-          dispatch(chatSetNewName(res.data.changeUserInfo.name));
-        }
+        localStorage.setItem("name", res.data.changeUserInfo.name);
+        dispatch(chatResetNameInput());
+        dispatch(setCabinetStoreNewPhotoAndName(res.data.changeUserInfo));
+        dispatch(chatSetNewName(res.data.changeUserInfo.name));
       });
   };
 };
 
-export const chatSetNewName = name => {
+export const chatSetNewName = (name: string) => {
   return {
     type: AC.CHAT_SET_NEW_NAME,
     payload: name
@@ -107,21 +107,21 @@ export const chatSendMsgSplinnerOff = () => {
   };
 };
 
-export const chatOnInput = event => {
+export const chatOnInput = (event: Event) => {
   return {
     type: AC.CHAT_ON_INPUT,
     payload: event
   };
 };
 
-export const chatOnMessageInput = event => {
+export const chatOnMessageInput = (event: Event) => {
   return {
     type: AC.CHAT_ON_MESSAGE_INPUT,
     payload: event
   };
 };
 
-export const chatOnNameInput = event => {
+export const chatOnNameInput = (event: Event) => {
   return {
     type: AC.CHAT_NAME_ON_INPUT,
     payload: event
@@ -158,55 +158,52 @@ export const chatMdalOff = () => {
   };
 };
 
-export const chatChooseRoom = room => {
-  return dispatch => {
+export const chatChooseRoom = (room: string) => {
+  return (dispatch: Dispatch) => {
     dispatch(chatMdalOn());
-    client
+    client!
       .query({ query: GQL.getMessagesRoom, variables: { input: { room } } })
       .then(res => {
         dispatch(chatMdalOff());
-        if (res.error) console.log(error);
-        else {
-          dispatch(chatChooseRoomToStore(room));
-          dispatch(chatChooseRoomMsgToStore(res.data.getMessagesRoom));
-        }
+        dispatch(chatChooseRoomToStore(room));
+        dispatch(chatChooseRoomMsgToStore(res.data.getMessagesRoom));
       });
   };
 };
 
-export const chatChooseRoomToStore = room => {
+export const chatChooseRoomToStore = (room: string) => {
   return {
     type: AC.CHAT_ROOMS_CHOOSE,
     payload: room
   };
 };
 
-export const chatChooseRoomMsgToStore = data => {
+export const chatChooseRoomMsgToStore = (data: Message[]) => {
   return {
     type: AC.CHAT_ROOMS_MSG_TO_CHOOSE,
     payload: data
   };
 };
 
-export const chatSetUserNameToRedux = data => {
+export const chatSetUserNameToRedux = (data: string) => {
   return {
     type: AC.CHAT_SET_USER_NAME,
     payload: data
   };
 };
 
-export const chatSetUserRoleToRedux = data => {
+export const chatSetUserRoleToRedux = (data: string) => {
   return {
     type: AC.CHAT_SET_USER_ROLE,
     payload: data
   };
 };
 
-export const chatDeleteMessage = (id, room) => {
+export const chatDeleteMessage = (id: string, room: string) => {
   const data = { _id: id };
-  return dispatch => {
+  return (dispatch: Dispatch) => {
     dispatch(chatSendMsgSplinnerOn());
-    client
+    client!
       .mutate({
         mutation: GQL.deleteMessageRoom,
         variables: { input: data },
@@ -216,7 +213,7 @@ export const chatDeleteMessage = (id, room) => {
             variables: { input: { room } }
           });
           const newMessages = getMessagesRoom.filter(
-            item => item._id !== payload.data.deleteMessageInput._id
+            (item: Message) => item._id !== payload.data.deleteMessageInput._id
           );
           cache.writeQuery({
             query: GQL.getMessagesRoom,
@@ -226,13 +223,12 @@ export const chatDeleteMessage = (id, room) => {
       })
       .then(res => {
         dispatch(chatSendMsgSplinnerOff());
-        if (res.error) console.log(res.error);
-        else dispatch(deleteMsgFromDtore(id));
+        dispatch(deleteMsgFromDtore(id));
       });
   };
 };
 
-export const deleteMsgFromDtore = id => {
+export const deleteMsgFromDtore = (id: string) => {
   return {
     type: AC.CHAT_DELETE_MSG_STORE,
     payload: id
@@ -251,30 +247,27 @@ export const chatNewMessageOff = () => {
   };
 };
 
-export const chatGetUsersNames = id => {
-  return dispatch => {
+export const chatGetUsersNames = (id: string) => {
+  return (dispatch: Dispatch) => {
     dispatch(chatMdalOn());
-    client
+    client!
       .query({ query: GQL.getUSerInfo, variables: { input: { id } } })
       .then(res => {
         dispatch(chatMdalOff());
-        if (res.error) console.log(res.error);
-        else {
-          dispatch(chatSetUserNameToRedux(res.data.GetUserInfo.name));
-          dispatch(chatSetUserRoleToRedux(res.data.GetUserInfo.role));
-        }
+        dispatch(chatSetUserNameToRedux(res.data.GetUserInfo.name));
+        dispatch(chatSetUserRoleToRedux(res.data.GetUserInfo.role));
       });
   };
 };
 
-export const chatSetCurrentMessages = data => {
+export const chatSetCurrentMessages = (data: Message) => {
   if (data.room) {
-    const { getMessagesRoom } = client.readQuery({
+    const { getMessagesRoom } = client!.readQuery({
       query: GQL.getMessagesRoom,
       variables: { input: { room: data.room } }
     });
     const newMessages = [...getMessagesRoom, data];
-    client.writeQuery({
+    client!.writeQuery({
       query: GQL.getMessagesRoom,
       data: { getMessagesRoom: newMessages }
     });
@@ -285,18 +278,17 @@ export const chatSetCurrentMessages = data => {
   };
 };
 
-export const chatGetCurMessages = room => {
-  return dispatch => {
+export const chatGetCurMessages = (room: string) => {
+  return (dispatch: Dispatch) => {
     dispatch(chatMdalOn());
-    client
+    client!
       .query({
         query: GQL.getMessagesRoom,
         variables: { input: { room } }
       })
       .then(res => {
         dispatch(chatMdalOff());
-        if (res.error) console.log(res.error);
-        else dispatch(chatSetCurrentMessages(res.data.getMessagesRoom));
+        dispatch(chatSetCurrentMessages(res.data.getMessagesRoom));
       });
   };
 };
@@ -308,14 +300,14 @@ export const userCount = num => {
   };
 };
 
-export const chatmessageFromAnotherRoom = data => {
+export const chatmessageFromAnotherRoom = (data: Message) => {
   if (data.room) {
-    const { getMessagesRoom } = client.readQuery({
+    const { getMessagesRoom } = client!.readQuery({
       query: GQL.getMessagesRoom,
       variables: { input: { room: data.room } }
     });
     const newMessages = [...getMessagesRoom, data];
-    client.writeQuery({
+    client!.writeQuery({
       query: GQL.getMessagesRoom,
       data: { getMessagesRoom: newMessages }
     });
@@ -326,7 +318,7 @@ export const chatmessageFromAnotherRoom = data => {
   };
 };
 
-export const chatmessageFromAnotherRoomReset = data => {
+export const chatmessageFromAnotherRoomReset = (data: string) => {
   return {
     type: AC.CHAT_MESSAGE_FROM_ANOTHER_ROOM_RESET,
     payload: data
