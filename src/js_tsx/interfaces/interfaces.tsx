@@ -8,7 +8,7 @@ export interface UserAuthObj {
   message: string;
 }
 
-interface Room {
+export interface Room {
   _id: string;
   createAt: string;
   name: string;
@@ -25,19 +25,6 @@ export interface ChangeUserInfoFields {
   mail?: string;
   photo?: string;
 }
-
-// export interface User {
-//   _id: string;
-//   createdAt?: string;
-//   role?: string;
-//   photo?: string;
-//   phone?: number;
-//   mail?: string;
-//   flat?: number;
-//   house?: number;
-//   street?: string;
-//   name?: string;
-// }
 
 export interface Message {
   _id: string;
@@ -85,7 +72,7 @@ export interface Order {
   id?: string
 }
 
-interface Pizza {
+export interface Pizza {
   _id: string
   name: String
   diameter: number
@@ -93,10 +80,10 @@ interface Pizza {
   cost: number
   ingredients: object
   reviews?: Review_Build[]
-  id: string
+  id?: string
 }
 
-type Review_Build {
+type Review_Build = {
   _id: string
   name: string
   date: string
@@ -104,4 +91,68 @@ type Review_Build {
   text: string
   build?: Pizza
   user: string
+}
+
+export interface Review {
+  _id: string
+  name: string
+  rating: number
+  text: string
+  id: string
+  date: string
+  edited: boolean
+}
+
+export interface BuildsReviewsInput {
+  name: string
+  rating: string
+  text: string
+  build: string
+  user: string
+}
+
+export interface OrderInput {
+  name: string
+  pizzaName: string
+  diameter?: number
+  weight?: number
+  cost?: string
+  totalCost?: string
+  phone: number
+  street: string
+  house: number
+  flat: number
+  pizzas: PizzaInput[]
+  ingredients: Object
+  id: string
+}
+
+interface PizzaInput {
+  name: string
+  diameter: number
+  weight: number
+  cost: number
+  ingredients: object
+  reviews: object
+  id?: string
+}
+
+export interface User {
+  _id: string
+  createdAt?: string
+  role?: string
+  photo?: string
+  phone?: number
+  mail?: string
+  flat?: number
+  house?: number
+  street?: string
+  name?: string
+}
+
+export interface Action {
+  type: string;
+  payload: any;
+  count?: number;
+  error?: string;
 }

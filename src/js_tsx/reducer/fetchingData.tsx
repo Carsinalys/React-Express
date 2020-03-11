@@ -1,7 +1,18 @@
 import * as AC from "../AC/ac";
+import {Order, Action} from '../interfaces/interfaces';
 
-const initState = {
-  orders: {},
+interface initState {
+  orders: Order[],
+  isLoaded: boolean,
+  getOrders: boolean,
+  isLoading: boolean,
+  error: boolean,
+  moreOrders: Order[],
+  count: number
+}
+
+const initState: initState = {
+  orders: [],
   isLoaded: false,
   getOrders: false,
   isLoading: false,
@@ -10,7 +21,7 @@ const initState = {
   count: 0
 };
 
-const ordersReducer = (state = initState, action) => {
+const ordersReducer = (state = initState, action: Action) => {
   switch (action.type) {
     case AC.GET_ORDERS_START:
       return { ...state, isLoading: true };

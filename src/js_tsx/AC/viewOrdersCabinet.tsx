@@ -1,39 +1,37 @@
 import * as AC from "./ac";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
+import { Dispatch } from "redux";
+import { DispatchVoid, Order } from "../interfaces/interfaces";
 
-export const viewOrdersCabinet = query => {
+export const viewOrdersCabinet = (query: string) => {
   const input = Object.fromEntries(
     query.split("&").map(item => item.split("="))
   );
-  return dispatch => {
+  return (dispatch: Dispatch) => {
     dispatch(viewOrdersCabinetModalOn());
-    client
+    client!
       .query({ query: GQL.getMoreOrders, variables: { input } })
       .then(res => {
-        client.resetStore();
+        client!.resetStore();
         return res;
       })
       .then(res => {
         dispatch(viewOrdersCabinetModalOff());
-        if (res.error) dispatch(viewOrdersCabinetError(res.error));
-        else dispatch(viewOrdesCabinetSet(res.data.GetMoreOrders));
+        dispatch(viewOrdesCabinetSet(res.data.GetMoreOrders));
       });
   };
 };
 
-export const deleteOrder = (id, localId) => {
-  return dispatch => {
+export const deleteOrder = (id: string, localId: string) => {
+  return (dispatch: DispatchVoid) => {
     dispatch(viewOrdersCabinetModalOn());
-    client
+    client!
       .mutate({ mutation: GQL.deleteOrder, variables: { input: { _id: id } } })
       .then(res => {
         dispatch(viewOrdersCabinetModalOff());
-        if (res.error) dispatch(viewOrdersCabinetError(res.error));
-        else {
-          dispatch(resetOrdersCabinet());
-          dispatch(viewOrdersCabinet(`page=1&limit=4&id=${localId}`));
-        }
+        dispatch(resetOrdersCabinet());
+        dispatch(viewOrdersCabinet(`page=1&limit=4&id=${localId}`));
       });
   };
 };
@@ -50,14 +48,14 @@ export const viewOrdersCabinetModalOff = () => {
   };
 };
 
-export const viewOrdesCabinetSet = data => {
+export const viewOrdesCabinetSet = (data: Order[]) => {
   return {
     type: AC.CABINET_VIEW_ORDERS_SET,
     payload: data
   };
 };
 
-export const viewOrdersCabinetError = err => {
+export const viewOrdersCabinetError = (err: string) => {
   return {
     type: AC.CABINET_VIEW_ORDERS_ERROR,
     payload: err

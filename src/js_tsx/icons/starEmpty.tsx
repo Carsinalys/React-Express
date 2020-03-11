@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Star(props) {
+export default function Star() {
   return (
     <svg
       className="review__star__icon review__star__icon__inactive"

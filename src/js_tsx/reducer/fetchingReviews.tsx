@@ -1,6 +1,18 @@
 import * as AC from "../AC/ac";
+import {Review, Action} from '../interfaces/interfaces';
 
-const initState = {
+interface InitState {
+  reviews: Review[],
+  isLoading: boolean,
+  getReviews: boolean,
+  pagination: number,
+  editMode: boolean,
+  editReviewData: any,
+  err: null | string,
+  modal: boolean
+}
+
+const initState: InitState = {
   reviews: [],
   isLoading: false,
   getReviews: false,
@@ -11,7 +23,7 @@ const initState = {
   modal: false
 };
 
-const ordersReducer = (state = initState, action) => {
+const ordersReducer = (state = initState, action: Action) => {
   switch (action.type) {
     case AC.GET_REVIEWS_START:
       return { ...state, isLoading: true };
@@ -45,7 +57,7 @@ const ordersReducer = (state = initState, action) => {
       };
     case AC.DELETE_REVIEW_MODAL_OFF:
       const newReviews = state.reviews.filter(
-        item => item._id !== action.payload
+        (item: Review) => item._id !== action.payload
       );
       return {
         ...state,

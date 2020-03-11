@@ -1,6 +1,24 @@
 import * as AC from "../AC/ac";
+import {Action, Room, Message} from '../interfaces/interfaces';
 
-const initState = {
+interface InitState {
+  roomValue: string,
+  messageValue: string,
+  userNameValue: string,
+  rooms: Room[],
+  room: string,
+  modal: boolean,
+  userName: string,
+  role: string,
+  sending: boolean,
+  newMessage: boolean,
+  messages: Message[],
+  userCount: number,
+  newMsgCounter: any,
+  newMsg: string
+}
+
+const initState: InitState = {
   roomValue: "",
   messageValue: "",
   userNameValue: "",
@@ -17,7 +35,7 @@ const initState = {
   newMsg: ""
 };
 
-const reducer = (state = initState, action) => {
+const reducer = (state = initState, action: Action) => {
   switch (action.type) {
     case AC.CHAT_USER_COUNT:
       return {
@@ -48,9 +66,9 @@ const reducer = (state = initState, action) => {
       }
 
     case AC.CHAT_ROOMS_TO_STORE:
-      let obj = {};
+      let obj: any = {};
       if (action.payload.length > 0) {
-        action.payload.forEach(room => {
+        action.payload.forEach((room: Room) => {
           obj[room.name] = "";
         });
       }
@@ -67,7 +85,7 @@ const reducer = (state = initState, action) => {
     case AC.CHAT_DELETE_MSG_STORE:
       return {
         ...state,
-        messages: state.messages.filter(item => item._id !== action.payload)
+        messages: state.messages.filter((item: Message) => item._id !== action.payload)
       };
     case AC.CHAT_ON_INPUT:
       return {
@@ -147,7 +165,7 @@ const reducer = (state = initState, action) => {
     case AC.CHAT_SET_CURRENT_MESSAGES:
       if (action.payload.length > 0) {
         let newPayload = action.payload.filter(
-          item => item.room === state.room
+          (item: Message) => item.room === state.room
         );
         return {
           ...state,

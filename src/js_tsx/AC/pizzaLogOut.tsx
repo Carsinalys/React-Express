@@ -1,6 +1,7 @@
 import * as AC from "./ac";
 import client from "../graphql/client";
 import gql from "graphql-tag";
+import { Dispatch } from "redux";
 
 export const logOut = () => {
   return {
@@ -9,13 +10,13 @@ export const logOut = () => {
 };
 
 export const fetchLogOut = () => {
-  return dispatch => {
+  return (dispatch: Dispatch) => {
     const logOutQuery = gql`
       {
         LogOut
       }
     `;
-    client.query({ query: logOutQuery }).then(() => {
+    client!.query({ query: logOutQuery }).then(() => {
       dispatch(logOut());
     });
   };

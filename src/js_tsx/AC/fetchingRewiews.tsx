@@ -1,79 +1,72 @@
 import * as AC from "./ac";
-import { port } from "../../../portForFront";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
+import { Dispatch } from "redux";
+import {Review} from '../interfaces/interfaces';
 
-export const getReviews = param => {
-  return dispatch => {
+export const getReviews = (param: string) => {
+  return (dispatch: Dispatch) => {
     dispatch(startGetReviews());
     const input = Object.fromEntries(
       param.split("&").map(item => item.split("="))
     );
-    client.query({ query: GQL.getReviews, variables: { input } }).then(res => {
-      if (res.error) dispatch(getError(error));
-      else {
+    client!.query({ query: GQL.getReviews, variables: { input } }).then(res => {
         const { data, count } = res.data.getReviews;
         dispatch(setReviews(data, count));
-      }
     });
   };
 };
 
-export const addReview = input => {
-  return dispatch => {
-    client
+export const addReview = (input: Review) => {
+  return (dispatch: Dispatch) => {
+    client!
       .mutate({
         mutation: GQL.addReview,
         variables: { input }
       })
-      .then(res => client.resetStore());
+      .then(res => client!.resetStore());
   };
 };
 
-export const editReview = id => {
-  return dispatch => {
-    client
+export const editReview = (id: string) => {
+  return (dispatch: Dispatch) => {
+    client!
       .query({ query: GQL.getReviews, variables: { input: { id } } })
       .then(res => {
-        if (res.error) dispatch(getReviewsError(error));
-        else {
-          const { data, count } = res.data.getReviews;
-          dispatch(reviewsEditModeOn(data));
-        }
+        const { data, count } = res.data.getReviews;
+        dispatch(reviewsEditModeOn(data));
       });
   };
 };
 
-export const editReviewSend = (data, id) => {
+export const editReviewSend = (data: Review, id: string) => {
   let sendData = { data, _id: id };
-  return dispatch => {
-    client
+  return (dispatch: Dispatch) => {
+    client!
       .mutate({
         mutation: GQL.editReview,
         variables: { input: sendData }
       })
       .then(res => {
-        if (res.error) dispatch(getReviewsError(error));
-        client.resetStore();
+        client!.resetStore();
       })
       .then(() => dispatch(reviewsEditModeOff()));
   };
 };
 
-export const deleteReview = id => {
+export const deleteReview = (id: string) => {
   let data = { _id: id };
-  return dispatch => {
+  return (dispatch: Dispatch) => {
     dispatch(deleteReviewModalOn());
-    client
+    client!
       .mutate({
         mutation: GQL.deleteReview,
         variables: { input: data }
       })
       .then(res => {
         dispatch(deleteReviewModalOff(res.data.deleteReview._id));
-        if (res.error) console.log(error);
       })
-      .then(() => client.resetStore());
+      .then(() => client!.resetStore());
   };
 };
 
@@ -83,21 +76,21 @@ export const startGetReviews = () => {
   };
 };
 
-export const setReviews = (data, count) => {
+export const setReviews = (data: Review[], count: number) => {
   return {
     type: AC.GET_REVIEWS_FINISH,
     payload: { data: data, count: count }
   };
 };
 
-export const getReviewsError = error => {
+export const getReviewsError = (error: string) => {
   return {
     type: AC.GET_REVIEWS_ERROR,
     payload: error
   };
 };
 
-export const reviewsEditModeOn = data => {
+export const reviewsEditModeOn = (data: Review) => {
   return {
     type: AC.REVIEWS_EDIT_MODE_ON,
     payload: data
@@ -116,7 +109,7 @@ export const deleteReviewModalOn = () => {
   };
 };
 
-export const deleteReviewModalOff = id => {
+export const deleteReviewModalOff = (id: string) => {
   return {
     type: AC.DELETE_REVIEW_MODAL_OFF,
     payload: id

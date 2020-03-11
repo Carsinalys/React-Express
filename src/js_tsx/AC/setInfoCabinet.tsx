@@ -1,49 +1,48 @@
 import * as AC from "./ac";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
+import { Dispatch } from "redux";
+import { ChangeUserInfoFields, User } from '../interfaces/interfaces';
 
-export const setCabinetOnInput = event => {
+export const setCabinetOnInput = (event: Event) => {
   return {
     type: AC.CABINET_SET_INFO_ON_INPUT,
     payload: event
   };
 };
 
-export const setCabinetFetchOrder = (data, allGood, id) => {
-  return dispatch => {
+export const setCabinetFetchOrder = (data: ChangeUserInfoFields, allGood: boolean, id: string) => {
+  return (dispatch: Dispatch) => {
     if (allGood) {
       dispatch(setCabinetToggleModal());
       const sendObj = {
         data,
         _id: id
       };
-      client
+      client!
         .mutate({
           mutation: GQL.changeUserInfo,
           variables: { input: sendObj }
         })
         .then(res => {
           dispatch(setCabinetToggleModal());
-          if (res.error) dispatch(setCabinetCatchError(res.error));
-          else {
             dispatch(setCabinetResetState());
             dispatch(setCabinetNewAddress(res.data.changeUserInfo));
             dispatch(setCabinetStoreNewPhotoAndName(res.data.changeUserInfo));
-          }
         })
-        .then(() => client.resetStore());
+        .then(() => client!.resetStore());
     }
   };
 };
 
-export const setCabinetChangePhoto = (data, id) => {
-  return dispatch => {
+export const setCabinetChangePhoto = (data: ChangeUserInfoFields, id: string) => {
+  return (dispatch: Dispatch) => {
     dispatch(setCabinetToggleModal());
     const sendObj = {
       data: { photo: data },
       _id: id
     };
-    client
+    client!
       .mutate({
         mutation: GQL.changeUserPhoto,
         variables: { input: sendObj }
@@ -52,7 +51,7 @@ export const setCabinetChangePhoto = (data, id) => {
         dispatch(setCabinetToggleModal());
         dispatch(setCabinetStoreNewPhotoAndName(res.data.changeUserPhoto));
       })
-      .then(() => client.resetStore());
+      .then(() => client!.resetStore());
   };
 };
 
@@ -62,14 +61,14 @@ export const setCabinetResetState = () => {
   };
 };
 
-export const setCabinetStoreNewPhotoAndName = data => {
+export const setCabinetStoreNewPhotoAndName = (data: User) => {
   return {
     type: AC.CABINET_CHANGE_MAIL_STORE_PHOTO,
     payload: data
   };
 };
 
-export const setCabinetNewAddress = res => {
+export const setCabinetNewAddress = (res: User) => {
   return {
     type: AC.CABINET_NEW_ADDRESS_SET,
     payload: res
@@ -82,7 +81,7 @@ export const setCabinetToggleModal = () => {
   };
 };
 
-export const setCabinetCatchError = err => {
+export const setCabinetCatchError = (err: string) => {
   return {
     type: AC.CABINET_SET_INFO_ERROR,
     payload: err

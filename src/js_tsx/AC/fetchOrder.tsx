@@ -2,43 +2,41 @@ import * as AC from "./ac";
 import { reset_build } from "./index";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
+import { Dispatch } from "redux";
+import { OrderInput, User } from '../interfaces/interfaces';
 
-export const onInput = event => {
+export const onInput = (event: Event) => {
   return {
     type: AC.SEND_ORDER_ON_INPUT,
     payload: event
   };
 };
 
-export const getInfoAddresCheckout = id => {
-  return dispatch => {
+export const getInfoAddresCheckout = (id: string) => {
+  return (dispatch: Dispatch) => {
     dispatch(toggleModalOn());
-    client
+    client!
       .query({ query: GQL.getUSerInfo, variables: { input: { id } } })
       .then(res => {
         dispatch(toggleModalOff());
-        if (res.error) console.log(res.error);
-        else dispatch(getAddressCheckout(res.data.GetUserInfo));
+        dispatch(getAddressCheckout(res.data.GetUserInfo));
       });
   };
 };
 
-export const callApiAddOrderr = data => {
+export const callApiAddOrderr = (data: OrderInput) => {
   if (data.totalCost) data.totalCost = data.totalCost.toString();
-  return dispatch => {
+  return (dispatch: Dispatch) => {
     dispatch(toggleModalOn());
-    client
+    client!
       .mutate({ mutation: GQL.addOrder, variables: { input: data } })
       .then(res => {
         dispatch(toggleModalOff());
-        if (res.error) dispatch(catchError(error));
-        else {
-          dispatch(resetState());
-          dispatch(reset_build());
-          dispatch(resetMultiBuild());
-        }
+        dispatch(resetState());
+        dispatch(reset_build());
+        dispatch(resetMultiBuild());
       })
-      .then(() => client.resetStore());
+      .then(() => client!.resetStore());
   };
 };
 
@@ -48,17 +46,16 @@ export const resetMultiBuild = () => {
   };
 };
 
-export const getAddressCheckout = data => {
+export const getAddressCheckout = (data: User) => {
   return {
     type: AC.SEND_ORDER_ADDRES,
     payload: data
   };
 };
 
-export const resetState = res => {
+export const resetState = () => {
   return {
-    type: AC.SEND_ORDER_RESET,
-    payload: res
+    type: AC.SEND_ORDER_RESET
   };
 };
 
@@ -74,7 +71,7 @@ export const toggleModalOff = () => {
   };
 };
 
-export const catchError = err => {
+export const catchError = (err: string) => {
   return {
     type: AC.SEND_ORDER_ERROR,
     payload: err

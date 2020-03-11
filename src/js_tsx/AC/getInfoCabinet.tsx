@@ -1,21 +1,22 @@
 import * as AC from "./ac";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
+import { Dispatch } from "redux";
+import {User} from '../interfaces/interfaces';
 
-export const getInfo = id => {
-  return dispatch => {
-    client
+export const getInfo = (id: string) => {
+  return (dispatch: Dispatch) => {
+    client!
       .query({ query: GQL.getUSerInfo, variables: { input: { id } } })
       .then(res => {
         dispatch(cabinetGetInfoModalOFF());
-        if (res.error) console.log(res.error);
-        else dispatch(cabinetGetInfo(res.data.GetUserInfo));
+        dispatch(cabinetGetInfo(res.data.GetUserInfo));
       });
     dispatch(cabinetGetInfoModalON());
   };
 };
 
-export const cabinetGetInfo = data => {
+export const cabinetGetInfo = (data: User) => {
   return {
     type: AC.CABINET_GET_INFO,
     payload: data

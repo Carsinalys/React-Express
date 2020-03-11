@@ -20,21 +20,14 @@ export const createChatRoom = (str: string) => {
       client!
         .mutate({
           mutation: GQL.addRoom,
-          variables: { input: data },
-          update: (cache, payload) => {
-            const { getRooms } = cache.readQuery({ query: GQL.getRooms });
-            const newRooms = [...getRooms, payload.data.addRoomInput];
-            cache.writeQuery({
-              query: GQL.getRooms,
-              data: { getRooms: newRooms }
-            });
-          }
+          variables: { input: data }
         })
         .then(res => {
           dispatch(chatMdalOff());
           dispatch(getChatRooms());
           dispatch(chatResetRoomInput());
-        });
+        })
+        .then(()=>client!.resetStore());
     }
   };
 };
@@ -206,25 +199,13 @@ export const chatDeleteMessage = (id: string, room: string) => {
     client!
       .mutate({
         mutation: GQL.deleteMessageRoom,
-        variables: { input: data },
-        update: (cache, payload) => {
-          const { getMessagesRoom } = cache.readQuery({
-            query: GQL.getMessagesRoom,
-            variables: { input: { room } }
-          });
-          const newMessages = getMessagesRoom.filter(
-            (item: Message) => item._id !== payload.data.deleteMessageInput._id
-          );
-          cache.writeQuery({
-            query: GQL.getMessagesRoom,
-            data: { getMessagesRoom: newMessages }
-          });
-        }
+        variables: { input: data }
       })
       .then(res => {
         dispatch(chatSendMsgSplinnerOff());
         dispatch(deleteMsgFromDtore(id));
-      });
+      })
+      .then(()=>client!.resetStore());
   };
 };
 
@@ -293,7 +274,7 @@ export const chatGetCurMessages = (room: string) => {
   };
 };
 
-export const userCount = num => {
+export const userCount = (num: number) => {
   return {
     type: AC.CHAT_USER_COUNT,
     payload: num
@@ -302,15 +283,7 @@ export const userCount = num => {
 
 export const chatmessageFromAnotherRoom = (data: Message) => {
   if (data.room) {
-    const { getMessagesRoom } = client!.readQuery({
-      query: GQL.getMessagesRoom,
-      variables: { input: { room: data.room } }
-    });
-    const newMessages = [...getMessagesRoom, data];
-    client!.writeQuery({
-      query: GQL.getMessagesRoom,
-      data: { getMessagesRoom: newMessages }
-    });
+    client!.resetStore();
   }
   return {
     type: AC.CHAT_MESSAGE_FROM_ANOTHER_ROOM,

@@ -3,9 +3,10 @@ import { port } from "../../../portForFront";
 import { logOut } from "./index";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
+import { Dispatch } from "redux";
 
-export const fetchResetPass = mail => {
-  return dispatch => {
+export const fetchResetPass = (mail: string) => {
+  return (dispatch: Dispatch) => {
     dispatch(authResetMOdalOn());
     let data = {
       mail: mail
@@ -23,7 +24,7 @@ export const fetchResetPass = mail => {
       .then(data => {
         console.log(data);
         if (!data.error) {
-          dispatch(authResetMessage());
+          console.log(data.error)
         }
         dispatch(authResetMOdalOff());
       })
@@ -34,14 +35,14 @@ export const fetchResetPass = mail => {
   };
 };
 
-export const fetchChangeEmail = (mail, id) => {
-  return dispatch => {
+export const fetchChangeEmail = (mail: string, id: string) => {
+  return (dispatch: Dispatch) => {
     dispatch(authResetMOdalOn());
     let data = {
       _id: id,
       data: { mail }
     };
-    client
+    client!
       .mutate({ mutation: GQL.changeUserMail, variables: { input: data } })
       .then(res => {
         dispatch(authResetMOdalOff());
@@ -53,11 +54,11 @@ export const fetchChangeEmail = (mail, id) => {
           dispatch(logOut());
         }
       })
-      .then(() => client.resetStore());
+      .then(() => client!.resetStore());
   };
 };
 
-export const changeMailError = err => {
+export const changeMailError = (err: string) => {
   return {
     type: AC.CABINET_CHANGE_MAIL_ERROR,
     payload: err
@@ -70,14 +71,14 @@ export const changeMailRedirect = () => {
   };
 };
 
-export const authResetOnInput = event => {
+export const authResetOnInput = (event: Event) => {
   return {
     type: AC.AUTH_RESET_ON_INPUT,
     payload: event
   };
 };
 
-export const authChangeMailOnInput = event => {
+export const authChangeMailOnInput = (event: Event) => {
   return {
     type: AC.AUTH_CHANGE_MAIL_ON_INPUT,
     payload: event
