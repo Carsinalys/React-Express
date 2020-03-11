@@ -1,6 +1,25 @@
 import * as AC from "../AC/ac";
+import { Action } from "../interfaces/interfaces";
 
-const initState = {
+interface InitState {
+  info: {
+    createdAt: null | number;
+    email: null | string;
+    localId: null | string;
+    password: null | string;
+    lastLoginAt: null | string;
+    name: string;
+    phone: string;
+    street: string;
+    house: string;
+    flat: string;
+    mailChangeError: string;
+  };
+  modalShow: boolean;
+  isAddresFilled: boolean;
+}
+
+const initState: InitState = {
   info: {
     createdAt: null,
     email: null,
@@ -18,7 +37,7 @@ const initState = {
   isAddresFilled: false
 };
 
-const reducer = (state = initState, action) => {
+const reducer = (state = initState, action: Action) => {
   switch (action.type) {
     case AC.CABINET_GET_INFO:
       return {

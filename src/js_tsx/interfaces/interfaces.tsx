@@ -48,106 +48,104 @@ export interface DispatchVoid<A extends ActionVoid = AnyActionVoid> {
 }
 //////////////////////
 
-
 export interface GetMoreOrders {
-  orders: Order[]
-  count: number
+  orders: Order[];
+  count: number;
 }
 
-
 export interface Order {
-  _id: string
-  name: string
-  pizzaName: string
-  diameter?: number
-  weight?: number
-  cost?: number
-  totalCost?: number
-  phone: string
-  street: string
-  house: number
-  flat: number
-  pizzas?: Pizza[]
-  ingredients: object
-  id?: string
+  _id: string;
+  name: string;
+  pizzaName: string;
+  diameter?: number;
+  weight?: number;
+  cost?: number;
+  totalCost?: number;
+  phone: string;
+  street: string;
+  house: number;
+  flat: number;
+  pizzas?: Pizza[];
+  ingredients: object;
+  id?: string;
 }
 
 export interface Pizza {
-  _id: string
-  name: String
-  diameter: number
-  weight: number
-  cost: number
-  ingredients: object
-  reviews?: Review_Build[]
-  id?: string
+  _id: string;
+  name: String;
+  diameter: number;
+  weight: number;
+  cost: number;
+  ingredients: object;
+  reviews?: Review_Build[];
+  id?: string;
 }
 
 type Review_Build = {
-  _id: string
-  name: string
-  date: string
-  rating: number
-  text: string
-  build?: Pizza
-  user: string
-}
+  _id: string;
+  name: string;
+  date: string;
+  rating: number;
+  text: string;
+  build?: Pizza;
+  user: string;
+};
 
 export interface Review {
-  _id: string
-  name: string
-  rating: number
-  text: string
-  id: string
-  date: string
-  edited: boolean
+  _id: string;
+  name: string;
+  rating: number;
+  text: string;
+  id: string;
+  date: string;
+  edited: boolean;
 }
 
 export interface BuildsReviewsInput {
-  name: string
-  rating: string
-  text: string
-  build: string
-  user: string
+  name: string;
+  rating: string;
+  text: string;
+  build: string;
+  user: string;
 }
 
 export interface OrderInput {
-  name: string
-  pizzaName: string
-  diameter?: number
-  weight?: number
-  cost?: string
-  totalCost?: string
-  phone: number
-  street: string
-  house: number
-  flat: number
-  pizzas: PizzaInput[]
-  ingredients: Object
-  id: string
+  name: string;
+  pizzaName: string;
+  diameter?: number;
+  weight?: number;
+  cost?: string;
+  totalCost?: string;
+  phone: number;
+  street: string;
+  house: number;
+  flat: number;
+  pizzas: PizzaInput[];
+  ingredients: Object;
+  id: string;
 }
 
 interface PizzaInput {
-  name: string
-  diameter: number
-  weight: number
-  cost: number
-  ingredients: object
-  reviews: object
-  id?: string
+  name: string;
+  diameter: number;
+  weight: number;
+  cost: number;
+  ingredients: object;
+  reviews: object;
+  id?: string;
 }
 
 export interface User {
-  _id: string
-  createdAt?: string
-  role?: string
-  photo?: string
-  phone?: number
-  mail?: string
-  flat?: number
-  house?: number
-  street?: string
-  name?: string
+  _id: string;
+  createdAt?: string;
+  role?: string;
+  photo?: string;
+  phone?: number;
+  mail?: string;
+  flat?: number;
+  house?: number;
+  street?: string;
+  name?: string;
 }
 
 export interface Action {
@@ -155,4 +153,44 @@ export interface Action {
   payload: any;
   count?: number;
   error?: string;
+}
+
+export interface ActionEvent {
+  type: string;
+  payload: {
+    name?: string;
+    phone?: string;
+    pizza?: string;
+    street?: string;
+    house?: string;
+    flat?: string;
+    photo?: string;
+    expireAt?: number;
+    localId?: string;
+    error?: string;
+    target?: {
+      value: string;
+      dataset: {
+        name:
+          | "name"
+          | "phone"
+          | "pizza"
+          | "street"
+          | "house"
+          | "flat"
+          | "mail"
+          | "password";
+      };
+    };
+  };
+}
+
+export interface Input {
+  id?: string;
+  placeholder?: string;
+  label?: string;
+  type?: string;
+  value: string;
+  isValid: boolean;
+  pattern: string;
 }

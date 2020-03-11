@@ -1,6 +1,16 @@
 import * as AC from "../AC/ac";
+import { Action, Input } from "../interfaces/interfaces";
 
-const initState = {
+interface InitState {
+  modal: boolean;
+  inputs: {
+    mail: Input;
+    mail1: Input;
+    password?: Input;
+  };
+}
+
+const initState: InitState = {
   modal: false,
   inputs: {
     mail: {
@@ -16,7 +26,7 @@ const initState = {
   }
 };
 
-const reducer = (state = initState, action) => {
+const reducer = (state = initState, action: Action) => {
   switch (action.type) {
     case AC.AUTH_RESET_ON_INPUT:
       let fuck = new RegExp(state.inputs.mail.pattern);

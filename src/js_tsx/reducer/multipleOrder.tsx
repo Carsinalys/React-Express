@@ -1,11 +1,17 @@
 import * as AC from "../AC/ac";
+import { Pizza, Action } from "../interfaces/interfaces";
 
-const initState = {
+interface InitState {
+  pizzas: Pizza[];
+  totalCost: number;
+}
+
+const initState: InitState = {
   pizzas: [],
   totalCost: 0
 };
 
-const reducer = (state = initState, action) => {
+const reducer = (state = initState, action: Action) => {
   switch (action.type) {
     case AC.MULTIPLE_ORDER_ADD:
       let newPizzas = state.pizzas;

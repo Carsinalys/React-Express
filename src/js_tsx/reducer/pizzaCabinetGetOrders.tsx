@@ -1,13 +1,21 @@
 import * as AC from "../AC/ac";
+import { Action, Order } from "../interfaces/interfaces";
 
-const initState = {
+interface InitState {
+  modal: boolean;
+  error: null | string;
+  count: null | number;
+  orders: Order[];
+}
+
+const initState: InitState = {
   modal: false,
   error: null,
   count: null,
   orders: []
 };
 
-const reducer = (state = initState, action) => {
+const reducer = (state = initState, action: Action) => {
   switch (action.type) {
     case AC.CABINET_VIEW_ORDERS_SET:
       return {

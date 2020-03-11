@@ -3,7 +3,7 @@ import { reset_build } from "./index";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
 import { Dispatch } from "redux";
-import { OrderInput, User } from '../interfaces/interfaces';
+import { OrderInput, User } from "../interfaces/interfaces";
 
 export const onInput = (event: Event) => {
   return {

@@ -1,6 +1,27 @@
 import * as AC from "../AC/ac";
+import { ActionEvent, Input } from "../interfaces/interfaces";
 
-const initState = {
+interface InitState {
+  isLoading: boolean;
+  isAuthindicated: boolean;
+  expiresAt: null | number;
+  localId: null | string;
+  error: null | string;
+  name: string;
+  photo: string;
+  inputs: {
+    name?: Input;
+    phone?: Input;
+    pizza?: Input;
+    street?: Input;
+    house?: Input;
+    flat?: Input;
+    mail: Input;
+    password: Input;
+  };
+}
+
+const initState: InitState = {
   isLoading: false,
   isAuthindicated: false,
   expiresAt: null,
@@ -30,7 +51,7 @@ const initState = {
   }
 };
 
-const reducer = (state = initState, action) => {
+const reducer = (state = initState, action: ActionEvent) => {
   switch (action.type) {
     case AC.GET_ORDERS_FINISH_PHOTO:
       localStorage.setItem("name", `${action.payload.name}`);
@@ -41,8 +62,8 @@ const reducer = (state = initState, action) => {
         name: action.payload.name
       };
     case AC.CABINET_CHANGE_MAIL_STORE_PHOTO:
-      localStorage.setItem("build", action.payload);
-      localStorage.setItem("name", action.payload);
+      localStorage.setItem("build", action.payload.toString());
+      localStorage.setItem("name", action.payload.toString());
       return {
         ...state,
         photo: action.payload.photo,
@@ -50,16 +71,16 @@ const reducer = (state = initState, action) => {
       };
     case AC.AUTH_ON_INPUT:
       let fuck = new RegExp(
-        state.inputs[action.payload.target.dataset.name].pattern
+        state.inputs[action.payload.target!.dataset.name]!.pattern
       );
       return {
         ...state,
         inputs: {
           ...state.inputs,
-          [action.payload.target.dataset.name]: {
-            ...state.inputs[action.payload.target.dataset.name],
-            value: action.payload.target.value,
-            isValid: fuck.test(action.payload.target.value)
+          [action.payload.target!.dataset.name]: {
+            ...state.inputs[action.payload.target!.dataset.name],
+            value: action.payload.target!.value,
+            isValid: fuck.test(action.payload.target!.value)
           }
         }
       };
@@ -106,7 +127,7 @@ const reducer = (state = initState, action) => {
     case AC.AUTH_STORE_AUTH_DATA:
       localStorage.setItem(
         "expiresAt",
-        `${new Date().getTime() + action.payload.expireAt * 1000}`
+        `${new Date().getTime() + action.payload.expireAt! * 1000}`
       );
       localStorage.setItem("localId", `${action.payload.localId}`);
       localStorage.setItem("name", `${action.payload.name}`);
@@ -116,7 +137,7 @@ const reducer = (state = initState, action) => {
       };
     case AC.AUTH_GET_TOKEN_FROM_COOKIE:
       let strExpiresAt = localStorage.getItem("expiresAt");
-      if (new Date().getTime() < strExpiresAt) {
+      if (strExpiresAt && new Date().getTime() < +strExpiresAt) {
         return {
           ...state,
           isAuthindicated: true,

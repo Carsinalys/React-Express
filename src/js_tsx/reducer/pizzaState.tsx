@@ -1,6 +1,110 @@
 import * as AC from "../AC/ac";
+import { Action } from "../interfaces/interfaces";
 
-const startState = {
+interface Ingredient {
+  count: number;
+  weight: number;
+  cost: number;
+}
+
+type Ingredients =
+  | "base"
+  | "pizza-sause"
+  | "cheese"
+  | "bacon"
+  | "beef"
+  | "chicken"
+  | "ham"
+  | "meat"
+  | "pork"
+  | "tomato"
+  | "pickels"
+  | "onion"
+  | "mushroom"
+  | "green-onion"
+  | "chili"
+  | "jalapeo"
+  | "barbecue-sauce"
+  | "cheese-sauce"
+  | "garlic-sauce"
+  | "mustard-sauce"
+  | "spicy-sauce"
+  | "ketchup"
+  | "mayonnaise"
+  | "barbecue-sauce"
+  | "ranch-sauce"
+  | "cherry"
+  | "pepperoni-pepper"
+  | "marinated-onion"
+  | "black-olives"
+  | "sausage"
+  | "lemon"
+  | "shrimps"
+  | "mussels"
+  | "salmon"
+  | "capers"
+  | "marinated-pepper"
+  | "pineapple"
+  | "small-sausage"
+  | "feta-cheese"
+  | "spinach"
+  | "egg";
+
+interface InitState {
+  ingredients: {
+    base: Ingredient;
+    "pizza-sause": Ingredient;
+    cheese: Ingredient;
+    bacon: Ingredient;
+    beef: Ingredient;
+    chicken: Ingredient;
+    ham: Ingredient;
+    meat: Ingredient;
+    pork: Ingredient;
+    tomato: Ingredient;
+    pickels: Ingredient;
+    onion: Ingredient;
+    mushroom: Ingredient;
+    "green-onion": Ingredient;
+    chili: Ingredient;
+    jalapeo: Ingredient;
+    "barbecue-sauce": Ingredient;
+    "cheese-sauce": Ingredient;
+    "garlic-sauce": Ingredient;
+    "mustard-sauce": Ingredient;
+    "spicy-sauce": Ingredient;
+    ketchup: Ingredient;
+    mayonnaise: Ingredient;
+    "ranch-sauce": Ingredient;
+    cherry: Ingredient;
+    "pepperoni-pepper": Ingredient;
+    "marinated-onion": Ingredient;
+    "black-olives": Ingredient;
+    sausage: Ingredient;
+    lemon: Ingredient;
+    shrimps: Ingredient;
+    mussels: Ingredient;
+    salmon: Ingredient;
+    capers: Ingredient;
+    "marinated-pepper": Ingredient;
+    pineapple: Ingredient;
+    "small-sausage": Ingredient;
+    "feta-cheese": Ingredient;
+    spinach: Ingredient;
+    egg: Ingredient;
+  };
+  weight: number;
+  cost: number;
+  diameter: number;
+  message: string;
+}
+
+interface ActionIngredients {
+  type: string;
+  payload: Ingredients;
+}
+
+const startState: InitState = {
   ingredients: {
     base: { count: 1, weight: 300, cost: 2 },
     "pizza-sause": { count: 0, weight: 100, cost: 0.6 },
@@ -49,7 +153,7 @@ const startState = {
   message: "need more ingredients...)"
 };
 
-const reducer = (state = startState, action) => {
+const reducer = (state = startState, action: ActionIngredients | Action) => {
   switch (action.type) {
     case AC.PLUS:
       if (action.payload !== "base" && state.weight <= 1500) {
@@ -108,7 +212,7 @@ const reducer = (state = startState, action) => {
 
 export default reducer;
 
-const calculationHandler = state => {
+const calculationHandler = (state: InitState) => {
   let newWeight = 0;
   let newCost = 0;
   Object.keys(state.ingredients).forEach(item => {
@@ -126,7 +230,7 @@ const calculationHandler = state => {
   return checkingWeigtCosthHandler(newState);
 };
 
-const checkingWeigtCosthHandler = state => {
+const checkingWeigtCosthHandler = (state: InitState) => {
   if (state.weight >= 750 && state.weight < 1200) {
     return {
       ...state,
@@ -163,7 +267,7 @@ const checkingWeigtCosthHandler = state => {
   }
 };
 
-const calculateBaseWeightAndMessageHandler = state => {
+const calculateBaseWeightAndMessageHandler = (state: InitState) => {
   let newDiameter = 30;
   let newMessage = "need more ingredients...)";
 

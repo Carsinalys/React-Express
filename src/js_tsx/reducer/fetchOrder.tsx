@@ -1,6 +1,21 @@
 import * as AC from "../AC/ac";
+import { ActionEvent, Input } from "../interfaces/interfaces";
 
-const initState = {
+interface InitState {
+  modalShow: boolean;
+  inputs: {
+    name: Input;
+    phone: Input;
+    pizza: Input;
+    street: Input;
+    house: Input;
+    flat: Input;
+    mail?: Input;
+    password?: Input;
+  };
+}
+
+const initState: InitState = {
   modalShow: false,
   inputs: {
     name: {
@@ -60,20 +75,22 @@ const initState = {
   }
 };
 
-const reducer = (state = initState, action) => {
+const reducer = (state = initState, action: ActionEvent) => {
   switch (action.type) {
     case AC.SEND_ORDER_ON_INPUT: {
-      let fuck = new RegExp(
-        state.inputs[action.payload.target.dataset.name].pattern
-      );
+      let fuck: RegExp;
+      if (action.payload.target!.dataset.name)
+        fuck = new RegExp(
+          state.inputs[action.payload.target!.dataset.name]!.pattern
+        );
       return {
         ...state,
         inputs: {
           ...state.inputs,
-          [action.payload.target.dataset.name]: {
-            ...state.inputs[action.payload.target.dataset.name],
-            value: action.payload.target.value,
-            isValid: fuck.test(action.payload.target.value)
+          [action.payload.target!.dataset.name]: {
+            ...state.inputs[action.payload.target!.dataset.name],
+            value: action.payload.target!.value,
+            isValid: fuck!.test(action.payload.target!.value)
           }
         }
       };

@@ -1,6 +1,24 @@
 import * as AC from "../AC/ac";
+import { ActionEvent, Input } from "../interfaces/interfaces";
 
-const initState = {
+interface InitState {
+  modalShow: boolean;
+  allGood: boolean;
+  inputs: {
+    name: Input;
+    phone: Input;
+    street: Input;
+    house: Input;
+    flat: Input;
+    pizza?: Input;
+    mail?: Input;
+    password?: Input;
+  };
+}
+
+type InputsNames = "name" | "phone" | "street" | "house" | "flat";
+
+const initState: InitState = {
   modalShow: false,
   allGood: false,
   inputs: {
@@ -52,33 +70,32 @@ const initState = {
   }
 };
 
-const reducer = (state = initState, action) => {
+const reducer = (state = initState, action: ActionEvent) => {
   switch (action.type) {
     case AC.CABINET_SET_INFO_ON_INPUT: {
       const regExp = new RegExp(
-        state.inputs[action.payload.target.dataset.name].pattern
+        state.inputs[action.payload.target!.dataset.name]!.pattern
       );
-      const valid = regExp.test(action.payload.target.value);
-      let copyState = {
+      const valid = regExp.test(action.payload.target!.value);
+      let copyState: InitState = {
         ...state,
         allGood: false,
         inputs: {
           ...state.inputs,
-          [action.payload.target.dataset.name]: {
-            ...state.inputs[action.payload.target.dataset.name],
-            value: action.payload.target.value,
+          [action.payload.target!.dataset.name]: {
+            ...state.inputs[action.payload.target!.dataset.name],
+            value: action.payload.target!.value,
             isValid: valid
           }
         }
       };
-      let arr = Object.keys(copyState.inputs).map(
-        item => copyState.inputs[item].isValid
-      );
+      let arr: boolean[] = Object.keys(copyState.inputs).map(item => {
+        let myString: string = item;
+        let myInput: InputsNames = myString as InputsNames;
+        return copyState.inputs[myInput].isValid;
+      });
       let valueValid = 0;
       arr.forEach(item => (item === true ? valueValid++ : valueValid));
-      console.log(arr.length === valueValid);
-      console.log(arr.length, valueValid);
-
       return {
         ...copyState,
         allGood: arr.length === valueValid
