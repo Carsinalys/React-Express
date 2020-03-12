@@ -1,12 +1,19 @@
 import * as AC from "../AC/ac";
+import { Action, Pizza, Review_Build } from '../interfaces/interfaces';
 
-const initState = {
+interface InitState {
+  isLoading: boolean,
+  builds: Pizza[],
+  reviews: Review_Build[]
+}
+
+const initState : InitState = {
   isLoading: false,
   builds: [],
   reviews: []
 };
 
-const reducer = (state = initState, action) => {
+const reducer = (state = initState, action: Action) => {
   switch (action.type) {
     case AC.READY_BUILDS_SET_CUR_REVIEWS:
       return {

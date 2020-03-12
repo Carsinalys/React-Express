@@ -4,6 +4,7 @@ import { getTokenFromCookie, checkBrowser } from "./AC/index";
 import PizzaBuilder from "./conponents/pizzaBuilder";
 import { BrowserRouter } from "react-router-dom";
 import { DispatchVoid } from "./interfaces/interfaces";
+import { Dispatch} from 'redux';
 
 interface CurProps {
   getToketFun: () => { type: string };
@@ -29,11 +30,13 @@ class App extends React.Component<CurProps, {}> {
   }
 }
 
-const dispatchToProps = (dispatch: DispatchVoid) => {
+const dispatchToProps = (dispatch: DispatchVoid extends Dispatch) => {
   return {
     getToketFun: () => dispatch(getTokenFromCookie()),
     checkBrowserFun: () => dispatch(checkBrowser())
   };
 };
 
-export default connect(null, dispatchToProps)(App);
+const stateToProps = null
+
+export default connect(stateToProps, dispatchToProps)(App);

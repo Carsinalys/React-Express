@@ -99,11 +99,6 @@ interface InitState {
   message: string;
 }
 
-interface ActionIngredients {
-  type: string;
-  payload: Ingredients;
-}
-
 const startState: InitState = {
   ingredients: {
     base: { count: 1, weight: 300, cost: 2 },
@@ -153,17 +148,18 @@ const startState: InitState = {
   message: "need more ingredients...)"
 };
 
-const reducer = (state = startState, action: ActionIngredients | Action) => {
+const reducer = (state = startState, action: Action) => {
   switch (action.type) {
     case AC.PLUS:
+      const curAction: Ingredients = action.payload;
       if (action.payload !== "base" && state.weight <= 1500) {
         return calculationHandler({
           ...state,
           ingredients: {
             ...state.ingredients,
-            [action.payload]: {
-              ...state.ingredients[action.payload],
-              count: state.ingredients[action.payload].count + 1
+            [curAction]: {
+              ...state.ingredients[curAction],
+              count: state.ingredients[curAction].count + 1
             }
           }
         });
@@ -172,16 +168,17 @@ const reducer = (state = startState, action: ActionIngredients | Action) => {
       }
     case AC.MINUS:
       if (action.payload !== "base") {
+        const curAction: Ingredients = action.payload;
         return calculationHandler({
           ...state,
           ingredients: {
             ...state.ingredients,
             [action.payload]: {
-              ...state.ingredients[action.payload],
+              ...state.ingredients[curAction],
               count:
-                state.ingredients[action.payload].count == 0
-                  ? state.ingredients[action.payload].count
-                  : state.ingredients[action.payload].count - 1
+                state.ingredients[curAction].count == 0
+                  ? state.ingredients[curAction].count
+                  : state.ingredients[curAction].count - 1
             }
           }
         });
@@ -191,10 +188,11 @@ const reducer = (state = startState, action: ActionIngredients | Action) => {
     case AC.RESET_BUILD:
       const resetState = { ...state };
       const resetIngr = { ...state.ingredients };
-      Object.keys(resetIngr).map(item => {
-        item == "base"
-          ? (resetIngr[item].count = 1)
-          : (resetIngr[item].count = 0);
+      Object.keys(resetIngr).map( item => {
+        const curItem: Ingredients = item as Ingredients
+        curItem == "base"
+          ? (resetIngr[curItem].count = 1)
+          : (resetIngr[curItem].count = 0);
       });
       resetState.ingredients = resetIngr;
       return calculationHandler(resetState);
@@ -216,16 +214,17 @@ const calculationHandler = (state: InitState) => {
   let newWeight = 0;
   let newCost = 0;
   Object.keys(state.ingredients).forEach(item => {
-    if (state.ingredients[item].count > 0) {
+    const curItem: Ingredients = item as Ingredients
+    if (state.ingredients[curItem].count > 0) {
       newWeight +=
-        state.ingredients[item].weight * state.ingredients[item].count;
-      newCost += state.ingredients[item].cost * state.ingredients[item].count;
+        state.ingredients[curItem].weight * state.ingredients[curItem].count;
+      newCost += state.ingredients[curItem].cost * state.ingredients[curItem].count;
     }
   });
   const newState = calculateBaseWeightAndMessageHandler({
     ...state,
     weight: newWeight,
-    cost: newCost.toFixed(2)
+    cost: +newCost.toFixed(2)
   });
   return checkingWeigtCosthHandler(newState);
 };

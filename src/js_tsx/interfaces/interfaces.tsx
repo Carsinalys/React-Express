@@ -81,7 +81,7 @@ export interface Pizza {
   id?: string;
 }
 
-type Review_Build = {
+export interface Review_Build {
   _id: string;
   name: string;
   date: string;
