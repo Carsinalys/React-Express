@@ -1,6 +1,10 @@
 import React from "react";
 
-const modal = props => {
+interface Hoc {
+  children: React.HTMLAttributes<any>
+}
+
+const modal: React.FC<Hoc> = props => {
   return <div className="modal">{props.children}</div>;
 };
 

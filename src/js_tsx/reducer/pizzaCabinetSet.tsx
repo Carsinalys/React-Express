@@ -1,5 +1,6 @@
 import * as AC from "../AC/ac";
 import { ActionEvent, Input } from "../interfaces/interfaces";
+import { Reducer } from "react";
 
 interface InitState {
   modalShow: boolean;
@@ -70,7 +71,7 @@ const initState: InitState = {
   }
 };
 
-const reducer = (state = initState, action: ActionEvent) => {
+const reducer: Reducer<InitState, ActionEvent> = (state = initState, action) => {
   switch (action.type) {
     case AC.CABINET_SET_INFO_ON_INPUT: {
       const regExp = new RegExp(

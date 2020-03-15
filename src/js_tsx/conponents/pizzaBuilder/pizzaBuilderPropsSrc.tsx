@@ -21,20 +21,56 @@ import Modalcontent from "./pizzaBuilderModalContent";
 import MultiShow from "./pizzaBuilderMultiShow";
 import Modal from "../hoc/modal";
 
-class pizzaBuilderPropsSrc extends React.Component {
-  state = {
+import { InitState, Ingredients } from '../../reducer/pizzaState';
+import { InitStateMulti } from '../../reducer/multipleOrder';
+import { NewPizza, NewIngredients } from "../../interfaces/interfaces";
+import { Dispatch } from "redux";
+
+interface Props {
+  browser: {
+    safari: boolean;
+  }
+  state: InitState;
+  multi: InitStateMulti;
+  multipleAddFun: (data: NewPizza)=> void;
+  minusFun: (name: string) => {
+    type: string;
+    payload: string;
+  }
+  plusFun: (name: string) => {
+    type: string;
+    payload: string;
+  }
+  resetFun: () => {
+    type: string
+  }
+  resetMultiFun: () => {
+    type: string
+  }
+  deleteMulriOrderFun: (num: number) => {
+    type: string;
+    payload: number;
+  }
+}
+
+interface State {
+  currentIngredient: Ingredients;
+  modalIsShow: boolean;
+  smallPizza: boolean;
+  redirect: boolean;
+}
+
+class pizzaBuilderPropsSrc extends React.Component<Props, State> {
+  state: State = {
     currentIngredient: "base",
     modalIsShow: false,
     smallPizza: false,
     redirect: false
   };
 
-  changeSelectHandler = event => {
-    this.setState(prevState => {
-      return {
-        currentIngredient: (prevState.currentIngredient =
-          event.target.textContent)
-      };
+  changeSelectHandler = (name: Ingredients) => {
+    this.setState(() => {
+        return {currentIngredient: name};
     });
   };
 
@@ -55,12 +91,13 @@ class pizzaBuilderPropsSrc extends React.Component {
   };
 
   addPizzaHandler = () => {
-    let newIngredients = {};
+    let newIngredients: NewIngredients = {};
     Object.keys(this.props.state.ingredients).map(item => {
-      if (this.props.state.ingredients[item].count !== 0)
-        newIngredients[item] = { ...this.props.state.ingredients[item] };
+      const curItem = item as Ingredients
+      if (this.props.state.ingredients[curItem]!.count !== 0)
+        newIngredients[curItem] = { ...this.props.state.ingredients[curItem] };
     });
-    let curPizza = {
+    let curPizza: NewPizza = {
       cost: this.props.state.cost,
       diameter: this.props.state.diameter,
       weight: this.props.state.weight,
@@ -74,8 +111,8 @@ class pizzaBuilderPropsSrc extends React.Component {
     }
   };
 
-  minusFunHandler = event => {
-    console.log("in", event);
+  minusFunHandler = (name: string) => {
+    console.log("in", name);
   };
 
   render() {
@@ -160,7 +197,7 @@ class pizzaBuilderPropsSrc extends React.Component {
   }
 }
 
-const stateToProps = state => {
+const stateToProps = (state: any) => {
   return {
     state: state.pizza,
     multi: state.multi,
@@ -168,13 +205,13 @@ const stateToProps = state => {
   };
 };
 
-const dispatchToProps = dispatch => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
-    plusFun: ingredient => dispatch(plus(ingredient)),
-    minusFun: ingredient => dispatch(minus(ingredient)),
+    plusFun: (ingredient: string) => dispatch(plus(ingredient)),
+    minusFun: (ingredient: string) => dispatch(minus(ingredient)),
     resetFun: () => dispatch(reset_build()),
-    multipleAddFun: data => dispatch(multipleAdd(data)),
-    deleteMulriOrderFun: num => dispatch(deleteMultiOrder(num)),
+    multipleAddFun: (data: NewPizza) => dispatch(multipleAdd(data)),
+    deleteMulriOrderFun: (num: number) => dispatch(deleteMultiOrder(num)),
     resetMultiFun: () => dispatch(resetMultiPizza())
   };
 };

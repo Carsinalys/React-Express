@@ -1,10 +1,22 @@
 import React from "react";
 import Icons from "./pizzaBuilderIconsIngredients";
+import {NewPizza} from '../../interfaces/interfaces';
 
-const multiShow = props => {
+interface Props {
+  pizzas: NewPizza[];
+  cost: number;
+  delete: (num: number)=>{
+    type: string;
+    payload: number;
+  }
+  minus: (num: string) => void;
+}
+
+
+const multiShow: React.FC<Props> = props => {
   let markup =
     props.pizzas.length > 0
-      ? props.pizzas.map((item, index) => {
+      ? props.pizzas.map((item: NewPizza, index: number) => {
           return (
             <li key={index} className="multi__order__item">
               <div className="pizza__view__order__content__flex">

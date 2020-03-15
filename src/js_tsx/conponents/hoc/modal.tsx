@@ -1,12 +1,17 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 
-const modal = props => {
+interface propsForHoc {
+  toggle: boolean;
+  children: React.HTMLAttributes<any>;
+}
+
+const modal: React.FC<propsForHoc> = props => {
   return (
     <CSSTransition
       in={props.toggle}
       timeout={300}
-      classNames="select__global"
+      classNames="modal__global"
       mountOnEnter
       unmountOnExit
     >

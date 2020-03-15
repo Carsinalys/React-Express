@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import ModalSlide from "../hoc/modalSlideUpDown";
+import { IngredientsObj, Ingredients } from '../../reducer/pizzaState';
 
-const builderSelect = props => {
+interface Props {
+  ingredients: IngredientsObj;
+  browser: {
+    safari: boolean;
+  }
+  change: (name: Ingredients) => void
+}
+
+const builderSelect: React.FC<Props> = props => {
   const [showList, setShowList] = useState(false);
 
   return (
@@ -15,16 +24,18 @@ const builderSelect = props => {
         Choose ingredient...
       </button>
       <ModalSlide toggle={showList}>
-        <ul className="select__list" onChange={() => props.change(event)}>
+        <ul className="select__list">
           {Object.keys(props.ingredients).map(item => {
             return (
               <li
                 value={item}
                 key={item}
                 className="select__item"
-                onClick={() => {
+                onClick={(event) => {
+                  const el = event.target as HTMLUListElement;
+                  const elText = el.textContent as Ingredients
                   setShowList(false);
-                  props.change(event);
+                  props.change(elText);
                 }}
               >
                 <div className="select__item__title__cover">

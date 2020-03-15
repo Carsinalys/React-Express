@@ -2,9 +2,9 @@ import * as AC from "./ac";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
 import { Dispatch } from "redux";
-import { DispatchVoid, Order } from "../interfaces/interfaces";
+import { Order } from "../interfaces/interfaces";
 
-export const viewOrdersCabinet = (query: string) => {
+export const viewOrdersCabinet = (query: string):any => {
   const input = Object.fromEntries(
     query.split("&").map(item => item.split("="))
   );
@@ -24,7 +24,7 @@ export const viewOrdersCabinet = (query: string) => {
 };
 
 export const deleteOrder = (id: string, localId: string) => {
-  return (dispatch: DispatchVoid) => {
+  return (dispatch: Dispatch) => {
     dispatch(viewOrdersCabinetModalOn());
     client!
       .mutate({ mutation: GQL.deleteOrder, variables: { input: { _id: id } } })

@@ -2,9 +2,9 @@ import * as AC from "../AC/ac";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
 import { Dispatch } from "redux";
-import {Pizza, Review, DispatchVoid, BuildsReviewsInput} from '../interfaces/interfaces';
+import {Pizza, Review, BuildsReviewsInput} from '../interfaces/interfaces';
 
-export const getBuilds = () => {
+export const getBuilds = ():any => {
   return (dispatch: Dispatch) => {
     dispatch(getBuildsModalOn());
     client!.query({ query: GQL.getBuilds }).then(res => {
@@ -42,7 +42,7 @@ export const setCurReviewsToShow = (data: Review[]) => {
 
 export const sendReview = (data: BuildsReviewsInput) => {
   data.rating = data.rating.toString();
-  return (dispatch: DispatchVoid) => {
+  return (dispatch: Dispatch) => {
     dispatch(getBuildsModalOn());
     client!
       .mutate({
@@ -59,7 +59,7 @@ export const sendReview = (data: BuildsReviewsInput) => {
 
 export const sendEditedReview = (data: BuildsReviewsInput) => {
   data.rating = data.rating.toString();
-  return (dispatch: DispatchVoid) => {
+  return (dispatch: Dispatch) => {
     dispatch(getBuildsModalOn());
     client!
       .mutate({

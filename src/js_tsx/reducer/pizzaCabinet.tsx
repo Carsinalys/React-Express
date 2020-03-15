@@ -1,5 +1,6 @@
 import * as AC from "../AC/ac";
 import { Action } from "../interfaces/interfaces";
+import { Reducer } from "redux";
 
 interface InitState {
   info: {
@@ -37,7 +38,7 @@ const initState: InitState = {
   isAddresFilled: false
 };
 
-const reducer = (state = initState, action: Action) => {
+const reducer: Reducer<InitState, Action> = (state = initState, action) => {
   switch (action.type) {
     case AC.CABINET_GET_INFO:
       return {

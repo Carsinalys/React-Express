@@ -1,3 +1,5 @@
+import { IngredientsObj, Ingredient } from '../reducer/pizzaState';
+
 export interface UserAuthObj {
   expireAt: number;
   localId: string;
@@ -34,20 +36,6 @@ export interface Message {
   id: string;
 }
 
-//Dispatch interface with void
-interface ActionVoid<T = any> {
-  type?: T;
-}
-
-interface AnyActionVoid extends ActionVoid {
-  [extraProps: string]: any;
-}
-
-export interface DispatchVoid<A extends ActionVoid = AnyActionVoid> {
-  <T extends A>(action: T): T;
-}
-//////////////////////
-
 export interface GetMoreOrders {
   orders: Order[];
   count: number;
@@ -66,19 +54,74 @@ export interface Order {
   house: number;
   flat: number;
   pizzas?: Pizza[];
-  ingredients: object;
+  ingredients: IngredientsObj;
   id?: string;
 }
 
 export interface Pizza {
-  _id: string;
-  name: String;
+  _id?: string;
+  name?: String;
   diameter: number;
   weight: number;
   cost: number;
-  ingredients: object;
+  ingredients: IngredientsObj;
   reviews?: Review_Build[];
   id?: string;
+}
+
+export interface NewPizza {
+  name?: string;
+  diameter: number;
+  weight: number;
+  cost: number;
+  ingredients: NewIngredientsObj;
+}
+
+export interface NewIngredients {
+  [Ingredients:string]: Ingredient
+}
+
+export interface NewIngredientsObj {
+  base?: Ingredient;
+  "pizza-sause"?: Ingredient;
+  cheese?: Ingredient;
+  bacon?: Ingredient;
+  beef?: Ingredient;
+  chicken?: Ingredient;
+  ham?: Ingredient;
+  meat?: Ingredient;
+  pork?: Ingredient;
+  tomato?: Ingredient;
+  pickels?: Ingredient;
+  onion?: Ingredient;
+  mushroom?: Ingredient;
+  "green-onion"?: Ingredient;
+  chili?: Ingredient;
+  jalapeo?: Ingredient;
+  "barbecue-sauce"?: Ingredient;
+  "cheese-sauce"?: Ingredient;
+  "garlic-sauce"?: Ingredient;
+  "mustard-sauce"?: Ingredient;
+  "spicy-sauce"?: Ingredient;
+  ketchup?: Ingredient;
+  mayonnaise?: Ingredient;
+  "ranch-sauce"?: Ingredient;
+  cherry?: Ingredient;
+  "pepperoni-pepper"?: Ingredient;
+  "marinated-onion"?: Ingredient;
+  "black-olives"?: Ingredient;
+  sausage?: Ingredient;
+  lemon?: Ingredient;
+  shrimps?: Ingredient;
+  mussels?: Ingredient;
+  salmon?: Ingredient;
+  capers?: Ingredient;
+  "marinated-pepper"?: Ingredient;
+  pineapple?: Ingredient;
+  "small-sausage"?: Ingredient;
+  "feta-cheese"?: Ingredient;
+  spinach?: Ingredient;
+  egg?: Ingredient;
 }
 
 export interface Review_Build {
@@ -194,3 +237,13 @@ export interface Input {
   isValid: boolean;
   pattern: string;
 }
+
+export type InputKeys = 
+"name" |
+"phone" |
+"pizza" |
+"street" |
+"house" |
+"flat" |
+"mail" |
+"password";

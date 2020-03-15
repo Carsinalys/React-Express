@@ -1,13 +1,57 @@
 import * as AC from "../AC/ac";
 import { Action } from "../interfaces/interfaces";
+import { Reducer } from "react";
 
-interface Ingredient {
+export interface Ingredient {
   count: number;
   weight: number;
   cost: number;
 }
 
-type Ingredients =
+export interface IngredientsObj {
+    base: Ingredient;
+    "pizza-sause": Ingredient;
+    cheese: Ingredient;
+    bacon: Ingredient;
+    beef: Ingredient;
+    chicken: Ingredient;
+    ham: Ingredient;
+    meat: Ingredient;
+    pork: Ingredient;
+    tomato: Ingredient;
+    pickels: Ingredient;
+    onion: Ingredient;
+    mushroom: Ingredient;
+    "green-onion": Ingredient;
+    chili: Ingredient;
+    jalapeo: Ingredient;
+    "barbecue-sauce": Ingredient;
+    "cheese-sauce": Ingredient;
+    "garlic-sauce": Ingredient;
+    "mustard-sauce": Ingredient;
+    "spicy-sauce": Ingredient;
+    ketchup: Ingredient;
+    mayonnaise: Ingredient;
+    "ranch-sauce": Ingredient;
+    cherry: Ingredient;
+    "pepperoni-pepper": Ingredient;
+    "marinated-onion": Ingredient;
+    "black-olives": Ingredient;
+    sausage: Ingredient;
+    lemon: Ingredient;
+    shrimps: Ingredient;
+    mussels: Ingredient;
+    salmon: Ingredient;
+    capers: Ingredient;
+    "marinated-pepper": Ingredient;
+    pineapple: Ingredient;
+    "small-sausage": Ingredient;
+    "feta-cheese": Ingredient;
+    spinach: Ingredient;
+    egg: Ingredient;
+}
+
+export type Ingredients =
   | "base"
   | "pizza-sause"
   | "cheese"
@@ -50,49 +94,8 @@ type Ingredients =
   | "spinach"
   | "egg";
 
-interface InitState {
-  ingredients: {
-    base: Ingredient;
-    "pizza-sause": Ingredient;
-    cheese: Ingredient;
-    bacon: Ingredient;
-    beef: Ingredient;
-    chicken: Ingredient;
-    ham: Ingredient;
-    meat: Ingredient;
-    pork: Ingredient;
-    tomato: Ingredient;
-    pickels: Ingredient;
-    onion: Ingredient;
-    mushroom: Ingredient;
-    "green-onion": Ingredient;
-    chili: Ingredient;
-    jalapeo: Ingredient;
-    "barbecue-sauce": Ingredient;
-    "cheese-sauce": Ingredient;
-    "garlic-sauce": Ingredient;
-    "mustard-sauce": Ingredient;
-    "spicy-sauce": Ingredient;
-    ketchup: Ingredient;
-    mayonnaise: Ingredient;
-    "ranch-sauce": Ingredient;
-    cherry: Ingredient;
-    "pepperoni-pepper": Ingredient;
-    "marinated-onion": Ingredient;
-    "black-olives": Ingredient;
-    sausage: Ingredient;
-    lemon: Ingredient;
-    shrimps: Ingredient;
-    mussels: Ingredient;
-    salmon: Ingredient;
-    capers: Ingredient;
-    "marinated-pepper": Ingredient;
-    pineapple: Ingredient;
-    "small-sausage": Ingredient;
-    "feta-cheese": Ingredient;
-    spinach: Ingredient;
-    egg: Ingredient;
-  };
+export interface InitState {
+  ingredients: IngredientsObj;
   weight: number;
   cost: number;
   diameter: number;
@@ -148,7 +151,7 @@ const startState: InitState = {
   message: "need more ingredients...)"
 };
 
-const reducer = (state = startState, action: Action) => {
+const reducer: Reducer<InitState | undefined, Action> = (state = startState, action) => {
   switch (action.type) {
     case AC.PLUS:
       const curAction: Ingredients = action.payload;

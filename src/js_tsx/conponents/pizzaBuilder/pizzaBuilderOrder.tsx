@@ -1,6 +1,16 @@
 import React from "react";
 
-const OrderControls = props => {
+interface Props {
+  toggleModal: ()=>void;
+  resetBuild: ()=>{
+    type: string
+  }
+  resetMultiBuild: ()=>{
+    type: string
+  }
+}
+
+const OrderControls: React.FC<Props> = props => {
   return (
     <div className="pizza__view__order__controls">
       <button

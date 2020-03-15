@@ -1,17 +1,18 @@
 import * as AC from "../AC/ac";
-import { Pizza, Action } from "../interfaces/interfaces";
+import { Pizza, NewPizza, Action } from "../interfaces/interfaces";
+import { Reducer } from "react";
 
-interface InitState {
-  pizzas: Pizza[];
+export interface InitStateMulti {
+  pizzas: NewPizza[];
   totalCost: number;
 }
 
-const initState: InitState = {
+const initState: InitStateMulti = {
   pizzas: [],
   totalCost: 0
 };
 
-const reducer = (state = initState, action: Action) => {
+const reducer: Reducer<InitStateMulti, Action> = (state = initState, action) => {
   switch (action.type) {
     case AC.MULTIPLE_ORDER_ADD:
       let newPizzas = state.pizzas;

@@ -1,7 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const page404 = props => {
+interface Props {};
+
+const page404: React.FC<Props> = props => {
   return (
     <section>
       <div>

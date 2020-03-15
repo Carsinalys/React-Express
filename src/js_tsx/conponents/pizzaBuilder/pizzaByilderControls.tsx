@@ -1,6 +1,23 @@
 import React from "react";
 
-const pizzaBuilderControls = props => {
+interface Props {
+  name: string;
+  weight: number;
+  count: number;
+  minus: (name: string) => {
+    type: string;
+    payload: string
+  }
+  plus: (name: string) => {
+    type: string;
+    payload: string
+  }
+  browser: {
+    safari: boolean
+  }
+}
+
+const pizzaBuilderControls: React.FC<Props> = props => {
   return (
     <div className="pizza__control">
       <div className="pizza__control__title">

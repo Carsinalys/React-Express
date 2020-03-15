@@ -1,11 +1,16 @@
 import * as AC from "../AC/ac";
 import {Action} from '../interfaces/interfaces';
+import { Reducer } from "redux";
+
+interface InitState {
+  safari: boolean;
+}
 
 const initState = {
   safari: false
 };
 
-const reducer = (state = initState, action: Action) => {
+const reducer: Reducer<InitState, Action> = (state = initState, action) => {
   switch (action.type) {
     case AC.CHECK_BROWSER:
       let checkBrowser;

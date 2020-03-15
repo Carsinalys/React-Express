@@ -2,9 +2,8 @@ import * as AC from "./ac";
 import { logOut } from "./index";
 import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
-import { Dispatch, Action, AnyAction } from "redux";
-import { UserAuthObj, DispatchVoid } from "../interfaces/interfaces";
-import { ThunkAction, ThunkDispatch } from "redux-thunk";
+import { Dispatch } from "redux";
+import { UserAuthObj } from "../interfaces/interfaces";
 
 export const authOnInput = (event: Event) => {
   return {
@@ -106,13 +105,11 @@ export const storeToken = (data: UserAuthObj) => {
     type: AC.AUTH_STORE_AUTH_DATA,
     payload: data
   };
-};
+}
 
-type ThunkResult<R> = ThunkAction<R, {}, undefined, { type: string }>;
-
-export const getTokenFromCookie = () => {
-  return (dispatch: ThunkResult<void>) => {
-    dispatch(checkCookie(), {}, undefined);
+export const getTokenFromCookie = ():any => {
+  return (dispatch: Dispatch) => {
+    dispatch(checkCookie());
     let remainingTime =
       new Date().getTime() < localStorage.expiresAt
         ? +localStorage.expiresAt - new Date().getTime()

@@ -1,8 +1,17 @@
 import React from "react";
-
 import Icons from "./pizzaBuilderIconsIngredients";
+import { InitState } from '../../reducer/pizzaState';
 
-const modalContent = props => {
+interface Props extends InitState {
+  browser: {
+    safari: boolean
+  };
+  minus: (ing: string) => void;
+  add: ()=>void;
+  checkout: ()=>void;
+}
+
+const modalContent: React.FC<Props> = props => {
   return (
     <div className="pizza__view__order__content__modal">
       <div className="pizza__view__order__content__flex">

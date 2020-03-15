@@ -1,5 +1,6 @@
 import * as AC from "../AC/ac";
 import { ActionEvent, Input } from "../interfaces/interfaces";
+import { Reducer } from "redux";
 
 interface InitState {
   isLoading: boolean;
@@ -7,8 +8,8 @@ interface InitState {
   expiresAt: null | number;
   localId: null | string;
   error: null | string;
-  name: string;
-  photo: string;
+  name: string | undefined;
+  photo: string | undefined;
   inputs: {
     name?: Input;
     phone?: Input;
@@ -51,23 +52,23 @@ const initState: InitState = {
   }
 };
 
-const reducer = (state = initState, action: ActionEvent) => {
+const reducer: Reducer<InitState, ActionEvent> = (state = initState, action) => {
   switch (action.type) {
     case AC.GET_ORDERS_FINISH_PHOTO:
       localStorage.setItem("name", `${action.payload.name}`);
       localStorage.setItem("photo", `${action.payload.photo}`);
       return {
         ...state,
-        photo: action.payload.photo,
-        name: action.payload.name
+        photo: action.payload.photo!,
+        name: action.payload.name!
       };
     case AC.CABINET_CHANGE_MAIL_STORE_PHOTO:
       localStorage.setItem("build", action.payload.toString());
       localStorage.setItem("name", action.payload.toString());
       return {
         ...state,
-        photo: action.payload.photo,
-        name: action.payload.name
+        photo: action.payload.photo!,
+        name: action.payload.name!
       };
     case AC.AUTH_ON_INPUT:
       let fuck = new RegExp(
@@ -88,8 +89,8 @@ const reducer = (state = initState, action: ActionEvent) => {
       return {
         ...state,
         isAuthindicated: true,
-        expiresAt: action.payload.expireAt,
-        localId: action.payload.localId,
+        expiresAt: action.payload.expireAt!,
+        localId: action.payload.localId!,
         error: null,
         isLoading: false
       };
@@ -97,7 +98,7 @@ const reducer = (state = initState, action: ActionEvent) => {
       return {
         ...state,
         isLoading: false,
-        error: action.payload.error
+        error: action.payload.error!
       };
     case AC.AUTH_MODAL_ON:
       return {
@@ -142,8 +143,8 @@ const reducer = (state = initState, action: ActionEvent) => {
           ...state,
           isAuthindicated: true,
           localId: localStorage.getItem("localId"),
-          name: localStorage.getItem("name"),
-          photo: localStorage.getItem("photo")
+          name: localStorage.getItem("name")!,
+          photo: localStorage.getItem("photo")!
         };
       } else {
         return {

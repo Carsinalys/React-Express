@@ -4,7 +4,6 @@ import * as GQL from "../graphql/gql-tags";
 import { setCabinetStoreNewPhotoAndName } from "./setInfoCabinet";
 import { Dispatch } from "redux";
 import {
-  DispatchVoid,
   Rooms,
   ChangeUserInfoFields,
   Message
@@ -14,7 +13,7 @@ export const createChatRoom = (str: string) => {
   const data = {
     name: str
   };
-  return (dispatch: DispatchVoid) => {
+  return (dispatch: Dispatch) => {
     if (str.length > 4) {
       dispatch(chatMdalOn());
       client!
@@ -32,7 +31,7 @@ export const createChatRoom = (str: string) => {
   };
 };
 
-export const getChatRooms = () => {
+export const getChatRooms = ():any => {
   return (dispatch: Dispatch) => {
     dispatch(chatMdalOn());
     client!.query({ query: GQL.getRooms }).then(res => {
@@ -242,17 +241,8 @@ export const chatGetUsersNames = (id: string) => {
 };
 
 export const chatSetCurrentMessages = (data: Message) => {
-  if (data.room) {
-    const { getMessagesRoom } = client!.readQuery({
-      query: GQL.getMessagesRoom,
-      variables: { input: { room: data.room } }
-    });
-    const newMessages = [...getMessagesRoom, data];
-    client!.writeQuery({
-      query: GQL.getMessagesRoom,
-      data: { getMessagesRoom: newMessages }
-    });
-  }
+  if (data.room)
+    client!.resetStore();
   return {
     type: AC.CHAT_SET_CURRENT_MESSAGES,
     payload: data

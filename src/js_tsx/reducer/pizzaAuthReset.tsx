@@ -1,5 +1,6 @@
 import * as AC from "../AC/ac";
 import { Action, Input } from "../interfaces/interfaces";
+import { Reducer } from "redux";
 
 interface InitState {
   modal: boolean;
@@ -26,7 +27,7 @@ const initState: InitState = {
   }
 };
 
-const reducer = (state = initState, action: Action) => {
+const reducer: Reducer<InitState, Action> = (state = initState, action) => {
   switch (action.type) {
     case AC.AUTH_RESET_ON_INPUT:
       let fuck = new RegExp(state.inputs.mail.pattern);

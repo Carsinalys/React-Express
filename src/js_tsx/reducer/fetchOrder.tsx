@@ -1,7 +1,8 @@
 import * as AC from "../AC/ac";
 import { ActionEvent, Input } from "../interfaces/interfaces";
+import { Reducer } from "redux";
 
-interface InitState {
+export interface InitState {
   modalShow: boolean;
   inputs: {
     name: Input;
@@ -75,7 +76,7 @@ const initState: InitState = {
   }
 };
 
-const reducer = (state = initState, action: ActionEvent) => {
+const reducer: Reducer<InitState, ActionEvent> = (state = initState, action) => {
   switch (action.type) {
     case AC.SEND_ORDER_ON_INPUT: {
       let fuck: RegExp;

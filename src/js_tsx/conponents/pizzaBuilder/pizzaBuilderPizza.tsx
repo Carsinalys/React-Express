@@ -1,8 +1,23 @@
 import React from "react";
-
 import Icons from "./pizzaBuilderIconsIngredients";
+import { IngredientsObj } from "../../reducer/pizzaState";
 
-const pizzaBuilderPizza = props => {
+interface Props {
+  ingredients: IngredientsObj;
+  weight: number;
+  diameter: number;
+  cost: number;
+  message: string;
+  browser: {
+    safari: boolean
+  };
+  minus: (str: string) => {
+    type: string;
+    payload: string;
+  }
+}
+
+const pizzaBuilderPizza: React.FC<Props> = props => {
   return (
     <div className="pizza__view__block">
       <div className="pizza__view__layout">

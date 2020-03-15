@@ -1,6 +1,8 @@
 import React from "react";
 
-const pizzaSpiner = props => {
+interface Props {}
+
+const pizzaSpiner: React.FC<Props> = props => {
   return (
     <div className="modal__sending">
       <div>

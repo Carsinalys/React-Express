@@ -1,16 +1,16 @@
 import * as AC from "./ac";
 import { reset_build } from "./index";
 import { Dispatch } from "redux";
-import { Pizza, Order } from '../interfaces/interfaces';
+import { NewPizza, Order } from '../interfaces/interfaces';
 
-export const multipleAdd = (data: Pizza) => {
+export const multipleAdd = (data: NewPizza):any => {
   return (dispatch: Dispatch) => {
     dispatch(runMultipleAdd(data));
     dispatch(reset_build());
   };
 };
 
-export const runMultipleAdd = (data: Pizza) => {
+export const runMultipleAdd = (data: NewPizza) => {
   return {
     type: AC.MULTIPLE_ORDER_ADD,
     payload: data

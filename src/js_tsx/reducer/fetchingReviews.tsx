@@ -1,5 +1,6 @@
 import * as AC from "../AC/ac";
 import {Review, Action} from '../interfaces/interfaces';
+import { Reducer } from "redux";
 
 interface InitState {
   reviews: Review[],
@@ -23,7 +24,7 @@ const initState: InitState = {
   modal: false
 };
 
-const ordersReducer = (state = initState, action: Action) => {
+const ordersReducer: Reducer<InitState, Action> = (state = initState, action) => {
   switch (action.type) {
     case AC.GET_REVIEWS_START:
       return { ...state, isLoading: true };
