@@ -2,7 +2,7 @@ import * as AC from "../AC/ac";
 import { ActionEvent, Input } from "../interfaces/interfaces";
 import { Reducer } from "redux";
 
-interface InitState {
+export interface InitStateAuth {
   isLoading: boolean;
   isAuthindicated: boolean;
   expiresAt: null | number;
@@ -22,7 +22,7 @@ interface InitState {
   };
 }
 
-const initState: InitState = {
+const initState: InitStateAuth = {
   isLoading: false,
   isAuthindicated: false,
   expiresAt: null,
@@ -52,7 +52,7 @@ const initState: InitState = {
   }
 };
 
-const reducer: Reducer<InitState, ActionEvent> = (state = initState, action) => {
+const reducer: Reducer<InitStateAuth, ActionEvent> = (state = initState, action) => {
   switch (action.type) {
     case AC.GET_ORDERS_FINISH_PHOTO:
       localStorage.setItem("name", `${action.payload.name}`);

@@ -1,16 +1,16 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, PropsWithChildren } from "react";
 import { Input, InputKeys } from '../../interfaces/interfaces';
 
 interface Props {
   inputs: {
-    name: Input;
-    phone: Input;
-    pizza: Input;
-    street: Input;
-    house: Input;
-    flat: Input;
-    mail?: Input;
-    password?: Input;
+    name?: Input | undefined;
+    phone?: Input | undefined;
+    pizza?: Input | undefined;
+    street?: Input | undefined;
+    house?: Input | undefined;
+    flat?: Input | undefined;
+    mail?: Input | undefined;
+    password?: Input | undefined;
   };
   changeHandler: (event: ChangeEvent) => {
     type: string;
@@ -19,7 +19,8 @@ interface Props {
 }
 
 const checkoutInput = (props: Props) => {
-  return Object.keys(props.inputs).map(item => {
+return <div>{ 
+    Object.keys(props.inputs).map(item => {
     const curItem = item as InputKeys
     return (
       <div key={item} className="input__cover">
@@ -39,10 +40,11 @@ const checkoutInput = (props: Props) => {
             onChange={event => props.changeHandler(event)}
             data-name={curItem}
           />
-        </label>
-      </div>
-    );
-  });
+          </label>
+        </div>
+      );
+    })
+  }</div>
 };
 
 export default checkoutInput;

@@ -5,10 +5,31 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Redirect } from "react-router";
 import Modal from "../hoc/modal";
-
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
+import {} from '../../interfaces/interfaces';
+import { Dispatch } from "redux";
+import { InitStateAuth } from '../../reducer/pizzaAuth';
+import { InitState } from '../../reducer/pizzaState';
+import { InitStateMulti } from '../../reducer/multipleOrder';
 
-class Authendication extends React.Component {
+interface State {
+  badMail: boolean;
+  badPass: boolean;
+  checkbox: boolean;
+}
+
+interface Props {
+  inputs: InitStateAuth;
+  pizza: InitState;
+  multi: InitStateMulti;
+  authOnInputFun: (event: React.ChangeEvent<Element>) => {
+    type: string;
+    payload: React.ChangeEvent<Element>;
+  }
+  authSignInFun: (mail: string, pass: string, stayIn: boolean) => any
+}
+
+class Authendication extends React.Component<Props, State> {
   state = {
     badMail: false,
     badPass: false,
@@ -23,7 +44,7 @@ class Authendication extends React.Component {
     });
   };
 
-  onSubmitHandler = event => {
+  onSubmitHandler = (event: KeyboardEvent) => {
     event.preventDefault();
     if (
       !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(
@@ -54,7 +75,7 @@ class Authendication extends React.Component {
     }
   };
 
-  keyDownHandler = event => {
+  keyDownHandler = (event: KeyboardEvent) => {
     if (event.key === "Enter") this.onSubmitHandler(event);
   };
 
@@ -103,8 +124,14 @@ class Authendication extends React.Component {
           <form
             action="#"
             id="signIn"
-            onSubmit={() => this.onSubmitHandler(event)}
-            onKeyDown={() => this.keyDownHandler(event)}
+            onSubmit={(event) => {
+              const newEvent = event as unknown as KeyboardEvent;
+              this.onSubmitHandler(newEvent)
+              }}
+            onKeyDown={() => {
+              const newEvent = event as unknown as KeyboardEvent;
+              this.keyDownHandler(newEvent)
+            }}
           >
             <Input
               inputs={this.props.inputs.inputs}
@@ -139,7 +166,7 @@ class Authendication extends React.Component {
   }
 }
 
-const stateToProps = state => {
+const stateToProps = (state: any) => {
   return {
     inputs: state.auth,
     pizza: state.pizza,
@@ -147,10 +174,10 @@ const stateToProps = state => {
   };
 };
 
-const dispatchToProps = dispatch => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
-    authOnInputFun: event => dispatch(authOnInput(event)),
-    authSignInFun: (mail, pass, stayIn) =>
+    authOnInputFun: (event: React.ChangeEvent<Element>) => dispatch(authOnInput(event)),
+    authSignInFun: (mail: string, pass: string, stayIn: boolean) =>
       dispatch(authSignIn(mail, pass, stayIn))
   };
 };

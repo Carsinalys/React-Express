@@ -6,14 +6,32 @@ import { NavLink } from "react-router-dom";
 import { Redirect } from "react-router";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Modal from "../hoc/modal";
+import { Dispatch } from "redux";
+import { InitState } from '../../reducer/pizzaState';
+import { InitStateAuth } from '../../reducer/pizzaAuth';
 
-class Authendication extends React.Component {
+interface Props {
+  authSignUpFun: (mail: string, pass: string)=>any;
+  authOnInputFun: (event: React.ChangeEvent<Element>) => {
+    type: string;
+    payload: React.ChangeEvent<Element>
+  }
+  inputs: InitStateAuth;
+  pizza: InitState;
+}
+
+interface State {
+  badMail: boolean;
+  badPass: boolean;
+}
+
+class Authendication extends React.Component<Props, State> {
   state = {
     badMail: false,
     badPass: false
   };
 
-  onSubmitHandler = event => {
+  onSubmitHandler = (event: KeyboardEvent) => {
     event.preventDefault();
     if (
       !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(
@@ -43,7 +61,7 @@ class Authendication extends React.Component {
     }
   };
 
-  keyDownHandler = event => {
+  keyDownHandler = (event: KeyboardEvent) => {
     if (event.key === "Enter") this.onSubmitHandler(event);
   };
 
@@ -92,8 +110,14 @@ class Authendication extends React.Component {
           <form
             action="#"
             id="signIn"
-            onSubmit={() => this.onSubmitHandler(event)}
-            onKeyDown={() => this.keyDownHandler(event)}
+            onSubmit={(event: React.FormEvent) => {
+              const newEvent = event as unknown as KeyboardEvent;
+              this.onSubmitHandler(newEvent);
+            }}
+            onKeyDown={(event) => {
+              const newEvent = event as unknown as KeyboardEvent;
+              this.keyDownHandler(newEvent);
+            }}
           >
             <Input
               inputs={this.props.inputs.inputs}
@@ -116,17 +140,17 @@ class Authendication extends React.Component {
   }
 }
 
-const stateToProps = state => {
+const stateToProps = (state: any) => {
   return {
     inputs: state.auth,
     pizza: state.pizza
   };
 };
 
-const dispatchToProps = dispatch => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
-    authOnInputFun: event => dispatch(authOnInput(event)),
-    authSignUpFun: (mail, pass) => dispatch(authSignUp(mail, pass))
+    authOnInputFun: (event: React.ChangeEvent<Element>) => dispatch(authOnInput(event)),
+    authSignUpFun: (mail: string, pass: string) => dispatch(authSignUp(mail, pass))
   };
 };
 

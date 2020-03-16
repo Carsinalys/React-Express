@@ -3,9 +3,26 @@ import { connect } from "react-redux";
 import { fetchResetPass, authResetOnInput } from "../../AC/index";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Modal from "../hoc/modal";
+import { Dispatch } from "redux";
+import { InitStateAuth } from '../../reducer/pizzaAuth';
+import { InitStateReset } from '../../reducer/pizzaAuthReset';
+import { ExtHistory } from '../../interfaces/interfaces';
 
-class ForgotPass extends React.Component {
-  resetHandler = e => {
+interface Props {
+  fetchResetFun: (mail: string) => any;
+  authResetOnInputFun: (event: Event)=>{
+    type: string;
+    payload: Event;
+  }
+  auth: InitStateAuth;
+  authReset: InitStateReset;
+  history: ExtHistory
+}
+
+interface State {}
+
+class ForgotPass extends React.Component<Props, State> {
+  resetHandler = (e: Event) => {
     e.preventDefault();
     if (this.props.authReset.inputs.mail.isValid)
       this.props.fetchResetFun(this.props.authReset.inputs.mail.value);
@@ -45,7 +62,10 @@ class ForgotPass extends React.Component {
                   }
                   placeholder="Email"
                   value={this.props.authReset.inputs.mail.value}
-                  onChange={() => this.props.authResetOnInputFun(event)}
+                  onChange={(event) => {
+                    const newEvent = event as unknown as Event;
+                    this.props.authResetOnInputFun(newEvent)
+                  }}
                 />
               </label>
             </div>
@@ -53,7 +73,10 @@ class ForgotPass extends React.Component {
               <button
                 type="submit"
                 form="forgot"
-                onClick={e => this.resetHandler(e)}
+                onClick={e => {
+                  const newEvent = e as unknown as Event;
+                  this.resetHandler(newEvent);
+                }}
                 className="auth__reset__btn"
               >
                 Reset password
@@ -66,17 +89,17 @@ class ForgotPass extends React.Component {
   }
 }
 
-const stateToProps = state => {
+const stateToProps = (state: any) => {
   return {
     auth: state.auth,
     authReset: state.authReset
   };
 };
 
-const dispatchToProps = dispatch => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
-    fetchResetFun: mail => dispatch(fetchResetPass(mail)),
-    authResetOnInputFun: event => dispatch(authResetOnInput(event))
+    fetchResetFun: (mail: string) => dispatch(fetchResetPass(mail)),
+    authResetOnInputFun: (event: Event) => dispatch(authResetOnInput(event))
   };
 };
 

@@ -247,3 +247,7 @@ export type InputKeys =
 "flat" |
 "mail" |
 "password";
+
+export interface ExtHistory extends History {
+  push: (path: string) => void
+}

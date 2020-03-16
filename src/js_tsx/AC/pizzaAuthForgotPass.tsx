@@ -5,7 +5,7 @@ import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
 import { Dispatch } from "redux";
 
-export const fetchResetPass = (mail: string) => {
+export const fetchResetPass = (mail: string):any => {
   return (dispatch: Dispatch) => {
     dispatch(authResetMOdalOn());
     let data = {

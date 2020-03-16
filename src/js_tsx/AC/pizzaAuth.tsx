@@ -5,14 +5,14 @@ import * as GQL from "../graphql/gql-tags";
 import { Dispatch } from "redux";
 import { UserAuthObj } from "../interfaces/interfaces";
 
-export const authOnInput = (event: Event) => {
+export const authOnInput = (event: React.ChangeEvent<Element>) => {
   return {
     type: AC.AUTH_ON_INPUT,
     payload: event
   };
 };
 
-export const authSignUp = (mail: string, pass: string) => {
+export const authSignUp = (mail: string, pass: string):any => {
   return (dispatch: Dispatch) => {
     dispatch(authModalOn());
     let data = {
@@ -41,7 +41,7 @@ export const authSignUp = (mail: string, pass: string) => {
   };
 };
 
-export const authSignIn = (mail: string, pass: string, stayIn: string) => {
+export const authSignIn = (mail: string, pass: string, stayIn: boolean):any => {
   return (dispatch: Dispatch) => {
     dispatch(authModalOn());
     let data = {
