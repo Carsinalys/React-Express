@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import ModalBuilder from "./pizzaBuilderModal";
-
 import Ingredients from "../pizzaBuilder/pizzaBuilderIconsIngredients";
 import {
   multipleAdd,
@@ -16,8 +15,39 @@ import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Reviews from "./pizzaBuilderBuildsReviews";
 import ReviewsModal from "./pizzaBuilderReviewModal";
 import ReviewsModalShow from "./pizzaBuilderReviewsModalShow";
+import { Dispatch } from "redux";
+import { InitStateAuth } from '../../reducer/pizzaAuth';
+import { InitStateBuilds } from '../../reducer/readyBuilds';
+import { NewPizza, BuildsReviewsInput, Review, Pizza, Review_Build } from '../../interfaces/interfaces';
 
-class Builds extends React.Component {
+interface Props {
+  auth: InitStateAuth;
+  builds: InitStateBuilds;
+  browser: {
+    safari: boolean;
+  }
+  getBuildsFun: ()=>any;
+  sendEditedReviewFun: (data: BuildsReviewsInput) => any;
+  sendReviewFun: (data: BuildsReviewsInput) => any;
+  addFun: (data: Pizza)=>any;
+  setCurReviewsToShowFun: (data: Review[]) => {
+    type: string;
+    payload: Review[];
+  }
+}
+
+interface State {
+  modalIsShow: boolean;
+    selectedItem: Pizza | undefined;
+    redirect: boolean;
+    minusModal: boolean;
+    reviewModal: boolean;
+    reviewModalEdit: boolean;
+    curBuildModalId: string;
+    reviewsModalShow: boolean;
+}
+
+class Builds extends React.Component<Props, State> {
   componentDidMount() {
     this.handleScroll();
     document.addEventListener("scroll", this.handleScroll);
@@ -28,7 +58,7 @@ class Builds extends React.Component {
     document.removeEventListener("scroll", this.handleScroll);
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     if (prevProps.builds.builds.length !== this.props.builds.builds.length) {
       this.handleScroll();
     }
@@ -36,7 +66,7 @@ class Builds extends React.Component {
 
   state = {
     modalIsShow: false,
-    selectedItem: "",
+    selectedItem: undefined,
     redirect: false,
     minusModal: false,
     reviewModal: false,
@@ -45,7 +75,7 @@ class Builds extends React.Component {
     reviewsModalShow: false
   };
 
-  minusHandler = event => {
+  minusHandler = () => {
     this.setState({ minusModal: true });
   };
 
@@ -57,9 +87,9 @@ class Builds extends React.Component {
     this.setState({ redirect: true });
   };
 
-  handleScroll = event => {
-    const items = document.querySelectorAll(".ready__build__cover");
-    const pics = document.querySelectorAll(".ready__build__single__pic");
+  handleScroll = () => {
+    const items = document.querySelectorAll(".ready__build__cover") as NodeListOf<HTMLElement>;
+    const pics = document.querySelectorAll(".ready__build__single__pic") as NodeListOf<HTMLElement>;
     items.forEach((item, index) => {
       if (
         document.documentElement.scrollTop >=
@@ -70,7 +100,7 @@ class Builds extends React.Component {
     });
   };
 
-  toggleReviewModalHandler = editTrigger => {
+  toggleReviewModalHandler = (editTrigger: string | undefined) => {
     this.setState(prevState => ({
       reviewModal: !prevState.reviewModal,
       reviewModalEdit: false
@@ -82,13 +112,13 @@ class Builds extends React.Component {
     }
   };
 
-  curBuildModalIdHandler = id => {
+  curBuildModalIdHandler = (id: string) => {
     this.setState({ curBuildModalId: id });
   };
 
-  sendReviewHandler = (data, edit) => {
-    const review = { ...data };
-    review.user = this.props.auth.localId;
+  sendReviewHandler = (data: Review_Build, edit: boolean) => {
+    const review = { ...data } as unknown as BuildsReviewsInput;
+    review.user = this.props.auth.localId!;
     review.build = this.state.curBuildModalId;
     edit
       ? this.props.sendEditedReviewFun(review)
@@ -129,7 +159,7 @@ class Builds extends React.Component {
         <Modal toggle={this.state.reviewModal}>
           <div
             className="modal__background"
-            onClick={this.toggleReviewModalHandler}
+            onClick={() => this.toggleReviewModalHandler(undefined)}
           >
             <ReviewsModal
               modal={this.toggleReviewModalHandler}
@@ -168,7 +198,7 @@ class Builds extends React.Component {
                           ? `assets/img/${item.name}.png`
                           : `assets/img/webp/${item.name}.webp`
                       }
-                      alt={item.name}
+                      alt={item.name as string}
                     />
                   </div>
                   <div className="single__build__ingredients__cover">
@@ -219,7 +249,7 @@ class Builds extends React.Component {
   }
 }
 
-const stateToProps = state => {
+const stateToProps = (state: any) => {
   return {
     builds: state.builds,
     auth: state.auth,
@@ -227,13 +257,13 @@ const stateToProps = state => {
   };
 };
 
-const dispatchToProps = dispatch => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
-    addFun: data => dispatch(multipleAdd(data)),
+    addFun: (data: Pizza) => dispatch(multipleAdd(data)),
     getBuildsFun: () => dispatch(getBuilds()),
-    sendReviewFun: data => dispatch(sendReview(data)),
-    sendEditedReviewFun: data => dispatch(sendEditedReview(data)),
-    setCurReviewsToShowFun: data => dispatch(setCurReviewsToShow(data))
+    sendReviewFun: (data: BuildsReviewsInput) => dispatch(sendReview(data)),
+    sendEditedReviewFun: (data: BuildsReviewsInput) => dispatch(sendEditedReview(data)),
+    setCurReviewsToShowFun: (data: Review[]) => dispatch(setCurReviewsToShow(data))
   };
 };
 

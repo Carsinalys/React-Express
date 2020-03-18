@@ -2,19 +2,19 @@ import * as AC from "../AC/ac";
 import { Action, Pizza, Review_Build } from '../interfaces/interfaces';
 import { Reducer } from "redux";
 
-interface InitState {
+export interface InitStateBuilds {
   isLoading: boolean,
   builds: Pizza[],
   reviews: Review_Build[]
 }
 
-const initState : InitState = {
+const initState : InitStateBuilds = {
   isLoading: false,
   builds: [],
   reviews: []
 };
 
-const reducer: Reducer<InitState, Action> = (state = initState, action) => {
+const reducer: Reducer<InitStateBuilds, Action> = (state = initState, action) => {
   switch (action.type) {
     case AC.READY_BUILDS_SET_CUR_REVIEWS:
       return {

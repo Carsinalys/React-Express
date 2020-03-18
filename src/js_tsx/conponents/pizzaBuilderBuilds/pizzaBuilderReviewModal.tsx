@@ -1,6 +1,13 @@
 import React, { useState } from "react";
+import { Review_Build } from '../../interfaces/interfaces';
 
-const reviewsModal = props => {
+interface Props {
+  modal: (editTrigger: string | undefined) => void;
+  send: (data: Review_Build, edit: boolean) => void; 
+  edit: boolean;
+}
+
+const reviewsModal: React.FC<Props> = props => {
   const [currentRating, setcurrentRating] = useState(3);
   const [nameValue, setnameValue] = useState(false);
   const [textValue, settextValue] = useState(false);
@@ -8,19 +15,19 @@ const reviewsModal = props => {
   const textRegExp = new RegExp(/^[a-zA-Z][a-zA-Z0-9-_ .,)(!?]{4,200}$/);
   const dataSend = () => {
     if (nameValue && textValue) {
-      const name = document.querySelector("#builds__review__name").value;
-      const text = document.querySelector("#builds__review__text").value;
+      const name = document.querySelector("#builds__review__name") as HTMLInputElement;
+      const text = document.querySelector("#builds__review__text") as HTMLInputElement;
       const data = {
-        name: name,
-        text: text,
+        name: name.value,
+        text: text.value,
         rating: currentRating
-      };
+      } as Review_Build;
       if (props.edit) {
         props.send(data, true);
-        props.modal();
+        props.modal(undefined);
       } else {
-        props.send(data);
-        props.modal();
+        props.send(data, false);
+        props.modal(undefined);
       }
     }
   };
@@ -56,7 +63,7 @@ const reviewsModal = props => {
             <div className="author__rating">
               <div
                 className="add__review__star__cover"
-                onClick={() => setcurrentRating("1")}
+                onClick={() => setcurrentRating(1)}
               >
                 <svg
                   className={
@@ -73,7 +80,7 @@ const reviewsModal = props => {
               </div>
               <div
                 className="add__review__star__cover"
-                onClick={() => setcurrentRating("2")}
+                onClick={() => setcurrentRating(2)}
               >
                 <svg
                   className={
@@ -90,7 +97,7 @@ const reviewsModal = props => {
               </div>
               <div
                 className="add__review__star__cover"
-                onClick={() => setcurrentRating("3")}
+                onClick={() => setcurrentRating(3)}
               >
                 <svg
                   className={
@@ -107,7 +114,7 @@ const reviewsModal = props => {
               </div>
               <div
                 className="add__review__star__cover"
-                onClick={() => setcurrentRating("4")}
+                onClick={() => setcurrentRating(4)}
               >
                 <svg
                   className={
@@ -124,7 +131,7 @@ const reviewsModal = props => {
               </div>
               <div
                 className="add__review__star__cover"
-                onClick={() => setcurrentRating("5")}
+                onClick={() => setcurrentRating(5)}
               >
                 <svg
                   className={
@@ -146,9 +153,9 @@ const reviewsModal = props => {
             <textarea
               name="comment"
               id="builds__review__text"
-              cols="30"
-              rows="10"
-              minLength="5"
+              cols={30}
+              rows={10}
+              minLength={5}
               placeholder="Comment"
               className={
                 textValue
@@ -164,7 +171,9 @@ const reviewsModal = props => {
             <div className="builds__modal__reviews__add__btn__cover">
               <button
                 className="builds__modal__reviews__add__btn"
-                onClick={props.modal}
+                onClick={()=>{
+                  props.modal(undefined)
+                }}
               >
                 Cancel
               </button>

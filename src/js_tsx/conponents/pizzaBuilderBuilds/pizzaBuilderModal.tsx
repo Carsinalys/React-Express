@@ -1,6 +1,14 @@
 import React from "react";
+import { Pizza } from '../../interfaces/interfaces';
 
-const modal = props => {
+interface Props {
+  redirect: ()=>void;
+  curPizza: Pizza | undefined;
+  builds: Pizza[];
+  add: (data: Pizza)=>any;
+}
+
+const modal: React.FC<Props> = props => {
   return (
     <div className="ready__builds__modal__cover">
       <div className="ready__builds__modal__block">
@@ -11,7 +19,7 @@ const modal = props => {
           <div className="ready__builds__modal__btn__cover">
             <button
               className="ready__builds__modal__btn"
-              onClick={() => props.add(props.curPizza)}
+              onClick={() => props.add(props.curPizza!)}
             >
               Add to list and contine
             </button>
@@ -20,7 +28,7 @@ const modal = props => {
             <button
               className="ready__builds__modal__btn"
               onClick={() => {
-                props.add(props.curPizza);
+                props.add(props.curPizza!);
                 props.redirect();
               }}
             >

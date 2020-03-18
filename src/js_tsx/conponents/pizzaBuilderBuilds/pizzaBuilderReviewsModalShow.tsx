@@ -1,18 +1,16 @@
 import React from "react";
+import { Review_Build } from '../../interfaces/interfaces';
 
-const buildsReviews = props => {
-  const curRating = () => {
-    let ratingSum = 0;
-    props.reviews.map(item => (ratingSum = ratingSum + item.rating));
-    return Math.round(ratingSum / props.reviews.length);
-  };
-  const ids = props.reviews.map(item => item.user);
-  const stars = () => {
+interface Props {
+  reviews: Review_Build[]
+}
+
+const reviewsModalShow: React.FC<Props> = props => {
+  const ratingMarkup = (num: number) => {
     const count = 5;
-    const fullStars = curRating();
     const markup = [];
     for (let i = 0; i < count; i++) {
-      if (i < fullStars) {
+      if (i < num) {
         markup.push(
           <div className="add__review__star__cover" key={i}>
             <svg
@@ -43,42 +41,36 @@ const buildsReviews = props => {
     return markup;
   };
   return (
-    <div className="builds__reviews__block__cover">
+    <div className="builds__modal__reviews__cover">
       <div
-        className="builds__review__preview__cover"
-        onClick={() => {
-          props.showReviews(props.reviews);
-          props.showReviewsModal();
-        }}
+        className="builds__modal__reviews__add__cover"
+        onClick={event => event.stopPropagation()}
       >
-        <div className="builds__review__preview__stars__cover">{stars()}</div>{" "}
-        <span className="builds__review__preview__count">
-          ({props.reviews.length})
-        </span>
+        <div className="builds__modal__reviews__show__cover">
+          {props.reviews.length > 0 ? (
+            props.reviews.map(item => (
+              <div key={item._id} className="review__modal__show__cover">
+                <div>
+                  <p className="review__modal__show__title">{item.name}</p>
+                </div>
+                <div className="review__modal__show__rating__cover">
+                  {ratingMarkup(item.rating)}
+                </div>
+                <div className="review__modal__show__text__cover">
+                  <p className="review__modal__show__text">{item.text}</p>
+                </div>
+                <div className="review__modal__show__date__cover">
+                  <p>{item.date.split("T")[0]}</p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <h1>No rewiews.</h1>
+          )}
+        </div>
       </div>
-      {props.auth.isAuthindicated && ids.includes(props.auth.localId) ? (
-        <span
-          className="builds__add__review__btn"
-          onClick={() => {
-            props.modal("edit");
-            props.setId(props.id);
-          }}
-        >
-          Edit review
-        </span>
-      ) : props.auth.isAuthindicated ? (
-        <span
-          className="builds__add__review__btn"
-          onClick={() => {
-            props.modal();
-            props.setId(props.id);
-          }}
-        >
-          Write review
-        </span>
-      ) : null}
     </div>
   );
 };
 
-export default buildsReviews;
+export default reviewsModalShow;

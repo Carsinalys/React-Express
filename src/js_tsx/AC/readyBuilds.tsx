@@ -40,7 +40,7 @@ export const setCurReviewsToShow = (data: Review[]) => {
   };
 };
 
-export const sendReview = (data: BuildsReviewsInput) => {
+export const sendReview = (data: BuildsReviewsInput):any => {
   data.rating = data.rating.toString();
   return (dispatch: Dispatch) => {
     dispatch(getBuildsModalOn());
@@ -57,7 +57,7 @@ export const sendReview = (data: BuildsReviewsInput) => {
   };
 };
 
-export const sendEditedReview = (data: BuildsReviewsInput) => {
+export const sendEditedReview = (data: BuildsReviewsInput):any => {
   data.rating = data.rating.toString();
   return (dispatch: Dispatch) => {
     dispatch(getBuildsModalOn());
