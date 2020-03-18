@@ -5,6 +5,7 @@ import Modal from "../hoc/modal";
 import ModalSlide from "../hoc/modalSlideUpDown";
 import io from "socket.io-client";
 
+
 import {
   createChatRoom,
   chatOnInput,
@@ -38,14 +39,14 @@ const HOST = socketType + location.origin.split(":")[1];
 //const socket = io("http://localhost:3000");
 const socket = io(HOST);
 socket.on("connect", () => {
-  socket.on("messageFromExpress", data => {
+  socket.on("messageFromExpress", (data:any) => {
     console.log(data);
   });
 });
 socket.on("disconnect", () => {
   console.log("disconnected");
 });
-socket.on("messageToNav", msg => {
+socket.on("messageToNav", (msg: Message) => {
   if (location.href.indexOf("chat") < 0) {
     Store.dispatch({
       type: AC.CHAT_NEW_MESSAGE_ON
@@ -53,45 +54,105 @@ socket.on("messageToNav", msg => {
   }
 });
 
-class Chat extends React.Component {
+import { InitStateAuth } from '../../reducer/pizzaAuth';
+import { InitStateChat } from '../../reducer/chat';
+import { Message, ChangeUserInfoFields } from '../../interfaces/interfaces';
+import { Dispatch } from "redux";
+
+interface Props {
+  auth: InitStateAuth;
+  chat: InitStateChat;
+  createChatRoomFun: (str: string)=>any;
+  chatOnInputFun: (event: Event) => {
+    type: string;
+    payload: Event;
+  }
+  chatChooseRoomFun: (room:string) => any;
+  chatOnMessageInputFun: (event: Event) => {
+    type: string;
+    payload: Event;
+  }
+  chatSetUserNameFun: (data: ChangeUserInfoFields, id: string) => any;
+  chatOnNameInputFun: (event: Event) => {
+    type: string;
+    payload: Event;
+  }
+  chatDeleteUserNameFun: ()=>{type:string};
+  chatDeleteMessageFun: (room: string, id: string) => any;
+  chatGetUsersNamesFun: (id: string) => any;
+  chatSetCurrentMessagesFun: (data:Message)=> {
+    type: string;
+    payload: Message;
+  }
+  chatResetMessageInputFun: ()=>{type:string};
+  chatGetCurMessagesFun: (room:string)=>any;
+  getChatRoomsFun: ()=>any;
+  userCountFun: (num: number) => {
+    type: string;
+    payload: number;
+  }
+  chatmessageFromAnotherRoomFun: (msg: Message) => {
+    type: string;
+    payload: Message;
+  }
+  chatmessageFromAnotherRoomResetFun: (room: string) => {
+    type: string;
+    payload: string
+  }
+  chatNewMessageBannerFun: ()=>{type:string};
+  chatNewMessageOffFun: ()=>{type:string};
+}
+
+interface State {
+  showList: boolean;
+  badName: boolean;
+  badMessage: boolean;
+  longMesssage: boolean;
+  messageQty: number;
+  currentLengthMessages: number;
+  loadMore: boolean;
+}
+
+class Chat extends React.Component<Props, State> {
   state = {
     showList: false,
     badName: false,
     badMessage: false,
     longMesssage: false,
     messageQty: 100,
-    currentLengthMessages: 0
+    currentLengthMessages: 0,
+    loadMore: false
   };
 
   componentDidMount() {
-    this.props.chatGetUsersNamesFun(this.props.auth.localId);
+    this.props.chatGetUsersNamesFun(this.props.auth.localId!);
     if (this.props.chat.messages.length === 0)
       this.props.chatGetCurMessagesFun(this.props.chat.room);
     else
       this.setState({ currentLengthMessages: this.props.chat.messages.length });
-    socket.on("messageToState", data => {
+    socket.on("messageToState", (data: Message) => {
       this.props.chatSetCurrentMessagesFun(data);
       this.props.chatmessageFromAnotherRoomFun(data);
       this.props.chatNewMessageBannerFun();
     });
-    const www = document.querySelector(".chat__head__view__port");
+    const www = document.querySelector(".chat__head__view__port") as HTMLElement;
     www.scrollTop = www.scrollHeight;
     this.props.getChatRoomsFun();
     this.props.chatNewMessageOffFun();
     socket.emit("joinToDefault");
-    socket.on("userCount", msg => {
+    socket.on("userCount", (msg: number) => {
       this.props.userCountFun(msg);
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     if (prevProps.chat.messages.length !== this.props.chat.messages.length)
       this.setState({ currentLengthMessages: this.props.chat.messages.length });
     if (
       prevProps.chat.messages.length !== this.props.chat.messages.length ||
       prevProps.chat.messages.length === 0
     ) {
-      const www = document.querySelector(".chat__head__view__port");
+      const www = document.querySelector(".chat__head__view__port") as HTMLElement;
       www.scrollTop = www.scrollHeight;
     }
     if (
@@ -99,7 +160,7 @@ class Chat extends React.Component {
         1 ||
       this.props.chat.room !== prevProps.chat.room
     ) {
-      const www = document.querySelector(".chat__head__view__port");
+      const www = document.querySelector(".chat__head__view__port") as HTMLElement;
       www.scrollTop = www.scrollHeight;
     }
   }
@@ -120,7 +181,7 @@ class Chat extends React.Component {
       let data = {
         name: this.props.chat.userNameValue
       };
-      this.props.chatSetUserNameFun(data, this.props.auth.localId);
+      this.props.chatSetUserNameFun(data, this.props.auth.localId!);
     }
   };
 
@@ -149,9 +210,10 @@ class Chat extends React.Component {
     this.setState({ loadMore: false });
   };
 
-  scrollHandler = event => {
+  scrollHandler = (event: Event) => {
+    const el = event.target as HTMLElement
     if (
-      event.target.scrollTop === 0 &&
+      el.scrollTop === 0 &&
       this.state.messageQty === this.state.currentLengthMessages
     ) {
       this.setState(prevState => {
@@ -162,11 +224,11 @@ class Chat extends React.Component {
     }
   };
 
-  keyDownHandler = event => {
+  keyDownHandler = (event: KeyboardEvent) => {
     if (event.key === "Enter") this.sendMessageHanlder();
   };
 
-  joinRoomHandler = room => {
+  joinRoomHandler = (room: string) => {
     socket.emit(room);
   };
 
@@ -256,7 +318,10 @@ class Chat extends React.Component {
                       type="text"
                       placeholder="Enter your name..."
                       value={this.props.chat.userNameValue}
-                      onChange={() => this.props.chatOnNameInputFun(event)}
+                      onChange={(event) => {
+                        const newEvent = event as unknown as Event;
+                        this.props.chatOnNameInputFun(newEvent);
+                      }}
                       className="chat__create__room__input"
                     />
                   </div>
@@ -279,7 +344,10 @@ class Chat extends React.Component {
                     placeholder="room name..."
                     className="chat__create__room__input"
                     value={this.props.chat.roomValue}
-                    onChange={event => this.props.chatOnInputFun(event)}
+                    onChange={event => {
+                      const newEvent = event as unknown as Event;
+                      this.props.chatOnInputFun(newEvent);
+                    }}
                   />
                 </div>
                 <div className="chat__create__room__btn__cover">
@@ -316,7 +384,10 @@ class Chat extends React.Component {
 
             <div
               className="chat__head__view__port"
-              onScroll={event => this.scrollHandler(event)}
+              onScroll={event => {
+                const newEvent = event as unknown as Event;
+                this.scrollHandler(newEvent);
+              }}
             >
               {this.props.chat.messages.length > 0
                 ? this.props.chat.messages.map(item => {
@@ -357,8 +428,14 @@ class Chat extends React.Component {
               placeholder="Your message"
               className="chat__footer__send__input"
               value={this.props.chat.messageValue}
-              onChange={() => this.props.chatOnMessageInputFun(event)}
-              onKeyPress={event => this.keyDownHandler(event)}
+              onChange={() => {
+                const newEvent = event as unknown as Event;
+                this.props.chatOnMessageInputFun(newEvent)
+              }}
+              onKeyPress={event => {
+                const newEvent = event as unknown as KeyboardEvent;
+                this.keyDownHandler(newEvent)
+              }}
             />
             {!this.props.chat.sending ? (
               <button
@@ -387,33 +464,33 @@ class Chat extends React.Component {
   }
 }
 
-const dispatchToProps = dispatch => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
-    createChatRoomFun: str => dispatch(createChatRoom(str)),
-    chatOnInputFun: event => dispatch(chatOnInput(event)),
-    chatChooseRoomFun: room => dispatch(chatChooseRoom(room)),
-    chatOnMessageInputFun: event => dispatch(chatOnMessageInput(event)),
-    chatSetUserNameFun: (data, id) => dispatch(chatSetUserName(data, id)),
-    chatOnNameInputFun: event => dispatch(chatOnNameInput(event)),
+    createChatRoomFun: (str: string) => dispatch(createChatRoom(str)),
+    chatOnInputFun: (event: Event) => dispatch(chatOnInput(event)),
+    chatChooseRoomFun: (room: string) => dispatch(chatChooseRoom(room)),
+    chatOnMessageInputFun: (event: Event) => dispatch(chatOnMessageInput(event)),
+    chatSetUserNameFun: (data: ChangeUserInfoFields, id: string) => dispatch(chatSetUserName(data, id)),
+    chatOnNameInputFun: (event: Event) => dispatch(chatOnNameInput(event)),
     chatDeleteUserNameFun: () => dispatch(chatDeleteUserName()),
-    chatDeleteMessageFun: (id, room) => dispatch(chatDeleteMessage(id, room)),
+    chatDeleteMessageFun: (id: string, room: string) => dispatch(chatDeleteMessage(id, room)),
     chatNewMessageOnFun: () => dispatch(chatNewMessageOn()),
     chatNewMessageOffFun: () => dispatch(chatNewMessageOff()),
-    chatGetUsersNamesFun: id => dispatch(chatGetUsersNames(id)),
-    chatSetCurrentMessagesFun: data => dispatch(chatSetCurrentMessages(data)),
+    chatGetUsersNamesFun: (id: string) => dispatch(chatGetUsersNames(id)),
+    chatSetCurrentMessagesFun: (data: Message) => dispatch(chatSetCurrentMessages(data)),
     chatResetMessageInputFun: () => dispatch(chatResetMessageInput()),
-    chatGetCurMessagesFun: room => dispatch(chatGetCurMessages(room)),
+    chatGetCurMessagesFun: (room: string) => dispatch(chatGetCurMessages(room)),
     getChatRoomsFun: () => dispatch(getChatRooms()),
-    userCountFun: num => dispatch(userCount(num)),
-    chatmessageFromAnotherRoomFun: msg =>
+    userCountFun: (num: number) => dispatch(userCount(num)),
+    chatmessageFromAnotherRoomFun: (msg: Message) =>
       dispatch(chatmessageFromAnotherRoom(msg)),
-    chatmessageFromAnotherRoomResetFun: room =>
+    chatmessageFromAnotherRoomResetFun: (room: string) =>
       dispatch(chatmessageFromAnotherRoomReset(room)),
     chatNewMessageBannerFun: () => dispatch(chatNewMessageBanner())
   };
 };
 
-const stateToProps = state => {
+const stateToProps = (state: any) => {
   return {
     auth: state.auth,
     chat: state.chat

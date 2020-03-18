@@ -2,7 +2,7 @@ import * as AC from "../AC/ac";
 import {Action, Room, Message} from '../interfaces/interfaces';
 import { Reducer } from "redux";
 
-interface InitState {
+export interface InitStateChat {
   roomValue: string,
   messageValue: string,
   userNameValue: string,
@@ -19,7 +19,7 @@ interface InitState {
   newMsg: string
 }
 
-const initState: InitState = {
+const initState: InitStateChat = {
   roomValue: "",
   messageValue: "",
   userNameValue: "",
@@ -36,7 +36,7 @@ const initState: InitState = {
   newMsg: ""
 };
 
-const reducer: Reducer<InitState, Action> = (state = initState, action) => {
+const reducer: Reducer<InitStateChat, Action> = (state = initState, action) => {
   switch (action.type) {
     case AC.CHAT_USER_COUNT:
       return {

@@ -32,6 +32,7 @@ export interface Message {
   _id: string;
   createAt: string;
   message: string;
+  name: string;
   room: string;
   id: string;
 }
@@ -163,17 +164,17 @@ export interface OrderInput {
   street: string;
   house: number;
   flat: number;
-  pizzas: PizzaInput[];
-  ingredients: Object;
+  pizzas?: PizzaInput[];
+  ingredients?: Object;
   id: string;
 }
 
-interface PizzaInput {
+export interface PizzaInput {
   name: string;
   diameter: number;
   weight: number;
   cost: number;
-  ingredients: object;
+  ingredients: IngredientsObj;
   reviews: object;
   id?: string;
 }

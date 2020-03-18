@@ -1,6 +1,21 @@
 import React from "react";
+import { Room } from '../../interfaces/interfaces';
 
-const rooms = props => {
+interface Props {
+  rooms: Room[];
+  choose: (room: string) => any;
+  toggle: ()=>void;
+  resetLoadmore: ()=>void;
+  join: (room: string) => void;
+  resetCounter: (room: string) => {
+    type: string;
+    payload: string;
+  }
+  newMsg: any;
+  newMsgBanner: ()=>{type:string};
+}
+
+const rooms: React.FC<Props> = props => {
   let markup = props.rooms
     ? props.rooms.map(item => {
         return (

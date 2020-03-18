@@ -4,15 +4,16 @@ import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
 import { Dispatch } from "redux";
 import { OrderInput, User } from "../interfaces/interfaces";
+import { ChangeEvent } from 'react'
 
-export const onInput = (event: Event) => {
+export const onInput = (event: ChangeEvent) => {
   return {
     type: AC.SEND_ORDER_ON_INPUT,
     payload: event
   };
 };
 
-export const getInfoAddresCheckout = (id: string) => {
+export const getInfoAddresCheckout = (id: string):any => {
   return (dispatch: Dispatch) => {
     dispatch(toggleModalOn());
     client!
@@ -24,7 +25,7 @@ export const getInfoAddresCheckout = (id: string) => {
   };
 };
 
-export const callApiAddOrderr = (data: OrderInput) => {
+export const callApiAddOrderr = (data: OrderInput):any => {
   if (data.totalCost) data.totalCost = data.totalCost.toString();
   return (dispatch: Dispatch) => {
     dispatch(toggleModalOn());

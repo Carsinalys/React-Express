@@ -2,7 +2,7 @@ import * as AC from "../AC/ac";
 import { Order, Action} from '../interfaces/interfaces';
 import { Reducer } from "redux";
 
-interface InitState {
+export interface InitStateOrders {
   orders: Order[];
   isLoaded: boolean;
   getOrders: boolean;
@@ -12,7 +12,7 @@ interface InitState {
   count: number | undefined;
 }
 
-const initState: InitState = {
+const initState: InitStateOrders = {
   orders: [],
   isLoaded: false,
   getOrders: false,
@@ -22,7 +22,7 @@ const initState: InitState = {
   count: 0
 };
 
-const ordersReducer: Reducer<InitState, Action> = (state = initState, action) => {
+const ordersReducer: Reducer<InitStateOrders, Action> = (state = initState, action) => {
   switch (action.type) {
     case AC.GET_ORDERS_START:
       return { ...state, isLoading: true };

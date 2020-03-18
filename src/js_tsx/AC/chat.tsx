@@ -9,7 +9,7 @@ import {
   Message
 } from "../interfaces/interfaces";
 
-export const createChatRoom = (str: string) => {
+export const createChatRoom = (str: string):any => {
   const data = {
     name: str
   };
@@ -48,7 +48,7 @@ export const roomsToStore = (data: Rooms) => {
   };
 };
 
-export const chatSetUserName = (obj: ChangeUserInfoFields, id: string) => {
+export const chatSetUserName = (obj: ChangeUserInfoFields, id: string):any => {
   return (dispatch: Dispatch) => {
     dispatch(chatMdalOn());
     const sendObj = {
@@ -150,7 +150,7 @@ export const chatMdalOff = () => {
   };
 };
 
-export const chatChooseRoom = (room: string) => {
+export const chatChooseRoom = (room: string):any => {
   return (dispatch: Dispatch) => {
     dispatch(chatMdalOn());
     client!
@@ -191,7 +191,7 @@ export const chatSetUserRoleToRedux = (data: string) => {
   };
 };
 
-export const chatDeleteMessage = (id: string, room: string) => {
+export const chatDeleteMessage = (id: string, room: string):any => {
   const data = { _id: id };
   return (dispatch: Dispatch) => {
     dispatch(chatSendMsgSplinnerOn());
@@ -227,7 +227,7 @@ export const chatNewMessageOff = () => {
   };
 };
 
-export const chatGetUsersNames = (id: string) => {
+export const chatGetUsersNames = (id: string):any => {
   return (dispatch: Dispatch) => {
     dispatch(chatMdalOn());
     client!
@@ -249,7 +249,7 @@ export const chatSetCurrentMessages = (data: Message) => {
   };
 };
 
-export const chatGetCurMessages = (room: string) => {
+export const chatGetCurMessages = (room: string):any => {
   return (dispatch: Dispatch) => {
     dispatch(chatMdalOn());
     client!

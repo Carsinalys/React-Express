@@ -1,17 +1,56 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 
 import Icons from "../pizzaBuilder/pizzaBuilderIconsIngredients";
 import Inputs from "./pizzaBuilderCheckoutInput";
 import MultiPizzas from "../pizzaBuilder/pizzaBuilderMultiShow";
+import { InitState } from '../../reducer/pizzaState';
+import { InitStateMulti } from '../../reducer/multipleOrder';
+import { Input } from '../../interfaces/interfaces';
 
-const checkoutContet = props => {
+interface Props {
+  data: InitState;
+  minus: (ingr: string) => {
+    type: string;
+    payload: string;
+  }
+  confirm: (event: Event) => false | undefined;
+  inputs: {
+    name: Input;
+    phone: Input;
+    pizza: Input;
+    street: Input;
+    house: Input;
+    flat: Input;
+    mail?: Input;
+    password?: Input;
+  }
+  changeHandler: (event: ChangeEvent) => {
+    type: string;
+    payload: ChangeEvent;
+  
+  }
+  multi: InitStateMulti;
+  delete: (num: number) => {
+    type: string;
+    payload: number;
+  }
+  minusDlete: ()=>void;
+  browser: {
+    safari: boolean
+  }
+}
+
+const checkoutContet: React.FC<Props> = props => {
   return (
     <div className="checkout__content__cover">
       <h3 className="checkout__content__title">Checkout form:</h3>
       <form
         action="#"
         id="checkout__form"
-        onSubmit={event => props.confirm(event)}
+        onSubmit={event => {
+          const newEvent = event as unknown as Event;
+          props.confirm(newEvent);
+        }}
       >
         <div className="checkout__content__top__cover">
           <Inputs inputs={props.inputs} changeHandler={props.changeHandler} />
@@ -53,7 +92,10 @@ const checkoutContet = props => {
             value="Confirm"
             id="checkout__submit"
             form="checkout__form"
-            onClick={event => props.confirm(event)}
+            onClick={event => {
+              const newEvent = event as unknown as Event;
+              props.confirm(newEvent)
+            }}
           />
         </div>
       </form>

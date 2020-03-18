@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Modal from "../hoc/modal";
@@ -8,13 +8,55 @@ import {
   onInput,
   getInfoAddresCheckout,
   deleteMultiOrder,
-  callApiAddOrderr
+  callApiAddOrderr,
+  reset_build
 } from "../../AC/index";
 
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import CheckoutContent from "./pizzaBuilderCheckoutContent";
+import { InitStateAuth } from '../../reducer/pizzaAuth';
+import { InitState } from '../../reducer/pizzaState';
+import { InitStateMulti } from '../../reducer/multipleOrder';
+import { InitState as InitStateOrder } from '../../reducer/fetchOrder';
+import { Dispatch } from "redux";
+import { OrderInput, PizzaInput } from '../../interfaces/interfaces';
 
-class PizzaBuilderCheckout extends React.Component {
+interface Props {
+  auth: InitStateAuth;
+  state: InitState;
+  browser: {
+    safari: boolean;
+  }
+  multi: InitStateMulti;
+  inputs: InitStateOrder;
+  minusFun: (ingr: string) => {
+    type: string;
+    payload: string;
+  }
+  resetFun: () => {type: string};
+  onInputFun: (event: ChangeEvent) => {
+    type: string;
+    payload: ChangeEvent;
+  }
+  getAddresFun: (id: string)=>any;
+  deleteMultiOrderFun: (num: number) => {
+    type: string;
+    payload: number;
+  }
+  callApiAddOrderrFun: (data: OrderInput) => any;
+}
+
+interface State {
+  smallPizza: boolean;
+  badName: boolean;
+  badPhone: boolean;
+  badPizzaName: boolean;
+  badHouse: boolean;
+  badFlat: boolean;
+  badStreet: boolean;
+}
+
+class PizzaBuilderCheckout extends React.Component<Props, State> {
   state = {
     smallPizza: false,
     badName: false,
@@ -26,37 +68,37 @@ class PizzaBuilderCheckout extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getAddresFun(this.props.auth.localId);
+    this.props.getAddresFun(this.props.auth.localId!);
   }
 
-  confirmHandler = event => {
+  confirmHandler = (event: Event) => {
     event.preventDefault();
-    let data = {};
+    let data: OrderInput;
     if (this.props.multi.pizzas.length > 0) {
       data = {
         name: this.props.inputs.inputs.name.value,
-        phone: this.props.inputs.inputs.phone.value,
+        phone: +this.props.inputs.inputs.phone.value,
         pizzaName: this.props.inputs.inputs.pizza.value,
         street: this.props.inputs.inputs.street.value,
-        house: this.props.inputs.inputs.house.value,
-        flat: this.props.inputs.inputs.flat.value,
-        pizzas: this.props.multi.pizzas,
-        totalCost: this.props.multi.totalCost,
-        id: this.props.auth.localId
+        house: +this.props.inputs.inputs.house.value,
+        flat: +this.props.inputs.inputs.flat.value,
+        pizzas: this.props.multi.pizzas as PizzaInput[],
+        totalCost: this.props.multi.totalCost.toString(),
+        id: this.props.auth.localId!
       };
     } else {
       data = {
         name: this.props.inputs.inputs.name.value,
-        phone: this.props.inputs.inputs.phone.value,
+        phone: +this.props.inputs.inputs.phone.value,
         pizzaName: this.props.inputs.inputs.pizza.value,
         street: this.props.inputs.inputs.street.value,
-        house: this.props.inputs.inputs.house.value,
-        flat: this.props.inputs.inputs.flat.value,
-        cost: this.props.state.cost,
+        house: +this.props.inputs.inputs.house.value,
+        flat: +this.props.inputs.inputs.flat.value,
+        cost: this.props.state.cost.toString(),
         weight: this.props.state.weight,
         diameter: this.props.state.diameter,
         ingredients: this.props.state.ingredients,
-        id: this.props.auth.localId
+        id: this.props.auth.localId!
       };
     }
 
@@ -213,7 +255,7 @@ class PizzaBuilderCheckout extends React.Component {
   }
 }
 
-const stateToProps = state => {
+const stateToProps = (state: any) => {
   return {
     state: state.pizza,
     inputs: state.order,
@@ -223,14 +265,14 @@ const stateToProps = state => {
   };
 };
 
-const dispatchToProps = dispatch => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
-    minusFun: ingredient => dispatch(minus(ingredient)),
+    minusFun: (ingredient: string) => dispatch(minus(ingredient)),
     resetFun: () => dispatch(reset_build()),
-    onInputFun: event => dispatch(onInput(event)),
-    getAddresFun: (token, id) => dispatch(getInfoAddresCheckout(token, id)),
-    deleteMultiOrderFun: num => dispatch(deleteMultiOrder(num)),
-    callApiAddOrderrFun: data => dispatch(callApiAddOrderr(data))
+    onInputFun: (event: ChangeEvent) => dispatch(onInput(event)),
+    getAddresFun: (id: string) => dispatch(getInfoAddresCheckout(id)),
+    deleteMultiOrderFun: (num: number) => dispatch(deleteMultiOrder(num)),
+    callApiAddOrderrFun: (data: OrderInput) => dispatch(callApiAddOrderr(data))
   };
 };
 
