@@ -1,6 +1,12 @@
 import React from "react";
 
-const mainInfo = props => {
+interface Props {
+ browser: {
+   safari: boolean
+ }
+}
+
+const mainInfo: React.FC<Props> = props => {
   return (
     <div className="main__info__cover">
       <h2>Welcome to custom pizza builder!</h2>

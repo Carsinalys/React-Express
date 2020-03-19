@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { connect } from "react-redux";
 import { Redirect, NavLink } from "react-router-dom";
 import Modal from "../hoc/modal";
@@ -15,10 +15,40 @@ import {
   deleteOrder,
   setCabinetChangePhoto
 } from "../../AC/index";
+import { InitStateAuth } from '../../reducer/pizzaAuth';
+import { Dispatch } from "redux";
+import { ChangeUserInfoFields } from "../../interfaces/interfaces";
+import { InitStateCabinet } from '../../reducer/pizzaCabinet';
+import { InitStateCabinetSet } from '../../reducer/pizzaCabinetSet';
+import { InitStateCabinetGet } from '../../reducer/pizzaCabinetGetOrders';
 
-class PersonalRoom extends React.Component {
+interface Props {
+  auth: InitStateAuth;
+  browser: {
+    safari: boolean
+  }
+  cabinet: InitStateCabinet;
+  cabinetSet: InitStateCabinetSet;
+  cabinetGet: InitStateCabinetGet;
+  getInfoFun: (id: string) => any;
+  onInputFun: (eent: ChangeEvent) => {
+    type: string;
+    payload: any;
+  }
+  fetchDataFun: (data:ChangeUserInfoFields, allGood: boolean, id: string) => any;
+  viewOrdersFun: (query: string) => any;
+  deleteOrderfun: (id: string, localId: string) => any;
+  setCabinetChangePhotoFun: (data: string, id: string) => any;
+}
+
+interface State {
+  showingContent: number;
+  trigger: boolean;
+}
+
+class PersonalRoom extends React.Component<Props,State> {
   componentDidMount() {
-    this.props.getInfoFun(this.props.auth.localId);
+    this.props.getInfoFun(this.props.auth.localId!);
   }
 
   state = {
@@ -26,7 +56,7 @@ class PersonalRoom extends React.Component {
     trigger: false
   };
 
-  sendDataHnadler = event => {
+  sendDataHnadler = (event: Event) => {
     event.preventDefault();
 
     let data = {
@@ -39,19 +69,19 @@ class PersonalRoom extends React.Component {
     this.props.fetchDataFun(
       data,
       this.props.cabinetSet.allGood,
-      this.props.auth.localId
+      this.props.auth.localId!
     );
   };
 
-  changeContentHandler = num => {
+  changeContentHandler = (num: number) => {
     this.setState({ trigger: true });
     setTimeout(() => {
       this.setState({ showingContent: num, trigger: false });
     }, 280);
   };
 
-  showModalHandler = id => {
-    this.props.deleteOrderfun(id, this.props.auth.localId);
+  showModalHandler = (id: string) => {
+    this.props.deleteOrderfun(id, this.props.auth.localId!);
   };
 
   render() {
@@ -114,7 +144,7 @@ class PersonalRoom extends React.Component {
                 </p>
               </div>
               <div className="log__out__image__block">
-                {this.props.auth.photo.startsWith("data") ? (
+                {this.props.auth.photo!.startsWith("data") ? (
                   <div
                     className="log__out__image__div"
                     style={{
@@ -150,7 +180,6 @@ class PersonalRoom extends React.Component {
             <CabinetOrders
               viewOrders={this.props.viewOrdersFun}
               orders={this.props.cabinetGet}
-              token={this.props.auth.token}
               id={this.props.auth.localId}
               delete={this.showModalHandler}
               browser={this.props.browser}
@@ -162,7 +191,7 @@ class PersonalRoom extends React.Component {
   }
 }
 
-const stateToProps = state => {
+const stateToProps = (state: any) => {
   return {
     auth: state.auth,
     cabinet: state.cabinet,
@@ -172,15 +201,15 @@ const stateToProps = state => {
   };
 };
 
-const dispatchToProps = dispatch => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
-    getInfoFun: id => dispatch(getInfo(id)),
-    onInputFun: event => dispatch(setCabinetOnInput(event)),
-    fetchDataFun: (data, allGood, id) =>
+    getInfoFun: (id: string) => dispatch(getInfo(id)),
+    onInputFun: (event: ChangeEvent) => dispatch(setCabinetOnInput(event)),
+    fetchDataFun: (data:ChangeUserInfoFields, allGood: boolean, id: string) =>
       dispatch(setCabinetFetchOrder(data, allGood, id)),
-    viewOrdersFun: query => dispatch(viewOrdersCabinet(query)),
-    deleteOrderfun: (id, localId) => dispatch(deleteOrder(id, localId)),
-    setCabinetChangePhotoFun: (data, id) =>
+    viewOrdersFun: (query: string) => dispatch(viewOrdersCabinet(query)),
+    deleteOrderfun: (id: string, localId: string) => dispatch(deleteOrder(id, localId)),
+    setCabinetChangePhotoFun: (data: string, id: string) =>
       dispatch(setCabinetChangePhoto(data, id))
   };
 };

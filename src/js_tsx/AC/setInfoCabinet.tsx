@@ -3,15 +3,16 @@ import client from "../graphql/client";
 import * as GQL from "../graphql/gql-tags";
 import { Dispatch } from "redux";
 import { ChangeUserInfoFields, User } from '../interfaces/interfaces';
+import { ChangeEvent } from "react";
 
-export const setCabinetOnInput = (event: Event) => {
+export const setCabinetOnInput = (event: ChangeEvent) => {
   return {
     type: AC.CABINET_SET_INFO_ON_INPUT,
     payload: event
   };
 };
 
-export const setCabinetFetchOrder = (data: ChangeUserInfoFields, allGood: boolean, id: string) => {
+export const setCabinetFetchOrder = (data: ChangeUserInfoFields, allGood: boolean, id: string):any => {
   return (dispatch: Dispatch) => {
     if (allGood) {
       dispatch(setCabinetToggleModal());
@@ -35,7 +36,7 @@ export const setCabinetFetchOrder = (data: ChangeUserInfoFields, allGood: boolea
   };
 };
 
-export const setCabinetChangePhoto = (data: ChangeUserInfoFields, id: string) => {
+export const setCabinetChangePhoto = (data: string, id: string):any => {
   return (dispatch: Dispatch) => {
     dispatch(setCabinetToggleModal());
     const sendObj = {

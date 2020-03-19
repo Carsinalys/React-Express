@@ -9,7 +9,7 @@ export const logOut = () => {
   };
 };
 
-export const fetchLogOut = () => {
+export const fetchLogOut = ():any => {
   return (dispatch: Dispatch) => {
     const logOutQuery = gql`
       {

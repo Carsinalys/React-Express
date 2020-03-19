@@ -23,7 +23,7 @@ export const viewOrdersCabinet = (query: string):any => {
   };
 };
 
-export const deleteOrder = (id: string, localId: string) => {
+export const deleteOrder = (id: string, localId: string):any => {
   return (dispatch: Dispatch) => {
     dispatch(viewOrdersCabinetModalOn());
     client!

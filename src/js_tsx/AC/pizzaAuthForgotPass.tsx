@@ -35,7 +35,7 @@ export const fetchResetPass = (mail: string):any => {
   };
 };
 
-export const fetchChangeEmail = (mail: string, id: string) => {
+export const fetchChangeEmail = (mail: string, id: string):any => {
   return (dispatch: Dispatch) => {
     dispatch(authResetMOdalOn());
     let data = {

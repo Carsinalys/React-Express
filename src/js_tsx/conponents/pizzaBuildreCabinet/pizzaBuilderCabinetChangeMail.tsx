@@ -4,14 +4,31 @@ import { Redirect } from "react-router-dom";
 import { fetchChangeEmail, authChangeMailOnInput } from "../../AC/index";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Modal from "../hoc/modal";
+import { Dispatch } from "redux";
+import { InitStateAuth } from '../../reducer/pizzaAuth';
+import { InitStateCabinet } from '../../reducer/pizzaCabinet';
+import { InitStateReset } from '../../reducer/pizzaAuthReset';
+import { ExtHistory } from "../../interfaces/interfaces";
 
-class ForgotPass extends React.Component {
-  changeMailHandler = e => {
+interface Props {
+  fetchChangeEmailFun: (mail: string, id: string) => any;
+  authChangeMailOnInputFun: (event: Event) => {
+    type: string;
+    payload: Event;
+  }
+  auth: InitStateAuth;
+  cabinet: InitStateCabinet;
+  authReset: InitStateReset;
+  history: ExtHistory
+}
+
+class ForgotPass extends React.Component<Props,{}> {
+  changeMailHandler = (e: Event) => {
     e.preventDefault();
     if (this.props.authReset.inputs.mail1.isValid) {
       this.props.fetchChangeEmailFun(
         this.props.authReset.inputs.mail1.value,
-        this.props.auth.localId
+        this.props.auth.localId!
       );
     }
   };
@@ -55,7 +72,10 @@ class ForgotPass extends React.Component {
                   }
                   placeholder="Email"
                   value={this.props.authReset.inputs.mail1.value}
-                  onChange={event => this.props.authChangeMailOnInputFun(event)}
+                  onChange={event => {
+                    const newEvent = event as unknown as Event;
+                    this.props.authChangeMailOnInputFun(newEvent);
+                  }}
                 />
               </label>
             </div>
@@ -63,7 +83,10 @@ class ForgotPass extends React.Component {
               <button
                 type="submit"
                 form="chnageMail"
-                onClick={e => this.changeMailHandler(e)}
+                onClick={e => {
+                  const newEvent = e as unknown as Event;
+                  this.changeMailHandler(newEvent);
+                }}
                 className="auth__reset__btn"
               >
                 Change email
@@ -76,7 +99,7 @@ class ForgotPass extends React.Component {
   }
 }
 
-const stateToProps = state => {
+const stateToProps = (state: any) => {
   return {
     auth: state.auth,
     authReset: state.authReset,
@@ -84,11 +107,11 @@ const stateToProps = state => {
   };
 };
 
-const dispatchToProps = dispatch => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
-    fetchChangeEmailFun: (mail, id, token) =>
-      dispatch(fetchChangeEmail(mail, id, token)),
-    authChangeMailOnInputFun: event => dispatch(authChangeMailOnInput(event))
+    fetchChangeEmailFun: (mail: string, id: string) =>
+      dispatch(fetchChangeEmail(mail, id)),
+    authChangeMailOnInputFun: (event: Event) => dispatch(authChangeMailOnInput(event))
   };
 };
 

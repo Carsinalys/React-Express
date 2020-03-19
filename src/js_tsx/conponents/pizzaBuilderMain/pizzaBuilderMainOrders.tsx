@@ -1,7 +1,22 @@
 import React from "react";
 import Orders from "./pizzaBuilderPrevOrders";
+import { Order } from "../../interfaces/interfaces";
 
-const mainOrders = props => {
+interface Props {
+  browser: {
+    safari: boolean
+  }
+  orders: Order[];
+  theSame: (event: MouseEvent) => void;
+  showMore: ()=>void;
+  showMoreFetch: (num: number) => any;
+  triggerForFetch: boolean;
+  counter: number;
+  counterStore: number | undefined;
+  moreOrders: Order[];
+}
+
+const mainOrders: React.FC<Props> = props => {
   return (
     <div className="prev__orders">
       <div className="prev__orders__info">

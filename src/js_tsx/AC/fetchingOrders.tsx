@@ -4,7 +4,7 @@ import * as GQL from "../graphql/gql-tags";
 import { Dispatch } from "redux";
 import { GetMoreOrders, Order } from "../interfaces/interfaces";
 
-export const gerOrders = (num = 3) => {
+export const gerOrders = (num = 3):any => {
   return (dispatch: Dispatch) => {
     dispatch(startGetOrders());
     const data = { count: num };
@@ -16,7 +16,7 @@ export const gerOrders = (num = 3) => {
   };
 };
 
-export const getMoreOrders = (count: number) => {
+export const getMoreOrders = (count: number):any => {
   return (dispatch: Dispatch) => {
     dispatch(startGetOrders());
     const data = { count };

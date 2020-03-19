@@ -2,21 +2,21 @@ import * as AC from "../AC/ac";
 import { Action, Order } from "../interfaces/interfaces";
 import { Reducer } from "redux";
 
-interface InitState {
+export interface InitStateCabinetGet {
   modal: boolean;
   error: null | string;
   count: null | number;
   orders: Order[];
 }
 
-const initState: InitState = {
+const initState: InitStateCabinetGet = {
   modal: false,
   error: null,
   count: null,
   orders: []
 };
 
-const reducer: Reducer<InitState, Action> = (state = initState, action) => {
+const reducer: Reducer<InitStateCabinetGet, Action> = (state = initState, action) => {
   switch (action.type) {
     case AC.CABINET_VIEW_ORDERS_SET:
       return {

@@ -16,11 +16,45 @@ import PrevOrders from "./pizzaBuilderMainOrders";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import MainInfo from "./pizzaBuilderMainInfo";
 import ShowMore from "./pizzaBuilderMainShowMore";
+import { Dispatch } from "redux";
+import { Pizza, Order, NewIngredientsObj } from '../../interfaces/interfaces';
+import { Ingredients, IngredientsObj } from "../../reducer/pizzaState";
 
-class PizzaBuilderMainPage extends React.Component {
+interface Props {
+  theSameFun: (obj: Pizza) => {
+    type: string;
+    payload: Pizza;
+  }
+  getOrders: (num: number) => any;
+  multiTheSameFun: (order: Order) => {
+    type: string;
+    payload: Order;
+  }
+  resetMultiPizzaFun: () => {type:string}
+  reset_buildFun: ()=> {type:string}
+  getMoreOrdersFun: (num: number) => any;
+  stateCounter: number | undefined;
+  moreOrders: Order[];
+  isLoaded: boolean;
+  isLoading: boolean;
+  error: boolean;
+  getOrdersState: boolean;
+  browser: {
+    safari: boolean
+  }
+  orders: Order[];
+}
+
+interface State {
+  rediect: boolean;
+  showMore: boolean;
+  curCounter: number;
+}
+
+class PizzaBuilderMainPage extends React.Component<Props, State> {
   componentDidMount() {
     if (!Object.keys(this.props.orders).length) {
-      this.props.getOrders();
+      this.props.getOrders(3);
     }
   }
 
@@ -30,31 +64,34 @@ class PizzaBuilderMainPage extends React.Component {
     curCounter: 10
   };
 
-  wantTheSameHanler = event => {
+  wantTheSameHanler = (event: MouseEvent) => {
+    const el = event.target as HTMLElement
     let order = this.props.orders.filter(
-      item => item._id === event.target.dataset.id
+      item => item._id === el.dataset.id
     )[0];
     if (!order) {
       order = this.props.moreOrders.filter(
-        item => item._id.toString() === event.target.dataset.id
+        item => item._id.toString() === el.dataset.id
       )[0];
     }
     // this deep is copy of ingredients for prevent mutating data
     let wantsOrder = {};
     if (order.ingredients) {
-      let ingredients = {};
+      let ingredients = {} as IngredientsObj;
       Object.keys(order.ingredients).map(item => {
-        ingredients[item] = { ...order.ingredients[item] };
+        const newItem = item as Ingredients;
+        ingredients[newItem] = { ...order.ingredients[newItem] };
       });
       wantsOrder = {
         ...order,
         ingredients: ingredients
       };
     } else {
-      let newPizzas = order.pizzas.map(pizza => {
+      let newPizzas = order.pizzas!.map(pizza => {
         let newPizza = { ...pizza };
         Object.keys(pizza.ingredients).map(item => {
-          newPizza.ingredients[item] = { ...pizza.ingredients[item] };
+          const newItem = item as Ingredients;
+          newPizza.ingredients[newItem] = { ...pizza.ingredients[newItem] };
         });
         return newPizza;
       });
@@ -63,19 +100,21 @@ class PizzaBuilderMainPage extends React.Component {
         pizzas: newPizzas
       };
     }
-    if (order.pizzas.length > 0) {
+    if (order.pizzas!.length > 0) {
+      const newPizza = wantsOrder as Order; 
       this.props.resetMultiPizzaFun();
       this.props.reset_buildFun();
-      this.props.multiTheSameFun(wantsOrder);
+      this.props.multiTheSameFun(newPizza);
     } else {
+      const newPizza = wantsOrder as Pizza; 
       this.props.resetMultiPizzaFun();
       this.props.reset_buildFun();
-      this.props.theSameFun(wantsOrder);
+      this.props.theSameFun(newPizza);
     }
     this.setState({ rediect: true });
   };
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     if (
       prevState.curCounter !== this.state.curCounter &&
       this.props.moreOrders.length < this.state.curCounter
@@ -107,7 +146,7 @@ class PizzaBuilderMainPage extends React.Component {
           </Modal>
           {this.state.rediect ? <Redirect to="/checkout" /> : null}
           <MainInfo browser={this.props.browser} />
-          {this.props.getOrders ? (
+          {this.props.getOrdersState ? (
             <PrevOrders
               orders={this.props.orders}
               theSame={this.wantTheSameHanler}
@@ -138,7 +177,7 @@ class PizzaBuilderMainPage extends React.Component {
   }
 }
 
-const stateToProps = state => {
+const stateToProps = (state: any) => {
   return {
     stateCounter: state.orders.count,
     moreOrders: state.orders.moreOrders,
@@ -146,19 +185,19 @@ const stateToProps = state => {
     isLoaded: state.orders.isLoaded,
     isLoading: state.orders.isLoading,
     error: state.orders.error,
-    getOrders: state.orders.getOrders,
+    getOrdersState: state.orders.getOrders,
     browser: state.browser
   };
 };
 
-const dispatchToProps = dispatch => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
-    theSameFun: obj => dispatch(the_same(obj)),
-    getOrders: num => dispatch(gerOrders(num)),
-    multiTheSameFun: obj => dispatch(multiPizzaTheSame(obj)),
+    theSameFun: (obj: Pizza) => dispatch(the_same(obj)),
+    getOrders: (num: number) => dispatch(gerOrders(num)),
+    multiTheSameFun: (obj: Order) => dispatch(multiPizzaTheSame(obj)),
     resetMultiPizzaFun: () => dispatch(resetMultiPizza()),
     reset_buildFun: () => dispatch(reset_build()),
-    getMoreOrdersFun: count => dispatch(getMoreOrders(count))
+    getMoreOrdersFun: (count: number) => dispatch(getMoreOrders(count))
   };
 };
 

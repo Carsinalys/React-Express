@@ -2,7 +2,7 @@ import * as AC from "../AC/ac";
 import { Action } from "../interfaces/interfaces";
 import { Reducer } from "redux";
 
-interface InitState {
+export interface InitStateCabinet {
   info: {
     createdAt: null | number;
     email: null | string;
@@ -14,13 +14,23 @@ interface InitState {
     street: string;
     house: string;
     flat: string;
-    mailChangeError: string;
   };
   modalShow: boolean;
   isAddresFilled: boolean;
+  mailChangeError: string;
 }
 
-const initState: InitState = {
+export type keysInfo = "createdAt"
+ | "localId"
+  | "password"
+   | "lastLoginAt"
+    | "name"
+     | "phone"
+      | "street"
+       | "house"
+        | "flat";
+
+const initState: InitStateCabinet = {
   info: {
     createdAt: null,
     email: null,
@@ -31,14 +41,14 @@ const initState: InitState = {
     phone: "unset",
     street: "unset",
     house: "unset",
-    flat: "unset",
-    mailChangeError: ""
+    flat: "unset"
   },
   modalShow: false,
-  isAddresFilled: false
+  isAddresFilled: false,
+  mailChangeError: ""
 };
 
-const reducer: Reducer<InitState, Action> = (state = initState, action) => {
+const reducer: Reducer<InitStateCabinet, Action> = (state = initState, action) => {
   switch (action.type) {
     case AC.CABINET_GET_INFO:
       return {

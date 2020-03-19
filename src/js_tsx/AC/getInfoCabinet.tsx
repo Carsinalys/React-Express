@@ -4,7 +4,7 @@ import * as GQL from "../graphql/gql-tags";
 import { Dispatch } from "redux";
 import {User} from '../interfaces/interfaces';
 
-export const getInfo = (id: string) => {
+export const getInfo = (id: string):any => {
   return (dispatch: Dispatch) => {
     client!
       .query({ query: GQL.getUSerInfo, variables: { input: { id } } })

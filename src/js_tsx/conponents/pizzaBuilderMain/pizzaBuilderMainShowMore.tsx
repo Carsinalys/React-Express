@@ -1,7 +1,19 @@
 import React from "react";
 import Orders from "./pizzaBuilderPrevOrders";
+import { Order } from "../../interfaces/interfaces";
 
-const showMore = props => {
+interface Props {
+  browser: {
+    safari: boolean
+  }
+  orders: Order[];
+  theSame: (event: MouseEvent) => void;
+  counterStore: number | undefined;
+  counter: number;
+  more: ()=>void;
+}
+
+const showMore: React.FC<Props> = props => {
   return (
     <div className="main__show__more__cover">
       <Orders
@@ -9,11 +21,11 @@ const showMore = props => {
         browser={props.browser}
         theSame={props.theSame}
       />
-      {props.counter > props.counterStore ? null : (
+      {props.counter > props.counterStore! ? null : (
         <span
           className="prev__orders__show__more__btn"
           onClick={() => {
-            props.counter < props.counterStore ? props.more() : null;
+            props.counter < props.counterStore! ? props.more() : null;
           }}
         >
           load more...

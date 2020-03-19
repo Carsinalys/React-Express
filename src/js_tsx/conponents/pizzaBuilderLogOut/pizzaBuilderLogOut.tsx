@@ -2,8 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchLogOut } from "../../AC/index";
 import { Redirect } from "react-router";
+import { InitStateAuth } from '../../reducer/pizzaAuth';
+import { Dispatch } from "redux";
 
-class LogingOut extends React.Component {
+interface Props {
+  auth: InitStateAuth;
+  fetchLogOutFun: ()=>any;
+}
+
+class LogingOut extends React.Component<Props, {}> {
   render() {
     return (
       <section className="container">
@@ -22,13 +29,13 @@ class LogingOut extends React.Component {
   }
 }
 
-const stateToProps = state => {
+const stateToProps = (state: any) => {
   return {
     auth: state.auth
   };
 };
 
-const dispatchToProps = dispatch => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
     fetchLogOutFun: () => dispatch(fetchLogOut())
   };

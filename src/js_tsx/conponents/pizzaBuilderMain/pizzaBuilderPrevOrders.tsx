@@ -1,17 +1,30 @@
 import React from "react";
+import { Order } from "../../interfaces/interfaces";
+import { Ingredients } from "../../reducer/pizzaState";
 
-const orders = props => {
+interface Props {
+  orders: Order[];
+  browser: {
+    safari: boolean
+  }
+  theSame: (event: MouseEvent) => void;
+}
+
+const orders: React.FC<Props> = props => {
   let prevOrders =
     props.orders.length > 0
       ? props.orders.map((item, index) => {
-          if (item.pizzas.length === 0) {
+          if (item.pizzas!.length === 0) {
             return (
               <div key={item._id} className="prev__order__cover">
                 <div className="prev__order__hover">
                   <button
                     className="prev__order__hover__btn"
                     data-id={item._id}
-                    onClick={event => props.theSame(event)}
+                    onClick={event => {
+                      const newEvent = event as unknown as MouseEvent;
+                      props.theSame(newEvent);
+                    }}
                   >
                     Want the same...
                   </button>
@@ -30,13 +43,14 @@ const orders = props => {
                 </div>
                 <div className="prev__order__icon__cover">
                   {Object.keys(item.ingredients).map(key => {
-                    return item.ingredients[key].count > 0 ? (
+                    const newItem = key as Ingredients;
+                    return item.ingredients[newItem].count > 0 ? (
                       <div
                         className="pizza__view__icon pizza__view__icon_small"
                         key={key}
                       >
                         <div className="pizza__view__icon__count pizza__view__icon__count_small">
-                          <strong>{item.ingredients[key].count}X</strong>
+                          <strong>{item.ingredients[newItem].count}X</strong>
                         </div>
                         <div className="pizza__view__icon__pic">
                           {props.browser.safari ? (
@@ -66,7 +80,10 @@ const orders = props => {
                   <button
                     className="prev__order__hover__btn"
                     data-id={item._id}
-                    onClick={event => props.theSame(event)}
+                    onClick={event => {
+                      const newEvent = event as unknown as MouseEvent;
+                      props.theSame(newEvent);
+                    }}
                   >
                     Want the same...
                   </button>
@@ -82,7 +99,7 @@ const orders = props => {
                   </p>
                 </div>
                 <div className="prev__order__icon__cover">
-                  {item.pizzas.map((pizza, index) => {
+                  {item.pizzas!.map((pizza, index) => {
                     return (
                       <div key={index} className="multi__pizza__main__cover">
                         <p>
@@ -92,14 +109,15 @@ const orders = props => {
                         </p>
                         <div className="multi__pizza__icos__cover">
                           {Object.keys(pizza.ingredients).map(key => {
-                            return pizza.ingredients[key].count > 0 ? (
+                            const newItem = key as Ingredients;
+                            return pizza.ingredients[newItem].count > 0 ? (
                               <div
                                 className="pizza__view__icon pizza__view__icon_small"
                                 key={key}
                               >
                                 <div className="pizza__view__icon__count pizza__view__icon__count_small">
                                   <strong>
-                                    {pizza.ingredients[key].count}X
+                                    {pizza.ingredients[newItem].count}X
                                   </strong>
                                 </div>
                                 <div className="pizza__view__icon__pic">

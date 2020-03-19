@@ -2,7 +2,7 @@ import * as AC from "../AC/ac";
 import { ActionEvent, Input } from "../interfaces/interfaces";
 import { Reducer } from "react";
 
-interface InitState {
+export interface InitStateCabinetSet {
   modalShow: boolean;
   allGood: boolean;
   inputs: {
@@ -17,9 +17,22 @@ interface InitState {
   };
 }
 
+export interface InputsCabinerSet {
+  inputs: {
+    name: Input;
+    phone: Input;
+    street: Input;
+    house: Input;
+    flat: Input;
+    pizza?: Input;
+    mail?: Input;
+    password?: Input;
+  };
+}
+
 type InputsNames = "name" | "phone" | "street" | "house" | "flat";
 
-const initState: InitState = {
+const initState: InitStateCabinetSet = {
   modalShow: false,
   allGood: false,
   inputs: {
@@ -71,14 +84,14 @@ const initState: InitState = {
   }
 };
 
-const reducer: Reducer<InitState, ActionEvent> = (state = initState, action) => {
+const reducer: Reducer<InitStateCabinetSet, ActionEvent> = (state = initState, action) => {
   switch (action.type) {
     case AC.CABINET_SET_INFO_ON_INPUT: {
       const regExp = new RegExp(
         state.inputs[action.payload.target!.dataset.name]!.pattern
       );
       const valid = regExp.test(action.payload.target!.value);
-      let copyState: InitState = {
+      let copyState: InitStateCabinetSet = {
         ...state,
         allGood: false,
         inputs: {
