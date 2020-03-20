@@ -14,7 +14,7 @@ module.exports = {
     paths: PATHS
   },
   entry: {
-    app: PATHS.src
+    app: `${PATHS.src}/index.tsx`
   },
   output: {
     filename: `${PATHS.assets}js/[name].js`,

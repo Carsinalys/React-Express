@@ -1,15 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getTokenFromCookie } from "./AC/index";
-import { Dispatch } from 'redux'
 
 import PizzaBuilder from "./conponents/serverPizzaBuilder";
 
-interface CurProps {
-  getToketFun: () => { type: string };
-}
-
-class App extends React.Component<CurProps,{}> {
+class App extends React.Component {
   componentDidMount() {
     this.props.getToketFun();
   }
@@ -25,7 +20,7 @@ class App extends React.Component<CurProps,{}> {
   }
 }
 
-const dispatchToProps = (dispatch: Dispatch) => {
+const dispatchToProps = dispatch => {
   return {
     getToketFun: () => dispatch(getTokenFromCookie())
   };

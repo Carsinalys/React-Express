@@ -2,8 +2,19 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import Burger from "../../icons/burger";
+import { InitStateAuth } from '../../reducer/pizzaAuth';
+import { InitStateChat } from '../../reducer/chat';
 
-const pizzaNav = props => {
+interface Props {
+  show: boolean;
+  showClick: ()=>void;
+  auth: InitStateAuth;
+  hideModal: ()=>void;
+  chat: InitStateChat;
+  location: string;
+}
+
+const pizzaNav: React.FC<Props> = props => {
   return (
     <div className="pizza__nav">
       <div className="pizza__nav__burger" onClick={props.showClick}>
@@ -72,7 +83,7 @@ const pizzaNav = props => {
                     </p>
                   </div>
                   <div className="log__out__image">
-                    {props.auth.photo.startsWith("data") ? (
+                    {props.auth.photo!.startsWith("data") ? (
                       <div
                         className="log__out__image"
                         style={{

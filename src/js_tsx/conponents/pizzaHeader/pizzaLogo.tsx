@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const pizzaLogo = props => {
+interface Props {
+  browser: {
+    safari: boolean;
+  }
+}
+
+const pizzaLogo: React.FC<Props> = props => {
   return (
     <div className="pizza__logo">
       <Link to="/">

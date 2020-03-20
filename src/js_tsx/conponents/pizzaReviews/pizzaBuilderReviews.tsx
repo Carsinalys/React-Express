@@ -6,14 +6,36 @@ import { withRouter } from "react-router-dom";
 
 import ShowReviews from "./pizzaBuilderShowReviews";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
+import { Dispatch } from "redux";
+import { InitStateAuth } from '../../reducer/pizzaAuth';
+import { InitStateReviews } from "../../reducer/fetchingReviews";
 
-class Reviews extends React.Component {
+interface Props {
+  getReviewsFun: (str: string) => any;
+  editReviewFun: (str: string) => any;
+  deleteReviewFun: (str: string) => any;
+  auth: InitStateAuth;
+  isLoading: boolean;
+  getReviews: boolean;
+  isEditMode: boolean;
+  reviews: InitStateReviews;
+  location: {
+    pathname: string;
+  }
+}
+
+interface State {
+  currentPage: number;
+  modal: boolean;
+}
+
+class Reviews extends React.Component<Props, State> {
   componentDidMount() {
     if (this.props.location.pathname.indexOf("/reviews/") >= 0) {
       const page = this.props.location.pathname.replace("/reviews/", "").trim();
-      this.props.getReviews(`page=${page}&limit=5`);
-      this.setState({ currentPage: page });
-    } else this.props.getReviews("page=1&limit=5");
+      this.props.getReviewsFun(`page=${page}&limit=5`);
+      this.setState({ currentPage: +page });
+    } else this.props.getReviewsFun("page=1&limit=5");
   }
 
   state = {
@@ -21,11 +43,11 @@ class Reviews extends React.Component {
     modal: false
   };
 
-  currentPageHandler = num => {
+  currentPageHandler = (num: number) => {
     this.setState({ currentPage: num });
   };
 
-  deleteReviewHandler = id => {
+  deleteReviewHandler = (id: string) => {
     this.props.deleteReviewFun(id);
   };
 
@@ -44,7 +66,7 @@ class Reviews extends React.Component {
             auth={this.props.auth.isAuthindicated}
             pagination={this.props.reviews.pagination}
             changeCurPage={this.currentPageHandler}
-            changePage={this.props.getReviews}
+            changePage={this.props.getReviewsFun}
             currentPageNum={this.state.currentPage}
             edit={this.props.editReviewFun}
             removeReview={this.deleteReviewHandler}
@@ -57,7 +79,7 @@ class Reviews extends React.Component {
   }
 }
 
-const stateToProps = state => {
+const stateToProps = (state: any) => {
   return {
     isLoading: state.reviews.isLoading,
     getReviews: state.reviews.getReviews,
@@ -67,11 +89,11 @@ const stateToProps = state => {
   };
 };
 
-const dispatchToProps = dispatch => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
-    getReviews: param => dispatch(getReviews(param)),
-    editReviewFun: id => dispatch(editReview(id)),
-    deleteReviewFun: id => dispatch(deleteReview(id))
+    getReviewsFun: (param: string) => dispatch(getReviews(param)),
+    editReviewFun: (id: string) => dispatch(editReview(id)),
+    deleteReviewFun: (id: string) => dispatch(deleteReview(id))
   };
 };
 

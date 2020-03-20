@@ -4,7 +4,7 @@ import * as GQL from "../graphql/gql-tags";
 import { Dispatch } from "redux";
 import {Review} from '../interfaces/interfaces';
 
-export const getReviews = (param: string) => {
+export const getReviews = (param: string):any => {
   return (dispatch: Dispatch) => {
     dispatch(startGetReviews());
     const input = Object.fromEntries(
@@ -17,7 +17,7 @@ export const getReviews = (param: string) => {
   };
 };
 
-export const addReview = (input: Review) => {
+export const addReview = (input: Review):any => {
   return (dispatch: Dispatch) => {
     client!
       .mutate({
@@ -28,7 +28,7 @@ export const addReview = (input: Review) => {
   };
 };
 
-export const editReview = (id: string) => {
+export const editReview = (id: string):any => {
   return (dispatch: Dispatch) => {
     client!
       .query({ query: GQL.getReviews, variables: { input: { id } } })
@@ -39,7 +39,7 @@ export const editReview = (id: string) => {
   };
 };
 
-export const editReviewSend = (data: Review, id: string) => {
+export const editReviewSend = (data: Review, id: string):any => {
   let sendData = { data, _id: id };
   return (dispatch: Dispatch) => {
     client!
@@ -54,7 +54,7 @@ export const editReviewSend = (data: Review, id: string) => {
   };
 };
 
-export const deleteReview = (id: string) => {
+export const deleteReview = (id: string):any => {
   let data = { _id: id };
   return (dispatch: Dispatch) => {
     dispatch(deleteReviewModalOn());

@@ -4,8 +4,28 @@ import { CSSTransition } from "react-transition-group";
 import { editReviewSend, addReview, reviewsEditModeOff } from "../../AC/index";
 
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
+import { Dispatch } from "redux";
+import { Review } from "../../interfaces/interfaces";
+import {  InitStateAuth } from '../../reducer/pizzaAuth';
+import { InitStateReviews } from '../../reducer/fetchingReviews';
+import { ExtHistory } from '../../interfaces/interfaces';
 
-class AddReview extends React.Component {
+interface Props {
+  editReviewSendFun: (data: Review, id: string)=>any;
+  addReviewFun: (input: Review) => any;
+  reviewsEditModeOffFun: ()=>{type: string};
+  auth: InitStateAuth;
+  reviews: InitStateReviews;
+  history: ExtHistory;
+}
+
+interface State {
+  currentRating: number;
+  isLoading: boolean;
+  badData: boolean;
+}
+
+class AddReview extends React.Component<Props, State> {
   state = {
     currentRating: 5,
     isLoading: false,
@@ -14,16 +34,14 @@ class AddReview extends React.Component {
 
   componentDidMount() {
     if (this.props.reviews.editMode) {
-      document.querySelector(
-        "#author__name"
-      ).value = this.props.reviews.editReviewData.name;
-      document.querySelector(
-        "#author__text"
-      ).value = this.props.reviews.editReviewData.text;
+      const name = document.querySelector("#author__name") as HTMLInputElement;
+      const text = document.querySelector("#author__text") as HTMLInputElement;
+      name.value = this.props.reviews.editReviewData.name;
+      text.value = this.props.reviews.editReviewData.text;
     }
   }
 
-  changeRatingHandler = rating => {
+  changeRatingHandler = (rating: number) => {
     this.setState({ currentRating: rating });
   };
 
@@ -32,10 +50,10 @@ class AddReview extends React.Component {
     this.props.history.push("/reviews/1");
   };
 
-  addReviewHandler = event => {
+  addReviewHandler = (event: Event) => {
     event.preventDefault();
-    let name = document.querySelector("#author__name"),
-      text = document.querySelector("#author__text");
+    let name = document.querySelector("#author__name") as HTMLInputElement,
+      text = document.querySelector("#author__text") as HTMLInputElement;
     if (
       name.value.length >= 5 &&
       text.value.length >= 10 &&
@@ -49,7 +67,7 @@ class AddReview extends React.Component {
         text: text.value,
         rating: this.state.currentRating,
         id: this.props.auth.localId
-      };
+      } as Review;
       if (!this.props.reviews.editMode) {
         this.props.addReviewFun(data);
       } else {
@@ -107,7 +125,7 @@ class AddReview extends React.Component {
               type="text"
               id="author__name"
               form="add__review"
-              minLength="5"
+              minLength={5}
             />
           </div>
           <div className="author__rating__cover">
@@ -115,7 +133,7 @@ class AddReview extends React.Component {
             <div className="author__rating">
               <div
                 className="add__review__star__cover"
-                onClick={() => this.changeRatingHandler("1")}
+                onClick={() => this.changeRatingHandler(1)}
               >
                 <svg
                   className={
@@ -132,7 +150,7 @@ class AddReview extends React.Component {
               </div>
               <div
                 className="add__review__star__cover"
-                onClick={() => this.changeRatingHandler("2")}
+                onClick={() => this.changeRatingHandler(2)}
               >
                 <svg
                   className={
@@ -149,7 +167,7 @@ class AddReview extends React.Component {
               </div>
               <div
                 className="add__review__star__cover"
-                onClick={() => this.changeRatingHandler("3")}
+                onClick={() => this.changeRatingHandler(3)}
               >
                 <svg
                   className={
@@ -166,7 +184,7 @@ class AddReview extends React.Component {
               </div>
               <div
                 className="add__review__star__cover"
-                onClick={() => this.changeRatingHandler("4")}
+                onClick={() => this.changeRatingHandler(4)}
               >
                 <svg
                   className={
@@ -183,7 +201,7 @@ class AddReview extends React.Component {
               </div>
               <div
                 className="add__review__star__cover"
-                onClick={() => this.changeRatingHandler("5")}
+                onClick={() => this.changeRatingHandler(5)}
               >
                 <svg
                   className={
@@ -205,11 +223,11 @@ class AddReview extends React.Component {
             <textarea
               name="author__text"
               id="author__text"
-              cols="30"
-              rows="10"
+              cols={30}
+              rows={10}
               className="author__text"
-              minLength="10"
-              maxLength="200"
+              minLength={10}
+              maxLength={200}
             ></textarea>
           </div>
           <div className="submit__cover">
@@ -217,7 +235,10 @@ class AddReview extends React.Component {
               type="submit"
               value="Add review"
               className="add__review__submit"
-              onClick={event => this.addReviewHandler(event)}
+              onClick={event => {
+                const newEvent = event as unknown as Event;
+                this.addReviewHandler(newEvent)
+              }}
             />
           </div>
         </form>
@@ -231,17 +252,17 @@ class AddReview extends React.Component {
   }
 }
 
-const stateToProps = state => {
+const stateToProps = (state: any) => {
   return {
     auth: state.auth,
     reviews: state.reviews
   };
 };
 
-const dispatchToProps = dispatch => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
-    editReviewSendFun: (data, id) => dispatch(editReviewSend(data, id)),
-    addReviewFun: data => dispatch(addReview(data)),
+    editReviewSendFun: (data: Review, id: string) => dispatch(editReviewSend(data, id)),
+    addReviewFun: (data: Review) => dispatch(addReview(data)),
     reviewsEditModeOffFun: () => dispatch(reviewsEditModeOff())
   };
 };

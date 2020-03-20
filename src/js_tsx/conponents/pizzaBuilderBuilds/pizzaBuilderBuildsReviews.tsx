@@ -66,7 +66,7 @@ const buildsReviews: React.FC<Props> = props => {
       <div
         className="builds__review__preview__cover"
         onClick={() => {
-          const newReviews = [...props.reviews] as unknown as Review[];
+          const newReviews = [...props.reviews!] as unknown as Review[];
           props.showReviews(newReviews);
           props.showReviewsModal();
         }}

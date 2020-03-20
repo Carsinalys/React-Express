@@ -28,7 +28,7 @@ import {
   chatNewMessageBanner
 } from "../../AC/index";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
-import Rooms from "./pizzaBuilderRooms.js";
+import Rooms from "./pizzaBuilderRooms";
 import { socketType } from "../../../../portForFront";
 
 import Store from "../../store/store";

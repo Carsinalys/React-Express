@@ -2,26 +2,38 @@ import React, { useEffect, useState } from "react";
 import Modal from "../hoc/modal";
 import Spinner from "../pizzaBuilder/pizzaBuilderSpinner";
 import Pagination from "./pizzaCabinetPagination";
+import { InitStateCabinetGet } from '../../reducer/pizzaCabinetGetOrders';
+import { Ingredients } from "../../reducer/pizzaState";
 
-const myOrdersCabinet = props => {
+interface Props {
+  viewOrders: (query: string) => any;
+  orders: InitStateCabinetGet;
+  id: string | null;
+  delete: (id: string) => void;
+  browser: {
+    safari: boolean;
+  }
+}
+
+const myOrdersCabinet: React.FC<Props> = props => {
   let pageNum = 1;
   if (props.orders.orders)
     if (props.orders.orders.length > 0) {
-      pageNum = Math.ceil(props.orders.count / 4);
+      pageNum = Math.ceil(props.orders.count! / 4);
     }
 
   useEffect(() => props.viewOrders(`page=1&limit=4&id=${props.id}`), []);
 
   const [modal, setModal] = useState(false);
-  const [id, setId] = useState(null);
+  const [id, setId] = useState("");
   const [page, setPage] = useState(1);
 
   let prevOrders;
 
   if (!props.orders.orders) prevOrders = <h1>No orders get yet</h1>;
-  else if (!props.orders.orders.error && props.orders.orders.length > 0) {
+  else if (props.orders.orders.length > 0) {
     prevOrders = props.orders.orders.map((item, index) => {
-      if (!item.pizzas.length > 0) {
+      if (!item.pizzas!.length) {
         return (
           <div key={item._id} className="prev__order__cover">
             <div
@@ -44,13 +56,14 @@ const myOrdersCabinet = props => {
             </div>
             <div className="prev__order__icon__cover">
               {Object.keys(item.ingredients).map(key => {
-                return item.ingredients[key].count > 0 ? (
+                const newKey = key as unknown as Ingredients;
+                return item.ingredients[newKey].count > 0 ? (
                   <div
                     className="pizza__view__icon pizza__view__icon_small"
                     key={key}
                   >
                     <div className="pizza__view__icon__count pizza__view__icon__count_small">
-                      <strong>{item.ingredients[key].count}X</strong>
+                      <strong>{item.ingredients[newKey].count}X</strong>
                     </div>
                     <div className="pizza__view__icon__pic">
                       <img
@@ -92,25 +105,26 @@ const myOrdersCabinet = props => {
               </p>
             </div>
             <div className="prev__order__icon__cover">
-              {item.pizzas.map((key, num) => {
+              {item.pizzas!.map((key, num) => {
                 return (
                   <div key={num} className="multi__pizza__single__cover">
                     {key.name ? (
                       <p className="multi__pizza__name__obj">{key.name}</p>
                     ) : null}
-                    <p key={index + item + num}>
+                    <p key={index + item._id + num}>
                       worth {key.cost}$, weight {key.weight}
                       g. and diameter {key.diameter} cm
                     </p>
                     <div className="prev__order__icon__cover">
                       {Object.keys(key.ingredients).map(ing => {
-                        return key.ingredients[ing].count > 0 ? (
+                        const newIng = ing as unknown as Ingredients;
+                        return key.ingredients[newIng].count > 0 ? (
                           <div
                             className="pizza__view__icon pizza__view__icon_small"
                             key={ing}
                           >
                             <div className="pizza__view__icon__count pizza__view__icon__count_small">
-                              <strong>{key.ingredients[ing].count}X</strong>
+                              <strong>{key.ingredients[newIng].count}X</strong>
                             </div>
                             <div className="pizza__view__icon__pic">
                               <img

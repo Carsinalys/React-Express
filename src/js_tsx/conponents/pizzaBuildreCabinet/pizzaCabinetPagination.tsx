@@ -1,7 +1,16 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
-const pagination = props => {
+
+interface Props extends RouteComponentProps<any> {
+  num: number;
+  page: number;
+  changePage: React.Dispatch<React.SetStateAction<number>>;
+  viewOrders: (query: string) => any;
+  id: string | null;
+}
+
+const pagination: React.FunctionComponent<Props> = props => {
   let arr = [];
   for (let i = 0; i < props.num; i++) {
     arr.push(i + 1);

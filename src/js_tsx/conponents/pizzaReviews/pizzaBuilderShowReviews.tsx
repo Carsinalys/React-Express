@@ -4,10 +4,24 @@ import { Link, Redirect, NavLink } from "react-router-dom";
 import Star from "../../icons/star";
 import StarEmpty from "../../icons/starEmpty";
 import Modal from "../hoc/modal";
+import { Review } from "../../interfaces/interfaces";
 
-const showReviews = props => {
+interface Props {
+  reviews: Review[];
+  auth: boolean;
+  pagination: number;
+  changeCurPage: (num: number) => void;
+  changePage: (param: string) => any;
+  currentPageNum: number;
+  edit: (id: string) => any;
+  removeReview: (id: string) => void;
+  id: string | null;
+  isEditMode: boolean;
+}
+
+const showReviews: React.FC<Props> = props => {
   const [modal, setModal] = useState(false);
-  const [id, setId] = useState(null);
+  const [id, setId] = useState('');
 
   let markup = () => {
     let pagination = [];
@@ -34,15 +48,15 @@ const showReviews = props => {
     return pagination;
   };
 
-  function getRating(item) {
+  function getRating(item: Review) {
     let stars = [];
     let counter = 0;
     for (let i = 0; i < 5; i++) {
       if (counter < +item.rating) {
-        stars.push(<Star key={item + i} />);
+        stars.push(<Star key={item._id + i} />);
         counter++;
       } else if (counter < 6) {
-        stars.push(<StarEmpty key={item + i} />);
+        stars.push(<StarEmpty key={item._id + i} />);
         counter++;
       }
     }
@@ -84,7 +98,10 @@ const showReviews = props => {
                 <span
                   className="reviews__edit_btn"
                   data-id={item._id}
-                  onClick={event => props.edit(event.target.dataset.id)}
+                  onClick={event => {
+                    const el = event.target as HTMLElement;
+                    props.edit(el.dataset.id!);
+                  }}
                 >
                   edit
                 </span>
@@ -94,8 +111,9 @@ const showReviews = props => {
                   className="reviews__edit_btn"
                   data-id={item._id}
                   onClick={event => {
+                    const el = event.target as  HTMLElement;
                     setModal(true);
-                    setId(event.target.dataset.id);
+                    setId(el.dataset.id!);
                   }}
                 >
                   delete

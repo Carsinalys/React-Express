@@ -3,8 +3,25 @@ import { connect } from "react-redux";
 
 import PizzaLogo from "./pizzaLogo";
 import PizzaNav from "./pizzaNav";
+import { InitStateAuth } from '../../reducer/pizzaAuth';
+import { InitStateChat } from '../../reducer/chat';
 
-class PizzaHeader extends React.Component {
+interface Props {
+  browser: {
+    safari: boolean;
+  }
+  auth: InitStateAuth;
+  chat: InitStateChat;
+  location: {
+    pathname: string
+  };
+}
+
+interface State {
+  burgerIsShow: boolean;
+}
+
+class PizzaHeader extends React.Component<Props,State> {
   state = {
     burgerIsShow: false
   };
@@ -20,7 +37,7 @@ class PizzaHeader extends React.Component {
   hideMenuHandler = () => {
     this.setState(prevState => {
       return {
-        burgerIsShow: (prevState.burgerIsShow = false)
+        burgerIsShow: false
       };
     });
   };
@@ -42,7 +59,7 @@ class PizzaHeader extends React.Component {
   }
 }
 
-const stateToProps = state => {
+const stateToProps = (state: any) => {
   return {
     auth: state.auth,
     chat: state.chat,
