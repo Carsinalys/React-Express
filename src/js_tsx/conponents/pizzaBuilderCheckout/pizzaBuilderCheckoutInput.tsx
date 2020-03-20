@@ -19,7 +19,7 @@ interface Props {
 }
 
 const checkoutInput = (props: Props) => {
-return <div>{ 
+return <>{ 
     Object.keys(props.inputs).map(item => {
     const curItem = item as InputKeys
     return (
@@ -44,7 +44,7 @@ return <div>{
         </div>
       );
     })
-  }</div>
+  }</>
 };
 
 export default checkoutInput;
