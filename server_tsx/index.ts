@@ -41,7 +41,6 @@ const server = new ApolloServer({
 });
 
 const app = Express();
-
 //body, form and cookie parsers
 app.use(Express.json({ limit: "300kb" }));
 app.use(Express.urlencoded({ extended: true, limit: "10kb" }));
@@ -92,11 +91,11 @@ console.log(`for GraphQL query ${server.graphqlPath}`);
 app.use(cors({ credentials: true, origin: "http://localhost:3001/" }));
 
 app.use("/", routeOrders, routeBuilds, routeReviews, routeChat, routeUser);
-app.use((req, res) => {
-  const context = {};
+app.use((req: Express.Request, res: Express.Response) => {
+  const initContext = {};
 
   const ReactMarkup = (
-    <StaticRouter location={req.url} context={context}>
+    <StaticRouter location={req.url} context={initContext}>
       <App />
     </StaticRouter>
   );
@@ -104,7 +103,7 @@ app.use((req, res) => {
   res.end();
 });
 //route for define unknown requests
-app.all("*", (req, res, next) => {
+app.all("*", (req: Express.Request, res: Express.Response, next) => {
   next(new ErrorHandler(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 //error handle middleware

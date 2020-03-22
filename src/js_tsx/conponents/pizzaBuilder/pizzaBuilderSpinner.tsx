@@ -6,7 +6,7 @@ const pizzaSpiner: React.FC<Props> = props => {
   return (
     <div className="modal__sending">
       <div>
-        <img src={"assets/img/doubleRingSpinner.svg"} alt="spinner" />
+        <img src={"/assets/img/doubleRingSpinner.svg"} alt="spinner" />
       </div>
     </div>
   );

@@ -14,8 +14,8 @@ const pizzaLogo: React.FC<Props> = props => {
         <img
           src={
             props.browser.safari
-              ? `assets/img/logo.png`
-              : `assets/img/webp/logo.webp`
+              ? `/assets/img/logo.png`
+              : `/assets/img/webp/logo.webp`
           }
           alt="Pizza builder home"
           className="pizza__logo__pic"
